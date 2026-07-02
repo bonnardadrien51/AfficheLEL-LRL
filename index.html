@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Couverture Facebook - Agenda</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="toolbar">
+
+    <button id="refreshBtn">
+        🔄 Actualiser
+    </button>
+
+    <button id="downloadBtn">
+        📷 Télécharger en PNG
+    </button>
+
+</div>
+
+
+<div id="cover">
+
+    <header>
+
+        <img src="logo-etabli.svg" class="logo">
+
+        <div class="title">
+
+            <h1>Les prochains rendez-vous</h1>
+
+            <p>
+                L'Établi Ludique • Le Raffut Ludique
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <section>
+
+            <h2 class="raffut">
+                🎲 Raffut Ludique
+            </h2>
+
+            <div id="raffutEvents">
+
+            </div>
+
+        </section>
+
+
+        <section>
+
+            <h2 class="etabli">
+                🛠 L'Établi Ludique
+            </h2>
+
+            <div id="etabliEvents">
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        <div id="update">
+
+        </div>
+
+        <div>
+
+            www.letabliludique.fr
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+<script src="agenda.js"></script>
+
+</body>
+
+</html>
