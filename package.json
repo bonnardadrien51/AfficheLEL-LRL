@@ -1,10 +1,12 @@
 {
   "name": "facebook-cover",
   "version": "1.0.0",
-  "dependencies": {
-    "node-ical": "^0.20.1"
-  },
+  "description": "Générateur de couverture Facebook pour L'Établi Ludique",
   "scripts": {
     "build": "node scripts/generate-json.js"
+  },
+  "dependencies": {
+    "axios": "^1.11.0",
+    "node-ical": "^0.20.1"
   }
 }
