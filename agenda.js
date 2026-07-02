@@ -131,7 +131,7 @@ function buildEvents(events){
 
             <img
                 class="badgeIcon"
-                src="img/${event.icon}">
+                src="img/categories${event.icon}">
 
             ${badge}
 
