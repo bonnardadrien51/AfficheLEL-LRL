@@ -1,0 +1,366 @@
+/* ===========================
+   L'Établi Ludique
+   Couverture Facebook
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    background:#e8edf4;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    padding:30px;
+
+}
+
+
+/* Barre d'outils */
+
+.toolbar{
+
+    width:1640px;
+
+    margin:auto;
+
+    margin-bottom:20px;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:15px;
+
+}
+
+.toolbar button{
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#114b73;
+
+    color:white;
+
+    padding:12px 22px;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.toolbar button:hover{
+
+    background:#0c3957;
+
+}
+
+
+
+/* =====================
+    COUVERTURE
+===================== */
+
+#cover{
+
+    width:1640px;
+
+    height:624px;
+
+    background:#0d4c72;
+
+    color:white;
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+    display:flex;
+
+    flex-direction:column;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.25);
+
+}
+
+
+
+/* =====================
+    HEADER
+===================== */
+
+header{
+
+    height:120px;
+
+    padding:30px 45px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    background:linear-gradient(
+        90deg,
+        #0d4c72,
+        #14628f
+    );
+
+}
+
+.logo{
+
+    height:72px;
+
+}
+
+.title{
+
+    text-align:right;
+
+}
+
+.title h1{
+
+    font-size:42px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+}
+
+.title p{
+
+    margin-top:8px;
+
+    font-size:20px;
+
+    opacity:.9;
+
+}
+
+
+
+/* =====================
+    CONTENU
+===================== */
+
+main{
+
+    flex:1;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:40px;
+
+    padding:35px 45px;
+
+}
+
+
+
+/* =====================
+    BLOCS
+===================== */
+
+section{
+
+    background:white;
+
+    border-radius:22px;
+
+    color:#1d2a33;
+
+    padding:24px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow:hidden;
+
+}
+
+section h2{
+
+    color:white;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    margin-bottom:18px;
+
+    font-size:26px;
+
+}
+
+.raffut{
+
+    background:#f29b38;
+
+}
+
+.etabli{
+
+    background:#d81b60;
+
+}
+
+
+
+/* =====================
+    EVENEMENTS
+===================== */
+
+.event{
+
+    display:grid;
+
+    grid-template-columns:90px 1fr;
+
+    gap:20px;
+
+    padding:14px 0;
+
+    border-bottom:1px solid #ececec;
+
+}
+
+.event:last-child{
+
+    border-bottom:none;
+
+}
+
+.date{
+
+    background:#0d4c72;
+
+    color:white;
+
+    border-radius:14px;
+
+    text-align:center;
+
+    padding:10px;
+
+}
+
+.date .day{
+
+    font-size:32px;
+
+    font-weight:bold;
+
+}
+
+.date .month{
+
+    text-transform:uppercase;
+
+    font-size:14px;
+
+    letter-spacing:1px;
+
+}
+
+.info h3{
+
+    color:#0d4c72;
+
+    font-size:22px;
+
+    margin-bottom:8px;
+
+}
+
+.meta{
+
+    display:flex;
+
+    gap:18px;
+
+    font-size:16px;
+
+    color:#666;
+
+}
+
+.meta span{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+}
+
+
+
+/* =====================
+    FOOTER
+===================== */
+
+footer{
+
+    height:60px;
+
+    background:#083552;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 40px;
+
+    font-size:18px;
+
+}
+
+
+
+/* =====================
+    EXPORT PNG
+===================== */
+
+.exporting .toolbar{
+
+    display:none;
+
+}
+
+
+
+/* =====================
+    Responsive
+===================== */
+
+@media(max-width:1700px){
+
+    body{
+
+        overflow:auto;
+
+    }
+
+}
