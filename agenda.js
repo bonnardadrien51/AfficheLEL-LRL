@@ -100,14 +100,23 @@ function buildEvents(events){
         const month =
             shortMonths[event.date.getMonth()];
 
-        const hour =
-            event.date.toLocaleTimeString(
-                "fr-FR",
-                {
-                    hour:"2-digit",
-                    minute:"2-digit"
-                }
-            );
+        const startHour =
+            new Date(event.start).toLocaleTimeString(
+            "fr-FR",
+            {
+                hour:"2-digit",
+                minute:"2-digit"
+            }
+        );
+    
+        const endHour =
+            new Date(event.end).toLocaleTimeString(
+            "fr-FR",
+            {
+                hour:"2-digit",
+                minute:"2-digit"
+            }
+        );
 
         const badge = event.label;
         const color = event.color;
@@ -153,7 +162,7 @@ function buildEvents(events){
 
             📍 ${event.location}
 
-            🕒 ${hour}
+            🕒 ${startHour} - ${endHour}
 
         </div>
 
