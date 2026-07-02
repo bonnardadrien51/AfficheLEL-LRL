@@ -66,7 +66,7 @@ async function loadAgenda(){
 
         .sort((a,b)=>a.date-b.date)
 
-        .slice(0,10);
+        .slice(0,6);
 
     buildEvents(events);
 
