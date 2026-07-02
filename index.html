@@ -4,10 +4,9 @@
 <head>
 
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Couverture Facebook - Agenda</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="style.css">
 
@@ -24,7 +23,7 @@
     </button>
 
     <button id="downloadBtn">
-        📷 Télécharger en PNG
+        📷 Télécharger la couverture
     </button>
 
 </div>
@@ -32,68 +31,57 @@
 
 <div id="cover">
 
-    <header>
+<header>
 
-        <img src="logo-etabli.svg" class="logo">
+    <img
+        src="logo-etabli.svg"
+        class="logo"
+        alt="L'Établi Ludique">
 
-        <div class="title">
+    <div class="header-text">
 
-            <h1>Les prochains rendez-vous</h1>
+        <h1>Les prochains rendez-vous</h1>
 
-            <p>
-                L'Établi Ludique • Le Raffut Ludique
-            </p>
+        <div id="currentMonth"></div>
 
-        </div>
+    </div>
 
-    </header>
+    <img
+        src="logo-raffut.svg"
+        class="logo"
+        alt="Le Raffut Ludique">
 
-
-    <main>
-
-        <section>
-
-            <h2 class="raffut">
-                🎲 Raffut Ludique
-            </h2>
-
-            <div id="raffutEvents">
-
-            </div>
-
-        </section>
+</header>
 
 
-        <section>
+<main>
 
-            <h2 class="etabli">
-                🛠 L'Établi Ludique
-            </h2>
+    <div id="events">
 
-            <div id="etabliEvents">
+        <!-- agenda.js générera les cartes ici -->
 
-            </div>
+    </div>
 
-        </section>
+</main>
 
-    </main>
 
-    <footer>
+<footer>
 
-        <div id="update">
+    <div id="update">
 
-        </div>
+        Dernière mise à jour
 
-        <div>
+    </div>
 
-            www.letabliludique.fr
+    <div>
 
-        </div>
+        www.letabliludique.fr
 
-    </footer>
+    </div>
+
+</footer>
 
 </div>
-
 
 <script src="agenda.js"></script>
 
