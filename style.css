@@ -1,3 +1,7 @@
+/**************************************************
+    RESET
+**************************************************/
+
 *{
     margin:0;
     padding:0;
@@ -6,7 +10,7 @@
 
 body{
 
-    background:#edf2f7;
+    background:#e9eef5;
 
     font-family:
         "Segoe UI",
@@ -18,9 +22,10 @@ body{
 }
 
 
-/***********************
- Toolbar
-************************/
+
+/**************************************************
+    BARRE D'OUTILS
+**************************************************/
 
 .toolbar{
 
@@ -38,7 +43,7 @@ body{
 
 .toolbar button{
 
-    padding:12px 22px;
+    padding:12px 24px;
 
     border:none;
 
@@ -50,6 +55,8 @@ body{
 
     font-size:16px;
 
+    font-weight:600;
+
     cursor:pointer;
 
     transition:.2s;
@@ -58,15 +65,17 @@ body{
 
 .toolbar button:hover{
 
+    transform:translateY(-2px);
+
     background:#0a3d5c;
 
 }
 
 
 
-/***********************
- Couverture
-************************/
+/**************************************************
+    COUVERTURE FACEBOOK
+**************************************************/
 
 #cover{
 
@@ -74,13 +83,9 @@ body{
 
     height:624px;
 
-    background:linear-gradient(
-        135deg,
-        #0d4c72,
-        #17618f
-    );
+    margin:auto;
 
-    border-radius:30px;
+    border-radius:28px;
 
     overflow:hidden;
 
@@ -88,18 +93,35 @@ body{
 
     flex-direction:column;
 
+    background:
+
+        radial-gradient(circle at top right,
+        rgba(255,255,255,.08),
+        transparent 40%),
+
+        linear-gradient(
+            135deg,
+            #0d4c72,
+            #17618f
+        );
+
     color:white;
 
-    box-shadow:0 20px 45px rgba(0,0,0,.25);
+    box-shadow:
+
+        0 18px 40px rgba(0,0,0,.25);
 
 }
 
 
-/***********************
- Header
-************************/
+
+/**************************************************
+    HEADER
+**************************************************/
 
 header{
+
+    height:110px;
 
     display:flex;
 
@@ -107,9 +129,11 @@ header{
 
     justify-content:space-between;
 
-    padding:25px 40px;
+    padding:20px 35px;
 
-    border-bottom:2px solid rgba(255,255,255,.15);
+    border-bottom:
+
+        2px solid rgba(255,255,255,.15);
 
 }
 
@@ -117,11 +141,15 @@ header{
 
     height:70px;
 
+    width:auto;
+
 }
 
 .header-text{
 
     text-align:center;
+
+    flex:1;
 
 }
 
@@ -129,11 +157,15 @@ header{
 
     font-size:42px;
 
-    margin-bottom:8px;
+    font-weight:800;
+
+    letter-spacing:.5px;
 
 }
 
 #currentMonth{
+
+    margin-top:8px;
 
     font-size:22px;
 
@@ -142,19 +174,22 @@ header{
 }
 
 
-/***********************
- Contenu
-************************/
+
+/**************************************************
+    CONTENU
+**************************************************/
 
 main{
 
     flex:1;
 
-    padding:28px 40px;
+    padding:24px 35px;
 
 }
 
 #events{
+
+    height:100%;
 
     display:grid;
 
@@ -165,9 +200,10 @@ main{
 }
 
 
-/***********************
- Carte événement
-************************/
+
+/**************************************************
+    CARTE EVENEMENT
+**************************************************/
 
 .event{
 
@@ -177,19 +213,37 @@ main{
 
     border-radius:18px;
 
-    display:flex;
-
     overflow:hidden;
 
-    min-height:95px;
+    display:flex;
 
-    box-shadow:0 8px 18px rgba(0,0,0,.12);
+    align-items:stretch;
+
+    min-height:100px;
+
+    box-shadow:
+
+        0 6px 16px rgba(0,0,0,.12);
+
+    transition:.2s;
 
 }
 
+.event:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/**************************************************
+    DATE
+**************************************************/
+
 .date{
 
-    width:90px;
+    width:95px;
+
+    color:white;
 
     display:flex;
 
@@ -199,21 +253,7 @@ main{
 
     align-items:center;
 
-    color:white;
-
-    font-weight:bold;
-
-}
-
-.date.raffut{
-
-    background:#f29b38;
-
-}
-
-.date.etabli{
-
-    background:#d81b60;
+    flex-shrink:0;
 
 }
 
@@ -221,25 +261,35 @@ main{
 
     font-size:34px;
 
+    font-weight:800;
+
     line-height:1;
 
 }
 
 .month{
 
-    margin-top:4px;
+    margin-top:5px;
 
     font-size:15px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
 
     text-transform:uppercase;
 
 }
 
+
+
+/**************************************************
+    CONTENU
+**************************************************/
+
 .content{
 
     flex:1;
-
-    padding:14px 18px;
 
     display:flex;
 
@@ -247,68 +297,111 @@ main{
 
     justify-content:center;
 
+    padding:14px 18px;
+
 }
+
+
+
+/**************************************************
+    BADGE
+**************************************************/
 
 .badge{
 
-    display:inline-block;
+    display:inline-flex;
 
-    padding:4px 10px;
+    align-items:center;
 
-    border-radius:30px;
+    gap:8px;
 
     color:white;
 
-    font-size:12px;
+    padding:5px 12px;
 
-    font-weight:bold;
+    border-radius:30px;
 
-    margin-bottom:8px;
+    font-size:13px;
+
+    font-weight:700;
 
     width:max-content;
 
-}
-
-.badge.raffut{
-
-    background:#f29b38;
+    margin-bottom:8px;
 
 }
 
-.badge.etabli{
+.badgeIcon{
 
-    background:#d81b60;
+    width:22px;
+
+    height:22px;
+
+    object-fit:contain;
 
 }
+
+
+
+/**************************************************
+    TITRE
+**************************************************/
 
 .title{
+
+    color:#0d4c72;
 
     font-size:21px;
 
     font-weight:700;
 
-    color:#0d4c72;
-
     margin-bottom:8px;
 
 }
 
+
+
+/**************************************************
+    INFORMATIONS
+**************************************************/
+
 .info{
-
-    font-size:15px;
-
-    color:#555;
 
     display:flex;
 
-    gap:18px;
+    justify-content:space-between;
+
+    align-items:center;
+
+    font-size:15px;
+
+    color:#666;
+
+}
+
+.location{
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+
+    max-width:75%;
+
+}
+
+.time{
+
+    font-weight:600;
 
 }
 
 
-/***********************
- Footer
-************************/
+
+/**************************************************
+    FOOTER
+**************************************************/
 
 footer{
 
@@ -325,5 +418,49 @@ footer{
     padding:0 35px;
 
     font-size:15px;
+
+}
+
+
+
+/**************************************************
+    PETITES ANIMATIONS
+**************************************************/
+
+.event:hover{
+
+    box-shadow:
+
+        0 10px 24px rgba(0,0,0,.18);
+
+}
+
+.badge img{
+
+    display:block;
+
+}
+
+
+
+/**************************************************
+    VERSION IMPRESSION
+**************************************************/
+
+@media print{
+
+    body{
+
+        background:white;
+
+        padding:0;
+
+    }
+
+    .toolbar{
+
+        display:none;
+
+    }
 
 }
