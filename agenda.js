@@ -109,37 +109,29 @@ function buildEvents(events){
                 }
             );
 
-        const badge =
-            event.calendar === "raffut"
-            ? "Le Raffut Ludique"
-            : "L'Établi Ludique";
-
-        const color =
-            event.calendar;
+        const badge = event.label;
+        const color = event.color;
 
         container.innerHTML += `
 
 <div class="event">
 
-    <div class="date ${color}">
+    <div
+        class="date"
+        style="background:${color};">
 
-        <div class="day">
-
-            ${day}
-
-        </div>
-
-        <div class="month">
-
-            ${month}
-
-        </div>
+        ...
 
     </div>
 
     <div class="content">
 
-        <div class="badge ${color}">
+        <div class="badge"
+             style="background:${color};">
+
+            <img
+                class="badgeIcon"
+                src="img/${event.icon}">
 
             ${badge}
 
@@ -153,17 +145,9 @@ function buildEvents(events){
 
         <div class="info">
 
-            <span>
+            📍 ${event.location}
 
-                📍 ${event.location || ""}
-
-            </span>
-
-            <span>
-
-                🕒 ${hour}
-
-            </span>
+            🕒 ${hour}
 
         </div>
 
