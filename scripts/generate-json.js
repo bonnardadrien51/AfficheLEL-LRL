@@ -3,22 +3,42 @@ const ical = require("node-ical");
 const fs = require("fs");
 
 const calendars = [
+
   {
-    type: "etabli",
-    url: "https://calendar.google.com/calendar/ical/e179f20eeae333cceeb677b269f4846c97586634dcb3f2cc1b44d5c8bd9cfba4%40group.calendar.google.com/public/basic.ics"
+    url: "https://calendar.google.com/calendar/ical/e179f20eeae333cceeb677b269f4846c97586634dcb3f2cc1b44d5c8bd9cfba4%40group.calendar.google.com/public/basic.ics",
+    label: "Animation",
+    icon: "LELanimation.png",
+    color: "#E97126"
   },
+
   {
-    type: "etabli",
-    url: "https://calendar.google.com/calendar/ical/8761c42019d8999b290f2830e85dde57dc1ce8d1779229fe9adf9802f8ef9c6e%40group.calendar.google.com/public/basic.ics"
+    url: "https://calendar.google.com/calendar/ical/8761c42019d8999b290f2830e85dde57dc1ce8d1779229fe9adf9802f8ef9c6e%40group.calendar.google.com/public/basic.ics",
+    label: "Partenaire",
+    icon: "LELpartenaire.png",
+    color: "#7E9EEA"
   },
+
   {
-    type: "etabli",
-    url: "https://calendar.google.com/calendar/ical/3ddecb61f28da2da38b0b2ae74c7323778847780c13cff360ebc36a07c24ba24%40group.calendar.google.com/public/basic.ics"
+    url: "https://calendar.google.com/calendar/ical/3ddecb61f28da2da38b0b2ae74c7323778847780c13cff360ebc36a07c24ba24%40group.calendar.google.com/public/basic.ics",
+    label: "Marché / Expo",
+    icon: "LELmarche.png",
+    color: "#E8BED4"
   },
+
   {
-    type: "raffut",
-    url: "https://calendar.google.com/calendar/ical/leraffutludique%40gmail.com/public/basic.ics"
+    url: "https://calendar.google.com/calendar/ical/leraffutludique%40gmail.com/public/basic.ics",
+    label: "Soirée au chapeau",
+    icon: "LRLsoiree.png",
+    color: "#EA3397"
+  },
+
+  {
+    url: "https://calendar.google.com/calendar/ical/795e1f6eb9318e01096825e3a3014ebd135f7c695b947cd87e94192505b9ace7%40group.calendar.google.com/public/basic.ics",
+    label: "Soirée adhérents",
+    icon: "LRLadherent.png",
+    color: "#FACB55"
   }
+
 ];
 
 async function loadCalendar(calendar) {
