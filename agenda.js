@@ -141,16 +141,21 @@ function buildEvents(events){
 
     <div class="content">
 
-        <div class="badge"
-             style="background:${color};">
+        <div class="top">
 
-            <img
-                class="badgeIcon"
-                src="img/categories/${event.icon}">
+    <img
+        class="categoryIcon"
+        src="img/categories/${event.icon}"
+        alt="">
 
-            ${badge}
+    <div class="badge"
+         style="background:${event.color};">
 
-        </div>
+        ${event.label}
+
+    </div>
+
+</div>
 
         <div class="title">
 
