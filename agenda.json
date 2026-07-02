@@ -1,15 +1,6 @@
 {
-  "updated": "02/07/2026 12:25:04",
+  "updated": "02/07/2026 22:04:28",
   "events": [
-    {
-      "title": "Les soirées d'Avanne continuent pendant les vacances",
-      "location": "3 Bis rue de l'eglise 25720 Avanne",
-      "start": "2026-07-02T15:00:00.000Z",
-      "end": "2026-07-02T19:00:00.000Z",
-      "label": "Soirée au chapeau",
-      "icon": "LRLsoiree.png",
-      "color": "#EA3397"
-    },
     {
       "title": "Atelier Boomerang Studio Chouette",
       "location": "Studio chouette",
@@ -90,6 +81,15 @@
       "label": "Animation",
       "icon": "LELanimation.png",
       "color": "#E97126"
+    },
+    {
+      "title": "Après midi jeux - Besançon",
+      "location": "4 Pont de la République, 25000 Besançon",
+      "start": "2026-08-26T12:00:00.000Z",
+      "end": "2026-08-26T15:00:00.000Z",
+      "label": "Soirée au chapeau",
+      "icon": "LRLsoiree.png",
+      "color": "#EA3397"
     }
   ]
 }
