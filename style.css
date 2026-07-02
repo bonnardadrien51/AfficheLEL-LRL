@@ -367,16 +367,21 @@ main{
 
 }
 
-.categoryIcon {
-    width:42px;
-    height:42px;
-    min-width:42px;
-    min-height:42px;
-    max-width:42px;
-    max-height:42px;
+.categoryIcon{
+
+    width:26px;
+    height:26px;
+
+    min-width:26px;
+    min-height:26px;
+    max-width:26px;
+    max-height:26px;
+
     object-fit:contain;
     flex-shrink:0;
+
     display:block;
+
 }
 
 
