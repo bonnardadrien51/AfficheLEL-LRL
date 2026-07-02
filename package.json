@@ -1,0 +1,10 @@
+{
+  "name": "facebook-cover",
+  "version": "1.0.0",
+  "dependencies": {
+    "node-ical": "^0.20.1"
+  },
+  "scripts": {
+    "build": "node scripts/generate-json.js"
+  }
+}
