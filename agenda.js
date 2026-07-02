@@ -116,13 +116,19 @@ function buildEvents(events){
 
 <div class="event">
 
-    <div
-        class="date"
-        style="background:${color};">
+<div
+    class="date"
+    style="background:${color};">
 
-        ...
-
+    <div class="day">
+        ${day}
     </div>
+
+    <div class="month">
+        ${month}
+    </div>
+
+</div>
 
     <div class="content">
 
@@ -131,7 +137,7 @@ function buildEvents(events){
 
             <img
                 class="badgeIcon"
-                src="img/categories${event.icon}">
+                src="img/categories/${event.icon}">
 
             ${badge}
 
