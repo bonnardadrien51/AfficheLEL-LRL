@@ -1,8 +1,3 @@
-/* ===========================
-   L'Établi Ludique
-   Couverture Facebook
-=========================== */
-
 *{
     margin:0;
     padding:0;
@@ -11,7 +6,7 @@
 
 body{
 
-    background:#e8edf4;
+    background:#edf2f7;
 
     font-family:
         "Segoe UI",
@@ -23,15 +18,15 @@ body{
 }
 
 
-/* Barre d'outils */
+/***********************
+ Toolbar
+************************/
 
 .toolbar{
 
     width:1640px;
 
-    margin:auto;
-
-    margin-bottom:20px;
+    margin:auto auto 20px auto;
 
     display:flex;
 
@@ -43,35 +38,35 @@ body{
 
 .toolbar button{
 
+    padding:12px 22px;
+
     border:none;
 
-    border-radius:10px;
+    border-radius:12px;
 
-    background:#114b73;
+    background:#0d4c72;
 
     color:white;
-
-    padding:12px 22px;
 
     font-size:16px;
 
     cursor:pointer;
 
-    transition:.25s;
+    transition:.2s;
 
 }
 
 .toolbar button:hover{
 
-    background:#0c3957;
+    background:#0a3d5c;
 
 }
 
 
 
-/* =====================
-    COUVERTURE
-===================== */
+/***********************
+ Couverture
+************************/
 
 #cover{
 
@@ -79,11 +74,13 @@ body{
 
     height:624px;
 
-    background:#0d4c72;
+    background:linear-gradient(
+        135deg,
+        #0d4c72,
+        #17618f
+    );
 
-    color:white;
-
-    border-radius:28px;
+    border-radius:30px;
 
     overflow:hidden;
 
@@ -91,21 +88,18 @@ body{
 
     flex-direction:column;
 
-    box-shadow:0 25px 60px rgba(0,0,0,.25);
+    color:white;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.25);
 
 }
 
 
-
-/* =====================
-    HEADER
-===================== */
+/***********************
+ Header
+************************/
 
 header{
-
-    height:120px;
-
-    padding:30px 45px;
 
     display:flex;
 
@@ -113,217 +107,214 @@ header{
 
     justify-content:space-between;
 
-    background:linear-gradient(
-        90deg,
-        #0d4c72,
-        #14628f
-    );
+    padding:25px 40px;
+
+    border-bottom:2px solid rgba(255,255,255,.15);
 
 }
 
 .logo{
 
-    height:72px;
+    height:70px;
 
 }
 
-.title{
+.header-text{
 
-    text-align:right;
+    text-align:center;
 
 }
 
-.title h1{
+.header-text h1{
 
     font-size:42px;
 
-    font-weight:700;
-
-    letter-spacing:1px;
+    margin-bottom:8px;
 
 }
 
-.title p{
+#currentMonth{
 
-    margin-top:8px;
-
-    font-size:20px;
+    font-size:22px;
 
     opacity:.9;
 
 }
 
 
-
-/* =====================
-    CONTENU
-===================== */
+/***********************
+ Contenu
+************************/
 
 main{
 
     flex:1;
 
+    padding:28px 40px;
+
+}
+
+#events{
+
     display:grid;
 
     grid-template-columns:1fr 1fr;
 
-    gap:40px;
-
-    padding:35px 45px;
+    gap:18px 28px;
 
 }
 
 
-
-/* =====================
-    BLOCS
-===================== */
-
-section{
-
-    background:white;
-
-    border-radius:22px;
-
-    color:#1d2a33;
-
-    padding:24px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    overflow:hidden;
-
-}
-
-section h2{
-
-    color:white;
-
-    padding:15px;
-
-    border-radius:12px;
-
-    margin-bottom:18px;
-
-    font-size:26px;
-
-}
-
-.raffut{
-
-    background:#f29b38;
-
-}
-
-.etabli{
-
-    background:#d81b60;
-
-}
-
-
-
-/* =====================
-    EVENEMENTS
-===================== */
+/***********************
+ Carte événement
+************************/
 
 .event{
 
-    display:grid;
+    background:white;
 
-    grid-template-columns:90px 1fr;
+    color:#222;
 
-    gap:20px;
+    border-radius:18px;
 
-    padding:14px 0;
+    display:flex;
 
-    border-bottom:1px solid #ececec;
+    overflow:hidden;
 
-}
+    min-height:95px;
 
-.event:last-child{
-
-    border-bottom:none;
+    box-shadow:0 8px 18px rgba(0,0,0,.12);
 
 }
 
 .date{
 
-    background:#0d4c72;
+    width:90px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
 
     color:white;
-
-    border-radius:14px;
-
-    text-align:center;
-
-    padding:10px;
-
-}
-
-.date .day{
-
-    font-size:32px;
 
     font-weight:bold;
 
 }
 
-.date .month{
+.date.raffut{
 
-    text-transform:uppercase;
-
-    font-size:14px;
-
-    letter-spacing:1px;
+    background:#f29b38;
 
 }
 
-.info h3{
+.date.etabli{
+
+    background:#d81b60;
+
+}
+
+.day{
+
+    font-size:34px;
+
+    line-height:1;
+
+}
+
+.month{
+
+    margin-top:4px;
+
+    font-size:15px;
+
+    text-transform:uppercase;
+
+}
+
+.content{
+
+    flex:1;
+
+    padding:14px 18px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+}
+
+.badge{
+
+    display:inline-block;
+
+    padding:4px 10px;
+
+    border-radius:30px;
+
+    color:white;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    margin-bottom:8px;
+
+    width:max-content;
+
+}
+
+.badge.raffut{
+
+    background:#f29b38;
+
+}
+
+.badge.etabli{
+
+    background:#d81b60;
+
+}
+
+.title{
+
+    font-size:21px;
+
+    font-weight:700;
 
     color:#0d4c72;
-
-    font-size:22px;
 
     margin-bottom:8px;
 
 }
 
-.meta{
+.info{
+
+    font-size:15px;
+
+    color:#555;
 
     display:flex;
 
     gap:18px;
 
-    font-size:16px;
-
-    color:#666;
-
-}
-
-.meta span{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:6px;
-
 }
 
 
-
-/* =====================
-    FOOTER
-===================== */
+/***********************
+ Footer
+************************/
 
 footer{
 
-    height:60px;
+    height:52px;
 
-    background:#083552;
+    background:rgba(0,0,0,.18);
 
     display:flex;
 
@@ -331,36 +322,8 @@ footer{
 
     align-items:center;
 
-    padding:0 40px;
+    padding:0 35px;
 
-    font-size:18px;
-
-}
-
-
-
-/* =====================
-    EXPORT PNG
-===================== */
-
-.exporting .toolbar{
-
-    display:none;
-
-}
-
-
-
-/* =====================
-    Responsive
-===================== */
-
-@media(max-width:1700px){
-
-    body{
-
-        overflow:auto;
-
-    }
+    font-size:15px;
 
 }
