@@ -1,5 +1,5 @@
 {
-  "updated": "02/07/2026 22:07:33",
+  "updated": "02/07/2026 22:30:35",
   "events": [
     {
       "title": "Atelier Boomerang Studio Chouette",
@@ -7,8 +7,8 @@
       "start": "2026-07-07T12:00:00.000Z",
       "end": "2026-07-07T16:00:00.000Z",
       "label": "Animation",
-      "icon": "LELanimation.png",
-      "color": "#E97126"
+      "icon": "LELanimation.svg",
+      "color": "#FBE4D5"
     },
     {
       "title": "Animation jeu de société en duo - Studio Chouette",
@@ -16,8 +16,8 @@
       "start": "2026-07-08T12:00:00.000Z",
       "end": "2026-07-08T15:00:00.000Z",
       "label": "Animation",
-      "icon": "LELanimation.png",
-      "color": "#E97126"
+      "icon": "LELanimation.svg",
+      "color": "#FBE4D5"
     },
     {
       "title": "Animations en pied d’immeuble - MJC Palente",
@@ -25,8 +25,8 @@
       "start": "2026-07-09T14:00:00.000Z",
       "end": "2026-07-09T17:00:00.000Z",
       "label": "Animation",
-      "icon": "LELanimation.png",
-      "color": "#E97126"
+      "icon": "LELanimation.svg",
+      "color": "#FBE4D5"
     },
     {
       "title": "Les soirées d'Avanne continuent pendant les vacances",
@@ -34,8 +34,8 @@
       "start": "2026-07-10T15:00:00.000Z",
       "end": "2026-07-10T19:00:00.000Z",
       "label": "Soirée au chapeau",
-      "icon": "LRLsoiree.png",
-      "color": "#EA3397"
+      "icon": "LRLsoiree.svg",
+      "color": "#FCE0EF"
     },
     {
       "title": "Les soirées d'Avanne continuent pendant les vacances",
@@ -43,8 +43,8 @@
       "start": "2026-07-16T15:00:00.000Z",
       "end": "2026-07-16T19:00:00.000Z",
       "label": "Soirée au chapeau",
-      "icon": "LRLsoiree.png",
-      "color": "#EA3397"
+      "icon": "LRLsoiree.svg",
+      "color": "#FCE0EF"
     },
     {
       "title": "Les soirées d'Avanne continuent pendant les vacances",
@@ -52,8 +52,8 @@
       "start": "2026-07-22T15:00:00.000Z",
       "end": "2026-07-22T19:00:00.000Z",
       "label": "Soirée au chapeau",
-      "icon": "LRLsoiree.png",
-      "color": "#EA3397"
+      "icon": "LRLsoiree.svg",
+      "color": "#FCE0EF"
     },
     {
       "title": "Les soirées d'Avanne continuent pendant les vacances",
@@ -61,8 +61,8 @@
       "start": "2026-08-01T15:00:00.000Z",
       "end": "2026-08-01T19:00:00.000Z",
       "label": "Soirée au chapeau",
-      "icon": "LRLsoiree.png",
-      "color": "#EA3397"
+      "icon": "LRLsoiree.svg",
+      "color": "#FCE0EF"
     },
     {
       "title": "Les soirées d'Avanne continuent pendant les vacances",
@@ -70,8 +70,8 @@
       "start": "2026-08-13T15:00:00.000Z",
       "end": "2026-08-13T19:00:00.000Z",
       "label": "Soirée au chapeau",
-      "icon": "LRLsoiree.png",
-      "color": "#EA3397"
+      "icon": "LRLsoiree.svg",
+      "color": "#FCE0EF"
     },
     {
       "title": "Tout Besançon Vole",
@@ -79,8 +79,8 @@
       "start": "2026-08-22T00:00:00.000Z",
       "end": "2026-08-24T00:00:00.000Z",
       "label": "Animation",
-      "icon": "LELanimation.png",
-      "color": "#E97126"
+      "icon": "LELanimation.svg",
+      "color": "#FBE4D5"
     },
     {
       "title": "Après midi jeux - Besançon",
@@ -88,8 +88,8 @@
       "start": "2026-08-26T12:00:00.000Z",
       "end": "2026-08-26T15:00:00.000Z",
       "label": "Soirée au chapeau",
-      "icon": "LRLsoiree.png",
-      "color": "#EA3397"
+      "icon": "LRLsoiree.svg",
+      "color": "#FCE0EF"
     }
   ]
 }
