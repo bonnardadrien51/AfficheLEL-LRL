@@ -69,12 +69,22 @@ async function loadCalendar(calendar) {
       continue;
 
     events.push({
-      calendar: calendar.type,
-      title: e.summary || "",
-      location: e.location || "",
-      start: e.start,
-      end: e.end || e.start
-    });
+
+    title: e.summary || "",
+
+    location: e.location || "",
+
+    start: e.start,
+
+    end: e.end || e.start,
+
+    label: calendar.label,
+
+    icon: calendar.icon,
+
+    color: calendar.color
+
+});
 
   }
 
