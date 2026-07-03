@@ -1,12 +1,12 @@
 {
-  "updated": "03/07/2026 08:07:02",
+  "updated": "03/07/2026 15:20:32",
   "events": [
     {
       "title": "Atelier Boomerang Studio Chouette",
       "location": "Studio chouette",
       "start": "2026-07-07T12:00:00.000Z",
       "end": "2026-07-07T16:00:00.000Z",
-      "label": "Animations auprès de partenaire",
+      "label": "Partenaire",
       "icon": "LELpartenaire.svg",
       "color": "#9EB6F1"
     },
@@ -15,7 +15,7 @@
       "location": "Studio chouette",
       "start": "2026-07-08T12:00:00.000Z",
       "end": "2026-07-08T15:00:00.000Z",
-      "label": "Animations auprès de partenaire",
+      "label": "Partenaire",
       "icon": "LELpartenaire.svg",
       "color": "#9EB6F1"
     },
@@ -24,12 +24,12 @@
       "location": "MJC Palente",
       "start": "2026-07-09T14:00:00.000Z",
       "end": "2026-07-09T17:00:00.000Z",
-      "label": "Animations auprès de partenaire",
+      "label": "Partenaire",
       "icon": "LELpartenaire.svg",
       "color": "#9EB6F1"
     },
     {
-      "title": "Les soirées jeux d'Avanne",
+      "title": "Les soirées jeux - Avanne",
       "location": "3 Bis rue de l'eglise 25720 Avanne",
       "start": "2026-07-10T15:00:00.000Z",
       "end": "2026-07-10T19:00:00.000Z",
@@ -38,7 +38,7 @@
       "color": "#F6D67A"
     },
     {
-      "title": "Les soirées jeux d'Avanne",
+      "title": "Les soirées jeux - Avanne",
       "location": "3 Bis rue de l'eglise 25720 Avanne",
       "start": "2026-07-16T15:00:00.000Z",
       "end": "2026-07-16T19:00:00.000Z",
@@ -47,7 +47,7 @@
       "color": "#F6D67A"
     },
     {
-      "title": "Les soirées jeux d'Avanne",
+      "title": "Les soirées jeux - Avanne",
       "location": "3 Bis rue de l'eglise 25720 Avanne",
       "start": "2026-07-22T15:00:00.000Z",
       "end": "2026-07-22T19:00:00.000Z",
@@ -56,7 +56,7 @@
       "color": "#F6D67A"
     },
     {
-      "title": "Les soirées jeux d'Avanne",
+      "title": "Les soirées jeux - Avanne",
       "location": "3 Bis rue de l'eglise 25720 Avanne",
       "start": "2026-08-01T15:00:00.000Z",
       "end": "2026-08-01T19:00:00.000Z",
@@ -65,20 +65,20 @@
       "color": "#F6D67A"
     },
     {
-      "title": "Les soirées d'Avanne continuent pendant les vacances",
+      "title": "Les soirées jeux - Avanne",
       "location": "3 Bis rue de l'eglise 25720 Avanne",
       "start": "2026-08-13T15:00:00.000Z",
       "end": "2026-08-13T19:00:00.000Z",
-      "label": "Soirée au chapeau",
-      "icon": "LRLsoiree.svg",
-      "color": "#F062B0"
+      "label": "Soirée adhérents",
+      "icon": "LRLadherent.svg",
+      "color": "#F6D67A"
     },
     {
       "title": "Tout Besançon Vole",
       "location": "",
       "start": "2026-08-22T00:00:00.000Z",
       "end": "2026-08-24T00:00:00.000Z",
-      "label": "Animations auprès de partenaire",
+      "label": "Partenaire",
       "icon": "LELpartenaire.svg",
       "color": "#9EB6F1"
     },
