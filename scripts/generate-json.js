@@ -6,14 +6,14 @@ const calendars = [
 
   {
     url: "https://calendar.google.com/calendar/ical/e179f20eeae333cceeb677b269f4846c97586634dcb3f2cc1b44d5c8bd9cfba4%40group.calendar.google.com/public/basic.ics",
-    label: "Animations auprès de partenaire",
+    label: "Partenaire",
     icon: "LELpartenaire.svg",
     color: "#9EB6F1"
   },
 
   {
     url: "https://calendar.google.com/calendar/ical/8761c42019d8999b290f2830e85dde57dc1ce8d1779229fe9adf9802f8ef9c6e%40group.calendar.google.com/public/basic.ics",
-    label: "Animations organisées par L'établi ludique",
+    label: "Animation",
     icon: "LELanimation.svg",
     color: "#F29A63"
   },
@@ -118,7 +118,9 @@ async function main() {
 
   const json = {
 
-    updated: new Date().toLocaleString("fr-FR"),
+    updated: new Date().toLocaleString("fr-FR", {
+      timeZone: "Europe/Paris"
+    }),
 
     events
 
