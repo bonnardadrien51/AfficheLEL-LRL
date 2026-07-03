@@ -185,21 +185,33 @@ header{
 
 .header-text h1{
 
-    font-size:42px;
+    font-family: "Comic Neue", cursive;
 
-    font-weight:800;
+    font-size:64px;
 
-    letter-spacing:.5px;
+    font-weight:700;
+
+    color:white;
+
+    letter-spacing:2px;
+
+    margin:0;
 
 }
 
 #currentMonth{
 
-    margin-top:8px;
+ font-family:"Comic Neue", cursive;
 
-    font-size:22px;
+    font-size:30px;
+
+    font-weight:700;
+
+    color:white;
 
     opacity:.9;
+
+    margin-top:8px;
 
 }
 
