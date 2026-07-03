@@ -1,5 +1,5 @@
 {
-  "updated": "03/07/2026 06:36:50",
+  "updated": "03/07/2026 07:00:08",
   "events": [
     {
       "title": "Atelier Boomerang Studio Chouette",
@@ -29,13 +29,13 @@
       "color": "#9EB6F1"
     },
     {
-      "title": "Les soirées d'Avanne continuent pendant les vacances",
+      "title": "Les soirées jeux d'Avanne",
       "location": "3 Bis rue de l'eglise 25720 Avanne",
       "start": "2026-07-10T15:00:00.000Z",
       "end": "2026-07-10T19:00:00.000Z",
-      "label": "Soirée au chapeau",
-      "icon": "LRLsoiree.svg",
-      "color": "#F062B0"
+      "label": "Soirée adhérents",
+      "icon": "LRLadherent.svg",
+      "color": "#F6D67A"
     },
     {
       "title": "Les soirées d'Avanne continuent pendant les vacances",
@@ -47,7 +47,7 @@
       "color": "#F062B0"
     },
     {
-      "title": "Les soirées d'Avanne continuent pendant les vacances",
+      "title": "Les soirées jeux d'Avanne",
       "location": "3 Bis rue de l'eglise 25720 Avanne",
       "start": "2026-07-22T15:00:00.000Z",
       "end": "2026-07-22T19:00:00.000Z",
