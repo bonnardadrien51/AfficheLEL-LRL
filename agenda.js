@@ -30,6 +30,16 @@ const shortMonths = [
     "DÉC"
 ];
 
+const shortWeekdays = [
+    "Dim",
+    "Lun",
+    "Mar",
+    "Mer",
+    "Jeu",
+    "Ven",
+    "Sam"
+];
+
 document.addEventListener("DOMContentLoaded", () => {
 
     loadAgenda();
@@ -97,6 +107,9 @@ function buildEvents(events){
 
         const day = event.date.getDate();
 
+        const weekday =
+            shortWeekdays[event.date.getDay()];
+
         const month =
             shortMonths[event.date.getMonth()];
 
@@ -128,6 +141,10 @@ function buildEvents(events){
 <div
     class="date"
     style="background:${color};">
+
+    <div class="weekday">
+        ${weekday}
+    </div>
 
     <div class="day">
         ${day}
@@ -190,32 +207,64 @@ function exportPNG(){
 
     toolbar.style.display="none";
 
-    html2canvas(
+    const cover =
+        document.getElementById("cover");
 
-        document.getElementById("cover"),
+    // S'assure que toutes les images (logos, icônes svg...)
+    // sont bien chargées avant la capture, sinon certaines
+    // peuvent manquer sur l'export.
+    const images =
+        Array.from(cover.querySelectorAll("img"));
 
-        {
+    const whenReady = images.map(img=>{
 
-            scale:2,
-
-            backgroundColor:null
-
+        if(img.complete && img.naturalWidth!==0){
+            return Promise.resolve();
         }
 
-    ).then(canvas=>{
+        return new Promise(resolve=>{
+            img.addEventListener("load", resolve, {once:true});
+            img.addEventListener("error", resolve, {once:true});
+        });
 
-        toolbar.style.display="flex";
+    });
 
-        const link =
-            document.createElement("a");
+    Promise.all(whenReady).then(()=>{
 
-        link.download =
-            "couverture-facebook.png";
+        html2canvas(
 
-        link.href =
-            canvas.toDataURL("image/png");
+            cover,
 
-        link.click();
+            {
+
+                scale:2,
+
+                backgroundColor:null,
+
+                useCORS:true,
+
+                allowTaint:true,
+
+                imageTimeout:0
+
+            }
+
+        ).then(canvas=>{
+
+            toolbar.style.display="flex";
+
+            const link =
+                document.createElement("a");
+
+            link.download =
+                "couverture-facebook.png";
+
+            link.href =
+                canvas.toDataURL("image/png");
+
+            link.click();
+
+        });
 
     });
 
