@@ -141,7 +141,7 @@ function buildEvents(events){
 
     <div class="content">
 
-        <div class="top">
+        <div class="left">
 
     <img
         class="categoryIcon"
