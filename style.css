@@ -121,7 +121,7 @@ body{
 
 header{
 
-    height:110px;
+    height:140px;
 
     display:flex;
 
@@ -129,7 +129,7 @@ header{
 
     justify-content:space-between;
 
-    padding:20px 35px;
+    padding:15px 35px;
 
     border-bottom:
 
@@ -169,7 +169,7 @@ header{
 
 .logo{
 
-    height:100px;
+    height:130px;
 
     width:auto;
 
