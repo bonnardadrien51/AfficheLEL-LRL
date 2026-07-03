@@ -1,12 +1,12 @@
 {
-  "updated": "03/07/2026 07:37:45",
+  "updated": "03/07/2026 07:44:02",
   "events": [
     {
       "title": "Atelier Boomerang Studio Chouette",
       "location": "Studio chouette",
       "start": "2026-07-07T12:00:00.000Z",
       "end": "2026-07-07T16:00:00.000Z",
-      "label": "Partenaire",
+      "label": "Animations auprès de partenaire",
       "icon": "LELpartenaire.svg",
       "color": "#9EB6F1"
     },
@@ -15,7 +15,7 @@
       "location": "Studio chouette",
       "start": "2026-07-08T12:00:00.000Z",
       "end": "2026-07-08T15:00:00.000Z",
-      "label": "Partenaire",
+      "label": "Animations auprès de partenaire",
       "icon": "LELpartenaire.svg",
       "color": "#9EB6F1"
     },
@@ -24,7 +24,7 @@
       "location": "MJC Palente",
       "start": "2026-07-09T14:00:00.000Z",
       "end": "2026-07-09T17:00:00.000Z",
-      "label": "Partenaire",
+      "label": "Animations auprès de partenaire",
       "icon": "LELpartenaire.svg",
       "color": "#9EB6F1"
     },
@@ -36,6 +36,15 @@
       "label": "Soirée adhérents",
       "icon": "LRLadherent.svg",
       "color": "#F6D67A"
+    },
+    {
+      "title": "Test",
+      "location": "",
+      "start": "2026-07-15T15:00:00.000Z",
+      "end": "2026-07-15T16:45:00.000Z",
+      "label": "Marché / Expo",
+      "icon": "LELmarche.svg",
+      "color": "#D99DC1"
     },
     {
       "title": "Les soirées jeux d'Avanne",
@@ -78,18 +87,9 @@
       "location": "",
       "start": "2026-08-22T00:00:00.000Z",
       "end": "2026-08-24T00:00:00.000Z",
-      "label": "Partenaire",
+      "label": "Animations auprès de partenaire",
       "icon": "LELpartenaire.svg",
       "color": "#9EB6F1"
-    },
-    {
-      "title": "Après midi jeux - Besançon",
-      "location": "4 Pont de la République, 25000 Besançon",
-      "start": "2026-08-26T12:00:00.000Z",
-      "end": "2026-08-26T15:00:00.000Z",
-      "label": "Soirée au chapeau",
-      "icon": "LRLsoiree.svg",
-      "color": "#F062B0"
     }
   ]
 }
