@@ -138,24 +138,24 @@ function buildEvents(events){
     </div>
 
 </div>
-        <div class="left">
 
-    <img
-        class="categoryIcon"
-        src="img/categories/${event.icon}"
-        alt="">
-         </div>
-        
-    <div class="content">
+    <div class="left">
 
-    <div class="badge"
-         style="background:${event.color};">
-
-        ${event.label}
+        <img
+            class="categoryIcon"
+            src="img/categories/${event.icon}"
+            alt="">
 
     </div>
 
-</div>
+    <div class="content">
+
+        <div class="badge"
+             style="background:${event.color};">
+
+            ${event.label}
+
+        </div>
 
         <div class="title">
 
@@ -165,9 +165,9 @@ function buildEvents(events){
 
         <div class="info">
 
-            📍 ${event.location}
+            <span class="location">📍 ${event.location}</span>
 
-            🕒 ${startHour} - ${endHour}
+            <span class="time">🕒 ${startHour} - ${endHour}</span>
 
         </div>
 
