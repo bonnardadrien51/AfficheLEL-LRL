@@ -1,0 +1,52 @@
+@import url("raffut-base.css");
+
+:root{
+
+    --cover-width: 1240px;
+    --cover-height: 1754px;
+
+    --logo-height: 150px;
+    --title-size: 62px;
+    --subtitle-size: 30px;
+    --footer-size: 16px;
+
+    /* Format portrait plus étroit : une seule colonne de cartes */
+    --events-columns: 1fr;
+
+}
+
+main{
+
+    padding:30px 45px;
+
+}
+
+#events{
+
+    gap:22px;
+
+}
+
+.event{
+
+    min-height:150px;
+
+}
+
+.title{
+
+    font-size:26px;
+
+}
+
+.badge{
+
+    font-size:15px;
+
+}
+
+.info{
+
+    font-size:17px;
+
+}
