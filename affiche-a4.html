@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+
+    <title>Affiche A4 - Soirées adhérents - Le Raffut Ludique</title>
+
+    <link rel="stylesheet" href="affiche-a4.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="toolbar">
+
+    <button id="refreshBtn">
+        🔄 Actualiser
+    </button>
+
+    <button id="downloadBtn">
+        📷 Télécharger l'affiche
+    </button>
+
+</div>
+
+
+<div id="cover">
+
+<header>
+
+    <img
+        src="img/logo-raffut.svg"
+        class="logo"
+        alt="Le Raffut Ludique">
+
+    <div class="header-text">
+
+        <h1>Soirées adhérents</h1>
+
+        <div id="currentMonth"></div>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <div id="events">
+
+        <!-- agenda.js générera les cartes ici -->
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <div id="update">
+
+        Dernière mise à jour
+
+    </div>
+
+    <div id="agendaLink">
+
+        Retrouvez l'agenda complet sur
+        <a href="http://urlr.me/!LELAgenda" target="_blank" rel="noopener">urlr.me/!LELAgenda</a>
+
+    </div>
+
+    <div>
+
+        www.letabliludique.fr
+
+    </div>
+
+</footer>
+
+</div>
+
+<script>
+    window.AGENDA_CONFIG = {
+        dataSource: "agenda-adherents.json",
+        filterLabel: "Soirée adhérents",
+        maxEvents: 8,
+        downloadName: "affiche-a4-raffut-adherents.png"
+    };
+</script>
+<script src="agenda.js"></script>
+
+</body>
+
+</html>
