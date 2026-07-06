@@ -1,4 +1,19 @@
-const EVENTS_URL = "agenda.json";
+// Chaque page peut définir window.AGENDA_CONFIG *avant* d'inclure agenda.js
+// pour personnaliser la source de données, un filtre, le nombre d'événements
+// affichés et le nom du fichier exporté, sans dupliquer ce fichier.
+const CONFIG = Object.assign({
+
+    dataSource: "agenda.json",
+
+    // Une chaîne, un tableau de chaînes, ou null pour ne rien filtrer.
+    // Comparé au champ "label" de chaque événement (ex: "Soirée adhérents").
+    filterLabel: null,
+
+    maxEvents: 6,
+
+    downloadName: "couverture-facebook.png"
+
+}, window.AGENDA_CONFIG || {});
 
 const months = [
     "Janvier",
@@ -57,11 +72,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function loadAgenda(){
 
-    const response = await fetch(EVENTS_URL);
+    const response = await fetch(CONFIG.dataSource);
 
     const json = await response.json();
 
     const now = new Date();
+
+    const allowedLabels = CONFIG.filterLabel === null
+        ? null
+        : Array.isArray(CONFIG.filterLabel)
+            ? CONFIG.filterLabel
+            : [CONFIG.filterLabel];
 
     let events = json.events
         .map(e => {
@@ -74,9 +95,11 @@ async function loadAgenda(){
 
         .filter(e => e.date >= now)
 
+        .filter(e => allowedLabels === null || allowedLabels.includes(e.label))
+
         .sort((a,b)=>a.date-b.date)
 
-        .slice(0,6);
+        .slice(0, CONFIG.maxEvents);
 
     buildEvents(events);
 
@@ -257,7 +280,7 @@ function exportPNG(){
                 document.createElement("a");
 
             link.download =
-                "couverture-facebook.png";
+                CONFIG.downloadName;
 
             link.href =
                 canvas.toDataURL("image/png");
