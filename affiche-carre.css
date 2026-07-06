@@ -35,62 +35,62 @@ main{
 
 .event{
 
-    min-height:82px;
+    min-height:180px;
 
 }
 
 .left{
 
-    width:82px;
+    width:190px;
 
-    padding:10px;
+    padding:16px;
 
 }
 
 .date{
 
-    width:78px;
+    width:100px;
 
 }
 
 .day{
 
-    font-size:26px;
+    font-size:46px;
 
 }
 
 .weekday{
 
-    font-size:12px;
+    font-size:18px;
 
 }
 
 .month{
 
-    font-size:12px;
+    font-size:17px;
 
 }
 
 .title{
 
-    font-size:17px;
+    font-size:29px;
 
-    margin-bottom:5px;
+    margin-bottom:10px;
 
 }
 
 .badge{
 
-    font-size:11px;
+    font-size:16px;
 
-    padding:4px 10px;
+    padding:6px 16px;
 
-    margin-bottom:5px;
+    margin-bottom:10px;
 
 }
 
 .info{
 
-    font-size:13px;
+    font-size:20px;
 
 }
