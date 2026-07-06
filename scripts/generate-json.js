@@ -94,7 +94,9 @@ async function loadCalendar(calendar) {
 
 async function main() {
 
-  let events = [];
+  let allEvents = [];
+
+  const eventsByLabel = {};
 
   for (const calendar of calendars) {
 
@@ -102,7 +104,9 @@ async function main() {
 
       const list = await loadCalendar(calendar);
 
-      events.push(...list);
+      allEvents.push(...list);
+
+      eventsByLabel[calendar.label] = list;
 
     } catch (err) {
 
@@ -112,27 +116,52 @@ async function main() {
 
   }
 
-  events.sort((a, b) => a.start - b.start);
+  allEvents.sort((a, b) => a.start - b.start);
 
-  events = events.slice(0, 10);
+  const generalEvents = allEvents.slice(0, 10);
 
-  const json = {
+  const generalJson = {
 
     updated: new Date().toLocaleString("fr-FR", {
       timeZone: "Europe/Paris"
     }),
 
-    events
+    events: generalEvents
 
   };
 
   fs.writeFileSync(
     "agenda.json",
-    JSON.stringify(json, null, 2),
+    JSON.stringify(generalJson, null, 2),
     "utf8"
   );
 
-  console.log(events.length + " événements enregistrés.");
+  console.log(generalEvents.length + " événements enregistrés dans agenda.json.");
+
+  // Flux dédié : uniquement les soirées réservées aux adhérents,
+  // indépendant des autres calendriers pour ne pas être écrasé
+  // par le quota partagé de agenda.json.
+  const adherentEvents = (eventsByLabel["Soirée adhérents"] || [])
+    .sort((a, b) => a.start - b.start)
+    .slice(0, 15);
+
+  const adherentJson = {
+
+    updated: new Date().toLocaleString("fr-FR", {
+      timeZone: "Europe/Paris"
+    }),
+
+    events: adherentEvents
+
+  };
+
+  fs.writeFileSync(
+    "agenda-adherents.json",
+    JSON.stringify(adherentJson, null, 2),
+    "utf8"
+  );
+
+  console.log(adherentEvents.length + " événements enregistrés dans agenda-adherents.json.");
 
 }
 
