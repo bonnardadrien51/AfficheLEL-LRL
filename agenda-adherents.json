@@ -2,33 +2,6 @@
   "updated": "06/07/2026 11:37:00",
   "events": [
     {
-      "title": "Atelier Boomerang Studio Chouette",
-      "location": "Studio chouette",
-      "start": "2026-07-07T12:00:00.000Z",
-      "end": "2026-07-07T16:00:00.000Z",
-      "label": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
-    },
-    {
-      "title": "Animation jeu de société en duo - Studio Chouette",
-      "location": "Studio chouette",
-      "start": "2026-07-08T12:00:00.000Z",
-      "end": "2026-07-08T15:00:00.000Z",
-      "label": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
-    },
-    {
-      "title": "Animations en pied d’immeuble - MJC Palente",
-      "location": "MJC Palente",
-      "start": "2026-07-09T14:00:00.000Z",
-      "end": "2026-07-09T17:00:00.000Z",
-      "label": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
-    },
-    {
       "title": "Les soirées jeux - Avanne",
       "location": "3 Bis rue de l'eglise 25720 Avanne",
       "start": "2026-07-10T15:00:00.000Z",
@@ -74,22 +47,49 @@
       "color": "#F6D67A"
     },
     {
-      "title": "Tout Besançon Vole",
-      "location": "",
-      "start": "2026-08-22T00:00:00.000Z",
-      "end": "2026-08-24T00:00:00.000Z",
-      "label": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
+      "title": "Les soirées d'Avanne - Portes ouvertes",
+      "location": "3 Bis rue de l'eglise 25720 Avanne",
+      "start": "2026-09-09T15:30:00.000Z",
+      "end": "2026-09-09T19:00:00.000Z",
+      "label": "Soirée adhérents",
+      "icon": "LRLadherent.svg",
+      "color": "#F6D67A"
     },
     {
-      "title": "Après midi jeux - Besançon",
-      "location": "4 Pont de la République, 25000 Besançon",
-      "start": "2026-08-26T12:00:00.000Z",
-      "end": "2026-08-26T15:00:00.000Z",
-      "label": "Soirée au chapeau",
-      "icon": "LRLsoiree.svg",
-      "color": "#F062B0"
+      "title": "Les soirées d'Avanne - Portes ouvertes",
+      "location": "3 Bis rue de l'eglise 25720 Avanne",
+      "start": "2026-09-23T15:30:00.000Z",
+      "end": "2026-09-23T19:00:00.000Z",
+      "label": "Soirée adhérents",
+      "icon": "LRLadherent.svg",
+      "color": "#F6D67A"
+    },
+    {
+      "title": "Les soirées jeux - Avanne",
+      "location": "3 Bis rue de l'eglise 25720 Avanne",
+      "start": "2026-10-14T15:30:00.000Z",
+      "end": "2026-10-14T19:00:00.000Z",
+      "label": "Soirée adhérents",
+      "icon": "LRLadherent.svg",
+      "color": "#F6D67A"
+    },
+    {
+      "title": "Les soirées jeux - Avanne",
+      "location": "3 Bis rue de l'eglise 25720 Avanne",
+      "start": "2026-11-04T16:30:00.000Z",
+      "end": "2026-11-04T20:00:00.000Z",
+      "label": "Soirée adhérents",
+      "icon": "LRLadherent.svg",
+      "color": "#F6D67A"
+    },
+    {
+      "title": "Les soirées jeux - Avanne",
+      "location": "3 Bis rue de l'eglise 25720 Avanne",
+      "start": "2026-11-18T16:30:00.000Z",
+      "end": "2026-11-18T20:00:00.000Z",
+      "label": "Soirée adhérents",
+      "icon": "LRLadherent.svg",
+      "color": "#F6D67A"
     }
   ]
 }
