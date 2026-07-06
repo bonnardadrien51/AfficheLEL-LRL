@@ -1,0 +1,96 @@
+@import url("raffut-base.css");
+
+:root{
+
+    --cover-width: 1080px;
+    --cover-height: 1080px;
+
+    --logo-height: 90px;
+    --title-size: 42px;
+    --subtitle-size: 22px;
+    --footer-size: 13px;
+
+    /* Format carré compact : une seule colonne de cartes */
+    --events-columns: 1fr;
+
+}
+
+header{
+
+    padding:18px 30px;
+
+}
+
+main{
+
+    padding:16px 30px;
+
+}
+
+#events{
+
+    gap:12px;
+
+}
+
+.event{
+
+    min-height:82px;
+
+}
+
+.left{
+
+    width:82px;
+
+    padding:10px;
+
+}
+
+.date{
+
+    width:78px;
+
+}
+
+.day{
+
+    font-size:26px;
+
+}
+
+.weekday{
+
+    font-size:12px;
+
+}
+
+.month{
+
+    font-size:12px;
+
+}
+
+.title{
+
+    font-size:17px;
+
+    margin-bottom:5px;
+
+}
+
+.badge{
+
+    font-size:11px;
+
+    padding:4px 10px;
+
+    margin-bottom:5px;
+
+}
+
+.info{
+
+    font-size:13px;
+
+}
