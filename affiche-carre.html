@@ -1,96 +1,104 @@
-@import url("raffut-base.css");
+<!DOCTYPE html>
+<html lang="fr">
 
-:root{
+<head>
 
-    --cover-width: 1080px;
-    --cover-height: 1080px;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    --logo-height: 90px;
-    --title-size: 42px;
-    --subtitle-size: 22px;
-    --footer-size: 13px;
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 
-    /* Format carré compact : une seule colonne de cartes */
-    --events-columns: 1fr;
+    <title>Affiche carrée - Soirées adhérents - Le Raffut Ludique</title>
 
-}
+    <link rel="stylesheet" href="affiche-carre.css">
 
-header{
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
-    padding:18px 30px;
+</head>
 
-}
+<body>
 
-main{
+<div class="toolbar">
 
-    padding:16px 30px;
+    <button id="refreshBtn">
+        🔄 Actualiser
+    </button>
 
-}
+    <button id="downloadBtn">
+        📷 Télécharger l'affiche
+    </button>
 
-#events{
+</div>
 
-    gap:12px;
 
-}
+<div id="cover">
 
-.event{
+<header>
 
-    min-height:120px;
+    <img
+        src="img/logo-raffut.svg"
+        class="logo"
+        alt="Le Raffut Ludique">
 
-}
+    <div class="header-text">
 
-.left{
+        <h1>Soirées adhérents</h1>
 
-    width:130px;
+        <div id="currentMonth"></div>
 
-    padding:14px;
+    </div>
 
-}
+</header>
 
-.date{
 
-    width:88px;
+<main>
 
-}
+    <div id="events">
 
-.day{
+        <!-- agenda.js générera les cartes ici -->
 
-    font-size:34px;
+    </div>
 
-}
+</main>
 
-.weekday{
 
-    font-size:15px;
+<footer>
 
-}
+    <div id="update">
 
-.month{
+        Dernière mise à jour
 
-    font-size:14px;
+    </div>
 
-}
+    <div id="agendaLink">
 
-.title{
+        Retrouvez l'agenda complet sur
+        <a href="http://urlr.me/!LELAgenda" target="_blank" rel="noopener">urlr.me/!LELAgenda</a>
 
-    font-size:23px;
+    </div>
 
-    margin-bottom:8px;
+    <div>
 
-}
+        www.leraffutludique.fr
 
-.badge{
+    </div>
 
-    font-size:14px;
+</footer>
 
-    padding:5px 14px;
+</div>
 
-    margin-bottom:8px;
+<script>
+    window.AGENDA_CONFIG = {
+        dataSource: "agenda-adherents.json",
+        filterLabel: "Soirée adhérents",
+        maxEvents: 4,
+        downloadName: "affiche-carre-raffut-adherents.png"
+    };
+</script>
+<script src="agenda.js"></script>
 
-}
+</body>
 
-.info{
-
-    font-size:17px;
-
-}
+</html>
