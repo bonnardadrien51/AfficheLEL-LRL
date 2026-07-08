@@ -1,24 +1,6 @@
 {
-  "updated": "07/07/2026 10:18:29",
+  "updated": "08/07/2026 09:25:11",
   "events": [
-    {
-      "title": "Atelier Boomerang Studio Chouette",
-      "location": "Studio chouette",
-      "start": "2026-07-07T12:00:00.000Z",
-      "end": "2026-07-07T16:00:00.000Z",
-      "label": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
-    },
-    {
-      "title": "Animation jeu de société en duo - Studio Chouette",
-      "location": "Studio chouette",
-      "start": "2026-07-08T12:00:00.000Z",
-      "end": "2026-07-08T15:00:00.000Z",
-      "label": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
-    },
     {
       "title": "Animations en pied d’immeuble - MJC Palente",
       "location": "MJC Palente",
@@ -56,6 +38,42 @@
       "color": "#F6D67A"
     },
     {
+      "title": "Vital-été Malcombe",
+      "location": "La Malcombe - Besançon",
+      "start": "2026-07-28T07:30:00.000Z",
+      "end": "2026-07-28T17:00:00.000Z",
+      "label": "Partenaire",
+      "icon": "LELpartenaire.svg",
+      "color": "#9EB6F1"
+    },
+    {
+      "title": "Fabrication de boomerang",
+      "location": "Vital’Outdoor - Besancon - Parc Rhodiaceta",
+      "start": "2026-07-29T07:30:00.000Z",
+      "end": "2026-07-29T17:00:00.000Z",
+      "label": "Partenaire",
+      "icon": "LELpartenaire.svg",
+      "color": "#9EB6F1"
+    },
+    {
+      "title": "Fabrication de boomerang",
+      "location": "Vital’Outdoor - Besancon - Parc Rhodiaceta",
+      "start": "2026-07-30T07:30:00.000Z",
+      "end": "2026-07-30T17:00:00.000Z",
+      "label": "Partenaire",
+      "icon": "LELpartenaire.svg",
+      "color": "#9EB6F1"
+    },
+    {
+      "title": "Fabrication de boomerang",
+      "location": "Vital’Outdoor - Besancon - Parc Rhodiaceta",
+      "start": "2026-07-31T07:30:00.000Z",
+      "end": "2026-07-31T17:00:00.000Z",
+      "label": "Partenaire",
+      "icon": "LELpartenaire.svg",
+      "color": "#9EB6F1"
+    },
+    {
       "title": "Les soirées jeux - Avanne",
       "location": "3 Bis rue de l'eglise 25720 Avanne",
       "start": "2026-08-01T15:00:00.000Z",
@@ -72,24 +90,6 @@
       "label": "Soirée adhérents",
       "icon": "LRLadherent.svg",
       "color": "#F6D67A"
-    },
-    {
-      "title": "Tout Besançon Vole",
-      "location": "",
-      "start": "2026-08-22T00:00:00.000Z",
-      "end": "2026-08-24T00:00:00.000Z",
-      "label": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
-    },
-    {
-      "title": "Après midi jeux - Besançon",
-      "location": "4 Pont de la République, 25000 Besançon",
-      "start": "2026-08-26T12:00:00.000Z",
-      "end": "2026-08-26T15:00:00.000Z",
-      "label": "Soirée au chapeau",
-      "icon": "LRLsoiree.svg",
-      "color": "#F062B0"
     }
   ]
 }
