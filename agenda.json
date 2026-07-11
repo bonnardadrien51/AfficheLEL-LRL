@@ -1,15 +1,6 @@
 {
-  "updated": "10/07/2026 10:17:48",
+  "updated": "11/07/2026 09:08:56",
   "events": [
-    {
-      "title": "[Annulé] Les soirées jeux - Avanne",
-      "location": "3 Bis rue de l'eglise 25720 Avanne",
-      "start": "2026-07-10T15:00:00.000Z",
-      "end": "2026-07-10T19:00:00.000Z",
-      "label": "Soirée adhérents",
-      "icon": "LRLadherent.svg",
-      "color": "#F6D67A"
-    },
     {
       "title": "Les soirées jeux - Avanne",
       "location": "3 Bis rue de l'eglise 25720 Avanne",
@@ -29,8 +20,8 @@
       "color": "#F6D67A"
     },
     {
-      "title": "Vital-été Malcombe",
-      "location": "La Malcombe - Besançon",
+      "title": "Fabrication de boomerang",
+      "location": "Vital-été La Malcombe - Besançon",
       "start": "2026-07-28T07:30:00.000Z",
       "end": "2026-07-28T17:00:00.000Z",
       "label": "Partenaire",
@@ -90,6 +81,15 @@
       "label": "Partenaire",
       "icon": "LELpartenaire.svg",
       "color": "#9EB6F1"
+    },
+    {
+      "title": "Après midi jeux - Besançon",
+      "location": "4 Pont de la République, 25000 Besançon",
+      "start": "2026-08-26T12:00:00.000Z",
+      "end": "2026-08-26T15:00:00.000Z",
+      "label": "Soirée au chapeau",
+      "icon": "LRLsoiree.svg",
+      "color": "#F062B0"
     }
   ]
 }
