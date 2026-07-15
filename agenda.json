@@ -1,5 +1,5 @@
 {
-  "updated": "14/07/2026 09:08:37",
+  "updated": "15/07/2026 09:11:57",
   "events": [
     {
       "title": "Les soirées jeux - Avanne",
@@ -9,6 +9,24 @@
       "label": "Soirée adhérents",
       "icon": "LRLadherent.svg",
       "color": "#F6D67A"
+    },
+    {
+      "title": "inscription !!\n",
+      "location": "",
+      "start": "2026-07-18T06:00:00.000Z",
+      "end": "2026-07-18T07:00:00.000Z",
+      "label": "Partenaire",
+      "icon": "LELpartenaire.svg",
+      "color": "#9EB6F1"
+    },
+    {
+      "title": "avant dernier jour d'inscription",
+      "location": "",
+      "start": "2026-07-21T06:00:00.000Z",
+      "end": "2026-07-21T07:00:00.000Z",
+      "label": "Partenaire",
+      "icon": "LELpartenaire.svg",
+      "color": "#9EB6F1"
     },
     {
       "title": "Les soirées jeux - Avanne",
@@ -72,24 +90,6 @@
       "label": "Soirée adhérents",
       "icon": "LRLadherent.svg",
       "color": "#F6D67A"
-    },
-    {
-      "title": "Tout Besançon Vole",
-      "location": "",
-      "start": "2026-08-22T00:00:00.000Z",
-      "end": "2026-08-24T00:00:00.000Z",
-      "label": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
-    },
-    {
-      "title": "Après midi jeux - Besançon",
-      "location": "4 Pont de la République, 25000 Besançon",
-      "start": "2026-08-26T12:00:00.000Z",
-      "end": "2026-08-26T15:00:00.000Z",
-      "label": "Soirée au chapeau",
-      "icon": "LRLsoiree.svg",
-      "color": "#F062B0"
     }
   ]
 }
