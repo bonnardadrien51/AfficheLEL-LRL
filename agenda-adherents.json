@@ -1,15 +1,6 @@
 {
-  "updated": "22/07/2026 09:31:48",
+  "updated": "23/07/2026 09:28:59",
   "events": [
-    {
-      "title": "Les soirées jeux - Avanne",
-      "location": "3 Bis rue de l'eglise 25720 Avanne",
-      "start": "2026-07-22T15:00:00.000Z",
-      "end": "2026-07-22T19:00:00.000Z",
-      "label": "Soirée adhérents",
-      "icon": "LRLadherent.svg",
-      "color": "#F6D67A"
-    },
     {
       "title": "Les soirées jeux - Avanne",
       "location": "3 Bis rue de l'eglise 25720 Avanne",

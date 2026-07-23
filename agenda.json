@@ -1,15 +1,6 @@
 {
-  "updated": "22/07/2026 09:31:47",
+  "updated": "23/07/2026 09:28:59",
   "events": [
-    {
-      "title": "Les soirées jeux - Avanne",
-      "location": "3 Bis rue de l'eglise 25720 Avanne",
-      "start": "2026-07-22T15:00:00.000Z",
-      "end": "2026-07-22T19:00:00.000Z",
-      "label": "Soirée adhérents",
-      "icon": "LRLadherent.svg",
-      "color": "#F6D67A"
-    },
     {
       "title": "Fabrication de boomerang",
       "location": "Vital-été La Malcombe - Besançon",
@@ -90,6 +81,15 @@
       "label": "Soirée au chapeau",
       "icon": "LRLsoiree.svg",
       "color": "#F062B0"
+    },
+    {
+      "title": "Les soirées d'Avanne - Portes ouvertes",
+      "location": "3 Bis rue de l'eglise 25720 Avanne",
+      "start": "2026-09-09T15:30:00.000Z",
+      "end": "2026-09-09T19:00:00.000Z",
+      "label": "Soirée adhérents",
+      "icon": "LRLadherent.svg",
+      "color": "#F6D67A"
     }
   ]
 }
