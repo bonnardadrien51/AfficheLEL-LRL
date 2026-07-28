@@ -1,15 +1,6 @@
 {
-  "updated": "27/07/2026 10:26:09",
+  "updated": "28/07/2026 09:34:59",
   "events": [
-    {
-      "title": "Fabrication de boomerang",
-      "location": "Vital-été La Malcombe - Besançon",
-      "start": "2026-07-28T07:30:00.000Z",
-      "end": "2026-07-28T17:00:00.000Z",
-      "label": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
-    },
     {
       "title": "Fabrication de boomerang",
       "location": "Vital’Outdoor - Besancon - Parc Rhodiaceta",
@@ -87,6 +78,15 @@
       "location": "3 Bis rue de l'eglise 25720 Avanne",
       "start": "2026-09-09T15:30:00.000Z",
       "end": "2026-09-09T19:00:00.000Z",
+      "label": "Soirée adhérents",
+      "icon": "LRLadherent.svg",
+      "color": "#F6D67A"
+    },
+    {
+      "title": "Les soirées d'Avanne - Portes ouvertes",
+      "location": "3 Bis rue de l'eglise 25720 Avanne",
+      "start": "2026-09-23T15:30:00.000Z",
+      "end": "2026-09-23T19:00:00.000Z",
       "label": "Soirée adhérents",
       "icon": "LRLadherent.svg",
       "color": "#F6D67A"
