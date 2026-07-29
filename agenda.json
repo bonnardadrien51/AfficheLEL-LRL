@@ -1,15 +1,6 @@
 {
-  "updated": "28/07/2026 09:34:59",
+  "updated": "29/07/2026 09:39:21",
   "events": [
-    {
-      "title": "Fabrication de boomerang",
-      "location": "Vital’Outdoor - Besancon - Parc Rhodiaceta",
-      "start": "2026-07-29T07:30:00.000Z",
-      "end": "2026-07-29T17:00:00.000Z",
-      "label": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
-    },
     {
       "title": "Fabrication de boomerang",
       "location": "Vital’Outdoor - Besancon - Parc Rhodiaceta",
@@ -90,6 +81,15 @@
       "label": "Soirée adhérents",
       "icon": "LRLadherent.svg",
       "color": "#F6D67A"
+    },
+    {
+      "title": "Soirée jeux MJC Palente",
+      "location": "MJC Palente",
+      "start": "2026-10-02T15:00:00.000Z",
+      "end": "2026-10-02T20:00:00.000Z",
+      "label": "Soirée au chapeau",
+      "icon": "LRLsoiree.svg",
+      "color": "#F062B0"
     }
   ]
 }
