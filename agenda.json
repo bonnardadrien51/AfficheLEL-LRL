@@ -1,15 +1,6 @@
 {
-  "updated": "29/07/2026 09:39:21",
+  "updated": "30/07/2026 09:31:48",
   "events": [
-    {
-      "title": "Fabrication de boomerang",
-      "location": "Vital’Outdoor - Besancon - Parc Rhodiaceta",
-      "start": "2026-07-30T07:30:00.000Z",
-      "end": "2026-07-30T17:00:00.000Z",
-      "label": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
-    },
     {
       "title": "Fabrication de boomerang",
       "location": "Vital’Outdoor - Besancon - Parc Rhodiaceta",
@@ -90,6 +81,15 @@
       "label": "Soirée au chapeau",
       "icon": "LRLsoiree.svg",
       "color": "#F062B0"
+    },
+    {
+      "title": "Les soirées jeux - Avanne",
+      "location": "3 Bis rue de l'eglise 25720 Avanne",
+      "start": "2026-10-14T15:30:00.000Z",
+      "end": "2026-10-14T19:00:00.000Z",
+      "label": "Soirée adhérents",
+      "icon": "LRLadherent.svg",
+      "color": "#F6D67A"
     }
   ]
 }
