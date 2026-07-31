@@ -1,15 +1,6 @@
 {
-  "updated": "30/07/2026 09:31:48",
+  "updated": "31/07/2026 09:47:46",
   "events": [
-    {
-      "title": "Fabrication de boomerang",
-      "location": "Vital’Outdoor - Besancon - Parc Rhodiaceta",
-      "start": "2026-07-31T07:30:00.000Z",
-      "end": "2026-07-31T17:00:00.000Z",
-      "label": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
-    },
     {
       "title": "Les soirées jeux - Avanne",
       "location": "3 Bis rue de l'eglise 25720 Avanne",
@@ -90,6 +81,15 @@
       "label": "Soirée adhérents",
       "icon": "LRLadherent.svg",
       "color": "#F6D67A"
+    },
+    {
+      "title": "Escape game - Papyrus et la Potion des Pluies Oubliées - Studio chouette",
+      "location": "Studio Chouette, 4 Rue du Clos Saint-Amour, 25000 Besançon, France",
+      "start": "2026-10-23T08:00:00.000Z",
+      "end": "2026-10-23T16:00:00.000Z",
+      "label": "Partenaire",
+      "icon": "LELpartenaire.svg",
+      "color": "#9EB6F1"
     }
   ]
 }
