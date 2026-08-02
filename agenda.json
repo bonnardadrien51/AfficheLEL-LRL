@@ -1,15 +1,6 @@
 {
-  "updated": "01/08/2026 09:24:42",
+  "updated": "02/08/2026 09:29:09",
   "events": [
-    {
-      "title": "Les soirées jeux - Avanne",
-      "location": "3 Bis rue de l'eglise 25720 Avanne",
-      "start": "2026-08-01T12:00:00.000Z",
-      "end": "2026-08-01T15:00:00.000Z",
-      "label": "Soirée adhérents",
-      "icon": "LRLadherent.svg",
-      "color": "#F6D67A"
-    },
     {
       "title": "Les soirées jeux - Avanne",
       "location": "3 Bis rue de l'eglise 25720 Avanne",
@@ -87,6 +78,15 @@
       "location": "Studio Chouette, 4 Rue du Clos Saint-Amour, 25000 Besançon, France",
       "start": "2026-10-23T08:00:00.000Z",
       "end": "2026-10-23T16:00:00.000Z",
+      "label": "Partenaire",
+      "icon": "LELpartenaire.svg",
+      "color": "#9EB6F1"
+    },
+    {
+      "title": "Escape game - Papyrus et la Potion des Pluies Oubliées - Tavaux",
+      "location": "",
+      "start": "2026-10-24T11:00:00.000Z",
+      "end": "2026-10-24T15:30:00.000Z",
       "label": "Partenaire",
       "icon": "LELpartenaire.svg",
       "color": "#9EB6F1"
