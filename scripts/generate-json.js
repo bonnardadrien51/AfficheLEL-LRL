@@ -41,6 +41,60 @@ const calendars = [
 
 ];
 
+const VACANCES_URL =
+  "https://calendar.google.com/calendar/ical/0a1c5d7a3b7f8feab31b33af5f3c10777e558ac186c7688b1e4d9fb46ea72549%40group.calendar.google.com/public/basic.ics";
+
+async function loadVacationCalendar() {
+
+  console.log("Lecture :", VACANCES_URL);
+
+  const response = await axios.get(VACANCES_URL, {
+    headers: {
+      "User-Agent": "Mozilla/5.0"
+    }
+  });
+
+  const parsed = ical.sync.parseICS(response.data);
+
+  const now = new Date();
+
+  const periods = [];
+
+  for (const key in parsed) {
+
+    const e = parsed[key];
+
+    if (e.type !== "VEVENT")
+      continue;
+
+    if (!e.start || !e.end)
+      continue;
+
+    // On garde les périodes en cours (pas encore terminées) ou à venir.
+    // Contrairement aux événements ponctuels, on ne filtre pas sur le
+    // début : une période de vacances déjà commencée doit rester visible
+    // jusqu'à sa date de fin.
+    if (e.end < now)
+      continue;
+
+    periods.push({
+
+      titre: e.summary || "",
+
+      start: e.start,
+
+      end: e.end
+
+    });
+
+  }
+
+  periods.sort((a, b) => a.start - b.start);
+
+  return periods;
+
+}
+
 async function loadCalendar(calendar) {
 
   console.log("Lecture :", calendar.url);
@@ -162,6 +216,35 @@ async function main() {
   );
 
   console.log(adherentEvents.length + " événements enregistrés dans agenda-adherents.json.");
+
+  // Périodes de vacances, indépendantes des autres calendriers.
+  try {
+
+    const periods = await loadVacationCalendar();
+
+    const vacancesJson = {
+
+      updated: new Date().toLocaleString("fr-FR", {
+        timeZone: "Europe/Paris"
+      }),
+
+      periods
+
+    };
+
+    fs.writeFileSync(
+      "vacances.json",
+      JSON.stringify(vacancesJson, null, 2),
+      "utf8"
+    );
+
+    console.log(periods.length + " période(s) enregistrée(s) dans vacances.json.");
+
+  } catch (err) {
+
+    console.error("Erreur lors de la lecture du calendrier vacances :", err.message);
+
+  }
 
 }
 
