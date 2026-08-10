@@ -1,5 +1,5 @@
 {
-  "updated": "10/08/2026 10:39:48",
+  "updated": "10/08/2026 23:48:57",
   "events": [
     {
       "title": "Les soirées jeux - Avanne",
@@ -83,13 +83,13 @@
       "color": "#F6D67A"
     },
     {
-      "title": "Escape game - Papyrus et la Potion des Pluies Oubliées - Studio chouette",
-      "location": "Studio Chouette, 4 Rue du Clos Saint-Amour, 25000 Besançon, France",
-      "start": "2026-10-23T08:00:00.000Z",
-      "end": "2026-10-23T16:00:00.000Z",
-      "label": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
+      "title": "Jeux Avanne Bibliothèque",
+      "location": "",
+      "start": "2026-10-22T12:00:00.000Z",
+      "end": "2026-10-22T15:00:00.000Z",
+      "label": "Animation",
+      "icon": "LELanimation.svg",
+      "color": "#F29A63"
     }
   ]
 }
