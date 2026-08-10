@@ -7,103 +7,168 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 
-    <title>Couverture Facebook - Agenda</title>
+    <title>Affiches & outils - L'Établi Ludique & Le Raffut Ludique</title>
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        *{ margin:0; padding:0; box-sizing:border-box; }
 
-    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+        body{
+            background:#0d4c72;
+            color:white;
+            font-family:"Comic Neue","Segoe UI",Arial,sans-serif;
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:40px 20px;
+        }
+
+        #wrapper{
+            max-width:1000px;
+            width:100%;
+            text-align:center;
+        }
+
+        #logos{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:40px;
+            margin-bottom:24px;
+            flex-wrap:wrap;
+        }
+
+        #logos img{
+            height:80px;
+            width:auto;
+        }
+
+        h1{
+            font-size:32px;
+            font-weight:700;
+            margin-bottom:6px;
+        }
+
+        #subtitle{
+            color:rgba(255,255,255,.75);
+            font-size:17px;
+            margin-bottom:40px;
+        }
+
+        .section{
+            margin-bottom:36px;
+            text-align:left;
+        }
+
+        .sectionTitle{
+            font-size:18px;
+            font-weight:700;
+            text-transform:uppercase;
+            letter-spacing:1px;
+            color:rgba(255,255,255,.6);
+            margin-bottom:14px;
+            padding-bottom:6px;
+            border-bottom:1px solid rgba(255,255,255,.15);
+        }
+
+        .cards{
+            display:grid;
+            grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
+            gap:14px;
+        }
+
+        .card{
+            background:rgba(255,255,255,.1);
+            border-radius:14px;
+            padding:18px 20px;
+            text-decoration:none;
+            color:white;
+            transition:transform .15s, background .15s;
+            border:2px solid transparent;
+            display:block;
+        }
+
+        .card:hover{
+            transform:translateY(-3px);
+            background:rgba(255,255,255,.18);
+            border-color:rgba(255,255,255,.3);
+        }
+
+        .cardTitle{
+            font-size:18px;
+            font-weight:700;
+            margin-bottom:6px;
+        }
+
+        .cardDesc{
+            font-size:14px;
+            color:rgba(255,255,255,.7);
+            line-height:1.4;
+        }
+
+        .badge{
+            display:inline-block;
+            font-size:11px;
+            font-weight:700;
+            padding:2px 8px;
+            border-radius:999px;
+            margin-bottom:8px;
+        }
+
+        .badge.lel{ background:#9EB6F1; color:#0d1a3a; }
+        .badge.lrl{ background:#F6D67A; color:#3a2800; }
+        .badge.outil{ background:rgba(255,255,255,.25); color:white; }
+    </style>
 
 </head>
 
 <body>
 
-<div class="toolbar">
+<div id="wrapper">
 
-    <button id="refreshBtn">
-        🔄 Actualiser
-    </button>
+    <div id="logos">
+        <img src="img/logo-etabli.svg" alt="L'Établi Ludique">
+        <img src="img/logo-raffut.svg" alt="Le Raffut Ludique">
+    </div>
 
-    <button id="downloadBtn">
-        📷 Télécharger la couverture
-    </button>
+    <h1>Affiches & outils</h1>
+    <p id="subtitle">Choisissez une page</p>
+
+    <div class="section">
+        <div class="sectionTitle">L'Établi Ludique — Couvertures agenda</div>
+        <div class="cards">
+            <a class="card" href="couverture-facebook.html">
+                <span class="badge lel">L'Établi Ludique</span>
+                <div class="cardTitle">Couverture Facebook</div>
+                <div class="cardDesc">Tous les événements à venir (format bannière 1640×624)</div>
+            </a>
+            <a class="card" href="affiche-a4.html">
+                <span class="badge lrl">Le Raffut Ludique</span>
+                <div class="cardTitle">Affiche A4 — Adhérents</div>
+                <div class="cardDesc">Liste des soirées adhérents, format A4 portrait</div>
+            </a>
+            <a class="card" href="affiche-carre.html">
+                <span class="badge lrl">Le Raffut Ludique</span>
+                <div class="cardTitle">Affiche carrée — Adhérents</div>
+                <div class="cardDesc">Liste des soirées adhérents, format carré 1080×1080</div>
+            </a>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="sectionTitle">Outils</div>
+        <div class="cards">
+            <a class="card" href="vacances.html">
+                <span class="badge outil">Bandeau</span>
+                <div class="cardTitle">Bandeau vacances</div>
+                <div class="cardDesc">S'affiche uniquement pendant les vacances ou dans le mois précédent — à intégrer en iframe</div>
+            </a>
+        </div>
+    </div>
 
 </div>
-
-
-<div id="cover">
-
-<header>
-
-    <img
-        src="img/logo-etabli.svg"
-        class="logo"
-        alt="L'établi ludique">
-
-    <div class="header-text">
-
-        <h1>Agenda</h1>
-
-        <div id="currentMonth"></div>
-
-    </div>
-
-    <img
-        src="img/logo-raffut.svg"
-        class="logo"
-        alt="Le Raffut Ludique">
-
-</header>
-
-
-<main>
-
-    <div id="events">
-
-        <!-- agenda.js générera les cartes ici -->
-
-    </div>
-
-</main>
-
-
-<footer>
-
-    <div id="update">
-
-        Dernière mise à jour
-
-    </div>
-
-    <div id="agendaLink">
-
-        Retrouvez l'agenda complet sur
-        <a href="http://urlr.me/!LELAgenda" target="_blank" rel="noopener">urlr.me/!LELAgenda</a>
-
-    </div>
-
-    <div>
-
-        www.letabliludique.fr
-
-    </div>
-
-</footer>
-
-</div>
-
-<script>
-    window.AGENDA_CONFIG = {
-        dataSource: "agenda.json",
-        filterLabel: null,
-        maxEvents: 6,
-        downloadName: "couverture-facebook.png"
-    };
-</script>
-<script src="agenda.js"></script>
 
 </body>
-
 </html>
