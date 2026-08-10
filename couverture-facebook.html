@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+
+    <title>Couverture Facebook - Agenda</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="toolbar">
+
+    <button id="refreshBtn">
+        🔄 Actualiser
+    </button>
+
+    <button id="downloadBtn">
+        📷 Télécharger la couverture
+    </button>
+
+</div>
+
+
+<div id="cover">
+
+<header>
+
+    <img
+        src="img/logo-etabli.svg"
+        class="logo"
+        alt="L'établi ludique">
+
+    <div class="header-text">
+
+        <h1>Agenda</h1>
+
+        <div id="currentMonth"></div>
+
+    </div>
+
+    <img
+        src="img/logo-raffut.svg"
+        class="logo"
+        alt="Le Raffut Ludique">
+
+</header>
+
+
+<main>
+
+    <div id="events">
+
+        <!-- agenda.js générera les cartes ici -->
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <div id="update">
+
+        Dernière mise à jour
+
+    </div>
+
+    <div id="agendaLink">
+
+        Retrouvez l'agenda complet sur
+        <a href="http://urlr.me/!LELAgenda" target="_blank" rel="noopener">urlr.me/!LELAgenda</a>
+
+    </div>
+
+    <div>
+
+        www.letabliludique.fr
+
+    </div>
+
+</footer>
+
+</div>
+
+<script>
+    window.AGENDA_CONFIG = {
+        dataSource: "agenda.json",
+        filterLabel: null,
+        maxEvents: 6,
+        downloadName: "couverture-facebook.png"
+    };
+</script>
+<script src="agenda.js"></script>
+
+</body>
+
+</html>
