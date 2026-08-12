@@ -1,0 +1,241 @@
+@import url("raffut-base.css");
+
+:root{
+
+    --cover-width: 1080px;
+    --cover-height: 1080px;
+
+    --logo-height: 90px;
+    --title-size: 38px;
+    --subtitle-size: 20px;
+    --footer-size: 13px;
+
+}
+
+header{
+
+    padding:18px 30px;
+
+}
+
+main{
+
+    padding:20px 30px;
+
+    flex:1;
+
+}
+
+/* 3 cartes d'absence empilées verticalement */
+#absenceGrid{
+
+    height:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.absenceCard{
+
+    flex:1;
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    display:flex;
+
+    align-items:stretch;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.12);
+
+}
+
+/* Bande colorée à gauche avec les dates */
+.absenceDate{
+
+    width:160px;
+
+    flex-shrink:0;
+
+    background:#F6D67A;
+
+    color:#3a2800;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:14px;
+
+    text-align:center;
+
+}
+
+.absenceDate .dayFrom{
+
+    font-size:36px;
+
+    font-weight:800;
+
+    line-height:1;
+
+}
+
+.absenceDate .monthFrom{
+
+    font-size:14px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    margin-top:2px;
+
+}
+
+.absenceDate .arrow{
+
+    font-size:20px;
+
+    margin:6px 0;
+
+    opacity:.6;
+
+}
+
+.absenceDate .dayTo{
+
+    font-size:28px;
+
+    font-weight:800;
+
+    line-height:1;
+
+}
+
+.absenceDate .monthTo{
+
+    font-size:13px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    margin-top:2px;
+
+}
+
+/* Contenu : titre de l'absence */
+.absenceContent{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    padding:20px 24px;
+
+}
+
+.absenceBadge{
+
+    display:inline-block;
+
+    padding:4px 12px;
+
+    border-radius:999px;
+
+    background:#F6D67A;
+
+    color:#3a2800;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    margin-bottom:10px;
+
+    align-self:flex-start;
+
+}
+
+.absenceTitle{
+
+    color:#0d4c72;
+
+    font-size:22px;
+
+    font-weight:800;
+
+    line-height:1.2;
+
+}
+
+.absenceDuration{
+
+    margin-top:8px;
+
+    font-size:15px;
+
+    color:#666;
+
+    font-weight:600;
+
+}
+
+/* État vide */
+#noAbsence{
+
+    display:none;
+
+    flex:1;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    color:rgba(255,255,255,.7);
+
+    text-align:center;
+
+    padding:0 30px;
+
+}
+
+body.empty #absenceGrid{
+
+    display:none;
+
+}
+
+body.empty #noAbsence{
+
+    display:flex;
+
+}
