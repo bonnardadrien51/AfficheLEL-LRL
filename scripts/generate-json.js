@@ -44,6 +44,40 @@ const calendars = [
 const VACANCES_URL =
   "https://calendar.google.com/calendar/ical/0a1c5d7a3b7f8feab31b33af5f3c10777e558ac186c7688b1e4d9fb46ea72549%40group.calendar.google.com/public/basic.ics";
 
+const JEUX_URL = "https://leraffutludique-online.fr:1880/lrl/getdetailjeux";
+
+const JEUX_MAX = 8;
+
+async function loadNewestGames() {
+
+  console.log("Lecture :", JEUX_URL);
+
+  const response = await axios.get(JEUX_URL, {
+    headers: {
+      "User-Agent": "Mozilla/5.0"
+    }
+  });
+
+  const jeux = response.data || [];
+
+  const sorted = [...jeux].sort(
+    (a, b) => new Date(b.date_ajout) - new Date(a.date_ajout)
+  );
+
+  return sorted.slice(0, JEUX_MAX).map(j => ({
+
+    id: j.id,
+    titre: j.Titre,
+    lieu: j.Lieu,
+    categorie: j.categorie,
+    image: j.image,
+    url: j.url,
+    date_ajout: j.date_ajout
+
+  }));
+
+}
+
 async function loadVacationCalendar() {
 
   console.log("Lecture :", VACANCES_URL);
@@ -243,6 +277,36 @@ async function main() {
   } catch (err) {
 
     console.error("Erreur lors de la lecture du calendrier vacances :", err.message);
+
+  }
+
+  // Derniers jeux ajoutés à la ludothèque, indépendants des autres
+  // calendriers pour ne pas être écrasés par le quota partagé.
+  try {
+
+    const jeux = await loadNewestGames();
+
+    const jeuxJson = {
+
+      updated: new Date().toLocaleString("fr-FR", {
+        timeZone: "Europe/Paris"
+      }),
+
+      jeux
+
+    };
+
+    fs.writeFileSync(
+      "jeux.json",
+      JSON.stringify(jeuxJson, null, 2),
+      "utf8"
+    );
+
+    console.log(jeux.length + " jeu(x) enregistré(s) dans jeux.json.");
+
+  } catch (err) {
+
+    console.error("Erreur lors de la lecture de la ludothèque :", err.message);
 
   }
 
