@@ -10,7 +10,7 @@ function buildCard(jeu){
 
     card.innerHTML = `
         <div class="jeuCover">
-            <img src="${jeu.image}" alt="${jeu.titre}" loading="eager" crossorigin="anonymous">
+            <img src="${jeu.image}" alt="${jeu.titre}" loading="eager">
         </div>
         <div class="jeuBadge">Nouveau</div>
         <div class="jeuInfo">
