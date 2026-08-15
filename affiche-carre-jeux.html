@@ -1,244 +1,92 @@
-@import url("raffut-base.css");
+<!DOCTYPE html>
+<html lang="fr">
 
-:root{
+<head>
 
-    --cover-width: 1080px;
-    --cover-height: 1080px;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    --logo-height: 90px;
-    --title-size: 38px;
-    --subtitle-size: 20px;
-    --footer-size: 13px;
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 
-}
+    <title>Affiche carrée - Nouveaux jeux - Le Raffut Ludique</title>
 
-header{
+    <link rel="stylesheet" href="affiche-carre-jeux.css">
 
-    padding:18px 30px;
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
-}
+</head>
 
-main{
+<body>
 
-    padding:24px 30px;
+<div class="toolbar">
 
-    flex:1;
+    <button id="refreshBtn">
+        🔄 Actualiser
+    </button>
 
-}
+    <button id="downloadBtn">
+        📷 Télécharger l'affiche
+    </button>
 
-/* Grille de 4 colonnes, jusqu'à 2 lignes (4 à 8 jeux) */
-#jeuxGrid{
+</div>
 
-    height:100%;
 
-    display:grid;
+<div id="cover">
 
-    grid-template-columns:repeat(4, 1fr);
+<header>
 
-    grid-auto-rows:1fr;
+    <img
+        src="img/logo-raffut.svg"
+        class="logo"
+        alt="Le Raffut Ludique">
 
-    gap:18px;
+    <div class="header-text">
 
-}
+        <h1>Nouveaux jeux</h1>
 
-/* 1 seule ligne (4 à 4 jeux max) -> cartes plus hautes, texte plus grand */
-#jeuxGrid.singleRow{
+        <div id="currentMonth"></div>
 
-    grid-template-rows:1fr;
+    </div>
 
-}
+</header>
 
-.jeuCard{
 
-    position:relative;
+<main>
 
-    background:white;
+    <div id="jeuxGrid">
+        <!-- jeux.js génère les cartes ici -->
+    </div>
 
-    border-radius:18px;
+    <div id="noJeux">
+        Aucun nouveau jeu à afficher<br>pour le moment.
+    </div>
 
-    overflow:hidden;
+</main>
 
-    display:flex;
 
-    flex-direction:column;
+<footer>
 
-    box-shadow:0 4px 12px rgba(0,0,0,.12);
+    <div id="update">
+        Dernière mise à jour
+    </div>
 
-}
+    <div id="agendaLink">
+        Retrouvez toute la ludothèque sur
+        <a href="https://leraffutludique.fr" target="_blank" rel="noopener">leraffutludique.fr</a>
+    </div>
 
-.jeuCover{
+    <div>
+        www.leraffutludique.fr
+    </div>
 
-    flex:1;
+</footer>
 
-    overflow:hidden;
+</div>
 
-    background:#f4f7fb;
+<script src="jeux.js"></script>
 
-}
+</body>
 
-.jeuCover img{
-
-    width:100%;
-
-    height:100%;
-
-    object-fit:cover;
-
-    display:block;
-
-}
-
-.jeuFallback{
-
-    display:none;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:10px;
-
-    height:100%;
-
-    width:100%;
-
-    background:#eef3f8;
-
-}
-
-.fallbackLogo{
-
-    width:38%;
-
-    opacity:.8;
-
-}
-
-.fallbackText{
-
-    font-size:12px;
-
-    font-weight:700;
-
-    color:#5b7a95;
-
-    text-transform:uppercase;
-
-    letter-spacing:.4px;
-
-}
-
-.jeuBadge{
-
-    position:absolute;
-
-    top:10px;
-
-    left:10px;
-
-    padding:4px 10px;
-
-    border-radius:999px;
-
-    background:#F6D67A;
-
-    color:#3a2800;
-
-    font-size:11px;
-
-    font-weight:800;
-
-    text-transform:uppercase;
-
-    letter-spacing:.5px;
-
-    box-shadow:0 2px 6px rgba(0,0,0,.2);
-
-}
-
-.jeuInfo{
-
-    padding:10px 12px;
-
-    text-align:center;
-
-}
-
-.jeuTitle{
-
-    color:#0d4c72;
-
-    font-size:15px;
-
-    font-weight:800;
-
-    line-height:1.2;
-
-    display:-webkit-box;
-
-    -webkit-line-clamp:2;
-
-    -webkit-box-orient:vertical;
-
-    overflow:hidden;
-
-}
-
-.jeuMeta{
-
-    margin-top:4px;
-
-    color:#5b7a95;
-
-    font-size:11px;
-
-    font-weight:600;
-
-    line-height:1.2;
-
-    display:-webkit-box;
-
-    -webkit-line-clamp:1;
-
-    -webkit-box-orient:vertical;
-
-    overflow:hidden;
-
-}
-
-/* État vide */
-#noJeux{
-
-    display:none;
-
-    flex:1;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:18px;
-
-    font-weight:700;
-
-    color:rgba(255,255,255,.7);
-
-    text-align:center;
-
-    padding:0 30px;
-
-}
-
-body.empty #jeuxGrid{
-
-    display:none;
-
-}
-
-body.empty #noJeux{
-
-    display:flex;
-
-}
+</html>
