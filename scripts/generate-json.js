@@ -48,6 +48,31 @@ const JEUX_URL = "https://leraffutludique-online.fr:1880/lrl/getdetailjeux";
 
 const JEUX_MAX = 8;
 
+const JEUX_IMG_DIR = "img/jeux";
+
+// Les covers sont hébergées sur leraffutludique.fr, qui ne renvoie pas
+// d'en-têtes CORS : chargées directement en <img crossorigin>, elles
+// sont bloquées par le navigateur. On les télécharge donc une fois ici
+// et on les sert en local avec le reste du site.
+async function downloadCover(url, filename) {
+
+  fs.mkdirSync(JEUX_IMG_DIR, { recursive: true });
+
+  const localPath = JEUX_IMG_DIR + "/" + filename;
+
+  const response = await axios.get(url, {
+    responseType: "arraybuffer",
+    headers: {
+      "User-Agent": "Mozilla/5.0"
+    }
+  });
+
+  fs.writeFileSync(localPath, response.data);
+
+  return localPath;
+
+}
+
 async function loadNewestGames() {
 
   console.log("Lecture :", JEUX_URL);
@@ -64,17 +89,46 @@ async function loadNewestGames() {
     (a, b) => new Date(b.date_ajout) - new Date(a.date_ajout)
   );
 
-  return sorted.slice(0, JEUX_MAX).map(j => ({
+  const newest = sorted.slice(0, JEUX_MAX);
 
-    id: j.id,
-    titre: j.Titre,
-    lieu: j.Lieu,
-    categorie: j.categorie,
-    image: j.image,
-    url: j.url,
-    date_ajout: j.date_ajout
+  const result = [];
 
-  }));
+  for (const j of newest) {
+
+    let image = j.image;
+
+    try {
+
+      const filename = j.image_jeu || (j.id + ".png");
+
+      image = await downloadCover(j.image, filename);
+
+      console.log("Cover téléchargée :", filename);
+
+    } catch (err) {
+
+      console.error(
+        "Impossible de télécharger la cover de \"" + j.Titre + "\" :",
+        err.message
+      );
+
+    }
+
+    result.push({
+
+      id: j.id,
+      titre: j.Titre,
+      lieu: j.Lieu,
+      categorie: j.categorie,
+      image,
+      url: j.url,
+      date_ajout: j.date_ajout
+
+    });
+
+  }
+
+  return result;
 
 }
 
