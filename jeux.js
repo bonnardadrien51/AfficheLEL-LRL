@@ -3,18 +3,47 @@ const REFRESH_MS = 30 * 60 * 1000;
 const MIN_JEUX = 4;
 const MAX_JEUX = 8;
 
+function formatMeta(jeu){
+
+    const parts = [];
+
+    if(jeu.age_min){
+        parts.push(jeu.age_min + "+ ans");
+    }
+
+    if(jeu.joueurs){
+        parts.push(jeu.joueurs.replace(/^De /, ""));
+    }
+
+    return parts.join(" • ");
+
+}
+
 function buildCard(jeu){
 
     const card = document.createElement("div");
     card.className = "jeuCard";
 
+    const meta = formatMeta(jeu);
+    const startsMissing = jeu.imageOk === false || !jeu.image;
+
     card.innerHTML = `
         <div class="jeuCover">
-            <img src="${jeu.image}" alt="${jeu.titre}" loading="eager">
+            <img
+                src="${jeu.image || ""}"
+                alt="${jeu.titre}"
+                loading="eager"
+                style="${startsMissing ? "display:none" : ""}"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="jeuFallback" style="${startsMissing ? "display:flex" : ""}">
+                <img src="img/logo-raffut.svg" alt="Le Raffut Ludique" class="fallbackLogo">
+                <div class="fallbackText">Visuel à venir</div>
+            </div>
         </div>
         <div class="jeuBadge">Nouveau</div>
         <div class="jeuInfo">
             <div class="jeuTitle">${jeu.titre}</div>
+            ${meta ? `<div class="jeuMeta">${meta}</div>` : ""}
         </div>
     `;
 
