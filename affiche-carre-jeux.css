@@ -88,6 +88,48 @@ main{
 
 }
 
+.jeuFallback{
+
+    display:none;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    height:100%;
+
+    width:100%;
+
+    background:#eef3f8;
+
+}
+
+.fallbackLogo{
+
+    width:38%;
+
+    opacity:.8;
+
+}
+
+.fallbackText{
+
+    font-size:12px;
+
+    font-weight:700;
+
+    color:#5b7a95;
+
+    text-transform:uppercase;
+
+    letter-spacing:.4px;
+
+}
+
 .jeuBadge{
 
     position:absolute;
@@ -137,6 +179,28 @@ main{
     display:-webkit-box;
 
     -webkit-line-clamp:2;
+
+    -webkit-box-orient:vertical;
+
+    overflow:hidden;
+
+}
+
+.jeuMeta{
+
+    margin-top:4px;
+
+    color:#5b7a95;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    line-height:1.2;
+
+    display:-webkit-box;
+
+    -webkit-line-clamp:1;
 
     -webkit-box-orient:vertical;
 
