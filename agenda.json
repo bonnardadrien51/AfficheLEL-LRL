@@ -1,9 +1,9 @@
 {
-  "updated": "15/08/2026 07:19:39",
+  "updated": "15/08/2026 22:02:18",
   "events": [
     {
-      "title": "Tout Besançon Vole",
-      "location": "",
+      "title": "Fabrique ton boomerang",
+      "location": "Tout Besançon Vole, Besançon",
       "start": "2026-08-22T08:00:00.000Z",
       "end": "2026-08-22T18:00:00.000Z",
       "label": "Partenaire",
@@ -11,8 +11,8 @@
       "color": "#9EB6F1"
     },
     {
-      "title": "Tout Besançon Vole",
-      "location": "",
+      "title": "Fabrique ton boomerang",
+      "location": "Tout Besançon Vole, Besançon",
       "start": "2026-08-23T08:00:00.000Z",
       "end": "2026-08-23T16:00:00.000Z",
       "label": "Partenaire",
