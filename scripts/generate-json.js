@@ -96,6 +96,7 @@ async function loadNewestGames() {
   for (const j of newest) {
 
     let image = j.image;
+    let imageOk = true;
 
     try {
 
@@ -106,6 +107,8 @@ async function loadNewestGames() {
       console.log("Cover téléchargée :", filename);
 
     } catch (err) {
+
+      imageOk = false;
 
       console.error(
         "Impossible de télécharger la cover de \"" + j.Titre + "\" :",
@@ -121,6 +124,10 @@ async function loadNewestGames() {
       lieu: j.Lieu,
       categorie: j.categorie,
       image,
+      imageOk,
+      joueurs: j.joueurs || null,
+      age_min: j.age_min_detail_jeu || null,
+      age_max: j.age_max_detail_jeu || null,
       url: j.url,
       date_ajout: j.date_ajout
 
