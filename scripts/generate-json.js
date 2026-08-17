@@ -50,6 +50,14 @@ const JEUX_MAX = 8;
 
 const JEUX_IMG_DIR = "img/jeux";
 
+// L'API renvoie des liens de fiche en http:// sans port ; on les
+// reconstruit vers l'hôte réel (https + :1880) utilisé par le site.
+function toBoxUrl(id) {
+
+  return "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=" + id;
+
+}
+
 // Les covers sont hébergées sur leraffutludique.fr, qui ne renvoie pas
 // d'en-têtes CORS : chargées directement en <img crossorigin>, elles
 // sont bloquées par le navigateur. On les télécharge donc une fois ici
@@ -118,7 +126,7 @@ async function loadNewestGames(allGames) {
       joueurs: j.joueurs || null,
       age_min: j.age_min_detail_jeu || null,
       age_max: j.age_max_detail_jeu || null,
-      url: j.url,
+      url: toBoxUrl(j.id),
       date_ajout: j.date_ajout
 
     });
@@ -179,7 +187,7 @@ async function checkAllGames(allGames) {
           lieu: j.Lieu,
           categorie: j.categorie,
           image: j.image,
-          url: j.url,
+          url: toBoxUrl(j.id),
           isPng: /\.png$/i.test(j.image || ""),
           visuelManquant: !ok
 
