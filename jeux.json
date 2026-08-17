@@ -1,17 +1,17 @@
 {
-  "updated": "17/08/2026 23:49:41",
+  "updated": "18/08/2026 01:04:50",
   "jeux": [
     {
       "id": 294,
       "titre": "L'île des Mookies",
       "lieu": "Le Raffut Ludique - Avanne",
       "categorie": "petitsjeuxdestouspetits",
-      "image": "img/jeux/CR_ile_des_mookies-min.png",
+      "image": "img/jeux/CR_ile_des_mookies-min.webp",
       "imageOk": true,
       "joueurs": "2 joueurs",
       "age_min": 4,
       "age_max": null,
-      "url": "http://leraffutludique-online.fr/lrl/box?id_titre_jeu=294",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=294",
       "date_ajout": "2026-05-07T00:00:00.000Z"
     },
     {
@@ -19,12 +19,12 @@
       "titre": "Trek 12 Amazonie",
       "lieu": "Le Raffut Ludique - Avanne",
       "categorie": "petitsjeux",
-      "image": "img/jeux/CR_Trek_Amazonie-min.png",
-      "imageOk": true,
+      "image": "https://leraffutludique.fr/public/images/jeux/CR_Trek_Amazonie-min.webp",
+      "imageOk": false,
       "joueurs": "De 1 à 5 joueurs",
       "age_min": 8,
       "age_max": null,
-      "url": "http://leraffutludique-online.fr/lrl/box?id_titre_jeu=295",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=295",
       "date_ajout": "2026-05-07T00:00:00.000Z"
     },
     {
@@ -32,12 +32,12 @@
       "titre": "Trek 12 Himalaya",
       "lieu": "Le Raffut Ludique - Avanne",
       "categorie": "petitsjeux",
-      "image": "img/jeux/CR_Trek_Himalaya-min.png",
-      "imageOk": true,
+      "image": "https://leraffutludique.fr/public/images/jeux/CR_Trek_Himalaya-min.webp",
+      "imageOk": false,
       "joueurs": "De 1 à 5 joueurs",
       "age_min": 8,
       "age_max": null,
-      "url": "http://leraffutludique-online.fr/lrl/box?id_titre_jeu=292",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=292",
       "date_ajout": "2026-05-06T00:00:00.000Z"
     },
     {
@@ -45,12 +45,12 @@
       "titre": "Lacuna",
       "lieu": "Le Raffut Ludique - Avanne",
       "categorie": "jeuxadeux",
-      "image": "https://leraffutludique.fr/public/images/jeux/CR_lacuna-min.png",
+      "image": "https://leraffutludique.fr/public/images/jeux/CR_lacuna-min.webp",
       "imageOk": false,
       "joueurs": "2 joueurs",
       "age_min": 8,
       "age_max": null,
-      "url": "http://leraffutludique-online.fr/lrl/box?id_titre_jeu=293",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=293",
       "date_ajout": "2026-05-06T00:00:00.000Z"
     },
     {
@@ -58,12 +58,12 @@
       "titre": "Twin It !",
       "lieu": "Le Raffut Ludique - Avanne",
       "categorie": "petitsjeux",
-      "image": "img/jeux/COVER_RESIZE_Twinit-min.png",
+      "image": "img/jeux/COVER_RESIZE_Twinit-min.webp",
       "imageOk": true,
       "joueurs": "De 2 à 6 joueurs",
       "age_min": 6,
       "age_max": null,
-      "url": "http://leraffutludique-online.fr/lrl/box?id_titre_jeu=291",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=291",
       "date_ajout": "2026-03-24T00:00:00.000Z"
     },
     {
@@ -71,12 +71,12 @@
       "titre": "Mon Premier Unlock! - Histoires De Canard",
       "lieu": "Le Raffut Ludique - Avanne",
       "categorie": "grandsjeuxdestouspetits",
-      "image": "img/jeux/CR_MonPremierUnlock_HistoireDeCanard-min.png",
-      "imageOk": true,
+      "image": "https://leraffutludique.fr/public/images/jeux/CR_MonPremierUnlock_HistoireDeCanard-min.webp",
+      "imageOk": false,
       "joueurs": "De 1 à 6 joueurs",
       "age_min": 4,
       "age_max": null,
-      "url": "http://leraffutludique-online.fr/lrl/box?id_titre_jeu=289",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=289",
       "date_ajout": "2026-03-16T00:00:00.000Z"
     },
     {
@@ -84,12 +84,12 @@
       "titre": "Fluffy Valley",
       "lieu": "Le Raffut Ludique - Avanne",
       "categorie": "petitsjeuxdestouspetits",
-      "image": "img/jeux/CR_Fluffy_Valley-min.png",
+      "image": "img/jeux/CR_Fluffy_Valley-min.webp",
       "imageOk": true,
       "joueurs": "De 1 à 4 joueurs",
       "age_min": 7,
       "age_max": null,
-      "url": "http://leraffutludique-online.fr/lrl/box?id_titre_jeu=290",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=290",
       "date_ajout": "2026-03-16T00:00:00.000Z"
     },
     {
@@ -97,12 +97,12 @@
       "titre": "Tower Up",
       "lieu": "Le Raffut Ludique - Avanne",
       "categorie": "grandsjeux",
-      "image": "img/jeux/CR_TowerUp-min.png",
-      "imageOk": true,
+      "image": "https://leraffutludique.fr/public/images/jeux/CR_TowerUp-min.webp",
+      "imageOk": false,
       "joueurs": "De 2 à 4 joueurs",
       "age_min": 8,
       "age_max": null,
-      "url": "http://leraffutludique-online.fr/lrl/box?id_titre_jeu=283",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=283",
       "date_ajout": "2025-12-10T00:00:00.000Z"
     }
   ]
