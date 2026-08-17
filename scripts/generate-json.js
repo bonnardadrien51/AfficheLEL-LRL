@@ -210,6 +210,51 @@ async function checkAllGames(allGames) {
 
 }
 
+// Regroupe par lieu les jeux dont l'emplacement (rangement physique
+// dans la ludothèque) vaut -1, c'est-à-dire pas encore rangés. Pas
+// besoin de vérifier les visuels ici, juste le champ emplacement.
+function buildEmplacementReport(allGames) {
+
+  const grouped = {};
+
+  for (const j of allGames) {
+
+    const emplacement = j.emplacement;
+
+    const estNonRange =
+      emplacement === -1 || emplacement === "-1";
+
+    if (!estNonRange)
+      continue;
+
+    const lieu = j.Lieu || "Lieu inconnu";
+
+    if (!grouped[lieu])
+      grouped[lieu] = [];
+
+    grouped[lieu].push({
+
+      id: j.id,
+      titre: j.Titre,
+      categorie: j.categorie,
+      image: j.image,
+      url: toBoxUrl(j.id)
+
+    });
+
+  }
+
+  return Object.keys(grouped)
+    .sort((a, b) => a.localeCompare(b))
+    .map(lieu => ({
+
+      lieu,
+      jeux: grouped[lieu].sort((a, b) => a.titre.localeCompare(b.titre))
+
+    }));
+
+}
+
 async function loadVacationCalendar() {
 
   console.log("Lecture :", VACANCES_URL);
@@ -446,6 +491,7 @@ async function main() {
 
     const visuelsManquants = statusList.filter(j => j.visuelManquant);
     const pngRestants = statusList.filter(j => j.isPng && !j.visuelManquant);
+    const sansEmplacement = buildEmplacementReport(allGames);
 
     fs.writeFileSync(
       "jeux-suivi.json",
@@ -453,14 +499,20 @@ async function main() {
         updated: updatedNow,
         total: allGames.length,
         visuelsManquants,
-        pngRestants
+        pngRestants,
+        sansEmplacement
       }, null, 2),
       "utf8"
     );
 
+    const totalSansEmplacement = sansEmplacement.reduce(
+      (sum, groupe) => sum + groupe.jeux.length, 0
+    );
+
     console.log(
       visuelsManquants.length + " visuel(s) manquant(s), " +
-      pngRestants.length + " jeu(x) encore en .png enregistrés dans jeux-suivi.json."
+      pngRestants.length + " jeu(x) encore en .png, " +
+      totalSansEmplacement + " jeu(x) sans emplacement enregistrés dans jeux-suivi.json."
     );
 
   } catch (err) {
