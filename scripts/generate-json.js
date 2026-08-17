@@ -73,19 +73,9 @@ async function downloadCover(url, filename) {
 
 }
 
-async function loadNewestGames() {
+async function loadNewestGames(allGames) {
 
-  console.log("Lecture :", JEUX_URL);
-
-  const response = await axios.get(JEUX_URL, {
-    headers: {
-      "User-Agent": "Mozilla/5.0"
-    }
-  });
-
-  const jeux = response.data || [];
-
-  const sorted = [...jeux].sort(
+  const sorted = [...allGames].sort(
     (a, b) => new Date(b.date_ajout) - new Date(a.date_ajout)
   );
 
@@ -136,6 +126,79 @@ async function loadNewestGames() {
   }
 
   return result;
+
+}
+
+// Vérifie qu'une image répond bien en HTTP 200 (sans la télécharger,
+// juste une requête HEAD) pour repérer les visuels cassés/manquants
+// sur l'ensemble de la ludothèque.
+async function checkImageExists(url) {
+
+  try {
+
+    const response = await axios.head(url, {
+      timeout: 10000,
+      validateStatus: () => true,
+      headers: {
+        "User-Agent": "Mozilla/5.0"
+      }
+    });
+
+    return response.status >= 200 && response.status < 300;
+
+  } catch (err) {
+
+    return false;
+
+  }
+
+}
+
+const CHECK_BATCH_SIZE = 15;
+
+// Passe toute la ludothèque en revue : visuels manquants (404, erreur
+// réseau...) et visuels pas encore convertis en webp. Utilisé pour la
+// page de suivi verif-visuels.html, pas pour les affiches publiques.
+async function checkAllGames(allGames) {
+
+  const results = [];
+
+  for (let i = 0; i < allGames.length; i += CHECK_BATCH_SIZE) {
+
+    const batch = allGames.slice(i, i + CHECK_BATCH_SIZE);
+
+    const batchResults = await Promise.all(
+      batch.map(async j => {
+
+        const ok = await checkImageExists(j.image);
+
+        return {
+
+          id: j.id,
+          titre: j.Titre,
+          lieu: j.Lieu,
+          categorie: j.categorie,
+          image: j.image,
+          url: j.url,
+          isPng: /\.png$/i.test(j.image || ""),
+          visuelManquant: !ok
+
+        };
+
+      })
+    );
+
+    results.push(...batchResults);
+
+    console.log(
+      "Vérification visuels : " +
+      Math.min(i + CHECK_BATCH_SIZE, allGames.length) +
+      "/" + allGames.length
+    );
+
+  }
+
+  return results;
 
 }
 
@@ -345,25 +408,52 @@ async function main() {
   // calendriers pour ne pas être écrasés par le quota partagé.
   try {
 
-    const jeux = await loadNewestGames();
+    console.log("Lecture :", JEUX_URL);
 
-    const jeuxJson = {
+    const jeuxResponse = await axios.get(JEUX_URL, {
+      headers: {
+        "User-Agent": "Mozilla/5.0"
+      }
+    });
 
-      updated: new Date().toLocaleString("fr-FR", {
-        timeZone: "Europe/Paris"
-      }),
+    const allGames = jeuxResponse.data || [];
 
-      jeux
+    const updatedNow = new Date().toLocaleString("fr-FR", {
+      timeZone: "Europe/Paris"
+    });
 
-    };
+    const jeux = await loadNewestGames(allGames);
 
     fs.writeFileSync(
       "jeux.json",
-      JSON.stringify(jeuxJson, null, 2),
+      JSON.stringify({ updated: updatedNow, jeux }, null, 2),
       "utf8"
     );
 
     console.log(jeux.length + " jeu(x) enregistré(s) dans jeux.json.");
+
+    // Suivi complet de la ludothèque : visuels manquants et visuels
+    // pas encore convertis en webp (page verif-visuels.html).
+    const statusList = await checkAllGames(allGames);
+
+    const visuelsManquants = statusList.filter(j => j.visuelManquant);
+    const pngRestants = statusList.filter(j => j.isPng && !j.visuelManquant);
+
+    fs.writeFileSync(
+      "jeux-suivi.json",
+      JSON.stringify({
+        updated: updatedNow,
+        total: allGames.length,
+        visuelsManquants,
+        pngRestants
+      }, null, 2),
+      "utf8"
+    );
+
+    console.log(
+      visuelsManquants.length + " visuel(s) manquant(s), " +
+      pngRestants.length + " jeu(x) encore en .png enregistrés dans jeux-suivi.json."
+    );
 
   } catch (err) {
 
