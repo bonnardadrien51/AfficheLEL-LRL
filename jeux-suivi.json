@@ -1,5 +1,5 @@
 {
-  "updated": "18/08/2026 01:04:50",
+  "updated": "18/08/2026 07:23:18",
   "total": 266,
   "visuelsManquants": [
     {
@@ -9,66 +9,6 @@
       "categorie": "petitsjeux",
       "image": "https://leraffutludique.fr/public/images/jeux/COVER_RESIZE_DTC.webp",
       "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=196",
-      "isPng": false,
-      "visuelManquant": true
-    },
-    {
-      "id": 251,
-      "titre": "Suspects 01 - Claire Harper entre en scène",
-      "lieu": "Le Raffut Ludique - Avanne",
-      "categorie": "grandsjeux",
-      "image": "https://leraffutludique.fr/public/images/jeux/CR_Suspects_01-min.webp",
-      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=251",
-      "isPng": false,
-      "visuelManquant": true
-    },
-    {
-      "id": 252,
-      "titre": "Suspects 03 - Adèle et Neville - Reporters Détectives",
-      "lieu": "Le Raffut Ludique - Avanne",
-      "categorie": "grandsjeux",
-      "image": "https://leraffutludique.fr/public/images/jeux/CR_Suspects_03-min.webp",
-      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=252",
-      "isPng": false,
-      "visuelManquant": true
-    },
-    {
-      "id": 253,
-      "titre": "Sky team",
-      "lieu": "Le Raffut Ludique - Avanne",
-      "categorie": "jeuxadeux",
-      "image": "https://leraffutludique.fr/public/images/jeux/CR_SkyTeam-min.webp",
-      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=253",
-      "isPng": false,
-      "visuelManquant": true
-    },
-    {
-      "id": 259,
-      "titre": "Sixto",
-      "lieu": "Le Raffut Ludique - Avanne",
-      "categorie": "petitsjeux",
-      "image": "https://leraffutludique.fr/public/images/jeux/CR_Sixto-min.webp",
-      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=259",
-      "isPng": false,
-      "visuelManquant": true
-    },
-    {
-      "id": 260,
-      "titre": "Mon P'tit Everdell",
-      "lieu": "Le Raffut Ludique - Avanne",
-      "categorie": "grandsjeuxdestouspetits",
-      "image": "https://leraffutludique.fr/public/images/jeux/CR_MonPtitEverdell-min.webp",
-      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=260",
-      "isPng": false,
-      "visuelManquant": true
-    },
-    {
-      "id": 263,
-      "titre": "Middle Ages",
-      "lieu": "Le Raffut Ludique - Avanne",
-      "categorie": "grandsjeux",
-      "image": "https://leraffutludique.fr/public/images/jeux/CR_MiddleAges-min.webp",
-      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=263",
       "isPng": false,
       "visuelManquant": true
     },
@@ -83,102 +23,12 @@
       "visuelManquant": true
     },
     {
-      "id": 269,
-      "titre": "Marabunta",
-      "lieu": "Le Raffut Ludique - Avanne",
-      "categorie": "jeuxadeux",
-      "image": "https://leraffutludique.fr/public/images/jeux/CR_Marabunta-min.webp",
-      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=269",
-      "isPng": false,
-      "visuelManquant": true
-    },
-    {
-      "id": 273,
-      "titre": "Tokaido Duo",
-      "lieu": "Le Raffut Ludique - Avanne",
-      "categorie": "jeuxadeux",
-      "image": "https://leraffutludique.fr/public/images/jeux/CR_TokaidoDuo-min.webp",
-      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=273",
-      "isPng": false,
-      "visuelManquant": true
-    },
-    {
-      "id": 274,
-      "titre": "World Wonders",
-      "lieu": "Le Raffut Ludique - Avanne",
-      "categorie": "grandsjeux",
-      "image": "https://leraffutludique.fr/public/images/jeux/CR_WorldWonders-min.webp",
-      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=274",
-      "isPng": false,
-      "visuelManquant": true
-    },
-    {
-      "id": 276,
-      "titre": "Sagrada",
-      "lieu": "Le Raffut Ludique - Avanne",
-      "categorie": "grandsjeux",
-      "image": "https://leraffutludique.fr/public/images/jeux/CR_Sagrada-min.webp",
-      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=276",
-      "isPng": false,
-      "visuelManquant": true
-    },
-    {
-      "id": 277,
-      "titre": "Rivages",
-      "lieu": "Le Raffut Ludique - Avanne",
-      "categorie": "petitsjeux",
-      "image": "https://leraffutludique.fr/public/images/jeux/CR_Rivages-min.webp",
-      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=277",
-      "isPng": false,
-      "visuelManquant": true
-    },
-    {
       "id": 280,
       "titre": "Faraway - Sous Un Ciel d'Etoiles",
       "lieu": "Le Raffut Ludique - Avanne",
       "categorie": "extension",
       "image": "https://leraffutludique.fr/public/images/jeux/CR_Faraway-ext2-min.webp",
       "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=280",
-      "isPng": false,
-      "visuelManquant": true
-    },
-    {
-      "id": 281,
-      "titre": "Odin",
-      "lieu": "Le Raffut Ludique - Avanne",
-      "categorie": "petitsjeux",
-      "image": "https://leraffutludique.fr/public/images/jeux/CR_Odin-min.webp",
-      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=281",
-      "isPng": false,
-      "visuelManquant": true
-    },
-    {
-      "id": 282,
-      "titre": "Symbiose",
-      "lieu": "Le Raffut Ludique - Avanne",
-      "categorie": "petitsjeux",
-      "image": "https://leraffutludique.fr/public/images/jeux/CR_Symbiose-min.webp",
-      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=282",
-      "isPng": false,
-      "visuelManquant": true
-    },
-    {
-      "id": 283,
-      "titre": "Tower Up",
-      "lieu": "Le Raffut Ludique - Avanne",
-      "categorie": "grandsjeux",
-      "image": "https://leraffutludique.fr/public/images/jeux/CR_TowerUp-min.webp",
-      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=283",
-      "isPng": false,
-      "visuelManquant": true
-    },
-    {
-      "id": 284,
-      "titre": "Splendor",
-      "lieu": "Le Raffut Ludique - Avanne",
-      "categorie": "grandsjeux",
-      "image": "https://leraffutludique.fr/public/images/jeux/CR_Spendor-min.webp",
-      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=284",
       "isPng": false,
       "visuelManquant": true
     },
@@ -203,42 +53,12 @@
       "visuelManquant": true
     },
     {
-      "id": 289,
-      "titre": "Mon Premier Unlock! - Histoires De Canard",
-      "lieu": "Le Raffut Ludique - Avanne",
-      "categorie": "grandsjeuxdestouspetits",
-      "image": "https://leraffutludique.fr/public/images/jeux/CR_MonPremierUnlock_HistoireDeCanard-min.webp",
-      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=289",
-      "isPng": false,
-      "visuelManquant": true
-    },
-    {
-      "id": 292,
-      "titre": "Trek 12 Himalaya",
-      "lieu": "Le Raffut Ludique - Avanne",
-      "categorie": "petitsjeux",
-      "image": "https://leraffutludique.fr/public/images/jeux/CR_Trek_Himalaya-min.webp",
-      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=292",
-      "isPng": false,
-      "visuelManquant": true
-    },
-    {
       "id": 293,
       "titre": "Lacuna",
       "lieu": "Le Raffut Ludique - Avanne",
       "categorie": "jeuxadeux",
       "image": "https://leraffutludique.fr/public/images/jeux/CR_lacuna-min.webp",
       "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=293",
-      "isPng": false,
-      "visuelManquant": true
-    },
-    {
-      "id": 295,
-      "titre": "Trek 12 Amazonie",
-      "lieu": "Le Raffut Ludique - Avanne",
-      "categorie": "petitsjeux",
-      "image": "https://leraffutludique.fr/public/images/jeux/CR_Trek_Amazonie-min.webp",
-      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=295",
       "isPng": false,
       "visuelManquant": true
     }
