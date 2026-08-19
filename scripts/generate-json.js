@@ -255,6 +255,55 @@ function buildEmplacementReport(allGames) {
 
 }
 
+// Champs jugés indispensables pour une fiche jeu correctement
+// renseignée. Un jeu manque d'info dès qu'au moins un de ces champs
+// est vide/null dans l'API.
+const CHAMPS_REQUIS = [
+  { champ: "joueurs", label: "Joueurs" },
+  { champ: "age_min_detail_jeu", label: "Âge min" },
+  { champ: "temps", label: "Durée" },
+  { champ: "regle_detail_jeu", label: "Règles (PDF/lien)" }
+];
+
+function estVide(valeur) {
+
+  return valeur === null || valeur === undefined || valeur === "";
+
+}
+
+// Liste les jeux auxquels il manque au moins un champ de
+// CHAMPS_REQUIS, avec le détail des champs manquants pour chacun.
+function buildMissingInfoReport(allGames) {
+
+  const result = [];
+
+  for (const j of allGames) {
+
+    const manquants = CHAMPS_REQUIS
+      .filter(c => estVide(j[c.champ]))
+      .map(c => c.label);
+
+    if (manquants.length === 0)
+      continue;
+
+    result.push({
+
+      id: j.id,
+      titre: j.Titre,
+      lieu: j.Lieu,
+      categorie: j.categorie,
+      image: j.image,
+      url: toBoxUrl(j.id),
+      manquants
+
+    });
+
+  }
+
+  return result.sort((a, b) => a.titre.localeCompare(b.titre));
+
+}
+
 async function loadVacationCalendar() {
 
   console.log("Lecture :", VACANCES_URL);
@@ -492,6 +541,7 @@ async function main() {
     const visuelsManquants = statusList.filter(j => j.visuelManquant);
     const pngRestants = statusList.filter(j => j.isPng && !j.visuelManquant);
     const sansEmplacement = buildEmplacementReport(allGames);
+    const infosManquantes = buildMissingInfoReport(allGames);
 
     fs.writeFileSync(
       "jeux-suivi.json",
@@ -500,7 +550,8 @@ async function main() {
         total: allGames.length,
         visuelsManquants,
         pngRestants,
-        sansEmplacement
+        sansEmplacement,
+        infosManquantes
       }, null, 2),
       "utf8"
     );
@@ -512,7 +563,8 @@ async function main() {
     console.log(
       visuelsManquants.length + " visuel(s) manquant(s), " +
       pngRestants.length + " jeu(x) encore en .png, " +
-      totalSansEmplacement + " jeu(x) sans emplacement enregistrés dans jeux-suivi.json."
+      totalSansEmplacement + " jeu(x) sans emplacement, " +
+      infosManquantes.length + " jeu(x) avec des infos manquantes enregistrés dans jeux-suivi.json."
     );
 
   } catch (err) {
