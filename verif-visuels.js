@@ -38,6 +38,44 @@ function renderTable(container, list){
 
 }
 
+function renderInfosTable(container, list){
+
+    if(!list || list.length === 0){
+        container.innerHTML = `<div class="empty">Rien à signaler 🎉</div>`;
+        return;
+    }
+
+    const rows = list.map(j => `
+        <tr>
+            <td class="thumb">
+                <img src="${j.image}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">
+            </td>
+            <td>${j.titre}</td>
+            <td>${j.lieu || ""}</td>
+            <td>${(j.manquants || []).map(m => `<span class="champBadge">${m}</span>`).join("")}</td>
+            <td><a href="${j.url}" target="_blank" rel="noopener">fiche</a></td>
+        </tr>
+    `).join("");
+
+    container.innerHTML = `
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Titre</th>
+                    <th>Lieu</th>
+                    <th>Champs manquants</th>
+                    <th>Fiche</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${rows}
+            </tbody>
+        </table>
+    `;
+
+}
+
 function renderEmplacementGroups(container, groupes){
 
     if(!groupes || groupes.length === 0){
@@ -132,6 +170,25 @@ function setupFilter(inputId, containerId, list){
 
 }
 
+function setupInfosFilter(inputId, containerId, list){
+
+    const input = document.getElementById(inputId);
+    const container = document.getElementById(containerId);
+
+    input.addEventListener("input", () => {
+
+        const q = input.value.trim().toLowerCase();
+
+        const filtered = q
+            ? list.filter(j => j.titre.toLowerCase().includes(q))
+            : list;
+
+        renderInfosTable(container, filtered);
+
+    });
+
+}
+
 async function loadSuivi(){
 
     let data = null;
@@ -150,6 +207,7 @@ async function loadSuivi(){
         renderTable(document.getElementById("tableManquants"), []);
         renderTable(document.getElementById("tablePng"), []);
         renderEmplacementGroups(document.getElementById("emplacementGroups"), []);
+        renderInfosTable(document.getElementById("tableInfos"), []);
         return;
     }
 
@@ -159,9 +217,11 @@ async function loadSuivi(){
     const manquants = data.visuelsManquants || [];
     const png = data.pngRestants || [];
     const sansEmplacement = data.sansEmplacement || [];
+    const infosManquantes = data.infosManquantes || [];
 
     document.getElementById("countManquants").textContent = manquants.length;
     document.getElementById("countPng").textContent = png.length;
+    document.getElementById("countInfos").textContent = infosManquantes.length;
 
     const totalSansEmplacement = sansEmplacement.reduce(
         (sum, groupe) => sum + groupe.jeux.length, 0
@@ -171,10 +231,12 @@ async function loadSuivi(){
     renderTable(document.getElementById("tableManquants"), manquants);
     renderTable(document.getElementById("tablePng"), png);
     renderEmplacementGroups(document.getElementById("emplacementGroups"), sansEmplacement);
+    renderInfosTable(document.getElementById("tableInfos"), infosManquantes);
 
     setupFilter("searchManquants", "tableManquants", manquants);
     setupFilter("searchPng", "tablePng", png);
     setupEmplacementFilter("searchEmplacement", "emplacementGroups", sansEmplacement);
+    setupInfosFilter("searchInfos", "tableInfos", infosManquantes);
 
 }
 
