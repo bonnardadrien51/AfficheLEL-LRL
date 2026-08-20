@@ -1,5 +1,5 @@
 {
-  "updated": "19/08/2026 07:24:28",
+  "updated": "20/08/2026 07:25:17",
   "total": 271,
   "visuelsManquants": [
     {
@@ -1075,6 +1075,275 @@
           "image": "https://leraffutludique.fr/public/images/jeux/COVER_RESIZE_WelcomeTo-min.webp",
           "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=163"
         }
+      ]
+    }
+  ],
+  "infosManquantes": [
+    {
+      "id": 201,
+      "titre": "Arcana",
+      "lieu": "Le Raffut Ludique - Avanne",
+      "categorie": "grandsjeux",
+      "image": "https://leraffutludique.fr/public/images/jeux/COVER_RESIZE_Arcana-min.webp",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=201",
+      "manquants": [
+        "Règles (PDF/lien)"
+      ]
+    },
+    {
+      "id": 286,
+      "titre": "Coco Ninja",
+      "lieu": "Le Raffut Ludique - Avanne",
+      "categorie": "petitsjeux",
+      "image": "https://leraffutludique.fr/public/images/jeux/CR_CocoNinja-min.webp",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=286",
+      "manquants": [
+        "Règles (PDF/lien)"
+      ]
+    },
+    {
+      "id": 193,
+      "titre": "Deckscape - 04 - Le mystère de l'eldorado",
+      "lieu": "Le Raffut Ludique - Avanne",
+      "categorie": "petitsjeux",
+      "image": "https://leraffutludique.fr/public/images/jeux/COVER_RESIZE_Deckscape_4_Eldorado-min.webp",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=193",
+      "manquants": [
+        "Règles (PDF/lien)"
+      ]
+    },
+    {
+      "id": 30,
+      "titre": "Dixit",
+      "lieu": "Le Raffut Ludique - Avanne",
+      "categorie": "grandsjeux",
+      "image": "https://leraffutludique.fr/public/images/jeux/COVER_RESIZE_Dixit-min.webp",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=30",
+      "manquants": [
+        "Règles (PDF/lien)"
+      ]
+    },
+    {
+      "id": 214,
+      "titre": "Duplik",
+      "lieu": "Le Raffut Ludique - Avanne",
+      "categorie": "petitsjeux",
+      "image": "https://leraffutludique.fr/public/images/jeux/COVER_RESIZE_Duplik-min.webp",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=214",
+      "manquants": [
+        "Règles (PDF/lien)"
+      ]
+    },
+    {
+      "id": 279,
+      "titre": "Faraway - Le Peuple Du Dessous",
+      "lieu": "Le Raffut Ludique - Avanne",
+      "categorie": "extension",
+      "image": "https://leraffutludique.fr/public/images/jeux/CR_FarawayExt1-min.webp",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=279",
+      "manquants": [
+        "Règles (PDF/lien)"
+      ]
+    },
+    {
+      "id": 280,
+      "titre": "Faraway - Sous Un Ciel d'Etoiles",
+      "lieu": "Le Raffut Ludique - Avanne",
+      "categorie": "extension",
+      "image": "https://leraffutludique.fr/public/images/jeux/CR_Faraway-ext2-min.webp",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=280",
+      "manquants": [
+        "Règles (PDF/lien)"
+      ]
+    },
+    {
+      "id": 288,
+      "titre": "Gang of Dice",
+      "lieu": "Le Raffut Ludique - Avanne",
+      "categorie": "petitsjeux",
+      "image": "https://leraffutludique.fr/public/images/jeux/CR-GangOfDice-min.webp",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=288",
+      "manquants": [
+        "Règles (PDF/lien)"
+      ]
+    },
+    {
+      "id": 243,
+      "titre": "J apprends mes tables de multiplication",
+      "lieu": "Le Raffut Ludique - Avanne",
+      "categorie": "petitsjeuxdestouspetits",
+      "image": "https://leraffutludique.fr/public/images/jeux/COVER_RESIZE_JApprendsMesTablesDeMultiplication-min.webp",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=243",
+      "manquants": [
+        "Joueurs",
+        "Durée",
+        "Règles (PDF/lien)"
+      ]
+    },
+    {
+      "id": 225,
+      "titre": "L'lie des prédateur",
+      "lieu": "Le Raffut Ludique - Avanne",
+      "categorie": "microgames",
+      "image": "https://leraffutludique.fr/public/images/jeux/COVER_RESIZE_LIleDesPredateurs-min.webp",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=225",
+      "manquants": [
+        "Règles (PDF/lien)"
+      ]
+    },
+    {
+      "id": 87,
+      "titre": "Limite Limite",
+      "lieu": "Le Raffut Ludique - Avanne",
+      "categorie": "petitsjeux",
+      "image": "https://leraffutludique.fr/public/images/jeux/COVER_RESIZE_LimiteLimite-min.webp",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=87",
+      "manquants": [
+        "Règles (PDF/lien)"
+      ]
+    },
+    {
+      "id": 227,
+      "titre": "Mégalopolis",
+      "lieu": "Le Raffut Ludique - Avanne",
+      "categorie": "microgames",
+      "image": "https://leraffutludique.fr/public/images/jeux/COVER_RESIZE_Megalopolis-min.webp",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=227",
+      "manquants": [
+        "Règles (PDF/lien)"
+      ]
+    },
+    {
+      "id": 260,
+      "titre": "Mon P'tit Everdell",
+      "lieu": "Le Raffut Ludique - Avanne",
+      "categorie": "grandsjeuxdestouspetits",
+      "image": "https://leraffutludique.fr/public/images/jeux/CR_MonPtitEverdell-min.webp",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=260",
+      "manquants": [
+        "Règles (PDF/lien)"
+      ]
+    },
+    {
+      "id": 289,
+      "titre": "Mon Premier Unlock! - Histoires De Canard",
+      "lieu": "Le Raffut Ludique - Avanne",
+      "categorie": "grandsjeuxdestouspetits",
+      "image": "https://leraffutludique.fr/public/images/jeux/CR_MonPremierUnlock_HistoireDeCanard-min.webp",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=289",
+      "manquants": [
+        "Règles (PDF/lien)"
+      ]
+    },
+    {
+      "id": 159,
+      "titre": "Munchkin",
+      "lieu": "Le Raffut Ludique - Muizon",
+      "categorie": "petitsjeux",
+      "image": "https://leraffutludique.fr/public/images/jeux/COVER_RESIZE_Munchkin-min.webp",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=159",
+      "manquants": [
+        "Âge min",
+        "Durée"
+      ]
+    },
+    {
+      "id": 213,
+      "titre": "Pandemic - Zone Rouge - Amérique du Nord",
+      "lieu": "Le Raffut Ludique - Avanne",
+      "categorie": "grandsjeux",
+      "image": "https://leraffutludique.fr/public/images/jeux/COVER_RESIZE_Pandemic_ZoneRouge_AmeriqueDuNord-min.webp",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=213",
+      "manquants": [
+        "Règles (PDF/lien)"
+      ]
+    },
+    {
+      "id": 153,
+      "titre": "Patchwork",
+      "lieu": "Le Raffut Ludique - Muizon",
+      "categorie": "jeuxadeux",
+      "image": "https://leraffutludique.fr/public/images/jeux/COVER_RESIZE_Patchwork-min.webp",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=153",
+      "manquants": [
+        "Durée"
+      ]
+    },
+    {
+      "id": 112,
+      "titre": "Patchwork",
+      "lieu": "Le Raffut Ludique - Avanne",
+      "categorie": "jeuxadeux",
+      "image": "https://leraffutludique.fr/public/images/jeux/COVER_RESIZE_Patchwork-min.webp",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=112",
+      "manquants": [
+        "Durée"
+      ]
+    },
+    {
+      "id": 187,
+      "titre": "Shadows Amsterdam",
+      "lieu": "Le Raffut Ludique - Avanne",
+      "categorie": "grandsjeux",
+      "image": "https://leraffutludique.fr/public/images/jeux/COVER_RESIZE_ShadowsAmsterdam-min.webp",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=187",
+      "manquants": [
+        "Règles (PDF/lien)"
+      ]
+    },
+    {
+      "id": 259,
+      "titre": "Sixto",
+      "lieu": "Le Raffut Ludique - Avanne",
+      "categorie": "petitsjeux",
+      "image": "https://leraffutludique.fr/public/images/jeux/CR_Sixto-min.webp",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=259",
+      "manquants": [
+        "Règles (PDF/lien)"
+      ]
+    },
+    {
+      "id": 287,
+      "titre": "Suspects Pocket - La Disparition Du Professeur Fairchild",
+      "lieu": "Le Raffut Ludique - Avanne",
+      "categorie": "grandsjeux",
+      "image": "https://leraffutludique.fr/public/images/jeux/CR_Suspects_LaDisparitionDuProfesseurFairchild-min.webp",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=287",
+      "manquants": [
+        "Règles (PDF/lien)"
+      ]
+    },
+    {
+      "id": 296,
+      "titre": "Trek 12+1 - Carnet de voyage en Himalaya",
+      "lieu": "Le Raffut Ludique - Avanne",
+      "categorie": "petitsjeux",
+      "image": "https://leraffutludique.fr/public/images/jeux/CR_Trek12_1-min.webp",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=296",
+      "manquants": [
+        "Règles (PDF/lien)"
+      ]
+    },
+    {
+      "id": 300,
+      "titre": "Unlock - 15 - New Game Adventures",
+      "lieu": "Le Raffut Ludique - Avanne",
+      "categorie": "unlock",
+      "image": "https://leraffutludique.fr/public/images/jeux/COVER_RESIZE_UNLOCK_NewGame-min.webp",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=300",
+      "manquants": [
+        "Règles (PDF/lien)"
+      ]
+    },
+    {
+      "id": 275,
+      "titre": "Unlock - A La Poursuite Du Masque de Fer",
+      "lieu": "Le Raffut Ludique - Avanne",
+      "categorie": "unlock",
+      "image": "https://leraffutludique.fr/public/images/jeux/CR_UNLOCK_MasqueDeFer-min.webp",
+      "url": "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=275",
+      "manquants": [
+        "Règles (PDF/lien)"
       ]
     }
   ]
