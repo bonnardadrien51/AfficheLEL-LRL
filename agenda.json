@@ -1,15 +1,6 @@
 {
-  "updated": "22/08/2026 07:21:49",
+  "updated": "23/08/2026 07:23:36",
   "events": [
-    {
-      "title": "Fabrique ton boomerang",
-      "location": "Tout Besançon Vole, Besançon",
-      "start": "2026-08-22T08:00:00.000Z",
-      "end": "2026-08-22T18:00:00.000Z",
-      "label": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
-    },
     {
       "title": "Fabrique ton boomerang",
       "location": "Tout Besançon Vole, Besançon",
@@ -87,6 +78,15 @@
       "location": "Studio Chouette, 4 Rue du Clos Saint-Amour, 25000 Besançon, France",
       "start": "2026-10-23T08:00:00.000Z",
       "end": "2026-10-23T16:00:00.000Z",
+      "label": "Partenaire",
+      "icon": "LELpartenaire.svg",
+      "color": "#9EB6F1"
+    },
+    {
+      "title": "Escape game - Papyrus et la Potion des Pluies Oubliées - Tavaux",
+      "location": "",
+      "start": "2026-10-24T11:00:00.000Z",
+      "end": "2026-10-24T15:30:00.000Z",
       "label": "Partenaire",
       "icon": "LELpartenaire.svg",
       "color": "#9EB6F1"
