@@ -1,15 +1,6 @@
 {
-  "updated": "26/08/2026 07:28:54",
+  "updated": "27/08/2026 18:03:17",
   "events": [
-    {
-      "title": "Après midi jeux - Besançon",
-      "location": "4 Pont de la République, 25000 Besançon",
-      "start": "2026-08-26T12:00:00.000Z",
-      "end": "2026-08-26T15:00:00.000Z",
-      "label": "Soirée au chapeau",
-      "icon": "LRLsoiree.svg",
-      "color": "#F062B0"
-    },
     {
       "title": "Forum des associations à Aveney",
       "location": "3 Rue de l'École, Aveney",
@@ -27,6 +18,15 @@
       "label": "Soirée adhérents",
       "icon": "LRLadherent.svg",
       "color": "#F6D67A"
+    },
+    {
+      "title": "Soirée découverte jeux de société à La Citronnade",
+      "location": "La Citronnade, Rue Ronchaux, Besancon",
+      "start": "2026-09-18T17:30:00.000Z",
+      "end": "2026-09-18T20:30:00.000Z",
+      "label": "Soirée au chapeau",
+      "icon": "LRLsoiree.svg",
+      "color": "#F062B0"
     },
     {
       "title": "Les soirées d'Avanne - Portes ouvertes",
@@ -74,19 +74,19 @@
       "color": "#9EB6F1"
     },
     {
+      "title": "Soirée tournoi de jeux de société à La Citronnade",
+      "location": "La Citronnade, Rue Ronchaux, Besancon",
+      "start": "2026-10-23T18:00:00.000Z",
+      "end": "2026-10-23T21:00:00.000Z",
+      "label": "Soirée au chapeau",
+      "icon": "LRLsoiree.svg",
+      "color": "#F062B0"
+    },
+    {
       "title": "Escape game - Papyrus et la Potion des Pluies Oubliées - Tavaux",
       "location": "",
       "start": "2026-10-24T11:00:00.000Z",
       "end": "2026-10-24T15:30:00.000Z",
-      "label": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
-    },
-    {
-      "title": " Escape game - Papyrus et la Potion des Pluies Oubliées - Médiathèque de PIREY",
-      "location": "MEDIATHEQUE de Pirey, 10 A Rte Saint-Martin, 25480 Pirey, France",
-      "start": "2026-10-31T13:00:00.000Z",
-      "end": "2026-10-31T18:00:00.000Z",
       "label": "Partenaire",
       "icon": "LELpartenaire.svg",
       "color": "#9EB6F1"
