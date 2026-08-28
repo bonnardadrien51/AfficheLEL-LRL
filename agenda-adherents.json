@@ -1,50 +1,60 @@
 {
-  "updated": "28/08/2026 13:44:54",
+  "updated": "28/08/2026 14:14:03",
   "events": [
     {
+      "uid": "fa8ad8f0-0d5e-4a61-a326-6a87c96bc8a3",
       "title": "Les soirées d'Avanne - Portes ouvertes",
       "location": "3 Bis rue de l'eglise 25720 Avanne",
       "start": "2026-09-09T15:30:00.000Z",
       "end": "2026-09-09T19:00:00.000Z",
       "label": "Soirée adhérents",
       "icon": "LRLadherent.svg",
-      "color": "#F6D67A"
+      "color": "#F6D67A",
+      "campaign": null
     },
     {
+      "uid": "1fe84323-964d-44b2-a8c1-4fedb7919d74",
       "title": "Les soirées d'Avanne - Portes ouvertes",
       "location": "3 Bis rue de l'eglise 25720 Avanne",
       "start": "2026-09-23T15:30:00.000Z",
       "end": "2026-09-23T19:00:00.000Z",
       "label": "Soirée adhérents",
       "icon": "LRLadherent.svg",
-      "color": "#F6D67A"
+      "color": "#F6D67A",
+      "campaign": null
     },
     {
+      "uid": "c6ab3584-5ca2-40bf-968a-4e924bd3b987",
       "title": "Les soirées jeux - Avanne",
       "location": "3 Bis rue de l'eglise 25720 Avanne",
       "start": "2026-10-14T15:30:00.000Z",
       "end": "2026-10-14T19:00:00.000Z",
       "label": "Soirée adhérents",
       "icon": "LRLadherent.svg",
-      "color": "#F6D67A"
+      "color": "#F6D67A",
+      "campaign": null
     },
     {
+      "uid": "4921d3ea-5f00-4673-b9b0-f552edbe3742",
       "title": "Les soirées jeux - Avanne",
       "location": "3 Bis rue de l'eglise 25720 Avanne",
       "start": "2026-11-04T16:30:00.000Z",
       "end": "2026-11-04T20:00:00.000Z",
       "label": "Soirée adhérents",
       "icon": "LRLadherent.svg",
-      "color": "#F6D67A"
+      "color": "#F6D67A",
+      "campaign": null
     },
     {
+      "uid": "f241fbef-c89f-47e6-8488-2670b85b2c2c",
       "title": "Les soirées jeux - Avanne",
       "location": "3 Bis rue de l'eglise 25720 Avanne",
       "start": "2026-11-18T16:30:00.000Z",
       "end": "2026-11-18T20:00:00.000Z",
       "label": "Soirée adhérents",
       "icon": "LRLadherent.svg",
-      "color": "#F6D67A"
+      "color": "#F6D67A",
+      "campaign": null
     }
   ]
 }

@@ -1,176 +1,214 @@
 {
-  "updated": "28/08/2026 13:44:54",
+  "updated": "28/08/2026 14:14:03",
   "events": [
     {
+      "uid": "5e850973-863e-4a7e-aeb9-7e82fdb7fc49",
       "title": "Forum des associations à Aveney",
       "location": "3 Rue de l'École, Aveney",
       "start": "2026-09-05T07:30:00.000Z",
       "end": "2026-09-05T10:00:00.000Z",
       "label": "Soirée au chapeau",
       "icon": "LRLsoiree.svg",
-      "color": "#F062B0"
+      "color": "#F062B0",
+      "campaign": null
     },
     {
+      "uid": "fa8ad8f0-0d5e-4a61-a326-6a87c96bc8a3",
       "title": "Les soirées d'Avanne - Portes ouvertes",
       "location": "3 Bis rue de l'eglise 25720 Avanne",
       "start": "2026-09-09T15:30:00.000Z",
       "end": "2026-09-09T19:00:00.000Z",
       "label": "Soirée adhérents",
       "icon": "LRLadherent.svg",
-      "color": "#F6D67A"
+      "color": "#F6D67A",
+      "campaign": null
     },
     {
+      "uid": "68f6e2a7-0432-43f4-82fa-2fd3acaf416d",
       "title": "Soirée découverte jeux de société à La Citronnade",
       "location": "La Citronnade, Rue Ronchaux, Besancon",
       "start": "2026-09-18T17:30:00.000Z",
       "end": "2026-09-18T20:30:00.000Z",
       "label": "Soirée au chapeau",
       "icon": "LRLsoiree.svg",
-      "color": "#F062B0"
+      "color": "#F062B0",
+      "campaign": null
     },
     {
+      "uid": "5igm19tmn12ic4l4fasr33qg1t@google.com",
       "title": "Escape Game : La mission de madame chouette",
       "location": "",
       "start": "2026-09-19T08:00:00.000Z",
       "end": "2026-09-19T17:00:00.000Z",
       "label": "Partenaire",
       "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
+      "color": "#9EB6F1",
+      "campaign": null
     },
     {
+      "uid": "13ivhtuglmbajrv12puq65u6ld@google.com",
       "title": "Escape Game : La mission de madame chouette",
       "location": "",
       "start": "2026-09-20T08:00:00.000Z",
       "end": "2026-09-20T16:00:00.000Z",
       "label": "Partenaire",
       "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
+      "color": "#9EB6F1",
+      "campaign": null
     },
     {
+      "uid": "1fe84323-964d-44b2-a8c1-4fedb7919d74",
       "title": "Les soirées d'Avanne - Portes ouvertes",
       "location": "3 Bis rue de l'eglise 25720 Avanne",
       "start": "2026-09-23T15:30:00.000Z",
       "end": "2026-09-23T19:00:00.000Z",
       "label": "Soirée adhérents",
       "icon": "LRLadherent.svg",
-      "color": "#F6D67A"
+      "color": "#F6D67A",
+      "campaign": null
     },
     {
+      "uid": "6dh66e336crmab9nchj3eb9kc4o3gbb26gr3ib9l6gqm4ob268r32c9k60@google.com",
       "title": "Soirée jeux MJC Palente",
       "location": "MJC Palente",
       "start": "2026-10-02T15:00:00.000Z",
       "end": "2026-10-02T20:00:00.000Z",
       "label": "Soirée au chapeau",
       "icon": "LRLsoiree.svg",
-      "color": "#F062B0"
+      "color": "#F062B0",
+      "campaign": null
     },
     {
+      "uid": "c6ab3584-5ca2-40bf-968a-4e924bd3b987",
       "title": "Les soirées jeux - Avanne",
       "location": "3 Bis rue de l'eglise 25720 Avanne",
       "start": "2026-10-14T15:30:00.000Z",
       "end": "2026-10-14T19:00:00.000Z",
       "label": "Soirée adhérents",
       "icon": "LRLadherent.svg",
-      "color": "#F6D67A"
+      "color": "#F6D67A",
+      "campaign": null
     },
     {
+      "uid": "787dqer06p8jb5c9afjfmq6coh@google.com",
       "title": "Jeux Avanne Bibliothèque",
       "location": "",
       "start": "2026-10-22T12:00:00.000Z",
       "end": "2026-10-22T15:00:00.000Z",
       "label": "Animation",
       "icon": "LELanimation.svg",
-      "color": "#F29A63"
+      "color": "#F29A63",
+      "campaign": null
     },
     {
+      "uid": "2kk281kd0bddb8nu9h3ul1aq7d@google.com",
       "title": "Escape game - Papyrus et la Potion des Pluies Oubliées - Studio chouette",
       "location": "Studio Chouette, 4 Rue du Clos Saint-Amour, 25000 Besançon, France",
       "start": "2026-10-23T08:00:00.000Z",
       "end": "2026-10-23T16:00:00.000Z",
       "label": "Partenaire",
       "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
+      "color": "#9EB6F1",
+      "campaign": null
     },
     {
+      "uid": "6178df1b-6927-4a29-b636-799b4a3be043",
       "title": "Soirée tournoi de jeux de société à La Citronnade",
       "location": "La Citronnade, Rue Ronchaux, Besancon",
       "start": "2026-10-23T18:00:00.000Z",
       "end": "2026-10-23T21:00:00.000Z",
       "label": "Soirée au chapeau",
       "icon": "LRLsoiree.svg",
-      "color": "#F062B0"
+      "color": "#F062B0",
+      "campaign": null
     },
     {
+      "uid": "1cimnqdn52da7nprfsc2ml637v@google.com",
       "title": "Escape game - Papyrus et la Potion des Pluies Oubliées - Tavaux",
       "location": "",
       "start": "2026-10-24T11:00:00.000Z",
       "end": "2026-10-24T15:30:00.000Z",
       "label": "Partenaire",
       "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
+      "color": "#9EB6F1",
+      "campaign": null
     },
     {
+      "uid": "0dqg79ovskabtludrfsgh3ddlv@google.com",
       "title": " Escape game - Papyrus et la Potion des Pluies Oubliées - Médiathèque de PIREY",
       "location": "MEDIATHEQUE de Pirey, 10 A Rte Saint-Martin, 25480 Pirey, France",
       "start": "2026-10-31T13:00:00.000Z",
       "end": "2026-10-31T18:00:00.000Z",
       "label": "Partenaire",
       "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
+      "color": "#9EB6F1",
+      "campaign": null
     },
     {
+      "uid": "4921d3ea-5f00-4673-b9b0-f552edbe3742",
       "title": "Les soirées jeux - Avanne",
       "location": "3 Bis rue de l'eglise 25720 Avanne",
       "start": "2026-11-04T16:30:00.000Z",
       "end": "2026-11-04T20:00:00.000Z",
       "label": "Soirée adhérents",
       "icon": "LRLadherent.svg",
-      "color": "#F6D67A"
+      "color": "#F6D67A",
+      "campaign": null
     },
     {
+      "uid": "f241fbef-c89f-47e6-8488-2670b85b2c2c",
       "title": "Les soirées jeux - Avanne",
       "location": "3 Bis rue de l'eglise 25720 Avanne",
       "start": "2026-11-18T16:30:00.000Z",
       "end": "2026-11-18T20:00:00.000Z",
       "label": "Soirée adhérents",
       "icon": "LRLadherent.svg",
-      "color": "#F6D67A"
+      "color": "#F6D67A",
+      "campaign": null
     },
     {
+      "uid": "11bd122a-2aa1-4739-aa8e-822af269b3ad",
       "title": "Soirée découverte jeux de société à La Citronnade",
       "location": "La Citronnade, Rue Ronchaux, Besancon",
       "start": "2026-11-20T18:30:00.000Z",
       "end": "2026-11-20T21:30:00.000Z",
       "label": "Soirée au chapeau",
       "icon": "LRLsoiree.svg",
-      "color": "#F062B0"
+      "color": "#F062B0",
+      "campaign": null
     },
     {
+      "uid": "1fl5rb1jl77sg0kvuouvqr3jt8@google.com",
       "title": "Marché Noel Auxons",
       "location": "",
       "start": "2026-11-21T13:00:00.000Z",
       "end": "2026-11-21T18:00:00.000Z",
       "label": "Marché / Expo",
       "icon": "LELmarche.svg",
-      "color": "#D99DC1"
+      "color": "#D99DC1",
+      "campaign": null
     },
     {
+      "uid": "0g3u8eoe5p38b4uoq452pij2d8@google.com",
       "title": "Marché Noël Auxons",
       "location": "",
       "start": "2026-11-22T09:00:00.000Z",
       "end": "2026-11-22T17:00:00.000Z",
       "label": "Marché / Expo",
       "icon": "LELmarche.svg",
-      "color": "#D99DC1"
+      "color": "#D99DC1",
+      "campaign": null
     },
     {
+      "uid": "0c754d5a-536b-4192-89a1-4524f6098b5e",
       "title": "Soirée tournoi de jeux de société à La Citronnade",
       "location": "La Citronnade, Rue Ronchaux, Besancon",
       "start": "2026-12-04T18:30:00.000Z",
       "end": "2026-12-04T21:30:00.000Z",
       "label": "Soirée au chapeau",
       "icon": "LRLsoiree.svg",
-      "color": "#F062B0"
+      "color": "#F062B0",
+      "campaign": null
     }
   ]
 }
