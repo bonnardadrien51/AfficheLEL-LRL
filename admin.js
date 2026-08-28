@@ -658,7 +658,7 @@ function createEventCard(
 
 
         icon.src =
-            "img/" +
+            "img/categories/" +
             event.icon;
 
 
