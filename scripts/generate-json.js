@@ -432,7 +432,12 @@ async function main() {
 
   allEvents.sort((a, b) => a.start - b.start);
 
-  const generalEvents = allEvents.slice(0, 10);
+  // Fenêtre glissante de 6 mois à partir d'aujourd'hui, sans plafond
+  // de nombre d'événements (contrairement à l'ancien slice(0, 10)).
+  const sixMonthsFromNow = new Date();
+  sixMonthsFromNow.setMonth(sixMonthsFromNow.getMonth() + 6);
+
+  const generalEvents = allEvents.filter(e => e.start <= sixMonthsFromNow);
 
   const generalJson = {
 
@@ -450,7 +455,7 @@ async function main() {
     "utf8"
   );
 
-  console.log(generalEvents.length + " événements enregistrés dans agenda.json.");
+  console.log(generalEvents.length + " événements enregistrés dans agenda.json (fenêtre 6 mois).");
 
   // Flux dédié : uniquement les soirées réservées aux adhérents,
   // indépendant des autres calendriers pour ne pas être écrasé
