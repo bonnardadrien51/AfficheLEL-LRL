@@ -1,5 +1,5 @@
 {
-  "updated": "27/08/2026 18:03:17",
+  "updated": "28/08/2026 13:44:54",
   "events": [
     {
       "title": "Forum des associations à Aveney",
@@ -27,6 +27,24 @@
       "label": "Soirée au chapeau",
       "icon": "LRLsoiree.svg",
       "color": "#F062B0"
+    },
+    {
+      "title": "Escape Game : La mission de madame chouette",
+      "location": "",
+      "start": "2026-09-19T08:00:00.000Z",
+      "end": "2026-09-19T17:00:00.000Z",
+      "label": "Partenaire",
+      "icon": "LELpartenaire.svg",
+      "color": "#9EB6F1"
+    },
+    {
+      "title": "Escape Game : La mission de madame chouette",
+      "location": "",
+      "start": "2026-09-20T08:00:00.000Z",
+      "end": "2026-09-20T16:00:00.000Z",
+      "label": "Partenaire",
+      "icon": "LELpartenaire.svg",
+      "color": "#9EB6F1"
     },
     {
       "title": "Les soirées d'Avanne - Portes ouvertes",
@@ -90,6 +108,69 @@
       "label": "Partenaire",
       "icon": "LELpartenaire.svg",
       "color": "#9EB6F1"
+    },
+    {
+      "title": " Escape game - Papyrus et la Potion des Pluies Oubliées - Médiathèque de PIREY",
+      "location": "MEDIATHEQUE de Pirey, 10 A Rte Saint-Martin, 25480 Pirey, France",
+      "start": "2026-10-31T13:00:00.000Z",
+      "end": "2026-10-31T18:00:00.000Z",
+      "label": "Partenaire",
+      "icon": "LELpartenaire.svg",
+      "color": "#9EB6F1"
+    },
+    {
+      "title": "Les soirées jeux - Avanne",
+      "location": "3 Bis rue de l'eglise 25720 Avanne",
+      "start": "2026-11-04T16:30:00.000Z",
+      "end": "2026-11-04T20:00:00.000Z",
+      "label": "Soirée adhérents",
+      "icon": "LRLadherent.svg",
+      "color": "#F6D67A"
+    },
+    {
+      "title": "Les soirées jeux - Avanne",
+      "location": "3 Bis rue de l'eglise 25720 Avanne",
+      "start": "2026-11-18T16:30:00.000Z",
+      "end": "2026-11-18T20:00:00.000Z",
+      "label": "Soirée adhérents",
+      "icon": "LRLadherent.svg",
+      "color": "#F6D67A"
+    },
+    {
+      "title": "Soirée découverte jeux de société à La Citronnade",
+      "location": "La Citronnade, Rue Ronchaux, Besancon",
+      "start": "2026-11-20T18:30:00.000Z",
+      "end": "2026-11-20T21:30:00.000Z",
+      "label": "Soirée au chapeau",
+      "icon": "LRLsoiree.svg",
+      "color": "#F062B0"
+    },
+    {
+      "title": "Marché Noel Auxons",
+      "location": "",
+      "start": "2026-11-21T13:00:00.000Z",
+      "end": "2026-11-21T18:00:00.000Z",
+      "label": "Marché / Expo",
+      "icon": "LELmarche.svg",
+      "color": "#D99DC1"
+    },
+    {
+      "title": "Marché Noël Auxons",
+      "location": "",
+      "start": "2026-11-22T09:00:00.000Z",
+      "end": "2026-11-22T17:00:00.000Z",
+      "label": "Marché / Expo",
+      "icon": "LELmarche.svg",
+      "color": "#D99DC1"
+    },
+    {
+      "title": "Soirée tournoi de jeux de société à La Citronnade",
+      "location": "La Citronnade, Rue Ronchaux, Besancon",
+      "start": "2026-12-04T18:30:00.000Z",
+      "end": "2026-12-04T21:30:00.000Z",
+      "label": "Soirée au chapeau",
+      "icon": "LRLsoiree.svg",
+      "color": "#F062B0"
     }
   ]
 }
