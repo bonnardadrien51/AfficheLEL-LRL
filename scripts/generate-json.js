@@ -1,6 +1,12 @@
+```js
 const axios = require("axios");
 const ical = require("node-ical");
 const fs = require("fs");
+
+
+// ============================================================
+// CALENDRIERS
+// ============================================================
 
 const calendars = [
 
@@ -41,120 +47,416 @@ const calendars = [
 
 ];
 
+
 const VACANCES_URL =
   "https://calendar.google.com/calendar/ical/0a1c5d7a3b7f8feab31b33af5f3c10777e558ac186c7688b1e4d9fb46ea72549%40group.calendar.google.com/public/basic.ics";
 
-const JEUX_URL = "https://leraffutludique-online.fr:1880/lrl/getdetailjeux";
+
+const JEUX_URL =
+  "https://leraffutludique-online.fr:1880/lrl/getdetailjeux";
+
 
 const JEUX_MAX = 8;
 
-const JEUX_IMG_DIR = "img/jeux";
+
+const JEUX_IMG_DIR =
+  "img/jeux";
+
+
+// ============================================================
+// OUTILS URL
+// ============================================================
+
+// Transforme une URL éventuellement écrite sous la forme :
+//
+// [https://exemple.fr](https://exemple.fr)
+//
+// en :
+//
+// https://exemple.fr
+//
+// Google Calendar peut parfois conserver les liens sous cette forme
+// lorsqu'ils ont été collés/formattés dans la description.
+
+function normalizeUrl(value){
+
+  if(!value){
+
+    return "";
+
+  }
+
+
+  let url =
+    String(value).trim();
+
+
+  const markdownMatch =
+    url.match(
+      /^\[([^\]]+)\]\(([^)]+)\)$/
+    );
+
+
+  if(markdownMatch){
+
+    url =
+      markdownMatch[2].trim();
+
+  }
+
+
+  return url;
+
+}
+
+
+// ============================================================
+// DESCRIPTION GOOGLE CALENDAR
+// ============================================================
+
+// Google Calendar peut fournir la description avec du HTML.
+// On transforme les <br> en retours à la ligne puis on supprime
+// les autres balises HTML.
+
+function cleanDescription(rawDescription){
+
+  if(!rawDescription){
+
+    return "";
+
+  }
+
+
+  return String(rawDescription)
+
+    .replace(
+      /<br\s*\/?>/gi,
+      "\n"
+    )
+
+    .replace(
+      /<[^>]+>/g,
+      ""
+    )
+
+    .trim();
+
+}
+
+
+// ============================================================
+// PARSING DU JSON DE CAMPAGNE
+// ============================================================
+
+function parseCampaign(rawDescription){
+
+  const cleaned =
+    cleanDescription(
+      rawDescription
+    );
+
+
+  if(!cleaned){
+
+    return null;
+
+  }
+
+
+  try{
+
+    const data =
+      JSON.parse(
+        cleaned
+      );
+
+
+    return {
+
+      titre:
+        data.titre || "",
+
+      image:
+        normalizeUrl(
+          data.image
+        ),
+
+      logo:
+        normalizeUrl(
+          data.logo
+        ),
+
+      logo_fond:
+        data.logo_fond || "",
+
+      fond:
+        normalizeUrl(
+          data.fond
+        ),
+
+      tarif:
+        data.tarif || "",
+
+      inscription:
+        data.inscription || "",
+
+      lien_inscription:
+        normalizeUrl(
+          data.lien_inscription
+        ),
+
+      statut:
+        data.statut || "",
+
+      lieu:
+        data.lieu || "",
+
+      affichage_lieu:
+        data.affichage_lieu !== undefined
+          ? String(data.affichage_lieu)
+          : "3"
+
+    };
+
+
+  } catch(err){
+
+    console.warn(
+      "Description JSON ignorée pour un événement :",
+      cleaned.slice(0, 150)
+    );
+
+
+    return null;
+
+  }
+
+}
+
+
+// ============================================================
+// URL DES FICHES JEUX
+// ============================================================
 
 // L'API renvoie des liens de fiche en http:// sans port ; on les
 // reconstruit vers l'hôte réel (https + :1880) utilisé par le site.
-function toBoxUrl(id) {
 
-  return "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=" + id;
+function toBoxUrl(id){
+
+  return (
+    "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=" +
+    id
+  );
 
 }
+
+
+// ============================================================
+// TÉLÉCHARGEMENT DES COVERS
+// ============================================================
 
 // Les covers sont hébergées sur leraffutludique.fr, qui ne renvoie pas
 // d'en-têtes CORS : chargées directement en <img crossorigin>, elles
 // sont bloquées par le navigateur. On les télécharge donc une fois ici
 // et on les sert en local avec le reste du site.
-async function downloadCover(url, filename) {
 
-  fs.mkdirSync(JEUX_IMG_DIR, { recursive: true });
+async function downloadCover(
+  url,
+  filename
+){
 
-  const localPath = JEUX_IMG_DIR + "/" + filename;
-
-  const response = await axios.get(url, {
-    responseType: "arraybuffer",
-    headers: {
-      "User-Agent": "Mozilla/5.0"
+  fs.mkdirSync(
+    JEUX_IMG_DIR,
+    {
+      recursive: true
     }
-  });
+  );
 
-  fs.writeFileSync(localPath, response.data);
+
+  const localPath =
+    JEUX_IMG_DIR +
+    "/" +
+    filename;
+
+
+  const response =
+    await axios.get(
+      url,
+      {
+        responseType:
+          "arraybuffer",
+
+        headers: {
+          "User-Agent":
+            "Mozilla/5.0"
+        }
+      }
+    );
+
+
+  fs.writeFileSync(
+    localPath,
+    response.data
+  );
+
 
   return localPath;
 
 }
 
-async function loadNewestGames(allGames) {
 
-  const sorted = [...allGames].sort(
-    (a, b) => new Date(b.date_ajout) - new Date(a.date_ajout)
-  );
+// ============================================================
+// DERNIERS JEUX
+// ============================================================
 
-  const newest = sorted.slice(0, JEUX_MAX);
+async function loadNewestGames(
+  allGames
+){
+
+  const sorted =
+    [...allGames].sort(
+      (a, b) =>
+        new Date(b.date_ajout) -
+        new Date(a.date_ajout)
+    );
+
+
+  const newest =
+    sorted.slice(
+      0,
+      JEUX_MAX
+    );
+
 
   const result = [];
 
-  for (const j of newest) {
 
-    let image = j.image;
-    let imageOk = true;
+  for(const j of newest){
 
-    try {
+    let image =
+      j.image;
 
-      const filename = j.image_jeu || (j.id + ".png");
 
-      image = await downloadCover(j.image, filename);
+    let imageOk =
+      true;
 
-      console.log("Cover téléchargée :", filename);
 
-    } catch (err) {
+    try{
 
-      imageOk = false;
+      const filename =
+        j.image_jeu ||
+        (j.id + ".png");
+
+
+      image =
+        await downloadCover(
+          j.image,
+          filename
+        );
+
+
+      console.log(
+        "Cover téléchargée :",
+        filename
+      );
+
+
+    } catch(err){
+
+      imageOk =
+        false;
+
 
       console.error(
-        "Impossible de télécharger la cover de \"" + j.Titre + "\" :",
+        'Impossible de télécharger la cover de "' +
+        j.Titre +
+        '":',
         err.message
       );
 
     }
 
+
     result.push({
 
-      id: j.id,
-      titre: j.Titre,
-      lieu: j.Lieu,
-      categorie: j.categorie,
+      id:
+        j.id,
+
+      titre:
+        j.Titre,
+
+      lieu:
+        j.Lieu,
+
+      categorie:
+        j.categorie,
+
       image,
+
       imageOk,
-      joueurs: j.joueurs || null,
-      age_min: j.age_min_detail_jeu || null,
-      age_max: j.age_max_detail_jeu || null,
-      url: toBoxUrl(j.id),
-      date_ajout: j.date_ajout
+
+      joueurs:
+        j.joueurs || null,
+
+      age_min:
+        j.age_min_detail_jeu || null,
+
+      age_max:
+        j.age_max_detail_jeu || null,
+
+      url:
+        toBoxUrl(j.id),
+
+      date_ajout:
+        j.date_ajout
 
     });
 
   }
 
+
   return result;
 
 }
 
-// Vérifie qu'une image répond bien en HTTP 200 (sans la télécharger,
-// juste une requête HEAD) pour repérer les visuels cassés/manquants
-// sur l'ensemble de la ludothèque.
-async function checkImageExists(url) {
 
-  try {
+// ============================================================
+// VÉRIFICATION DES IMAGES
+// ============================================================
 
-    const response = await axios.head(url, {
-      timeout: 10000,
-      validateStatus: () => true,
-      headers: {
-        "User-Agent": "Mozilla/5.0"
-      }
-    });
+// Vérifie qu'une image répond bien en HTTP 200.
 
-    return response.status >= 200 && response.status < 300;
+async function checkImageExists(
+  url
+){
 
-  } catch (err) {
+  try{
+
+    const response =
+      await axios.head(
+        url,
+        {
+          timeout:
+            10000,
+
+          validateStatus:
+            () => true,
+
+          headers: {
+            "User-Agent":
+              "Mozilla/5.0"
+          }
+        }
+      );
+
+
+    return (
+      response.status >= 200 &&
+      response.status < 300
+    );
+
+
+  } catch(err){
 
     return false;
 
@@ -162,422 +464,971 @@ async function checkImageExists(url) {
 
 }
 
+
 const CHECK_BATCH_SIZE = 15;
 
-// Passe toute la ludothèque en revue : visuels manquants (404, erreur
-// réseau...) et visuels pas encore convertis en webp. Utilisé pour la
-// page de suivi verif-visuels.html, pas pour les affiches publiques.
-async function checkAllGames(allGames) {
+
+// ============================================================
+// VÉRIFICATION DE TOUS LES JEUX
+// ============================================================
+
+async function checkAllGames(
+  allGames
+){
 
   const results = [];
 
-  for (let i = 0; i < allGames.length; i += CHECK_BATCH_SIZE) {
 
-    const batch = allGames.slice(i, i + CHECK_BATCH_SIZE);
+  for(
+    let i = 0;
+    i < allGames.length;
+    i += CHECK_BATCH_SIZE
+  ){
 
-    const batchResults = await Promise.all(
-      batch.map(async j => {
+    const batch =
+      allGames.slice(
+        i,
+        i + CHECK_BATCH_SIZE
+      );
 
-        const ok = await checkImageExists(j.image);
 
-        return {
+    const batchResults =
+      await Promise.all(
 
-          id: j.id,
-          titre: j.Titre,
-          lieu: j.Lieu,
-          categorie: j.categorie,
-          image: j.image,
-          url: toBoxUrl(j.id),
-          isPng: /\.png$/i.test(j.image || ""),
-          visuelManquant: !ok
+        batch.map(
+          async j => {
 
-        };
+            const ok =
+              await checkImageExists(
+                j.image
+              );
 
-      })
+
+            return {
+
+              id:
+                j.id,
+
+              titre:
+                j.Titre,
+
+              lieu:
+                j.Lieu,
+
+              categorie:
+                j.categorie,
+
+              image:
+                j.image,
+
+              url:
+                toBoxUrl(j.id),
+
+              isPng:
+                /\.png$/i.test(
+                  j.image || ""
+                ),
+
+              visuelManquant:
+                !ok
+
+            };
+
+          }
+        )
+
+      );
+
+
+    results.push(
+      ...batchResults
     );
 
-    results.push(...batchResults);
 
     console.log(
       "Vérification visuels : " +
-      Math.min(i + CHECK_BATCH_SIZE, allGames.length) +
-      "/" + allGames.length
+      Math.min(
+        i + CHECK_BATCH_SIZE,
+        allGames.length
+      ) +
+      "/" +
+      allGames.length
     );
 
   }
+
 
   return results;
 
 }
 
-// Regroupe par lieu les jeux dont l'emplacement (rangement physique
-// dans la ludothèque) vaut -1, c'est-à-dire pas encore rangés. Pas
-// besoin de vérifier les visuels ici, juste le champ emplacement.
-function buildEmplacementReport(allGames) {
+
+// ============================================================
+// JEUX NON RANGÉS
+// ============================================================
+
+function buildEmplacementReport(
+  allGames
+){
 
   const grouped = {};
 
-  for (const j of allGames) {
 
-    const emplacement = j.emplacement;
+  for(const j of allGames){
+
+    const emplacement =
+      j.emplacement;
+
 
     const estNonRange =
-      emplacement === -1 || emplacement === "-1";
+      emplacement === -1 ||
+      emplacement === "-1";
 
-    if (!estNonRange)
+
+    if(!estNonRange){
+
       continue;
 
-    const lieu = j.Lieu || "Lieu inconnu";
+    }
 
-    if (!grouped[lieu])
+
+    const lieu =
+      j.Lieu ||
+      "Lieu inconnu";
+
+
+    if(!grouped[lieu]){
+
       grouped[lieu] = [];
+
+    }
+
 
     grouped[lieu].push({
 
-      id: j.id,
-      titre: j.Titre,
-      categorie: j.categorie,
-      image: j.image,
-      url: toBoxUrl(j.id)
+      id:
+        j.id,
+
+      titre:
+        j.Titre,
+
+      categorie:
+        j.categorie,
+
+      image:
+        j.image,
+
+      url:
+        toBoxUrl(j.id)
 
     });
 
   }
 
-  return Object.keys(grouped)
-    .sort((a, b) => a.localeCompare(b))
-    .map(lieu => ({
 
-      lieu,
-      jeux: grouped[lieu].sort((a, b) => a.titre.localeCompare(b.titre))
+  return Object.keys(
+    grouped
+  )
 
-    }));
+    .sort(
+      (a, b) =>
+        a.localeCompare(b)
+    )
+
+    .map(
+      lieu => ({
+
+        lieu,
+
+        jeux:
+          grouped[lieu].sort(
+            (a, b) =>
+              a.titre.localeCompare(
+                b.titre
+              )
+          )
+
+      })
+    );
 
 }
 
-// Champs jugés indispensables pour une fiche jeu correctement
-// renseignée. Un jeu manque d'info dès qu'au moins un de ces champs
-// est vide/null dans l'API.
+
+// ============================================================
+// INFORMATIONS JEUX MANQUANTES
+// ============================================================
+
 const CHAMPS_REQUIS = [
-  { champ: "joueurs", label: "Joueurs" },
-  { champ: "age_min_detail_jeu", label: "Âge min" },
-  { champ: "temps", label: "Durée" },
-  { champ: "regle_detail_jeu", label: "Règles (PDF/lien)" }
+
+  {
+    champ:
+      "joueurs",
+
+    label:
+      "Joueurs"
+  },
+
+  {
+    champ:
+      "age_min_detail_jeu",
+
+    label:
+      "Âge min"
+  },
+
+  {
+    champ:
+      "temps",
+
+    label:
+      "Durée"
+  },
+
+  {
+    champ:
+      "regle_detail_jeu",
+
+    label:
+      "Règles (PDF/lien)"
+  }
+
 ];
 
-function estVide(valeur) {
 
-  return valeur === null || valeur === undefined || valeur === "";
+function estVide(
+  valeur
+){
+
+  return (
+    valeur === null ||
+    valeur === undefined ||
+    valeur === ""
+  );
 
 }
 
-// Liste les jeux auxquels il manque au moins un champ de
-// CHAMPS_REQUIS, avec le détail des champs manquants pour chacun.
-function buildMissingInfoReport(allGames) {
+
+function buildMissingInfoReport(
+  allGames
+){
 
   const result = [];
 
-  for (const j of allGames) {
 
-    const manquants = CHAMPS_REQUIS
-      .filter(c => estVide(j[c.champ]))
-      .map(c => c.label);
+  for(const j of allGames){
 
-    if (manquants.length === 0)
+    const manquants =
+      CHAMPS_REQUIS
+
+        .filter(
+          c =>
+            estVide(
+              j[c.champ]
+            )
+        )
+
+        .map(
+          c =>
+            c.label
+        );
+
+
+    if(
+      manquants.length === 0
+    ){
+
       continue;
+
+    }
+
 
     result.push({
 
-      id: j.id,
-      titre: j.Titre,
-      lieu: j.Lieu,
-      categorie: j.categorie,
-      image: j.image,
-      url: toBoxUrl(j.id),
+      id:
+        j.id,
+
+      titre:
+        j.Titre,
+
+      lieu:
+        j.Lieu,
+
+      categorie:
+        j.categorie,
+
+      image:
+        j.image,
+
+      url:
+        toBoxUrl(j.id),
+
       manquants
 
     });
 
   }
 
-  return result.sort((a, b) => a.titre.localeCompare(b.titre));
+
+  return result.sort(
+    (a, b) =>
+      a.titre.localeCompare(
+        b.titre
+      )
+  );
 
 }
 
-async function loadVacationCalendar() {
 
-  console.log("Lecture :", VACANCES_URL);
+// ============================================================
+// CALENDRIER VACANCES
+// ============================================================
 
-  const response = await axios.get(VACANCES_URL, {
-    headers: {
-      "User-Agent": "Mozilla/5.0"
-    }
-  });
+async function loadVacationCalendar(){
 
-  const parsed = ical.sync.parseICS(response.data);
+  console.log(
+    "Lecture :",
+    VACANCES_URL
+  );
 
-  const now = new Date();
+
+  const response =
+    await axios.get(
+      VACANCES_URL,
+      {
+        headers: {
+          "User-Agent":
+            "Mozilla/5.0"
+        }
+      }
+    );
+
+
+  const parsed =
+    ical.sync.parseICS(
+      response.data
+    );
+
+
+  const now =
+    new Date();
+
 
   const periods = [];
 
-  for (const key in parsed) {
 
-    const e = parsed[key];
+  for(const key in parsed){
 
-    if (e.type !== "VEVENT")
+    const e =
+      parsed[key];
+
+
+    if(
+      e.type !== "VEVENT"
+    ){
+
       continue;
 
-    if (!e.start || !e.end)
+    }
+
+
+    if(
+      !e.start ||
+      !e.end
+    ){
+
       continue;
 
-    // On garde les périodes en cours (pas encore terminées) ou à venir.
-    // Contrairement aux événements ponctuels, on ne filtre pas sur le
-    // début : une période de vacances déjà commencée doit rester visible
+    }
+
+
+    // Une période déjà commencée reste visible
     // jusqu'à sa date de fin.
-    if (e.end < now)
+
+    if(
+      e.end < now
+    ){
+
       continue;
+
+    }
+
 
     periods.push({
 
-      titre: e.summary || "",
+      titre:
+        e.summary || "",
 
-      start: e.start,
+      start:
+        e.start,
 
-      end: e.end
+      end:
+        e.end
 
     });
 
   }
 
-  periods.sort((a, b) => a.start - b.start);
+
+  periods.sort(
+    (a, b) =>
+      a.start - b.start
+  );
+
 
   return periods;
 
 }
 
-async function loadCalendar(calendar) {
 
-  console.log("Lecture :", calendar.url);
+// ============================================================
+// CHARGEMENT D'UN CALENDRIER
+// ============================================================
 
-  const response = await axios.get(calendar.url, {
-    headers: {
-      "User-Agent": "Mozilla/5.0"
-    }
-  });
+async function loadCalendar(
+  calendar
+){
 
-  const parsed = ical.sync.parseICS(response.data);
+  console.log(
+    "Lecture :",
+    calendar.url
+  );
+
+
+  const response =
+    await axios.get(
+      calendar.url,
+      {
+        headers: {
+          "User-Agent":
+            "Mozilla/5.0"
+        }
+      }
+    );
+
+
+  const parsed =
+    ical.sync.parseICS(
+      response.data
+    );
+
 
   const events = [];
 
-  for (const key in parsed) {
 
-    const e = parsed[key];
+  for(const key in parsed){
 
-    if (e.type !== "VEVENT")
+    const e =
+      parsed[key];
+
+
+    if(
+      e.type !== "VEVENT"
+    ){
+
       continue;
 
-    if (!e.start)
+    }
+
+
+    if(!e.start){
+
       continue;
 
-    if (e.start < new Date())
+    }
+
+
+    if(
+      e.start < new Date()
+    ){
+
       continue;
+
+    }
+
 
     events.push({
 
-    title: e.summary || "",
+      // ======================================================
+      // DONNÉES EXISTANTES
+      // ======================================================
 
-    location: e.location || "",
+      title:
+        e.summary || "",
 
-    start: e.start,
+      location:
+        e.location || "",
 
-    end: e.end || e.start,
+      start:
+        e.start,
 
-    label: calendar.label,
+      end:
+        e.end || e.start,
 
-    icon: calendar.icon,
+      label:
+        calendar.label,
 
-    color: calendar.color
+      icon:
+        calendar.icon,
 
-});
+      color:
+        calendar.color,
+
+
+      // ======================================================
+      // DONNÉES PERSONNALISÉES
+      // ======================================================
+
+      campaign:
+        parseCampaign(
+          e.description
+        )
+
+    });
 
   }
+
 
   return events;
 
 }
 
-async function main() {
+
+// ============================================================
+// PROGRAMME PRINCIPAL
+// ============================================================
+
+async function main(){
 
   let allEvents = [];
 
+
   const eventsByLabel = {};
 
-  for (const calendar of calendars) {
 
-    try {
+  // ==========================================================
+  // CHARGEMENT DES 5 CALENDRIERS
+  // ==========================================================
 
-      const list = await loadCalendar(calendar);
+  for(
+    const calendar of calendars
+  ){
 
-      allEvents.push(...list);
+    try{
 
-      eventsByLabel[calendar.label] = list;
+      const list =
+        await loadCalendar(
+          calendar
+        );
 
-    } catch (err) {
 
-      console.error(err.message);
+      allEvents.push(
+        ...list
+      );
+
+
+      eventsByLabel[
+        calendar.label
+      ] = list;
+
+
+    } catch(err){
+
+      console.error(
+        err.message
+      );
 
     }
 
   }
 
-  allEvents.sort((a, b) => a.start - b.start);
 
-  // Fenêtre glissante de 6 mois à partir d'aujourd'hui, sans plafond
-  // de nombre d'événements (contrairement à l'ancien slice(0, 10)).
-  const sixMonthsFromNow = new Date();
-  sixMonthsFromNow.setMonth(sixMonthsFromNow.getMonth() + 6);
+  // ==========================================================
+  // TRI
+  // ==========================================================
 
-  const generalEvents = allEvents.filter(e => e.start <= sixMonthsFromNow);
+  allEvents.sort(
+    (a, b) =>
+      a.start - b.start
+  );
+
+
+  // ==========================================================
+  // AGENDA GÉNÉRAL
+  // ==========================================================
+
+  // Fenêtre glissante de 6 mois.
+  //
+  // IMPORTANT :
+  // Il n'y a volontairement aucun slice().
+  //
+  // agenda.json contient donc TOUS les événements
+  // disponibles dans les 6 prochains mois.
+
+  const sixMonthsFromNow =
+    new Date();
+
+
+  sixMonthsFromNow.setMonth(
+    sixMonthsFromNow.getMonth() + 6
+  );
+
+
+  const generalEvents =
+    allEvents.filter(
+      e =>
+        e.start <=
+        sixMonthsFromNow
+    );
+
 
   const generalJson = {
 
-    updated: new Date().toLocaleString("fr-FR", {
-      timeZone: "Europe/Paris"
-    }),
+    updated:
+      new Date().toLocaleString(
+        "fr-FR",
+        {
+          timeZone:
+            "Europe/Paris"
+        }
+      ),
 
-    events: generalEvents
+    events:
+      generalEvents
 
   };
 
+
   fs.writeFileSync(
+
     "agenda.json",
-    JSON.stringify(generalJson, null, 2),
+
+    JSON.stringify(
+      generalJson,
+      null,
+      2
+    ),
+
     "utf8"
+
   );
 
-  console.log(generalEvents.length + " événements enregistrés dans agenda.json (fenêtre 6 mois).");
 
-  // Flux dédié : uniquement les soirées réservées aux adhérents,
-  // indépendant des autres calendriers pour ne pas être écrasé
-  // par le quota partagé de agenda.json.
-  const adherentEvents = (eventsByLabel["Soirée adhérents"] || [])
-    .sort((a, b) => a.start - b.start)
-    .slice(0, 15);
+  console.log(
+    generalEvents.length +
+    " événements enregistrés dans agenda.json (fenêtre 6 mois)."
+  );
+
+
+  // ==========================================================
+  // AGENDA ADHÉRENTS
+  // ==========================================================
+
+  const adherentEvents =
+    (
+      eventsByLabel[
+        "Soirée adhérents"
+      ] || []
+    )
+
+      .sort(
+        (a, b) =>
+          a.start - b.start
+      )
+
+      .slice(
+        0,
+        15
+      );
+
 
   const adherentJson = {
 
-    updated: new Date().toLocaleString("fr-FR", {
-      timeZone: "Europe/Paris"
-    }),
+    updated:
+      new Date().toLocaleString(
+        "fr-FR",
+        {
+          timeZone:
+            "Europe/Paris"
+        }
+      ),
 
-    events: adherentEvents
+    events:
+      adherentEvents
 
   };
 
+
   fs.writeFileSync(
+
     "agenda-adherents.json",
-    JSON.stringify(adherentJson, null, 2),
+
+    JSON.stringify(
+      adherentJson,
+      null,
+      2
+    ),
+
     "utf8"
+
   );
 
-  console.log(adherentEvents.length + " événements enregistrés dans agenda-adherents.json.");
 
-  // Périodes de vacances, indépendantes des autres calendriers.
-  try {
+  console.log(
+    adherentEvents.length +
+    " événements enregistrés dans agenda-adherents.json."
+  );
 
-    const periods = await loadVacationCalendar();
+
+  // ==========================================================
+  // VACANCES
+  // ==========================================================
+
+  try{
+
+    const periods =
+      await loadVacationCalendar();
+
 
     const vacancesJson = {
 
-      updated: new Date().toLocaleString("fr-FR", {
-        timeZone: "Europe/Paris"
-      }),
+      updated:
+        new Date().toLocaleString(
+          "fr-FR",
+          {
+            timeZone:
+              "Europe/Paris"
+          }
+        ),
 
       periods
 
     };
 
+
     fs.writeFileSync(
+
       "vacances.json",
-      JSON.stringify(vacancesJson, null, 2),
+
+      JSON.stringify(
+        vacancesJson,
+        null,
+        2
+      ),
+
       "utf8"
+
     );
 
-    console.log(periods.length + " période(s) enregistrée(s) dans vacances.json.");
 
-  } catch (err) {
+    console.log(
+      periods.length +
+      " période(s) enregistrée(s) dans vacances.json."
+    );
 
-    console.error("Erreur lors de la lecture du calendrier vacances :", err.message);
+
+  } catch(err){
+
+    console.error(
+      "Erreur lors de la lecture du calendrier vacances :",
+      err.message
+    );
 
   }
 
-  // Derniers jeux ajoutés à la ludothèque, indépendants des autres
-  // calendriers pour ne pas être écrasés par le quota partagé.
-  try {
 
-    console.log("Lecture :", JEUX_URL);
+  // ==========================================================
+  // LUDOTHÈQUE
+  // ==========================================================
 
-    const jeuxResponse = await axios.get(JEUX_URL, {
-      headers: {
-        "User-Agent": "Mozilla/5.0"
-      }
-    });
-
-    const allGames = jeuxResponse.data || [];
-
-    const updatedNow = new Date().toLocaleString("fr-FR", {
-      timeZone: "Europe/Paris"
-    });
-
-    const jeux = await loadNewestGames(allGames);
-
-    fs.writeFileSync(
-      "jeux.json",
-      JSON.stringify({ updated: updatedNow, jeux }, null, 2),
-      "utf8"
-    );
-
-    console.log(jeux.length + " jeu(x) enregistré(s) dans jeux.json.");
-
-    // Suivi complet de la ludothèque : visuels manquants et visuels
-    // pas encore convertis en webp (page verif-visuels.html).
-    const statusList = await checkAllGames(allGames);
-
-    const visuelsManquants = statusList.filter(j => j.visuelManquant);
-    const pngRestants = statusList.filter(j => j.isPng && !j.visuelManquant);
-    const sansEmplacement = buildEmplacementReport(allGames);
-    const infosManquantes = buildMissingInfoReport(allGames);
-
-    fs.writeFileSync(
-      "jeux-suivi.json",
-      JSON.stringify({
-        updated: updatedNow,
-        total: allGames.length,
-        visuelsManquants,
-        pngRestants,
-        sansEmplacement,
-        infosManquantes
-      }, null, 2),
-      "utf8"
-    );
-
-    const totalSansEmplacement = sansEmplacement.reduce(
-      (sum, groupe) => sum + groupe.jeux.length, 0
-    );
+  try{
 
     console.log(
-      visuelsManquants.length + " visuel(s) manquant(s), " +
-      pngRestants.length + " jeu(x) encore en .png, " +
-      totalSansEmplacement + " jeu(x) sans emplacement, " +
-      infosManquantes.length + " jeu(x) avec des infos manquantes enregistrés dans jeux-suivi.json."
+      "Lecture :",
+      JEUX_URL
     );
 
-  } catch (err) {
 
-    console.error("Erreur lors de la lecture de la ludothèque :", err.message);
+    const jeuxResponse =
+      await axios.get(
+        JEUX_URL,
+        {
+          headers: {
+            "User-Agent":
+              "Mozilla/5.0"
+          }
+        }
+      );
+
+
+    const allGames =
+      jeuxResponse.data || [];
+
+
+    const updatedNow =
+      new Date().toLocaleString(
+        "fr-FR",
+        {
+          timeZone:
+            "Europe/Paris"
+        }
+      );
+
+
+    // --------------------------------------------------------
+    // DERNIERS JEUX
+    // --------------------------------------------------------
+
+    const jeux =
+      await loadNewestGames(
+        allGames
+      );
+
+
+    fs.writeFileSync(
+
+      "jeux.json",
+
+      JSON.stringify(
+        {
+          updated:
+            updatedNow,
+
+          jeux
+        },
+        null,
+        2
+      ),
+
+      "utf8"
+
+    );
+
+
+    console.log(
+      jeux.length +
+      " jeu(x) enregistré(s) dans jeux.json."
+    );
+
+
+    // --------------------------------------------------------
+    // SUIVI COMPLET
+    // --------------------------------------------------------
+
+    const statusList =
+      await checkAllGames(
+        allGames
+      );
+
+
+    const visuelsManquants =
+      statusList.filter(
+        j =>
+          j.visuelManquant
+      );
+
+
+    const pngRestants =
+      statusList.filter(
+        j =>
+          j.isPng &&
+          !j.visuelManquant
+      );
+
+
+    const sansEmplacement =
+      buildEmplacementReport(
+        allGames
+      );
+
+
+    const infosManquantes =
+      buildMissingInfoReport(
+        allGames
+      );
+
+
+    fs.writeFileSync(
+
+      "jeux-suivi.json",
+
+      JSON.stringify(
+
+        {
+
+          updated:
+            updatedNow,
+
+          total:
+            allGames.length,
+
+          visuelsManquants,
+
+          pngRestants,
+
+          sansEmplacement,
+
+          infosManquantes
+
+        },
+
+        null,
+
+        2
+
+      ),
+
+      "utf8"
+
+    );
+
+
+    const totalSansEmplacement =
+      sansEmplacement.reduce(
+
+        (
+          sum,
+          groupe
+        ) =>
+          sum +
+          groupe.jeux.length,
+
+        0
+
+      );
+
+
+    console.log(
+
+      visuelsManquants.length +
+      " visuel(s) manquant(s), " +
+
+      pngRestants.length +
+      " jeu(x) encore en .png, " +
+
+      totalSansEmplacement +
+      " jeu(x) sans emplacement, " +
+
+      infosManquantes.length +
+      " jeu(x) avec des infos manquantes enregistrés dans jeux-suivi.json."
+
+    );
+
+
+  } catch(err){
+
+    console.error(
+      "Erreur lors de la lecture de la ludothèque :",
+      err.message
+    );
 
   }
 
 }
 
+
+// ============================================================
+// LANCEMENT
+// ============================================================
+
 main();
+```
