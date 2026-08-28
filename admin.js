@@ -1,4 +1,4 @@
-```js
+
 const GITHUB_OWNER =
     "bonnardadrien51";
 
@@ -1250,4 +1250,4 @@ document
 refreshTokenBar();
 
 loadEvents();
-```
+
