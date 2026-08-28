@@ -1,4 +1,4 @@
-```js
+
 const axios = require("axios");
 const ical = require("node-ical");
 const fs = require("fs");
@@ -67,46 +67,28 @@ const JEUX_IMG_DIR =
 // OUTILS URL
 // ============================================================
 
-// Transforme une URL éventuellement écrite sous la forme :
-//
-// [https://exemple.fr](https://exemple.fr)
-//
-// en :
-//
-// https://exemple.fr
-//
-// Google Calendar peut parfois conserver les liens sous cette forme
-// lorsqu'ils ont été collés/formattés dans la description.
+function normalizeUrl(value) {
 
-function normalizeUrl(value){
-
-  if(!value){
-
+  if (!value) {
     return "";
-
   }
 
+  let url = String(value).trim();
 
-  let url =
-    String(value).trim();
-
+  // Transforme :
+  // [https://exemple.fr](https://exemple.fr)
+  //
+  // en :
+  // https://exemple.fr
 
   const markdownMatch =
-    url.match(
-      /^\[([^\]]+)\]\(([^)]+)\)$/
-    );
+    url.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
 
-
-  if(markdownMatch){
-
-    url =
-      markdownMatch[2].trim();
-
+  if (markdownMatch) {
+    url = markdownMatch[2].trim();
   }
 
-
   return url;
-
 }
 
 
@@ -114,18 +96,11 @@ function normalizeUrl(value){
 // DESCRIPTION GOOGLE CALENDAR
 // ============================================================
 
-// Google Calendar peut fournir la description avec du HTML.
-// On transforme les <br> en retours à la ligne puis on supprime
-// les autres balises HTML.
+function cleanDescription(rawDescription) {
 
-function cleanDescription(rawDescription){
-
-  if(!rawDescription){
-
+  if (!rawDescription) {
     return "";
-
   }
-
 
   return String(rawDescription)
 
@@ -140,36 +115,26 @@ function cleanDescription(rawDescription){
     )
 
     .trim();
-
 }
 
 
 // ============================================================
-// PARSING DU JSON DE CAMPAGNE
+// PARSING DU JSON DANS LA DESCRIPTION
 // ============================================================
 
-function parseCampaign(rawDescription){
+function parseCampaign(rawDescription) {
 
   const cleaned =
-    cleanDescription(
-      rawDescription
-    );
+    cleanDescription(rawDescription);
 
-
-  if(!cleaned){
-
+  if (!cleaned) {
     return null;
-
   }
 
-
-  try{
+  try {
 
     const data =
-      JSON.parse(
-        cleaned
-      );
-
+      JSON.parse(cleaned);
 
     return {
 
@@ -177,22 +142,16 @@ function parseCampaign(rawDescription){
         data.titre || "",
 
       image:
-        normalizeUrl(
-          data.image
-        ),
+        normalizeUrl(data.image),
 
       logo:
-        normalizeUrl(
-          data.logo
-        ),
+        normalizeUrl(data.logo),
 
       logo_fond:
         data.logo_fond || "",
 
       fond:
-        normalizeUrl(
-          data.fond
-        ),
+        normalizeUrl(data.fond),
 
       tarif:
         data.tarif || "",
@@ -218,19 +177,15 @@ function parseCampaign(rawDescription){
 
     };
 
-
-  } catch(err){
+  } catch (err) {
 
     console.warn(
       "Description JSON ignorée pour un événement :",
       cleaned.slice(0, 150)
     );
 
-
     return null;
-
   }
-
 }
 
 
@@ -238,10 +193,7 @@ function parseCampaign(rawDescription){
 // URL DES FICHES JEUX
 // ============================================================
 
-// L'API renvoie des liens de fiche en http:// sans port ; on les
-// reconstruit vers l'hôte réel (https + :1880) utilisé par le site.
-
-function toBoxUrl(id){
+function toBoxUrl(id) {
 
   return (
     "https://leraffutludique-online.fr:1880/lrl/box?id_titre_jeu=" +
@@ -255,15 +207,10 @@ function toBoxUrl(id){
 // TÉLÉCHARGEMENT DES COVERS
 // ============================================================
 
-// Les covers sont hébergées sur leraffutludique.fr, qui ne renvoie pas
-// d'en-têtes CORS : chargées directement en <img crossorigin>, elles
-// sont bloquées par le navigateur. On les télécharge donc une fois ici
-// et on les sert en local avec le reste du site.
-
 async function downloadCover(
   url,
   filename
-){
+) {
 
   fs.mkdirSync(
     JEUX_IMG_DIR,
@@ -272,12 +219,10 @@ async function downloadCover(
     }
   );
 
-
   const localPath =
     JEUX_IMG_DIR +
     "/" +
     filename;
-
 
   const response =
     await axios.get(
@@ -293,15 +238,12 @@ async function downloadCover(
       }
     );
 
-
   fs.writeFileSync(
     localPath,
     response.data
   );
 
-
   return localPath;
-
 }
 
 
@@ -311,7 +253,7 @@ async function downloadCover(
 
 async function loadNewestGames(
   allGames
-){
+) {
 
   const sorted =
     [...allGames].sort(
@@ -320,33 +262,27 @@ async function loadNewestGames(
         new Date(a.date_ajout)
     );
 
-
   const newest =
     sorted.slice(
       0,
       JEUX_MAX
     );
 
-
   const result = [];
 
-
-  for(const j of newest){
+  for (const j of newest) {
 
     let image =
       j.image;
 
-
     let imageOk =
       true;
 
-
-    try{
+    try {
 
       const filename =
         j.image_jeu ||
         (j.id + ".png");
-
 
       image =
         await downloadCover(
@@ -354,18 +290,15 @@ async function loadNewestGames(
           filename
         );
 
-
       console.log(
         "Cover téléchargée :",
         filename
       );
 
-
-    } catch(err){
+    } catch (err) {
 
       imageOk =
         false;
-
 
       console.error(
         'Impossible de télécharger la cover de "' +
@@ -375,7 +308,6 @@ async function loadNewestGames(
       );
 
     }
-
 
     result.push({
 
@@ -414,9 +346,7 @@ async function loadNewestGames(
 
   }
 
-
   return result;
-
 }
 
 
@@ -424,13 +354,11 @@ async function loadNewestGames(
 // VÉRIFICATION DES IMAGES
 // ============================================================
 
-// Vérifie qu'une image répond bien en HTTP 200.
-
 async function checkImageExists(
   url
-){
+) {
 
-  try{
+  try {
 
     const response =
       await axios.head(
@@ -449,19 +377,16 @@ async function checkImageExists(
         }
       );
 
-
     return (
       response.status >= 200 &&
       response.status < 300
     );
 
-
-  } catch(err){
+  } catch (err) {
 
     return false;
 
   }
-
 }
 
 
@@ -474,23 +399,21 @@ const CHECK_BATCH_SIZE = 15;
 
 async function checkAllGames(
   allGames
-){
+) {
 
   const results = [];
 
-
-  for(
+  for (
     let i = 0;
     i < allGames.length;
     i += CHECK_BATCH_SIZE
-  ){
+  ) {
 
     const batch =
       allGames.slice(
         i,
         i + CHECK_BATCH_SIZE
       );
-
 
     const batchResults =
       await Promise.all(
@@ -502,7 +425,6 @@ async function checkAllGames(
               await checkImageExists(
                 j.image
               );
-
 
             return {
 
@@ -539,11 +461,9 @@ async function checkAllGames(
 
       );
 
-
     results.push(
       ...batchResults
     );
-
 
     console.log(
       "Vérification visuels : " +
@@ -557,9 +477,7 @@ async function checkAllGames(
 
   }
 
-
   return results;
-
 }
 
 
@@ -569,40 +487,30 @@ async function checkAllGames(
 
 function buildEmplacementReport(
   allGames
-){
+) {
 
   const grouped = {};
 
-
-  for(const j of allGames){
+  for (const j of allGames) {
 
     const emplacement =
       j.emplacement;
-
 
     const estNonRange =
       emplacement === -1 ||
       emplacement === "-1";
 
-
-    if(!estNonRange){
-
+    if (!estNonRange) {
       continue;
-
     }
-
 
     const lieu =
       j.Lieu ||
       "Lieu inconnu";
 
-
-    if(!grouped[lieu]){
-
+    if (!grouped[lieu]) {
       grouped[lieu] = [];
-
     }
-
 
     grouped[lieu].push({
 
@@ -625,10 +533,7 @@ function buildEmplacementReport(
 
   }
 
-
-  return Object.keys(
-    grouped
-  )
+  return Object.keys(grouped)
 
     .sort(
       (a, b) =>
@@ -697,7 +602,7 @@ const CHAMPS_REQUIS = [
 
 function estVide(
   valeur
-){
+) {
 
   return (
     valeur === null ||
@@ -710,12 +615,11 @@ function estVide(
 
 function buildMissingInfoReport(
   allGames
-){
+) {
 
   const result = [];
 
-
-  for(const j of allGames){
+  for (const j of allGames) {
 
     const manquants =
       CHAMPS_REQUIS
@@ -732,15 +636,11 @@ function buildMissingInfoReport(
             c.label
         );
 
-
-    if(
+    if (
       manquants.length === 0
-    ){
-
+    ) {
       continue;
-
     }
-
 
     result.push({
 
@@ -768,7 +668,6 @@ function buildMissingInfoReport(
 
   }
 
-
   return result.sort(
     (a, b) =>
       a.titre.localeCompare(
@@ -783,13 +682,12 @@ function buildMissingInfoReport(
 // CALENDRIER VACANCES
 // ============================================================
 
-async function loadVacationCalendar(){
+async function loadVacationCalendar() {
 
   console.log(
     "Lecture :",
     VACANCES_URL
   );
-
 
   const response =
     await axios.get(
@@ -802,56 +700,39 @@ async function loadVacationCalendar(){
       }
     );
 
-
   const parsed =
     ical.sync.parseICS(
       response.data
     );
 
-
   const now =
     new Date();
 
-
   const periods = [];
 
-
-  for(const key in parsed){
+  for (const key in parsed) {
 
     const e =
       parsed[key];
 
-
-    if(
+    if (
       e.type !== "VEVENT"
-    ){
-
+    ) {
       continue;
-
     }
 
-
-    if(
+    if (
       !e.start ||
       !e.end
-    ){
-
+    ) {
       continue;
-
     }
 
-
-    // Une période déjà commencée reste visible
-    // jusqu'à sa date de fin.
-
-    if(
+    if (
       e.end < now
-    ){
-
+    ) {
       continue;
-
     }
-
 
     periods.push({
 
@@ -868,15 +749,12 @@ async function loadVacationCalendar(){
 
   }
 
-
   periods.sort(
     (a, b) =>
       a.start - b.start
   );
 
-
   return periods;
-
 }
 
 
@@ -886,13 +764,12 @@ async function loadVacationCalendar(){
 
 async function loadCalendar(
   calendar
-){
+) {
 
   console.log(
     "Lecture :",
     calendar.url
   );
-
 
   const response =
     await axios.get(
@@ -905,51 +782,54 @@ async function loadCalendar(
       }
     );
 
-
   const parsed =
     ical.sync.parseICS(
       response.data
     );
 
-
   const events = [];
 
-
-  for(const key in parsed){
+  for (const key in parsed) {
 
     const e =
       parsed[key];
 
-
-    if(
+    if (
       e.type !== "VEVENT"
-    ){
-
+    ) {
       continue;
-
     }
 
-
-    if(!e.start){
-
+    if (!e.start) {
       continue;
-
     }
 
+    const end =
+      e.end ||
+      e.start;
 
-    if(
-      e.start < new Date()
-    ){
+    const now =
+      new Date();
 
+    // On ignore les événements complètement terminés.
+    if (
+      end < now
+    ) {
       continue;
-
     }
-
 
     events.push({
 
       // ======================================================
-      // DONNÉES EXISTANTES
+      // IDENTIFIANT UNIQUE
+      // ======================================================
+
+      uid:
+        e.uid || "",
+
+
+      // ======================================================
+      // DONNÉES CALENDRIER
       // ======================================================
 
       title:
@@ -962,7 +842,7 @@ async function loadCalendar(
         e.start,
 
       end:
-        e.end || e.start,
+        end,
 
       label:
         calendar.label,
@@ -975,7 +855,7 @@ async function loadCalendar(
 
 
       // ======================================================
-      // DONNÉES PERSONNALISÉES
+      // JSON PERSONNALISÉ
       // ======================================================
 
       campaign:
@@ -987,9 +867,7 @@ async function loadCalendar(
 
   }
 
-
   return events;
-
 }
 
 
@@ -997,7 +875,20 @@ async function loadCalendar(
 // PROGRAMME PRINCIPAL
 // ============================================================
 
-async function main(){
+async function main() {
+
+  console.log(
+    "========================================"
+  );
+
+  console.log(
+    "   GÉNÉRATION DES ÉVÉNEMENTS"
+  );
+
+  console.log(
+    "========================================"
+  );
+
 
   let allEvents = [];
 
@@ -1006,34 +897,35 @@ async function main(){
 
 
   // ==========================================================
-  // CHARGEMENT DES 5 CALENDRIERS
+  // CHARGEMENT DES CALENDRIERS
   // ==========================================================
 
-  for(
+  for (
     const calendar of calendars
-  ){
+  ) {
 
-    try{
+    try {
 
       const list =
         await loadCalendar(
           calendar
         );
 
-
       allEvents.push(
         ...list
       );
 
-
       eventsByLabel[
         calendar.label
-      ] = list;
+      ] =
+        list;
 
-
-    } catch(err){
+    } catch (err) {
 
       console.error(
+        "Erreur lors de la lecture du calendrier " +
+        calendar.label +
+        " :",
         err.message
       );
 
@@ -1053,20 +945,14 @@ async function main(){
 
 
   // ==========================================================
-  // AGENDA GÉNÉRAL
+  // FENÊTRE DE 6 MOIS
   // ==========================================================
 
-  // Fenêtre glissante de 6 mois.
-  //
-  // IMPORTANT :
-  // Il n'y a volontairement aucun slice().
-  //
-  // agenda.json contient donc TOUS les événements
-  // disponibles dans les 6 prochains mois.
-
-  const sixMonthsFromNow =
+  const now =
     new Date();
 
+  const sixMonthsFromNow =
+    new Date(now);
 
   sixMonthsFromNow.setMonth(
     sixMonthsFromNow.getMonth() + 6
@@ -1075,11 +961,95 @@ async function main(){
 
   const generalEvents =
     allEvents.filter(
-      e =>
-        e.start <=
+      event =>
+        event.start <=
         sixMonthsFromNow
     );
 
+
+  // ==========================================================
+  // CHARGEMENT DES STATUS OVERRIDES
+  // ==========================================================
+
+  let overrides = {};
+
+  try {
+
+    if (
+      fs.existsSync(
+        "status-overrides.json"
+      )
+    ) {
+
+      overrides =
+        JSON.parse(
+          fs.readFileSync(
+            "status-overrides.json",
+            "utf8"
+          )
+        );
+
+    }
+
+  } catch (err) {
+
+    console.warn(
+      "Impossible de lire status-overrides.json :",
+      err.message
+    );
+
+    overrides = {};
+
+  }
+
+
+  // ==========================================================
+  // APPLICATION DES STATUS
+  // ==========================================================
+
+  for (
+    const event of generalEvents
+  ) {
+
+    const override =
+      overrides[
+        event.uid
+      ];
+
+    if (
+      override &&
+      override.statut !== undefined
+    ) {
+
+      event.campaign =
+        event.campaign || {
+
+          titre: "",
+          image: "",
+          logo: "",
+          logo_fond: "",
+          fond: "",
+          tarif: "",
+          inscription: "",
+          lien_inscription: "",
+          statut: "",
+          lieu: "",
+          affichage_lieu: "3"
+
+        };
+
+
+      event.campaign.statut =
+        override.statut;
+
+    }
+
+  }
+
+
+  // ==========================================================
+  // AGENDA.JSON
+  // ==========================================================
 
   const generalJson = {
 
@@ -1115,7 +1085,7 @@ async function main(){
 
   console.log(
     generalEvents.length +
-    " événements enregistrés dans agenda.json (fenêtre 6 mois)."
+    " événement(s) enregistré(s) dans agenda.json."
   );
 
 
@@ -1129,12 +1099,10 @@ async function main(){
         "Soirée adhérents"
       ] || []
     )
-
       .sort(
         (a, b) =>
           a.start - b.start
       )
-
       .slice(
         0,
         15
@@ -1175,7 +1143,7 @@ async function main(){
 
   console.log(
     adherentEvents.length +
-    " événements enregistrés dans agenda-adherents.json."
+    " événement(s) enregistré(s) dans agenda-adherents.json."
   );
 
 
@@ -1183,7 +1151,7 @@ async function main(){
   // VACANCES
   // ==========================================================
 
-  try{
+  try {
 
     const periods =
       await loadVacationCalendar();
@@ -1226,7 +1194,7 @@ async function main(){
     );
 
 
-  } catch(err){
+  } catch (err) {
 
     console.error(
       "Erreur lors de la lecture du calendrier vacances :",
@@ -1240,7 +1208,7 @@ async function main(){
   // LUDOTHÈQUE
   // ==========================================================
 
-  try{
+  try {
 
     console.log(
       "Lecture :",
@@ -1352,7 +1320,6 @@ async function main(){
       "jeux-suivi.json",
 
       JSON.stringify(
-
         {
 
           updated:
@@ -1370,11 +1337,8 @@ async function main(){
           infosManquantes
 
         },
-
         null,
-
         2
-
       ),
 
       "utf8"
@@ -1384,16 +1348,13 @@ async function main(){
 
     const totalSansEmplacement =
       sansEmplacement.reduce(
-
         (
           sum,
           groupe
         ) =>
           sum +
           groupe.jeux.length,
-
         0
-
       );
 
 
@@ -1414,7 +1375,7 @@ async function main(){
     );
 
 
-  } catch(err){
+  } catch (err) {
 
     console.error(
       "Erreur lors de la lecture de la ludothèque :",
@@ -1430,5 +1391,19 @@ async function main(){
 // LANCEMENT
 // ============================================================
 
-main();
+main().catch(
+  err => {
+
+    console.error(
+      "❌ ERREUR lors de la génération :"
+    );
+
+    console.error(
+      err.message
+    );
+
+    process.exit(1);
+
+  }
+);
 ```
