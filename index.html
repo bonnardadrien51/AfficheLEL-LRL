@@ -4,192 +4,768 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 
-    <title>Affiches & outils - L'Établi Ludique & Le Raffut Ludique</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap"
+        rel="stylesheet"
+    >
+
+    <title>
+        Affiches & outils - L'Établi Ludique & Le Raffut Ludique
+    </title>
+
 
     <style>
-        *{ margin:0; padding:0; box-sizing:border-box; }
 
-        body{
-            background:#0d4c72;
-            color:white;
-            font-family:"Comic Neue","Segoe UI",Arial,sans-serif;
-            min-height:100vh;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            padding:40px 20px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        #wrapper{
-            max-width:1000px;
-            width:100%;
-            text-align:center;
+
+        body {
+
+            background: #0d4c72;
+
+            color: white;
+
+            font-family:
+                "Comic Neue",
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 40px 20px;
+
         }
 
-        #logos{
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            gap:40px;
-            margin-bottom:24px;
-            flex-wrap:wrap;
+
+        #wrapper {
+
+            max-width: 1000px;
+
+            width: 100%;
+
+            text-align: center;
+
         }
 
-        #logos img{
-            height:80px;
-            width:auto;
+
+        /* =====================================================
+           LOGOS
+        ===================================================== */
+
+        #logos {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 40px;
+
+            margin-bottom: 24px;
+
+            flex-wrap: wrap;
+
         }
 
-        h1{
-            font-size:32px;
-            font-weight:700;
-            margin-bottom:6px;
+
+        #logos img {
+
+            height: 80px;
+
+            width: auto;
+
         }
 
-        #subtitle{
-            color:rgba(255,255,255,.75);
-            font-size:17px;
-            margin-bottom:40px;
+
+        /* =====================================================
+           TITRE
+        ===================================================== */
+
+        h1 {
+
+            font-size: 32px;
+
+            font-weight: 700;
+
+            margin-bottom: 6px;
+
         }
 
-        .section{
-            margin-bottom:36px;
-            text-align:left;
+
+        #subtitle {
+
+            color:
+                rgba(255, 255, 255, .75);
+
+            font-size: 17px;
+
+            margin-bottom: 40px;
+
         }
 
-        .sectionTitle{
-            font-size:18px;
-            font-weight:700;
-            text-transform:uppercase;
-            letter-spacing:1px;
-            color:rgba(255,255,255,.6);
-            margin-bottom:14px;
-            padding-bottom:6px;
-            border-bottom:1px solid rgba(255,255,255,.15);
+
+        /* =====================================================
+           SECTIONS
+        ===================================================== */
+
+        .section {
+
+            margin-bottom: 36px;
+
+            text-align: left;
+
         }
 
-        .cards{
-            display:grid;
-            grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
-            gap:14px;
+
+        .sectionTitle {
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            color:
+                rgba(255, 255, 255, .6);
+
+            margin-bottom: 14px;
+
+            padding-bottom: 6px;
+
+            border-bottom:
+                1px solid
+                rgba(255, 255, 255, .15);
+
         }
 
-        .card{
-            background:rgba(255,255,255,.1);
-            border-radius:14px;
-            padding:18px 20px;
-            text-decoration:none;
-            color:white;
-            transition:transform .15s, background .15s;
-            border:2px solid transparent;
-            display:block;
+
+        /* =====================================================
+           CARTES
+        ===================================================== */
+
+        .cards {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fill,
+                    minmax(220px, 1fr)
+                );
+
+            gap: 14px;
+
         }
 
-        .card:hover{
-            transform:translateY(-3px);
-            background:rgba(255,255,255,.18);
-            border-color:rgba(255,255,255,.3);
+
+        .card {
+
+            background:
+                rgba(255, 255, 255, .1);
+
+            border-radius: 14px;
+
+            padding: 18px 20px;
+
+            text-decoration: none;
+
+            color: white;
+
+            transition:
+                transform .15s,
+                background .15s;
+
+            border:
+                2px solid
+                transparent;
+
+            display: block;
+
         }
 
-        .cardTitle{
-            font-size:18px;
-            font-weight:700;
-            margin-bottom:6px;
+
+        .card:hover {
+
+            transform:
+                translateY(-3px);
+
+            background:
+                rgba(255, 255, 255, .18);
+
+            border-color:
+                rgba(255, 255, 255, .3);
+
         }
 
-        .cardDesc{
-            font-size:14px;
-            color:rgba(255,255,255,.7);
-            line-height:1.4;
+
+        .cardTitle {
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            margin-bottom: 6px;
+
         }
 
-        .badge{
-            display:inline-block;
-            font-size:11px;
-            font-weight:700;
-            padding:2px 8px;
-            border-radius:999px;
-            margin-bottom:8px;
+
+        .cardDesc {
+
+            font-size: 14px;
+
+            color:
+                rgba(255, 255, 255, .7);
+
+            line-height: 1.4;
+
         }
 
-        .badge.lel{ background:#9EB6F1; color:#0d1a3a; }
-        .badge.lrl{ background:#F6D67A; color:#3a2800; }
-        .badge.outil{ background:rgba(255,255,255,.25); color:white; }
+
+        /* =====================================================
+           BADGES
+        ===================================================== */
+
+        .badge {
+
+            display: inline-block;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            padding:
+                2px 8px;
+
+            border-radius: 999px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .badge.lel {
+
+            background: #9EB6F1;
+
+            color: #0d1a3a;
+
+        }
+
+
+        .badge.lrl {
+
+            background: #F6D67A;
+
+            color: #3a2800;
+
+        }
+
+
+        .badge.event {
+
+            background: #E97126;
+
+            color: white;
+
+        }
+
+
+        .badge.admin {
+
+            background: #E85D75;
+
+            color: white;
+
+        }
+
+
+        .badge.outil {
+
+            background:
+                rgba(255, 255, 255, .25);
+
+            color: white;
+
+        }
+
+
+        /* =====================================================
+           CARTES ÉVÉNEMENTS
+        ===================================================== */
+
+        .eventCard {
+
+            position: relative;
+
+        }
+
+
+        .eventCard::before {
+
+            content: "📅";
+
+            position: absolute;
+
+            right: 16px;
+
+            top: 16px;
+
+            font-size: 24px;
+
+            opacity: .75;
+
+        }
+
+
+        .adminCard::before {
+
+            content: "⚙️";
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (
+            max-width: 600px
+        ) {
+
+            body {
+
+                padding:
+                    25px 15px;
+
+            }
+
+
+            #logos {
+
+                gap: 20px;
+
+            }
+
+
+            #logos img {
+
+                height: 65px;
+
+            }
+
+
+            h1 {
+
+                font-size: 27px;
+
+            }
+
+
+            #subtitle {
+
+                margin-bottom: 30px;
+
+            }
+
+
+            .cards {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
     </style>
 
 </head>
 
+
 <body>
+
 
 <div id="wrapper">
 
+
+    <!-- =====================================================
+         LOGOS
+    ====================================================== -->
+
     <div id="logos">
-        <img src="img/logo-etabli.svg" alt="L'Établi Ludique">
-        <img src="img/logo-raffut.svg" alt="Le Raffut Ludique">
+
+        <img
+            src="img/logo-etabli.svg"
+            alt="L'Établi Ludique"
+        >
+
+        <img
+            src="img/logo-raffut.svg"
+            alt="Le Raffut Ludique"
+        >
+
     </div>
 
-    <h1>Affiches & outils</h1>
-    <p id="subtitle">Choisissez une page</p>
 
-    <div class="section">
-        <div class="sectionTitle">L'Établi Ludique — Couvertures agenda</div>
-        <div class="cards">
-            <a class="card" href="couverture-facebook.html">
-                <span class="badge lel">L'Établi Ludique</span>
-                <div class="cardTitle">Couverture Facebook</div>
-                <div class="cardDesc">Tous les événements à venir (format bannière 1640×624)</div>
-            </a>
-            <a class="card" href="affiche-a4.html">
-                <span class="badge lrl">Le Raffut Ludique</span>
-                <div class="cardTitle">Affiche A4 — Adhérents</div>
-                <div class="cardDesc">Liste des soirées adhérents, format A4 portrait</div>
-            </a>
-            <a class="card" href="affiche-carre.html">
-                <span class="badge lrl">Le Raffut Ludique</span>
-                <div class="cardTitle">Affiche carrée — Adhérents</div>
-                <div class="cardDesc">Liste des soirées adhérents, format carré 1080×1080</div>
-            </a>
-        </div>
-    </div>
+    <!-- =====================================================
+         TITRE
+    ====================================================== -->
 
-    <div class="section">
-        <div class="sectionTitle">Outils</div>
-        <div class="cards">
-            <a class="card" href="vacances.html">
-                <span class="badge outil">Le Raffut Ludique</span>
-                <div class="cardTitle">Bandeau vacances</div>
-                <div class="cardDesc">S'affiche uniquement pendant les vacances ou dans le mois précédent — à intégrer en iframe</div>
-            </a>
-            <a class="card" href="affiche-carre-absences.html">
-                <span class="badge outil">Le Raffut Ludique</span>
-                <div class="cardTitle">Affiche carrée absences</div>
-                <div class="cardDesc">Liste des absences, format carré 1080×1080</div>
-            </a>
-            <a class="card" href="affiche-carre-jeux.html">
-                <span class="badge outil">Le Raffut Ludique</span>
-                <div class="cardTitle">Affiche carrée nouveaux jeux</div>
-                <div class="cardDesc">4 à 8 derniers jeux ajoutés à la ludothèque, format carré 1080×1080</div>
-            </a>
-        </div>
-    </div>
+    <h1>
+        Affiches & outils
+    </h1>
+
+
+    <p id="subtitle">
+        Choisissez une page
+    </p>
+
+
+    <!-- =====================================================
+         ÉVÉNEMENTS
+    ====================================================== -->
 
     <div class="section">
-        <div class="sectionTitle">Maintenance</div>
-        <div class="cards">
-            <a class="card" href="verif-visuels.html">
-                <span class="badge outil">Le Raffut Ludique</span>
-                <div class="cardTitle">Suivi des visuels</div>
-                <div class="cardDesc">Visuels manquants (404) et jeux pas encore convertis en WebP</div>
-            </a>
+
+
+        <div class="sectionTitle">
+            📅 Événements
         </div>
+
+
+        <div class="cards">
+
+
+            <a
+                class="card eventCard"
+                href="prochain-jour.html"
+            >
+
+                <span class="badge event">
+                    Événements
+                </span>
+
+                <div class="cardTitle">
+                    Prochaine journée
+                </div>
+
+                <div class="cardDesc">
+                    Affiche automatiquement les événements
+                    de la prochaine journée ayant des événements.
+                </div>
+
+            </a>
+
+
+            <a
+                class="card eventCard"
+                href="jour.html"
+            >
+
+                <span class="badge event">
+                    Événements
+                </span>
+
+                <div class="cardTitle">
+                    Événements du jour
+                </div>
+
+                <div class="cardDesc">
+                    Affiche les événements de la journée
+                    sélectionnée.
+                </div>
+
+            </a>
+
+
+            <a
+                class="card eventCard"
+                href="generateur.html"
+            >
+
+                <span class="badge event">
+                    Générateur
+                </span>
+
+                <div class="cardTitle">
+                    Générateur d'événement
+                </div>
+
+                <div class="cardDesc">
+                    Génère le JSON personnalisé à placer
+                    dans la description Google Calendar.
+                </div>
+
+            </a>
+
+
+            <a
+                class="card eventCard adminCard"
+                href="administration.html"
+            >
+
+                <span class="badge admin">
+                    Administration
+                </span>
+
+                <div class="cardTitle">
+                    Administration des événements
+                </div>
+
+                <div class="cardDesc">
+                    Gérer les statuts des événements :
+                    annulé, complet, reporté, etc.
+                </div>
+
+            </a>
+
+
+        </div>
+
     </div>
+
+
+    <!-- =====================================================
+         L'ÉTABLI LUDIQUE
+    ====================================================== -->
+
+    <div class="section">
+
+
+        <div class="sectionTitle">
+            L'Établi Ludique — Couvertures agenda
+        </div>
+
+
+        <div class="cards">
+
+
+            <a
+                class="card"
+                href="couverture-facebook.html"
+            >
+
+                <span class="badge lel">
+                    L'Établi Ludique
+                </span>
+
+                <div class="cardTitle">
+                    Couverture Facebook
+                </div>
+
+                <div class="cardDesc">
+                    Tous les événements à venir
+                    — format bannière 1640×624.
+                </div>
+
+            </a>
+
+
+            <a
+                class="card"
+                href="affiche-a4.html"
+            >
+
+                <span class="badge lrl">
+                    Le Raffut Ludique
+                </span>
+
+                <div class="cardTitle">
+                    Affiche A4 — Adhérents
+                </div>
+
+                <div class="cardDesc">
+                    Liste des soirées adhérents,
+                    format A4 portrait.
+                </div>
+
+            </a>
+
+
+            <a
+                class="card"
+                href="affiche-carre.html"
+            >
+
+                <span class="badge lrl">
+                    Le Raffut Ludique
+                </span>
+
+                <div class="cardTitle">
+                    Affiche carrée — Adhérents
+                </div>
+
+                <div class="cardDesc">
+                    Liste des soirées adhérents,
+                    format carré 1080×1080.
+                </div>
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         OUTILS
+    ====================================================== -->
+
+    <div class="section">
+
+
+        <div class="sectionTitle">
+            🛠️ Outils
+        </div>
+
+
+        <div class="cards">
+
+
+            <a
+                class="card"
+                href="vacances.html"
+            >
+
+                <span class="badge outil">
+                    Le Raffut Ludique
+                </span>
+
+                <div class="cardTitle">
+                    Bandeau vacances
+                </div>
+
+                <div class="cardDesc">
+                    S'affiche uniquement pendant les vacances
+                    ou dans le mois précédent — à intégrer en iframe.
+                </div>
+
+            </a>
+
+
+            <a
+                class="card"
+                href="affiche-carre-absences.html"
+            >
+
+                <span class="badge outil">
+                    Le Raffut Ludique
+                </span>
+
+                <div class="cardTitle">
+                    Affiche carrée absences
+                </div>
+
+                <div class="cardDesc">
+                    Liste des absences,
+                    format carré 1080×1080.
+                </div>
+
+            </a>
+
+
+            <a
+                class="card"
+                href="affiche-carre-jeux.html"
+            >
+
+                <span class="badge outil">
+                    Le Raffut Ludique
+                </span>
+
+                <div class="cardTitle">
+                    Affiche carrée nouveaux jeux
+                </div>
+
+                <div class="cardDesc">
+                    4 à 8 derniers jeux ajoutés à la ludothèque,
+                    format carré 1080×1080.
+                </div>
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         MAINTENANCE
+    ====================================================== -->
+
+    <div class="section">
+
+
+        <div class="sectionTitle">
+            🔧 Maintenance
+        </div>
+
+
+        <div class="cards">
+
+
+            <a
+                class="card"
+                href="verif-visuels.html"
+            >
+
+                <span class="badge outil">
+                    Le Raffut Ludique
+                </span>
+
+                <div class="cardTitle">
+                    Suivi des visuels
+                </div>
+
+                <div class="cardDesc">
+                    Visuels manquants (404)
+                    et jeux pas encore convertis en WebP.
+                </div>
+
+            </a>
+
+
+        </div>
+
+    </div>
+
 
 </div>
 
+
 </body>
+
 </html>
