@@ -1,0 +1,468 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html, body{
+    height:100%;
+}
+
+body{
+
+    background:#0a1330;
+
+    font-family:"Baloo 2", "Segoe UI", Arial, sans-serif;
+
+    color:white;
+
+    overflow:hidden;
+
+}
+
+/**************************************************
+    SCÈNE : centre et met à l'échelle #screen (conçu
+    pour 1920x1080) pour qu'il tienne dans n'importe
+    quelle taille de fenêtre, plein écran ou non, sans
+    jamais déformer les proportions internes.
+**************************************************/
+
+#stage{
+
+    width:100vw;
+
+    height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#0a1330;
+
+    overflow:hidden;
+
+}
+
+#screen{
+
+    width:1920px;
+
+    height:1080px;
+
+    flex-shrink:0;
+
+    position:relative;
+
+    display:flex;
+
+    flex-direction:column;
+
+    background-size:cover;
+
+    background-position:center;
+
+    overflow:hidden;
+
+    transform-origin:center center;
+
+}
+
+#registrationBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: white;
+
+    padding: 18px;
+
+    border-radius: 18px;
+
+    margin-left: 30px;
+
+    min-width: 260px;
+}
+
+#registrationBox.hidden {
+    display: none;
+}
+
+#registrationQr {
+    width: 220px;
+    height: 220px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: white;
+}
+
+#registrationQr img {
+    width: 220px;
+    height: 220px;
+
+    display: block;
+}
+
+#registrationQrText {
+    margin-top: 12px;
+
+    color: #111;
+
+    font-family: "Baloo 2", sans-serif;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    text-align: center;
+}
+
+/* Assombrit une éventuelle photo de fond pour garder le texte lisible.
+   Reste invisible (display:none, posé par script.js) tant qu'aucune
+   photo de fond n'est définie sur l'événement. */
+#bgOverlay{
+
+    display:none;
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(6,12,32,.62);
+
+    z-index:0;
+
+}
+
+#content{
+
+    position:relative;
+
+    z-index:1;
+
+    flex:1;
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    padding:32px 77px;
+
+    transform-origin:top center;
+
+}
+
+/**************************************************
+    BANDEAU DE STATUT (Annulé / Complet / Reporté)
+    Zone dédiée en bas de l'écran, dans le flux normal :
+    ne recouvre jamais le contenu au-dessus.
+**************************************************/
+
+#statusRibbon{
+
+    display:none;
+
+    position:relative;
+
+    z-index:1;
+
+    flex-shrink:0;
+
+    text-align:center;
+
+    padding:19px 0;
+
+    box-shadow:0 -4px 12px rgba(0,0,0,.3);
+
+}
+
+#statusText{
+
+    font-size:58px;
+
+    font-weight:800;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+}
+
+/**************************************************
+    HAUT : titre de campagne + date
+**************************************************/
+
+#topBlock{
+
+    text-align:center;
+
+    margin-bottom:22px;
+
+}
+
+#campaignTitle{
+
+    font-size:96px;
+
+    font-weight:800;
+
+    line-height:1.1;
+
+}
+
+#campaignDate{
+
+    font-size:77px;
+
+    font-weight:800;
+
+    margin-top:5px;
+
+}
+
+/**************************************************
+    BANDEAU COMPTE À REBOURS
+**************************************************/
+
+#countdownBanner{
+
+    background:#2e5cf0;
+
+    align-self:center;
+
+    padding:15px 77px;
+
+    border-radius:100px;
+
+    margin:22px 0 43px 0;
+
+    box-shadow:0 6px 0 rgba(0,0,0,.15);
+
+}
+
+#countdownText{
+
+    font-size:61px;
+
+    font-weight:700;
+
+    white-space:nowrap;
+
+}
+
+/**************************************************
+    LIGNE PRINCIPALE : photo + infos événement
+**************************************************/
+
+#mainRow{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:77px;
+
+    flex:1;
+
+}
+
+#photoBox{
+
+    flex:0 0 auto;
+
+    height:300px;
+
+    aspect-ratio:1/1;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    background:#1c2b52;
+
+}
+
+#photoBox img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+#eventInfo{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+}
+
+#eventTitle{
+
+    font-size:81px;
+
+    font-weight:800;
+
+    line-height:1.15;
+
+}
+
+.infoLine{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:23px;
+
+    font-size:50px;
+
+    font-weight:700;
+
+}
+
+.icon{
+
+    width:50px;
+    height:50px;
+
+    flex-shrink:0;
+
+}
+
+/**************************************************
+    LOGOS (en haut) + BANDEAU DE STATUT (en bas)
+**************************************************/
+
+#bottomZone{
+
+    position:relative;
+
+    z-index:1;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+#bottomRow{
+
+    display:flex;
+
+    justify-content:flex-start;
+
+    align-items:center;
+
+    margin-bottom:28px;
+
+    flex-shrink:0;
+
+}
+
+#campaignLogoBox{
+
+    background:transparent;
+
+    border-radius:16px;
+
+    padding:0 27px 0 0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+#campaignLogoBox img{
+
+    height:190px;
+
+    width:auto;
+
+    display:block;
+
+}
+
+#associationLogo{
+
+    height:240px;
+
+    width:auto;
+
+    margin-left:auto;
+
+}
+
+/**************************************************
+    AUCUN ÉVÉNEMENT
+**************************************************/
+
+#noEvent{
+
+    display:none;
+
+    position:absolute;
+
+    inset:0;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:58px;
+
+    font-weight:700;
+
+    text-align:center;
+
+    padding:0 192px;
+
+    background:#0a1330;
+
+}
+
+body.empty #topBlock,
+body.empty #countdownBanner,
+body.empty #mainRow,
+body.empty #bottomRow,
+body.empty #bottomZone{
+
+    display:none;
+
+}
+
+body.empty #noEvent{
+
+    display:flex;
+
+}
+
+/* Masque proprement les blocs optionnels quand une info manque
+   (pas de campagne renseignée dans la description, pas de lieu...) */
+.hidden{
+
+    display:none !important;
+
+}
