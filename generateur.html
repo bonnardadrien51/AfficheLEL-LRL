@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Générateur JSON - Événement
+    </title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- QRCode.js -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+    ></script>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+
+            margin: 0;
+
+            padding: 30px;
+
+            font-family:
+                "Baloo 2",
+                Arial,
+                sans-serif;
+
+            background:
+                #0d4c72;
+
+            color: #ffffff;
+
+        }
+
+
+        h1 {
+
+            text-align: center;
+
+            margin:
+                0 0 10px;
+
+            font-size: 34px;
+
+        }
+
+
+        #hint {
+
+            text-align: center;
+
+            opacity: .8;
+
+            margin:
+                0 auto 30px;
+
+            max-width: 800px;
+
+        }
+
+
+        #layout {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1fr)
+                minmax(0, 1fr);
+
+            gap: 25px;
+
+        }
+
+
+        #formPanel,
+        #outputPanel {
+
+            background:
+                rgba(255,255,255,.10);
+
+            border:
+                1px solid
+                rgba(255,255,255,.15);
+
+            border-radius: 18px;
+
+            padding: 25px;
+
+            backdrop-filter:
+                blur(5px);
+
+        }
+
+
+        label {
+
+            display: block;
+
+            margin-bottom: 18px;
+
+            font-weight: 700;
+
+        }
+
+
+        input,
+        select,
+        textarea {
+
+            display: block;
+
+            width: 100%;
+
+            margin-top: 7px;
+
+            padding:
+                11px 13px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            font-family: inherit;
+
+            font-size: 15px;
+
+            background:
+                rgba(255,255,255,.95);
+
+            color: #222;
+
+        }
+
+
+        textarea {
+
+            min-height: 90px;
+
+            resize: vertical;
+
+        }
+
+
+        input[type="color"] {
+
+            width: 60px;
+
+            height: 42px;
+
+            padding: 3px;
+
+            cursor: pointer;
+
+        }
+
+
+        .colorRow {
+
+            display: flex;
+
+            gap: 10px;
+
+            align-items: center;
+
+        }
+
+
+        .colorRow input[type="text"] {
+
+            margin-top: 0;
+
+        }
+
+
+        .fieldHint {
+
+            display: block;
+
+            margin-top: 5px;
+
+            font-size: 12px;
+
+            opacity: .65;
+
+        }
+
+
+        .buttonRow {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+            margin-top: 8px;
+
+        }
+
+
+        button {
+
+            border: none;
+
+            border-radius: 9px;
+
+            padding:
+                10px 15px;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            background: #ffffff;
+
+            color: #0d4c72;
+
+            transition:
+                transform .15s,
+                opacity .15s;
+
+        }
+
+
+        button:hover {
+
+            transform:
+                translateY(-2px);
+
+            opacity: .9;
+
+        }
+
+
+        .presetButton {
+
+            background:
+                rgba(255,255,255,.18);
+
+            color: white;
+
+            border:
+                1px solid
+                rgba(255,255,255,.25);
+
+        }
+
+
+        #resetBtn {
+
+            width: 100%;
+
+            margin-top: 5px;
+
+            background: #e85d75;
+
+            color: white;
+
+        }
+
+
+        #outputHeader {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            margin-bottom: 15px;
+
+            font-weight: 700;
+
+        }
+
+
+        #output {
+
+            margin: 0;
+
+            padding: 18px;
+
+            background:
+                #071f30;
+
+            border-radius: 10px;
+
+            overflow-x: auto;
+
+            white-space: pre-wrap;
+
+            word-break: break-word;
+
+            min-height: 350px;
+
+            font-family:
+                Consolas,
+                monospace;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+
+        }
+
+
+        #copyBtn {
+
+            background: #facb55;
+
+            color: #222;
+
+        }
+
+
+        #copyBtn.copied {
+
+            background: #72d572;
+
+        }
+
+
+        /* =====================================================
+           INSCRIPTION
+        ===================================================== */
+
+        .registrationBox {
+
+            margin-top: 5px;
+
+            padding:
+                15px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,255,255,.07);
+
+            border:
+                1px solid
+                rgba(255,255,255,.1);
+
+        }
+
+
+        .registrationTitle {
+
+            margin-bottom: 8px;
+
+            font-size: 14px;
+
+            opacity: .8;
+
+        }
+
+
+        .registrationLink {
+
+            margin-top: 12px;
+
+        }
+
+
+        /* =====================================================
+           QR CODE
+        ===================================================== */
+
+        #qrPanel {
+
+            margin-top: 20px;
+
+            padding:
+                18px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,255,255,.95);
+
+            color: #222;
+
+            text-align: center;
+
+        }
+
+
+        #qrPanel.hidden {
+
+            display: none;
+
+        }
+
+
+        #qrcode {
+
+            display: flex;
+
+            justify-content: center;
+
+            margin:
+                15px 0;
+
+        }
+
+
+        #qrcode img,
+        #qrcode canvas {
+
+            margin: auto;
+
+            max-width: 220px;
+
+            height: auto;
+
+        }
+
+
+        #qrLink {
+
+            display: block;
+
+            font-size: 12px;
+
+            word-break: break-all;
+
+            opacity: .7;
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 850px) {
+
+            body {
+
+                padding: 15px;
+
+            }
+
+            #layout {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            h1 {
+
+                font-size: 28px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<h1>
+    Générateur de description JSON
+</h1>
+
+
+<p id="hint">
+
+    Remplissez les informations de l'événement,
+    puis copiez le JSON dans la description
+    de l'événement Google Calendar.
+
+</p>
+
+
+<div id="layout">
+
+
+    <!-- =====================================================
+         FORMULAIRE
+    ====================================================== -->
+
+    <div id="formPanel">
+
+
+        <label>
+
+            Titre
+
+            <input
+                id="f_titre"
+                type="text"
+                placeholder="Ex : Tout Besançon Vole"
+            >
+
+        </label>
+
+
+        <label>
+
+            Image de l'événement
+
+            <input
+                id="f_image"
+                type="url"
+                placeholder="https://..."
+            >
+
+        </label>
+
+
+        <label>
+
+            Logo
+
+            <input
+                id="f_logo"
+                type="url"
+                placeholder="https://..."
+            >
+
+        </label>
+
+
+        <label>
+
+            Couleur de fond du logo
+
+            <div class="colorRow">
+
+                <input
+                    id="f_logo_fond_picker"
+                    type="color"
+                    value="#ffffff"
+                >
+
+                <input
+                    id="f_logo_fond"
+                    type="text"
+                    placeholder="Vide = transparent"
+                >
+
+            </div>
+
+        </label>
+
+
+        <label>
+
+            Fond plein écran
+
+            <input
+                id="f_fond"
+                type="url"
+                placeholder="Vide = fond par défaut"
+            >
+
+        </label>
+
+
+        <label>
+
+            Tarif
+
+            <input
+                id="f_tarif"
+                type="text"
+                placeholder="Ex : Gratuit / 15 € / Au chapeau"
+            >
+
+        </label>
+
+
+        <!-- =================================================
+             INSCRIPTION
+        ================================================== -->
+
+        <div class="registrationBox">
+
+
+            <div class="registrationTitle">
+                Inscription
+            </div>
+
+
+            <label>
+
+                Texte d'inscription
+
+                <input
+                    id="f_inscription"
+                    type="text"
+                    placeholder="Texte libre..."
+                >
+
+            </label>
+
+
+            <div class="buttonRow">
+
+
+                <button
+                    type="button"
+                    class="presetButton"
+                    data-inscription="Réservation conseillée"
+                >
+                    Réservation conseillée
+                </button>
+
+
+                <button
+                    type="button"
+                    class="presetButton"
+                    data-inscription="Réservation obligatoire"
+                >
+                    Réservation obligatoire
+                </button>
+
+
+                <button
+                    type="button"
+                    class="presetButton"
+                    data-inscription="Réservation sur place et en ligne"
+                >
+                    Sur place et en ligne
+                </button>
+
+
+                <button
+                    type="button"
+                    class="presetButton"
+                    data-inscription=""
+                >
+                    Effacer
+                </button>
+
+
+            </div>
+
+
+            <label class="registrationLink">
+
+                Lien d'inscription
+
+                <input
+                    id="f_lien_inscription"
+                    type="url"
+                    placeholder="https://..."
+                >
+
+                <span class="fieldHint">
+
+                    Si un lien est renseigné,
+                    un QR code sera automatiquement généré.
+
+                </span>
+
+            </label>
+
+
+        </div>
+
+
+        <!-- =================================================
+             STATUT
+        ================================================== -->
+
+        <label>
+
+            Statut
+
+            <select id="f_statut">
+
+                <option value="">
+                    Aucun
+                </option>
+
+                <option value="Annulé">
+                    Annulé
+                </option>
+
+                <option value="Complet">
+                    Complet
+                </option>
+
+                <option value="Reporté">
+                    Reporté
+                </option>
+
+            </select>
+
+        </label>
+
+
+        <!-- =================================================
+             LIEU
+        ================================================== -->
+
+        <label>
+
+            Lieu personnalisé
+
+            <input
+                id="f_lieu"
+                type="text"
+                placeholder="Ex : Port Douvot, Besançon"
+            >
+
+            <span class="fieldHint">
+
+                Utilisé selon le mode d'affichage choisi.
+
+            </span>
+
+        </label>
+
+
+        <label>
+
+            Affichage du lieu
+
+            <select id="f_affichage_lieu">
+
+                <option value="3">
+                    Mode 3 — Lieu événement, sinon JSON
+                </option>
+
+                <option value="0">
+                    Mode 0 — Ne rien afficher
+                </option>
+
+                <option value="1">
+                    Mode 1 — Lieu Google Calendar
+                </option>
+
+                <option value="2">
+                    Mode 2 — Lieu JSON uniquement
+                </option>
+
+                <option value="4">
+                    Mode 4 — JSON, sinon Google Calendar
+                </option>
+
+            </select>
+
+        </label>
+
+
+        <button
+            id="resetBtn"
+            type="button"
+        >
+            Réinitialiser
+        </button>
+
+
+    </div>
+
+
+    <!-- =====================================================
+         SORTIE
+    ====================================================== -->
+
+    <div id="outputPanel">
+
+
+        <div id="outputHeader">
+
+            <span>
+                JSON à coller dans Google Calendar
+            </span>
+
+            <button
+                id="copyBtn"
+                type="button"
+            >
+                Copier
+            </button>
+
+        </div>
+
+
+        <pre id="output"></pre>
+
+
+        <!-- =================================================
+             QR CODE
+        ================================================== -->
+
+        <div
+            id="qrPanel"
+            class="hidden"
+        >
+
+            <strong>
+                QR code d'inscription
+            </strong>
+
+            <div id="qrcode"></div>
+
+            <a
+                id="qrLink"
+                href="#"
+                target="_blank"
+                rel="noopener"
+            ></a>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<script src="generateur.js"></script>
+
+
+</body>
+
+</html>
