@@ -10,9 +10,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>
-        Générateur JSON - Événement
-    </title>
+    <title>Générateur d'événement</title>
 
     <link
         rel="preconnect"
@@ -30,11 +28,9 @@
         rel="stylesheet"
     >
 
-    <!-- QRCode.js -->
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
     ></script>
-
 
     <style>
 
@@ -45,52 +41,37 @@
         body {
 
             margin: 0;
-
-            padding: 30px;
+            padding: 25px;
 
             font-family:
                 "Baloo 2",
                 Arial,
                 sans-serif;
 
-            background:
-                #0d4c72;
-
-            color: #ffffff;
+            background: #0d4c72;
+            color: white;
 
         }
-
 
         h1 {
 
             text-align: center;
-
-            margin:
-                0 0 10px;
-
+            margin: 0 0 5px;
             font-size: 34px;
 
         }
 
-
-        #hint {
+        .subtitle {
 
             text-align: center;
-
-            opacity: .8;
-
-            margin:
-                0 auto 30px;
-
-            max-width: 800px;
+            opacity: .75;
+            margin-bottom: 25px;
 
         }
 
+        .container {
 
-        #layout {
-
-            max-width: 1200px;
-
+            max-width: 1250px;
             margin: auto;
 
             display: grid;
@@ -99,13 +80,11 @@
                 minmax(0, 1fr)
                 minmax(0, 1fr);
 
-            gap: 25px;
+            gap: 20px;
 
         }
 
-
-        #formPanel,
-        #outputPanel {
+        .panel {
 
             background:
                 rgba(255,255,255,.10);
@@ -114,161 +93,126 @@
                 1px solid
                 rgba(255,255,255,.15);
 
-            border-radius: 18px;
+            border-radius: 16px;
 
-            padding: 25px;
-
-            backdrop-filter:
-                blur(5px);
+            padding: 22px;
 
         }
 
+        h2 {
+
+            margin-top: 0;
+            font-size: 22px;
+
+        }
+
+        h3 {
+
+            font-size: 17px;
+            margin-top: 25px;
+
+        }
 
         label {
 
             display: block;
 
-            margin-bottom: 18px;
-
             font-weight: 700;
+
+            margin-bottom: 14px;
 
         }
 
-
         input,
-        select,
-        textarea {
-
-            display: block;
+        textarea,
+        select {
 
             width: 100%;
 
-            margin-top: 7px;
+            margin-top: 6px;
 
-            padding:
-                11px 13px;
+            padding: 10px 12px;
 
             border: none;
 
-            border-radius: 9px;
+            border-radius: 8px;
 
             font-family: inherit;
 
             font-size: 15px;
 
-            background:
-                rgba(255,255,255,.95);
+            background: white;
 
             color: #222;
 
         }
 
-
         textarea {
 
-            min-height: 90px;
-
+            min-height: 80px;
             resize: vertical;
 
         }
 
+        .row {
 
-        input[type="color"] {
+            display: grid;
 
-            width: 60px;
-
-            height: 42px;
-
-            padding: 3px;
-
-            cursor: pointer;
-
-        }
-
-
-        .colorRow {
-
-            display: flex;
+            grid-template-columns:
+                1fr 1fr;
 
             gap: 10px;
 
-            align-items: center;
-
         }
-
-
-        .colorRow input[type="text"] {
-
-            margin-top: 0;
-
-        }
-
-
-        .fieldHint {
-
-            display: block;
-
-            margin-top: 5px;
-
-            font-size: 12px;
-
-            opacity: .65;
-
-        }
-
-
-        .buttonRow {
-
-            display: flex;
-
-            flex-wrap: wrap;
-
-            gap: 8px;
-
-            margin-top: 8px;
-
-        }
-
 
         button {
 
             border: none;
 
-            border-radius: 9px;
+            border-radius: 8px;
 
-            padding:
-                10px 15px;
+            padding: 9px 13px;
 
             font-family: inherit;
-
-            font-size: 14px;
 
             font-weight: 700;
 
             cursor: pointer;
 
-            background: #ffffff;
+            background: white;
 
             color: #0d4c72;
 
-            transition:
-                transform .15s,
-                opacity .15s;
-
         }
-
 
         button:hover {
 
-            transform:
-                translateY(-2px);
-
-            opacity: .9;
+            opacity: .85;
 
         }
 
+        button.danger {
 
-        .presetButton {
+            background: #e85d75;
+            color: white;
+
+        }
+
+        button.success {
+
+            background: #72d572;
+            color: #173517;
+
+        }
+
+        button.warning {
+
+            background: #facb55;
+            color: #222;
+
+        }
+
+        button.secondary {
 
             background:
                 rgba(255,255,255,.18);
@@ -277,59 +221,83 @@
 
             border:
                 1px solid
-                rgba(255,255,255,.25);
+                rgba(255,255,255,.2);
 
         }
 
+        .buttonRow {
 
-        #resetBtn {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+
+        }
+
+        .templateBox {
+
+            background:
+                rgba(0,0,0,.15);
+
+            border-radius: 10px;
+
+            padding: 15px;
+
+            margin-bottom: 20px;
+
+        }
+
+        .templateActions {
+
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+
+        }
+
+        #templateStatus {
+
+            font-size: 13px;
+            opacity: .75;
+            margin-top: 8px;
+
+        }
+
+        .tokenBox {
+
+            margin-top: 20px;
+
+            padding: 14px;
+
+            border-radius: 10px;
+
+            background:
+                rgba(0,0,0,.15);
+
+        }
+
+        #tokenStatus {
+
+            font-size: 13px;
+            margin-top: 8px;
+            opacity: .75;
+
+        }
+
+        #jsonOutput {
 
             width: 100%;
 
-            margin-top: 5px;
-
-            background: #e85d75;
-
-            color: white;
-
-        }
-
-
-        #outputHeader {
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            gap: 10px;
-
-            margin-bottom: 15px;
-
-            font-weight: 700;
-
-        }
-
-
-        #output {
-
-            margin: 0;
-
-            padding: 18px;
+            min-height: 500px;
 
             background:
                 #071f30;
 
+            color: white;
+
             border-radius: 10px;
 
-            overflow-x: auto;
-
-            white-space: pre-wrap;
-
-            word-break: break-word;
-
-            min-height: 350px;
+            padding: 15px;
 
             font-family:
                 Consolas,
@@ -339,155 +307,83 @@
 
             line-height: 1.5;
 
-        }
+            white-space: pre;
 
-
-        #copyBtn {
-
-            background: #facb55;
-
-            color: #222;
+            overflow: auto;
 
         }
 
+        .registration {
 
-        #copyBtn.copied {
+            padding: 15px;
 
-            background: #72d572;
-
-        }
-
-
-        /* =====================================================
-           INSCRIPTION
-        ===================================================== */
-
-        .registrationBox {
-
-            margin-top: 5px;
-
-            padding:
-                15px;
-
-            border-radius: 12px;
+            border-radius: 10px;
 
             background:
-                rgba(255,255,255,.07);
+                rgba(255,255,255,.06);
 
-            border:
-                1px solid
-                rgba(255,255,255,.1);
+            margin-top: 10px;
 
         }
 
-
-        .registrationTitle {
-
-            margin-bottom: 8px;
-
-            font-size: 14px;
-
-            opacity: .8;
-
-        }
-
-
-        .registrationLink {
-
-            margin-top: 12px;
-
-        }
-
-
-        /* =====================================================
-           QR CODE
-        ===================================================== */
-
-        #qrPanel {
+        .qrBox {
 
             margin-top: 20px;
 
-            padding:
-                18px;
-
-            border-radius: 12px;
-
-            background:
-                rgba(255,255,255,.95);
+            background: white;
 
             color: #222;
+
+            padding: 15px;
+
+            border-radius: 10px;
 
             text-align: center;
 
         }
 
-
-        #qrPanel.hidden {
-
-            display: none;
-
-        }
-
-
         #qrcode {
 
             display: flex;
-
             justify-content: center;
 
-            margin:
-                15px 0;
+            margin: 15px 0;
 
         }
 
+        .hidden {
 
-        #qrcode img,
-        #qrcode canvas {
-
-            margin: auto;
-
-            max-width: 220px;
-
-            height: auto;
+            display: none !important;
 
         }
 
+        .message {
 
-        #qrLink {
+            margin-top: 10px;
 
-            display: block;
+            padding: 10px;
 
-            font-size: 12px;
+            border-radius: 8px;
 
-            word-break: break-all;
+            background:
+                rgba(255,255,255,.12);
 
-            opacity: .7;
+            font-size: 14px;
 
         }
 
-
-        /* =====================================================
-           RESPONSIVE
-        ===================================================== */
-
-        @media (max-width: 850px) {
+        @media(max-width: 850px) {
 
             body {
-
-                padding: 15px;
-
+                padding: 12px;
             }
 
-            #layout {
-
+            .container {
                 grid-template-columns: 1fr;
-
             }
 
-            h1 {
-
-                font-size: 28px;
-
+            .row {
+                grid-template-columns: 1fr;
             }
 
         }
@@ -501,27 +397,94 @@
 
 
 <h1>
-    Générateur de description JSON
+    Générateur d'événement
 </h1>
 
-
-<p id="hint">
-
-    Remplissez les informations de l'événement,
-    puis copiez le JSON dans la description
-    de l'événement Google Calendar.
-
-</p>
+<div class="subtitle">
+    Génération du JSON + gestion des templates
+</div>
 
 
-<div id="layout">
+<div class="container">
 
 
     <!-- =====================================================
-         FORMULAIRE
+         COLONNE GAUCHE
     ====================================================== -->
 
-    <div id="formPanel">
+    <div class="panel">
+
+
+        <h2>
+            Template
+        </h2>
+
+
+        <div class="templateBox">
+
+
+            <label>
+
+                Template enregistré
+
+                <select id="templateSelect">
+
+                    <option value="">
+                        — Aucun template —
+                    </option>
+
+                </select>
+
+            </label>
+
+
+            <div class="templateActions">
+
+                <button
+                    id="loadTemplateBtn"
+                    type="button"
+                >
+                    Charger
+                </button>
+
+                <button
+                    id="saveTemplateBtn"
+                    type="button"
+                    class="success"
+                >
+                    Enregistrer
+                </button>
+
+                <button
+                    id="saveAsTemplateBtn"
+                    type="button"
+                    class="warning"
+                >
+                    Enregistrer sous...
+                </button>
+
+                <button
+                    id="deleteTemplateBtn"
+                    type="button"
+                    class="danger"
+                >
+                    Supprimer
+                </button>
+
+            </div>
+
+
+            <div id="templateStatus">
+                Chargement des templates...
+            </div>
+
+
+        </div>
+
+
+        <h2>
+            Informations
+        </h2>
 
 
         <label>
@@ -531,7 +494,7 @@
             <input
                 id="f_titre"
                 type="text"
-                placeholder="Ex : Tout Besançon Vole"
+                placeholder="Tout Besançon Vole"
             >
 
         </label>
@@ -539,7 +502,7 @@
 
         <label>
 
-            Image de l'événement
+            Image
 
             <input
                 id="f_image"
@@ -563,40 +526,34 @@
         </label>
 
 
-        <label>
+        <div class="row">
 
-            Couleur de fond du logo
+            <label>
 
-            <div class="colorRow">
-
-                <input
-                    id="f_logo_fond_picker"
-                    type="color"
-                    value="#ffffff"
-                >
+                Fond du logo
 
                 <input
                     id="f_logo_fond"
                     type="text"
-                    placeholder="Vide = transparent"
+                    placeholder="#ffffff"
                 >
 
-            </div>
-
-        </label>
+            </label>
 
 
-        <label>
+            <label>
 
-            Fond plein écran
+                Fond
 
-            <input
-                id="f_fond"
-                type="url"
-                placeholder="Vide = fond par défaut"
-            >
+                <input
+                    id="f_fond"
+                    type="text"
+                    placeholder="URL ou couleur"
+                >
 
-        </label>
+            </label>
+
+        </div>
 
 
         <label>
@@ -606,32 +563,28 @@
             <input
                 id="f_tarif"
                 type="text"
-                placeholder="Ex : Gratuit / 15 € / Au chapeau"
+                placeholder="Gratuit"
             >
 
         </label>
 
 
-        <!-- =================================================
-             INSCRIPTION
-        ================================================== -->
-
-        <div class="registrationBox">
+        <h3>
+            Inscription
+        </h3>
 
 
-            <div class="registrationTitle">
-                Inscription
-            </div>
+        <div class="registration">
 
 
             <label>
 
-                Texte d'inscription
+                Texte libre
 
                 <input
                     id="f_inscription"
                     type="text"
-                    placeholder="Texte libre..."
+                    placeholder="Réservation conseillée"
                 >
 
             </label>
@@ -639,47 +592,42 @@
 
             <div class="buttonRow">
 
-
                 <button
                     type="button"
-                    class="presetButton"
-                    data-inscription="Réservation conseillée"
+                    class="secondary preset"
+                    data-value="Réservation conseillée"
                 >
                     Réservation conseillée
                 </button>
 
-
                 <button
                     type="button"
-                    class="presetButton"
-                    data-inscription="Réservation obligatoire"
+                    class="secondary preset"
+                    data-value="Réservation obligatoire"
                 >
                     Réservation obligatoire
                 </button>
 
-
                 <button
                     type="button"
-                    class="presetButton"
-                    data-inscription="Réservation sur place et en ligne"
+                    class="secondary preset"
+                    data-value="Réservation sur place et en ligne"
                 >
                     Sur place et en ligne
                 </button>
 
-
                 <button
                     type="button"
-                    class="presetButton"
-                    data-inscription=""
+                    class="secondary preset"
+                    data-value=""
                 >
                     Effacer
                 </button>
 
-
             </div>
 
 
-            <label class="registrationLink">
+            <label style="margin-top:15px">
 
                 Lien d'inscription
 
@@ -689,53 +637,16 @@
                     placeholder="https://..."
                 >
 
-                <span class="fieldHint">
-
-                    Si un lien est renseigné,
-                    un QR code sera automatiquement généré.
-
-                </span>
-
             </label>
 
 
         </div>
 
 
-        <!-- =================================================
-             STATUT
-        ================================================== -->
+        <h3>
+            Lieu
+        </h3>
 
-        <label>
-
-            Statut
-
-            <select id="f_statut">
-
-                <option value="">
-                    Aucun
-                </option>
-
-                <option value="Annulé">
-                    Annulé
-                </option>
-
-                <option value="Complet">
-                    Complet
-                </option>
-
-                <option value="Reporté">
-                    Reporté
-                </option>
-
-            </select>
-
-        </label>
-
-
-        <!-- =================================================
-             LIEU
-        ================================================== -->
 
         <label>
 
@@ -744,14 +655,8 @@
             <input
                 id="f_lieu"
                 type="text"
-                placeholder="Ex : Port Douvot, Besançon"
+                placeholder="Port Douvot, Besançon"
             >
-
-            <span class="fieldHint">
-
-                Utilisé selon le mode d'affichage choisi.
-
-            </span>
 
         </label>
 
@@ -762,24 +667,24 @@
 
             <select id="f_affichage_lieu">
 
-                <option value="3">
-                    Mode 3 — Lieu événement, sinon JSON
-                </option>
-
                 <option value="0">
-                    Mode 0 — Ne rien afficher
+                    0 — Ne pas afficher
                 </option>
 
                 <option value="1">
-                    Mode 1 — Lieu Google Calendar
+                    1 — Lieu Google Calendar
                 </option>
 
                 <option value="2">
-                    Mode 2 — Lieu JSON uniquement
+                    2 — Lieu JSON
+                </option>
+
+                <option value="3" selected>
+                    3 — JSON puis Google Calendar
                 </option>
 
                 <option value="4">
-                    Mode 4 — JSON, sinon Google Calendar
+                    4 — Google Calendar puis JSON
                 </option>
 
             </select>
@@ -787,54 +692,139 @@
         </label>
 
 
-        <button
-            id="resetBtn"
-            type="button"
-        >
-            Réinitialiser
-        </button>
+        <h3>
+            Statut
+        </h3>
+
+
+        <select id="f_statut">
+
+            <option value="">
+                Aucun
+            </option>
+
+            <option value="Annulé">
+                Annulé
+            </option>
+
+            <option value="Complet">
+                Complet
+            </option>
+
+            <option value="Reporté">
+                Reporté
+            </option>
+
+        </select>
+
+
+        <!-- =================================================
+             TOKEN
+        ================================================== -->
+
+        <div class="tokenBox">
+
+
+            <strong>
+                🔐 Token GitHub
+            </strong>
+
+
+            <p style="font-size:13px;opacity:.7">
+
+                Le générateur utilise le même token que
+                l'administration des événements.
+
+            </p>
+
+
+            <input
+                id="tokenInput"
+                type="password"
+                placeholder="ghp_... ou github_pat_..."
+            >
+
+
+            <div class="buttonRow" style="margin-top:8px">
+
+                <button
+                    id="tokenSave"
+                    type="button"
+                    class="success"
+                >
+                    Enregistrer le token
+                </button>
+
+                <button
+                    id="tokenClear"
+                    type="button"
+                    class="danger"
+                >
+                    Effacer
+                </button>
+
+            </div>
+
+
+            <div id="tokenStatus">
+                Aucun token enregistré
+            </div>
+
+
+        </div>
+
+
+        <div class="buttonRow" style="margin-top:20px">
+
+            <button
+                id="resetBtn"
+                type="button"
+                class="danger"
+            >
+                Réinitialiser les champs
+            </button>
+
+        </div>
 
 
     </div>
 
 
     <!-- =====================================================
-         SORTIE
+         COLONNE DROITE
     ====================================================== -->
 
-    <div id="outputPanel">
+    <div class="panel">
 
 
-        <div id="outputHeader">
+        <h2>
+            JSON
+        </h2>
 
-            <span>
-                JSON à coller dans Google Calendar
-            </span>
+
+        <div class="buttonRow" style="margin-bottom:10px">
 
             <button
                 id="copyBtn"
                 type="button"
+                class="warning"
             >
-                Copier
+                Copier le JSON
             </button>
 
         </div>
 
 
-        <pre id="output"></pre>
+        <pre id="jsonOutput"></pre>
 
-
-        <!-- =================================================
-             QR CODE
-        ================================================== -->
 
         <div
             id="qrPanel"
-            class="hidden"
+            class="qrBox hidden"
         >
 
             <strong>
-                QR code d'inscription
+                QR Code d'inscription
             </strong>
 
             <div id="qrcode"></div>
@@ -849,6 +839,12 @@
         </div>
 
 
+        <div
+            id="message"
+            class="message hidden"
+        ></div>
+
+
     </div>
 
 
@@ -861,4 +857,3 @@
 </body>
 
 </html>
-
