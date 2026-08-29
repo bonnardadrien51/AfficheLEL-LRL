@@ -1,0 +1,74 @@
+```json
+{
+  "templates": [
+    {
+      "id": "soiree-adherents",
+      "nom": "Soirée adhérents",
+      "valeurs": {
+        "titre": "",
+        "image": "",
+        "logo": "",
+        "logo_fond": "#ffffff",
+        "fond": "",
+        "tarif": "Gratuit",
+        "inscription": "Réservation conseillée",
+        "lien_inscription": "",
+        "statut": "",
+        "lieu": "Maison Saint-Vincent",
+        "affichage_lieu": "3"
+      }
+    },
+    {
+      "id": "animation",
+      "nom": "Animation L'Établi Ludique",
+      "valeurs": {
+        "titre": "",
+        "image": "",
+        "logo": "",
+        "logo_fond": "#ffffff",
+        "fond": "",
+        "tarif": "",
+        "inscription": "",
+        "lien_inscription": "",
+        "statut": "",
+        "lieu": "",
+        "affichage_lieu": "3"
+      }
+    },
+    {
+      "id": "marche-expo",
+      "nom": "Marché / Expo",
+      "valeurs": {
+        "titre": "",
+        "image": "",
+        "logo": "",
+        "logo_fond": "#ffffff",
+        "fond": "",
+        "tarif": "",
+        "inscription": "",
+        "lien_inscription": "",
+        "statut": "",
+        "lieu": "",
+        "affichage_lieu": "3"
+      }
+    },
+    {
+      "id": "festival",
+      "nom": "Festival",
+      "valeurs": {
+        "titre": "",
+        "image": "",
+        "logo": "",
+        "logo_fond": "#ffffff",
+        "fond": "",
+        "tarif": "",
+        "inscription": "",
+        "lien_inscription": "",
+        "statut": "",
+        "lieu": "",
+        "affichage_lieu": "3"
+      }
+    }
+  ]
+}
+```
