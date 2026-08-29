@@ -4,14 +4,14 @@
       "id": "soiree-adherents",
       "nom": "Soirée adhérents",
       "valeurs": {
-        "titre": "",
+        "titre": "Soirée jeux à Avanne - Portes ouvertes",
         "image": "",
-        "logo": "",
+        "logo": "https://static.wixstatic.com/media/2dd0a2_ec64a8347d1c42248671cb41bc7c072d~mv2.png",
         "logo_fond": "#ffffff",
         "fond": "",
         "tarif": "Gratuit",
         "inscription": "Réservation conseillée",
-        "lien_inscription": "",
+        "lien_inscription": "https://booking.myrezapp.com/fr/online/booking/minisite/10009/le-raffut-ludique",
         "statut": "",
         "lieu": "Maison Saint-Vincent",
         "affichage_lieu": "3"
