@@ -408,6 +408,133 @@
 
         }
 
+        /* =====================================================
+           SÉLECTION DE JOURNÉE (dynamique)
+        ===================================================== */
+
+        #daySelection {
+
+            margin-top: 10px;
+
+        }
+
+
+        #daysContainer {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fill,
+                    minmax(240px, 1fr)
+                );
+
+            gap: 14px;
+
+        }
+
+
+        .dayCard {
+
+            background:
+                rgba(255, 255, 255, .1);
+
+            border-radius: 14px;
+
+            padding: 18px 20px;
+
+            border:
+                2px solid
+                transparent;
+
+        }
+
+
+        .dayCardHeader {
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: .5px;
+
+            color:
+                rgba(255, 255, 255, .65);
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .dayCardTitle {
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            margin-bottom: 14px;
+
+            line-height: 1.3;
+
+        }
+
+
+        .dayCardBtn {
+
+            display: block;
+
+            text-align: center;
+
+            background: #E97126;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+            font-size: 13px;
+
+            letter-spacing: .5px;
+
+            padding: 10px 14px;
+
+            border-radius: 8px;
+
+            transition: background .15s;
+
+        }
+
+
+        .dayCardBtn:hover {
+
+            background: #c95c16;
+
+        }
+
+
+        #loadingDays,
+        #noDays,
+        #daysError {
+
+            text-align: center;
+
+            opacity: .6;
+
+            padding: 10px 0;
+
+        }
+
+
+        #noDays,
+        #daysError {
+
+            display: none;
+
+        }
+
     </style>
 
 </head>
@@ -465,6 +592,27 @@
 
 
         <div class="cards">
+
+
+            <a
+                class="card eventCard"
+                href="evenement.html"
+            >
+
+                <span class="badge event">
+                    Événements
+                </span>
+
+                <div class="cardTitle">
+                    Prochain événement
+                </div>
+
+                <div class="cardDesc">
+                    Affiche en grand le prochain événement à venir,
+                    avec compte à rebours.
+                </div>
+
+            </a>
 
 
             <a
@@ -763,7 +911,159 @@
     </div>
 
 
+    <!-- =====================================================
+         CHOIX D'UNE JOURNÉE (dynamique)
+    ====================================================== -->
+
+    <div class="section" id="daySelection">
+
+
+        <div class="sectionTitle">
+            📅 Journées
+        </div>
+
+
+        <div id="loadingDays">
+            Chargement des journées...
+        </div>
+
+
+        <div id="daysContainer"></div>
+
+
+        <div id="noDays">
+            Aucun événement à venir.
+        </div>
+
+
+        <div id="daysError">
+            Impossible de charger les événements.
+        </div>
+
+
+    </div>
+
+
 </div>
+
+
+<script>
+
+    const EVENTS_URL = "agenda.json";
+
+    function dayKey(date) {
+        return date.toLocaleDateString(
+            "en-CA",
+            { timeZone: "Europe/Paris" }
+        );
+    }
+
+    async function loadDays() {
+
+        const loading = document.getElementById("loadingDays");
+        const container = document.getElementById("daysContainer");
+        const noDays = document.getElementById("noDays");
+        const error = document.getElementById("daysError");
+
+        try {
+
+            const response = await fetch(
+                EVENTS_URL + "?t=" + Date.now()
+            );
+
+            if (!response.ok) {
+                throw new Error("Erreur lors du chargement de agenda.json");
+            }
+
+            const data = await response.json();
+            const events = data.events || [];
+
+            loading.style.display = "none";
+
+            if (events.length === 0) {
+                noDays.style.display = "block";
+                return;
+            }
+
+            // Regroupe les événements par jour calendaire (Europe/Paris)
+            const byDay = {};
+
+            events.forEach(event => {
+
+                const start = new Date(event.start);
+                const key = dayKey(start);
+
+                if (!byDay[key]) {
+                    byDay[key] = {
+                        date: start,
+                        events: []
+                    };
+                }
+
+                byDay[key].events.push(event);
+
+            });
+
+            const sortedDays = Object.keys(byDay)
+                .sort()
+                .map(key => byDay[key]);
+
+            if (sortedDays.length === 0) {
+                noDays.style.display = "block";
+                return;
+            }
+
+            sortedDays.forEach(day => {
+
+                const card = document.createElement("div");
+                card.className = "dayCard";
+
+                const weekday = day.date.toLocaleDateString("fr-FR", {
+                    weekday: "long",
+                    timeZone: "Europe/Paris"
+                });
+
+                const dateLabel = day.date.toLocaleDateString("fr-FR", {
+                    day: "numeric",
+                    month: "long",
+                    timeZone: "Europe/Paris"
+                });
+
+                const firstTitle = day.events[0].title;
+
+                const extra = day.events.length > 1
+                    ? ` (+${day.events.length - 1})`
+                    : "";
+
+                const dateParam = dayKey(day.date);
+
+                card.innerHTML = `
+                    <div class="dayCardHeader">${weekday} ${dateLabel}</div>
+                    <div class="dayCardTitle">${firstTitle}${extra}</div>
+                    <a class="dayCardBtn" href="jour.html?date=${dateParam}">
+                        Afficher la journée
+                    </a>
+                `;
+
+                container.appendChild(card);
+
+            });
+
+        }
+        catch (err) {
+
+            console.error("Erreur :", err);
+
+            loading.style.display = "none";
+            error.style.display = "block";
+
+        }
+
+    }
+
+    loadDays();
+
+</script>
 
 
 </body>
