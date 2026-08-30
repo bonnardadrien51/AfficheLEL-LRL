@@ -515,6 +515,175 @@
         }
 
 
+        /* =====================================================
+           SÉLECTION D'ÉVÉNEMENT (dynamique)
+        ===================================================== */
+
+        #eventSelection {
+
+            margin-top: 10px;
+
+        }
+
+
+        #eventsListContainer {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fill,
+                    minmax(240px, 1fr)
+                );
+
+            gap: 14px;
+
+        }
+
+
+        .eventListCard {
+
+            background:
+                rgba(255, 255, 255, .1);
+
+            border-radius: 14px;
+
+            padding: 18px 20px;
+
+        }
+
+
+        .eventListDateBadge {
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: .5px;
+
+            color: #E97126;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .eventListTitle {
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            margin-bottom: 6px;
+
+            line-height: 1.3;
+
+        }
+
+
+        .eventListHours {
+
+            font-size: 13px;
+
+            color:
+                rgba(255, 255, 255, .65);
+
+            margin-bottom: 14px;
+
+        }
+
+
+        .eventListBtnRow {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+
+        }
+
+
+        .eventListBtn {
+
+            display: block;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+            font-size: 13px;
+
+            letter-spacing: .5px;
+
+            padding: 10px 14px;
+
+            border-radius: 8px;
+
+            transition: background .15s, opacity .15s;
+
+        }
+
+
+        .eventListBtn.primary {
+
+            background: #E97126;
+
+            color: white;
+
+        }
+
+
+        .eventListBtn.primary:hover {
+
+            background: #c95c16;
+
+        }
+
+
+        .eventListBtn.secondary {
+
+            background:
+                rgba(255, 255, 255, .15);
+
+            color: white;
+
+        }
+
+
+        .eventListBtn.secondary:hover {
+
+            background:
+                rgba(255, 255, 255, .25);
+
+        }
+
+
+        #loadingEventsList,
+        #noEventsList,
+        #eventsListError {
+
+            text-align: center;
+
+            opacity: .6;
+
+            padding: 10px 0;
+
+        }
+
+
+        #noEventsList,
+        #eventsListError {
+
+            display: none;
+
+        }
+
+
         #loadingDays,
         #noDays,
         #daysError {
@@ -944,6 +1113,39 @@
     </div>
 
 
+    <!-- =====================================================
+         CHOIX D'UN ÉVÉNEMENT (dynamique)
+    ====================================================== -->
+
+    <div class="section" id="eventSelection">
+
+
+        <div class="sectionTitle">
+            🎫 Prochains événements
+        </div>
+
+
+        <div id="loadingEventsList">
+            Chargement des événements...
+        </div>
+
+
+        <div id="eventsListContainer"></div>
+
+
+        <div id="noEventsList">
+            Aucun événement à venir.
+        </div>
+
+
+        <div id="eventsListError">
+            Impossible de charger les événements.
+        </div>
+
+
+    </div>
+
+
 </div>
 
 
@@ -1061,7 +1263,98 @@
 
     }
 
+    function formatHour(date) {
+        const h = date.getHours();
+        const m = date.getMinutes();
+        return m === 0 ? `${h}h` : `${h}h${String(m).padStart(2, "0")}`;
+    }
+
+    async function loadEventsList() {
+
+        const loading = document.getElementById("loadingEventsList");
+        const container = document.getElementById("eventsListContainer");
+        const noEvents = document.getElementById("noEventsList");
+        const error = document.getElementById("eventsListError");
+
+        try {
+
+            const response = await fetch(
+                EVENTS_URL + "?t=" + Date.now()
+            );
+
+            if (!response.ok) {
+                throw new Error("Erreur lors du chargement de agenda.json");
+            }
+
+            const data = await response.json();
+            const events = data.events || [];
+
+            loading.style.display = "none";
+
+            if (events.length === 0) {
+                noEvents.style.display = "block";
+                return;
+            }
+
+            const sorted = events
+                .slice()
+                .sort((a, b) => new Date(a.start) - new Date(b.start));
+
+            sorted.forEach(event => {
+
+                const start = new Date(event.start);
+                const end = event.end ? new Date(event.end) : null;
+
+                const card = document.createElement("div");
+                card.className = "eventListCard";
+
+                const dateLabel = start.toLocaleDateString("fr-FR", {
+                    day: "2-digit",
+                    month: "short",
+                    timeZone: "Europe/Paris"
+                }).toUpperCase().replace(".", "");
+
+                const hoursLabel = end
+                    ? `${formatHour(start)} – ${formatHour(end)}`
+                    : formatHour(start);
+
+                // Deux boutons : un vers la journée complète (utile si
+                // plusieurs événements ce jour-là), un vers l'affiche
+                // dédiée de cet événement précis.
+                const dateParam = dayKey(start);
+
+                card.innerHTML = `
+                    <div class="eventListDateBadge">${dateLabel}</div>
+                    <div class="eventListTitle">${event.title}</div>
+                    <div class="eventListHours">${hoursLabel}</div>
+                    <div class="eventListBtnRow">
+                        <a class="eventListBtn secondary" href="jour.html?date=${dateParam}">
+                            Afficher la journée
+                        </a>
+                        <a class="eventListBtn primary" href="evenement.html?id=${encodeURIComponent(event.uid)}">
+                            Afficher l'affiche
+                        </a>
+                    </div>
+                `;
+
+                container.appendChild(card);
+
+            });
+
+        }
+        catch (err) {
+
+            console.error("Erreur :", err);
+
+            loading.style.display = "none";
+            error.style.display = "block";
+
+        }
+
+    }
+
     loadDays();
+    loadEventsList();
 
 </script>
 
