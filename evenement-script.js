@@ -742,6 +742,23 @@ function updateCountdown(){
 
     }
 
+    // Page "affiche" (sans compte à rebours) : on ne calcule ni
+    // n'affiche rien ici. On garde quand même l'appel actif ailleurs
+    // dans le code pour ne pas casser le rechargement automatique
+    // lorsque l'événement affiché se termine (voir plus bas).
+    if(window.HIDE_COUNTDOWN){
+
+        if(
+            currentEvent.end &&
+            new Date(currentEvent.end).getTime() <= Date.now()
+        ){
+            loadEvents();
+        }
+
+        return;
+
+    }
+
 
     const text =
         computeCountdown(
