@@ -1,15 +1,24 @@
-// Le design est fait pour 1920x1080 ; on calcule le facteur d'échelle
-// pour que ça tienne dans n'importe quelle fenêtre (plein écran ou non),
-// sans jamais déformer les proportions ni faire chevaucher le contenu.
+// Le design est fait pour une taille de référence définie par le CSS
+// de chaque page (via la largeur/hauteur fixes de #screen) ; on calcule
+// le facteur d'échelle pour que ça tienne dans n'importe quelle fenêtre
+// (plein écran ou non), sans jamais déformer les proportions internes.
 function applyScale(){
 
     const screen = document.getElementById("screen");
 
     if(!screen) return;
 
+    // Dimensions de référence lues directement sur l'élément
+    // (celles fixées dans le CSS de la page : 1920x1080, 1080x1080,
+    // 1640x624...), donc ce script n'a rien à connaître du format.
+    const refWidth = screen.offsetWidth;
+    const refHeight = screen.offsetHeight;
+
+    if(!refWidth || !refHeight) return;
+
     const scale = Math.min(
-        window.innerWidth / 1920,
-        window.innerHeight / 1080
+        window.innerWidth / refWidth,
+        window.innerHeight / refHeight
     );
 
     screen.style.transform = `scale(${scale})`;

@@ -1331,8 +1331,14 @@
                         <a class="eventListBtn secondary" href="jour.html?date=${dateParam}">
                             Afficher la journée
                         </a>
-                        <a class="eventListBtn primary" href="evenement.html?id=${encodeURIComponent(event.uid)}">
+                        <a class="eventListBtn primary" href="affiche.html?id=${encodeURIComponent(event.uid)}">
                             Afficher l'affiche
+                        </a>
+                        <a class="eventListBtn secondary" href="affiche-carre-evenement.html?id=${encodeURIComponent(event.uid)}">
+                            Affiche carrée
+                        </a>
+                        <a class="eventListBtn secondary" href="affiche-facebook-evenement.html?id=${encodeURIComponent(event.uid)}">
+                            Affiche Facebook
                         </a>
                     </div>
                 `;

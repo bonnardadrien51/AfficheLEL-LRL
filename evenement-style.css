@@ -47,9 +47,9 @@ body{
 
 #screen{
 
-    width:1920px;
+    width:var(--ref-width, 1920px);
 
-    height:1080px;
+    height:var(--ref-height, 1080px);
 
     flex-shrink:0;
 
