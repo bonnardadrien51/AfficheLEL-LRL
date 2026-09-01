@@ -422,16 +422,66 @@ function renderEvent(event){
     const campaign = event.campaign || {};
 
 
-    document.getElementById("campaignTitle").textContent =
-        campaign.titre || event.title;
 
 
     document.getElementById("campaignDate").textContent =
         `${formatDate(start)} – ${formatHour(start)}`;
 
+// ---------------------------------------------------------
+// TITRE / SOUS-TITRE
+// ---------------------------------------------------------
 
-    document.getElementById("eventTitle").textContent =
-        event.title;
+const campaignTitle =
+    document.getElementById("campaignTitle");
+
+const eventTitle =
+    document.getElementById("eventTitle");
+
+const titre =
+    (campaign.titre || "").trim();
+
+const sousTitre =
+    (
+        campaign.sous_titre ??
+        campaign["sous-titre"] ??
+        ""
+    ).trim();
+
+
+    // ---------------------------------------------------------
+    // TITRE GENERAL
+    // ---------------------------------------------------------
+
+    if (titre) {
+
+        campaignTitle.textContent = titre;
+
+        campaignTitle.classList.remove("hidden");
+
+    } else {
+
+        campaignTitle.textContent = "";
+
+        campaignTitle.classList.add("hidden");
+    }
+
+
+    // ---------------------------------------------------------
+    // SOUS-TITRE / TITRE GOOGLE CALENDAR
+    // ---------------------------------------------------------
+
+    if (sousTitre) {
+
+        // Le sous-titre devient le nom précis
+        eventTitle.textContent = sousTitre;
+
+    } else {
+
+        // Aucun sous-titre :
+        // on utilise directement le titre Google Calendar
+        eventTitle.textContent =
+            event.title || "";
+    }
 
 
     document.getElementById("eventHours").textContent =
