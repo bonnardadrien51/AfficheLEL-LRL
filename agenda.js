@@ -1,12 +1,27 @@
-// Chaque page peut définir window.AGENDA_CONFIG *avant* d'inclure agenda.js
-// pour personnaliser la source de données, un filtre, le nombre d'événements
-// affichés et le nom du fichier exporté, sans dupliquer ce fichier.
+// ==========================================================
+// AGENDA - AFFICHES CARREE / FACEBOOK
+// ==========================================================
+// Chaque page peut définir window.AGENDA_CONFIG avant
+// d'inclure agenda.js.
+//
+// Exemple :
+//
+// window.AGENDA_CONFIG = {
+//     dataSource: "agenda.json",
+//     filterLabel: "Soirée adhérents",
+//     maxEvents: 4,
+//     downloadName: "affiche-carre.png"
+// };
+//
+// ==========================================================
+
+
 const CONFIG = Object.assign({
 
     dataSource: "agenda.json",
 
-    // Une chaîne, un tableau de chaînes, ou null pour ne rien filtrer.
-    // Comparé au champ "label" de chaque événement (ex: "Soirée adhérents").
+    // Une chaîne, un tableau de chaînes,
+    // ou null pour ne rien filtrer.
     filterLabel: null,
 
     maxEvents: 6,
@@ -15,7 +30,13 @@ const CONFIG = Object.assign({
 
 }, window.AGENDA_CONFIG || {});
 
+
+// ==========================================================
+// MOIS
+// ==========================================================
+
 const months = [
+
     "Janvier",
     "Février",
     "Mars",
@@ -28,9 +49,12 @@ const months = [
     "Octobre",
     "Novembre",
     "Décembre"
+
 ];
 
+
 const shortMonths = [
+
     "JAN",
     "FÉV",
     "MAR",
@@ -43,9 +67,12 @@ const shortMonths = [
     "OCT",
     "NOV",
     "DÉC"
+
 ];
 
+
 const shortWeekdays = [
+
     "Dim",
     "Lun",
     "Mar",
@@ -53,242 +80,816 @@ const shortWeekdays = [
     "Jeu",
     "Ven",
     "Sam"
+
 ];
+
+
+// ==========================================================
+// INITIALISATION
+// ==========================================================
 
 document.addEventListener("DOMContentLoaded", () => {
 
     loadAgenda();
 
-    document
-        .getElementById("refreshBtn")
-        .addEventListener("click", loadAgenda);
 
-    document
-        .getElementById("downloadBtn")
-        .addEventListener("click", exportPNG);
+    const refreshBtn =
+        document.getElementById("refreshBtn");
+
+    if (refreshBtn) {
+
+        refreshBtn.addEventListener(
+            "click",
+            loadAgenda
+        );
+
+    }
+
+
+    const downloadBtn =
+        document.getElementById("downloadBtn");
+
+    if (downloadBtn) {
+
+        downloadBtn.addEventListener(
+            "click",
+            exportPNG
+        );
+
+    }
 
 });
 
 
-async function loadAgenda(){
+// ==========================================================
+// CHARGEMENT AGENDA
+// ==========================================================
 
-    const response = await fetch(CONFIG.dataSource);
+async function loadAgenda() {
 
-    const json = await response.json();
+    try {
 
-    const now = new Date();
+        const response =
+            await fetch(CONFIG.dataSource);
 
-    const allowedLabels = CONFIG.filterLabel === null
-        ? null
-        : Array.isArray(CONFIG.filterLabel)
-            ? CONFIG.filterLabel
-            : [CONFIG.filterLabel];
 
-    let events = json.events
-        .map(e => {
+        if (!response.ok) {
 
-            e.date = new Date(e.start);
+            throw new Error(
+                `Erreur HTTP ${response.status}`
+            );
 
-            return e;
+        }
 
-        })
 
-        .filter(e => e.date >= now)
+        const json =
+            await response.json();
 
-        .filter(e => allowedLabels === null || allowedLabels.includes(e.label))
 
-        .sort((a,b)=>a.date-b.date)
+        const now =
+            new Date();
 
-        .slice(0, CONFIG.maxEvents);
 
-    buildEvents(events);
+        // --------------------------------------------------
+        // FILTRE LABEL
+        // --------------------------------------------------
 
-    document.getElementById("update").innerHTML =
-        "Dernière mise à jour : " + json.updated;
+        const allowedLabels =
+            CONFIG.filterLabel === null
 
-    if(events.length){
+                ? null
 
-        document.getElementById("currentMonth").innerHTML =
-            months[
-                events[0].date.getMonth()
-            ] + " " +
-            events[0].date.getFullYear();
+                : Array.isArray(CONFIG.filterLabel)
+
+                    ? CONFIG.filterLabel
+
+                    : [CONFIG.filterLabel];
+
+
+        // --------------------------------------------------
+        // PREPARATION DES EVENEMENTS
+        // --------------------------------------------------
+
+        let events =
+            json.events
+
+                .map(event => {
+
+                    return {
+
+                        ...event,
+
+                        date:
+                            new Date(event.start)
+
+                    };
+
+                })
+
+                .filter(event => {
+
+                    return event.date >= now;
+
+                })
+
+                .filter(event => {
+
+                    return (
+                        allowedLabels === null ||
+                        allowedLabels.includes(event.label)
+                    );
+
+                })
+
+                .sort((a, b) => {
+
+                    return a.date - b.date;
+
+                })
+
+                .slice(
+                    0,
+                    CONFIG.maxEvents
+                );
+
+
+        // --------------------------------------------------
+        // AFFICHAGE
+        // --------------------------------------------------
+
+        buildEvents(events);
+
+
+        // --------------------------------------------------
+        // DATE DE MISE A JOUR
+        // --------------------------------------------------
+
+        const update =
+            document.getElementById("update");
+
+
+        if (update) {
+
+            update.innerHTML =
+                "Dernière mise à jour : " +
+                (json.updated || "");
+
+        }
+
+
+        // --------------------------------------------------
+        // MOIS PRINCIPAL
+        // --------------------------------------------------
+
+        const currentMonth =
+            document.getElementById("currentMonth");
+
+
+        if (
+            currentMonth &&
+            events.length
+        ) {
+
+            currentMonth.innerHTML =
+
+                months[
+                    events[0].date.getMonth()
+                ]
+
+                + " "
+
+                +
+
+                events[0].date.getFullYear();
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "Erreur chargement agenda :",
+            error
+        );
+
+
+        const container =
+            document.getElementById("events");
+
+
+        if (container) {
+
+            container.innerHTML = `
+
+                <div class="agenda-error">
+
+                    Impossible de charger
+                    les événements.
+
+                </div>
+
+            `;
+
+        }
 
     }
 
 }
 
 
+// ==========================================================
+// FORMATAGE DATE
+// ==========================================================
 
-function buildEvents(events){
+function formatDate(eventDate) {
 
-    const container = document.getElementById("events");
+    const day =
+        String(
+            eventDate.getDate()
+        ).padStart(2, "0");
+
+
+    const month =
+        String(
+            eventDate.getMonth() + 1
+        ).padStart(2, "0");
+
+
+    const year =
+        eventDate.getFullYear();
+
+
+    return `${day}/${month}/${year}`;
+
+}
+
+
+// ==========================================================
+// FORMATAGE HEURE
+// ==========================================================
+
+function formatHour(date) {
+
+    return new Date(date)
+        .toLocaleTimeString(
+            "fr-FR",
+            {
+                hour: "2-digit",
+                minute: "2-digit"
+            }
+        );
+
+}
+
+
+// ==========================================================
+// RECUPERATION CAMPAGNE
+// ==========================================================
+
+function getCampaign(event) {
+
+    if (
+        !event.campaign ||
+        typeof event.campaign !== "object"
+    ) {
+
+        return {};
+
+    }
+
+
+    return event.campaign;
+
+}
+
+
+// ==========================================================
+// CONSTRUCTION DES EVENEMENTS
+// ==========================================================
+
+function buildEvents(events) {
+
+    const container =
+        document.getElementById("events");
+
+
+    if (!container) return;
+
 
     container.innerHTML = "";
 
-    events.forEach(event=>{
 
-        const day = event.date.getDate();
+    events.forEach(event => {
+
+
+        // --------------------------------------------------
+        // DATE
+        // --------------------------------------------------
+
+        const eventDate =
+            event.date;
+
+
+        const day =
+            eventDate.getDate();
+
 
         const weekday =
-            shortWeekdays[event.date.getDay()];
+            shortWeekdays[
+                eventDate.getDay()
+            ];
+
 
         const month =
-            shortMonths[event.date.getMonth()];
+            shortMonths[
+                eventDate.getMonth()
+            ];
+
+
+        const fullDate =
+            formatDate(eventDate);
+
+
+        // --------------------------------------------------
+        // HEURES
+        // --------------------------------------------------
 
         const startHour =
-            new Date(event.start).toLocaleTimeString(
-            "fr-FR",
-            {
-                hour:"2-digit",
-                minute:"2-digit"
-            }
-        );
-    
+            formatHour(event.start);
+
+
         const endHour =
-            new Date(event.end).toLocaleTimeString(
-            "fr-FR",
-            {
-                hour:"2-digit",
-                minute:"2-digit"
-            }
-        );
+            formatHour(event.end);
 
-        const badge = event.label;
-        const color = event.color;
 
-        container.innerHTML += `
+        // --------------------------------------------------
+        // CAMPAGNE
+        // --------------------------------------------------
 
-<div class="event">
+        const campaign =
+            getCampaign(event);
 
-<div
-    class="date"
-    style="background:${color};">
 
-    <div class="weekday">
-        ${weekday}
-    </div>
+        // --------------------------------------------------
+        // TITRE GENERAL
+        // --------------------------------------------------
 
-    <div class="day">
-        ${day}
-    </div>
+        const campaignTitle =
+            (
+                campaign.titre ||
+                ""
+            ).trim();
 
-    <div class="month">
-        ${month}
-    </div>
 
-</div>
+        // --------------------------------------------------
+        // SOUS-TITRE
+        // --------------------------------------------------
 
-    <div class="left">
+        const campaignSubtitle =
+            (
+                campaign.sous_titre ??
+                campaign["sous-titre"] ??
+                ""
+            ).trim();
 
-        <img
-            class="categoryIcon"
-            src="img/categories/${event.icon}"
-            alt="">
 
-    </div>
+        // --------------------------------------------------
+        // TITRE DE SECOURS
+        // --------------------------------------------------
+        //
+        // Si aucun titre général et aucun sous-titre
+        // n'est renseigné dans la campagne,
+        // on utilise le titre Google Calendar.
+        //
+        // Si seul le titre général existe :
+        // titre général affiché + titre Google Calendar
+        // en sous-titre.
+        //
+        // Si titre + sous-titre existent :
+        // titre général + sous-titre.
+        //
+        // --------------------------------------------------
 
-    <div class="content">
+        let displayTitle;
+        let displaySubtitle;
 
-        <div class="badge"
-             style="background:${event.color};">
 
-            ${event.label}
+        if (campaignTitle) {
 
-        </div>
+            displayTitle =
+                campaignTitle;
 
-        <div class="title">
 
-            ${event.title}
+            displaySubtitle =
+                campaignSubtitle ||
+                event.title ||
+                "";
 
-        </div>
+        } else {
 
-        <div class="info">
+            displayTitle =
+                event.title ||
+                "";
 
-            <span class="location">📍 ${event.location}</span>
 
-            <span class="time">🕒 ${startHour} - ${endHour}</span>
+            displaySubtitle =
+                campaignSubtitle;
 
-        </div>
+        }
 
-    </div>
 
-</div>
+        // --------------------------------------------------
+        // LABEL
+        // --------------------------------------------------
 
-`;
+        const badge =
+            event.label || "";
+
+
+        // --------------------------------------------------
+        // COULEUR
+        // --------------------------------------------------
+
+        const color =
+            event.color ||
+            "#0d4c72";
+
+
+        // --------------------------------------------------
+        // LIEU
+        // --------------------------------------------------
+
+        const location =
+            event.location ||
+            "";
+
+
+        // --------------------------------------------------
+        // ICONE
+        // --------------------------------------------------
+
+        const icon =
+            event.icon ||
+            "";
+
+
+        // --------------------------------------------------
+        // CARTE
+        // --------------------------------------------------
+
+        const card =
+            document.createElement("div");
+
+
+        card.className =
+            "event";
+
+
+        card.innerHTML = `
+
+            <!-- DATE COLOREE -->
+
+            <div
+                class="date"
+                style="background:${escapeHtml(color)};"
+            >
+
+                <div class="weekday">
+                    ${escapeHtml(weekday)}
+                </div>
+
+                <div class="day">
+                    ${escapeHtml(day)}
+                </div>
+
+                <div class="month">
+                    ${escapeHtml(month)}
+                </div>
+
+            </div>
+
+
+            <!-- ICONE CATEGORIE -->
+
+            <div class="left">
+
+                ${
+                    icon
+
+                        ? `
+
+                            <img
+                                class="categoryIcon"
+                                src="img/categories/${escapeAttribute(icon)}"
+                                alt=""
+                            >
+
+                          `
+
+                        : ""
+
+                }
+
+            </div>
+
+
+            <!-- CONTENU -->
+
+            <div class="content">
+
+
+                <!-- BADGE -->
+
+                <div
+                    class="badge"
+                    style="background:${escapeHtml(color)};"
+                >
+
+                    ${escapeHtml(badge)}
+
+                </div>
+
+
+                <!-- TITRE -->
+
+                <div class="title">
+
+                    ${escapeHtml(displayTitle)}
+
+                </div>
+
+
+                <!-- SOUS-TITRE -->
+
+                ${
+                    displaySubtitle
+
+                        ? `
+
+                            <div class="subtitle">
+
+                                ${escapeHtml(
+                                    displaySubtitle
+                                )}
+
+                            </div>
+
+                          `
+
+                        : ""
+
+                }
+
+
+                <!-- INFORMATIONS -->
+
+                <div class="info">
+
+
+                    ${
+                        location
+
+                            ? `
+
+                                <span class="location">
+
+                                    📍
+                                    ${escapeHtml(location)}
+
+                                </span>
+
+                              `
+
+                            : ""
+
+                    }
+
+
+                    <span class="time">
+
+                        📅
+                        ${escapeHtml(fullDate)}
+
+                        ·
+
+                        ${escapeHtml(startHour)}
+                        à
+                        ${escapeHtml(endHour)}
+
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+        `;
+
+
+        container.appendChild(card);
 
     });
 
 }
 
 
+// ==========================================================
+// SECURISATION HTML
+// ==========================================================
 
-function exportPNG(){
+function escapeHtml(value) {
+
+    return String(value ?? "")
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+function escapeAttribute(value) {
+
+    return escapeHtml(value);
+
+}
+
+
+// ==========================================================
+// EXPORT PNG
+// ==========================================================
+
+function exportPNG() {
 
     const toolbar =
         document.querySelector(".toolbar");
 
-    toolbar.style.display="none";
+
+    if (toolbar) {
+
+        toolbar.style.display =
+            "none";
+
+    }
+
 
     const cover =
         document.getElementById("cover");
 
-    // S'assure que toutes les images (logos, icônes svg...)
-    // sont bien chargées avant la capture, sinon certaines
-    // peuvent manquer sur l'export.
-    const images =
-        Array.from(cover.querySelectorAll("img"));
 
-    const whenReady = images.map(img=>{
+    if (!cover) {
 
-        if(img.complete && img.naturalWidth!==0){
-            return Promise.resolve();
+        if (toolbar) {
+
+            toolbar.style.display =
+                "flex";
+
         }
 
-        return new Promise(resolve=>{
-            img.addEventListener("load", resolve, {once:true});
-            img.addEventListener("error", resolve, {once:true});
-        });
+        return;
 
-    });
+    }
 
-    Promise.all(whenReady).then(()=>{
 
-        html2canvas(
+    // ------------------------------------------------------
+    // ATTENDRE LES IMAGES
+    // ------------------------------------------------------
 
-            cover,
+    const images =
+        Array.from(
+            cover.querySelectorAll("img")
+        );
 
-            {
 
-                scale:2,
+    const whenReady =
+        images.map(img => {
 
-                backgroundColor:null,
+            if (
+                img.complete &&
+                img.naturalWidth !== 0
+            ) {
 
-                useCORS:true,
-
-                allowTaint:true,
-
-                imageTimeout:0
+                return Promise.resolve();
 
             }
 
-        ).then(canvas=>{
 
-            toolbar.style.display="flex";
+            return new Promise(resolve => {
+
+                img.addEventListener(
+                    "load",
+                    resolve,
+                    { once: true }
+                );
+
+
+                img.addEventListener(
+                    "error",
+                    resolve,
+                    { once: true }
+                );
+
+            });
+
+        });
+
+
+    // ------------------------------------------------------
+    // CAPTURE
+    // ------------------------------------------------------
+
+    Promise.all(whenReady)
+
+        .then(() => {
+
+            return html2canvas(
+
+                cover,
+
+                {
+
+                    scale: 2,
+
+                    backgroundColor: null,
+
+                    useCORS: true,
+
+                    allowTaint: true,
+
+                    imageTimeout: 0
+
+                }
+
+            );
+
+        })
+
+        .then(canvas => {
+
+
+            if (toolbar) {
+
+                toolbar.style.display =
+                    "flex";
+
+            }
+
 
             const link =
                 document.createElement("a");
 
+
             link.download =
                 CONFIG.downloadName;
 
+
             link.href =
-                canvas.toDataURL("image/png");
+                canvas.toDataURL(
+                    "image/png"
+                );
+
 
             link.click();
 
-        });
+        })
 
-    });
+        .catch(error => {
+
+            console.error(
+                "Erreur export PNG :",
+                error
+            );
+
+
+            if (toolbar) {
+
+                toolbar.style.display =
+                    "flex";
+
+            }
+
+        });
 
 }
