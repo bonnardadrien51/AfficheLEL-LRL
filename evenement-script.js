@@ -426,8 +426,32 @@ function renderEvent(event){
         campaign.titre || event.title;
 
 
+    // Logo association dynamique : L'Établi Ludique ou Le Raffut
+    // Ludique selon le calendrier d'origine de l'événement (champ
+    // icon, déjà utilisé partout ailleurs sur ce dépôt : LEL*/LRL*).
+    // Par défaut (icon absent), on retombe sur L'Établi Ludique.
+    const associationLogo =
+        document.getElementById("associationLogo");
+
+    if(associationLogo){
+
+        if((event.icon || "").startsWith("LRL")){
+
+            associationLogo.src = "img/logo-raffut.svg";
+            associationLogo.alt = "Le Raffut Ludique";
+
+        } else {
+
+            associationLogo.src = "img/logo-etabli.svg";
+            associationLogo.alt = "L'Établi Ludique";
+
+        }
+
+    }
+
+
     document.getElementById("campaignDate").textContent =
-        `${formatDate(start)} – ${formatHour(start)}`;
+        `${formatDate(start)} – ${formatHour(start)} à ${formatHour(end)}`;
 
 
     document.getElementById("eventTitle").textContent =
