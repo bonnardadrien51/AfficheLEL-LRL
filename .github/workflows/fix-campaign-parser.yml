@@ -1,0 +1,225 @@
+name: Fix campaign parser
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Patch generate-json.js
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path("scripts/generate-json.js")
+          text = path.read_text(encoding="utf-8")
+
+          old = '''function parseCampaign(rawDescription) {
+
+  const cleaned =
+    cleanDescription(rawDescription);
+
+  if (!cleaned) {
+    return null;
+  }
+
+  try {
+
+    const data =
+      JSON.parse(cleaned);
+
+    return {
+
+      titre:
+        data.titre || "",
+
+      image:
+        normalizeUrl(data.image),
+
+      logo:
+        normalizeUrl(data.logo),
+
+      logo_fond:
+        data.logo_fond || "",
+
+      fond:
+        normalizeUrl(data.fond),
+
+      tarif:
+        data.tarif || "",
+
+      inscription:
+        data.inscription || "",
+
+      lien_inscription:
+        normalizeUrl(
+          data.lien_inscription
+        ),
+
+      statut:
+        data.statut || "",
+
+      lieu:
+        data.lieu || "",
+
+      affichage_lieu:
+        data.affichage_lieu !== undefined
+          ? String(data.affichage_lieu)
+          : "3"
+
+    };
+
+  } catch (err) {
+
+    console.warn(
+      "Description JSON ignorée pour un événement :",
+      cleaned.slice(0, 150)
+    );
+
+    return null;
+  }
+}'''
+
+          new = '''function parseCampaign(rawDescription) {
+
+  const cleaned =
+    cleanDescription(rawDescription);
+
+  if (!cleaned) {
+    return null;
+  }
+
+  let data = null;
+
+  try {
+
+    // Cas normal : toute la description est un JSON valide.
+    data = JSON.parse(cleaned);
+
+  } catch (err) {
+
+    // Google Calendar peut conserver du texte autour du JSON.
+    // On tente donc d'extraire le premier objet JSON complet.
+    const firstBrace = cleaned.indexOf("{");
+    const lastBrace = cleaned.lastIndexOf("}");
+
+    if (
+      firstBrace !== -1 &&
+      lastBrace > firstBrace
+    ) {
+
+      try {
+        data = JSON.parse(
+          cleaned.slice(firstBrace, lastBrace + 1)
+        );
+      } catch (extractErr) {
+        data = null;
+      }
+    }
+  }
+
+  if (!data || typeof data !== "object") {
+
+    console.warn(
+      "Description JSON ignorée pour un événement :",
+      cleaned.slice(0, 150)
+    );
+
+    return null;
+  }
+
+  return {
+
+    titre:
+      data.titre || "",
+
+    sous_titre:
+      data.sous_titre ||
+      data["sous-titre"] ||
+      "",
+
+    image:
+      normalizeUrl(data.image),
+
+    logo:
+      normalizeUrl(data.logo),
+
+    logo_fond:
+      data.logo_fond || "",
+
+    fond:
+      normalizeUrl(data.fond),
+
+    tarif:
+      data.tarif || "",
+
+    inscription:
+      data.inscription || "",
+
+    lien_inscription:
+      normalizeUrl(
+        data.lien_inscription
+      ),
+
+    statut:
+      data.statut || "",
+
+    lieu:
+      data.lieu || "",
+
+    affichage_lieu:
+      data.affichage_lieu !== undefined
+        ? String(data.affichage_lieu)
+        : "3"
+
+  };
+}'''
+
+          if old not in text:
+              raise SystemExit("parseCampaign() introuvable : aucun changement effectué")
+
+          text = text.replace(old, new, 1)
+
+          old_fallback = '''          titre: "",
+          image: "",
+          logo: "",
+          logo_fond: "",'''
+          new_fallback = '''          titre: "",
+          sous_titre: "",
+          image: "",
+          logo: "",
+          logo_fond: "",'''
+
+          if old_fallback not in text:
+              raise SystemExit("Objet campaign de secours introuvable : aucun changement effectué")
+
+          text = text.replace(old_fallback, new_fallback, 1)
+          path.write_text(text, encoding="utf-8")
+          PY
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/generate-json.js
+          git diff --cached --quiet && echo "Aucune modification nécessaire" && exit 0
+          git commit -m "🐛 Corrige le parsing des campagnes et ajoute le sous-titre"
+          git push
+
+      - name: Remove temporary workflow
+        if: always()
+        run: |
+          rm -f .github/workflows/fix-campaign-parser.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -u .github/workflows/fix-campaign-parser.yml
+          git diff --cached --quiet || (git commit -m "🧹 Supprime le workflow temporaire" && git push)
