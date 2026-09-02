@@ -1,364 +1,240 @@
-// Le design est fait pour une taille de référence définie par le CSS
-// de chaque page (via la largeur/hauteur fixes de #screen) ; on calcule
-// le facteur d'échelle pour que ça tienne dans n'importe quelle fenêtre
-// (plein écran ou non), sans jamais déformer les proportions internes.
-function applyScale(){
-
-    const screen = document.getElementById("screen");
-
-    if(!screen) return;
-
-    // Dimensions de référence lues directement sur l'élément
-    // (celles fixées dans le CSS de la page : 1920x1080, 1080x1080,
-    // 1640x624...), donc ce script n'a rien à connaître du format.
-    const refWidth = screen.offsetWidth;
-    const refHeight = screen.offsetHeight;
-
-    if(!refWidth || !refHeight) return;
-
-    const scale = Math.min(
-        window.innerWidth / refWidth,
-        window.innerHeight / refHeight
-    );
-
-    screen.style.transform = `scale(${scale})`;
-
-}
-
-window.addEventListener("resize", applyScale);
-applyScale();
-
-
 const DATA_URL = "agenda.json";
-const OVERRIDES_URL = "status-overrides.json";
-
-// Réinterroge events.json + status-overrides.json à cet intervalle.
-// events.json n'est régénéré côté serveur que toutes les 30 min, mais
-// status-overrides.json (modifié depuis la page admin) doit remonter
-// vite ; comme les deux fichiers sont petits, on vérifie souvent.
-const REFRESH_DATA_MS = 60 * 1000;
-
-// Recalcule le compte à rebours à cet intervalle, sans refaire d'appel réseau.
-const REFRESH_COUNTDOWN_MS = 30 * 1000;
 
 let currentEvent = null;
 
 
-function formatHour(date){
-
-    const h = date.getHours();
-    const m = date.getMinutes();
-
-    return m === 0
-        ? `${h}h`
-        : `${h}h${String(m).padStart(2,"0")}`;
-
-}
-
+// ============================================================
+// OUTILS
+// ============================================================
 
 function formatDate(date){
 
-    return date.toLocaleDateString("fr-FR", {
-        day:"2-digit",
-        month:"2-digit",
-        year:"numeric",
-        timeZone:"Europe/Paris"
-    });
-
-}
-
-
-function momentOfDay(hour){
-
-    if(hour < 12) return "matin";
-    if(hour < 18) return "après-midi";
-    return "soir";
-
-}
-
-
-function dateOnly(d){
-
-    return new Date(
-        d.getFullYear(),
-        d.getMonth(),
-        d.getDate()
-    );
-
-}
-
-
-function computeCountdown(event){
-
-    const now = new Date();
-    const start = new Date(event.start);
-    const end = new Date(event.end);
-
-    if(now >= start && now <= end){
-
-        return "En cours";
-
-    }
-
-    const diffMs = start - now;
-
-    if(diffMs <= 0){
-
-        return null; // événement terminé, ne devrait plus être affiché
-
-    }
-
-    // Différence en jours calendaires (et non en durée brute /24h),
-    // pour que "demain soir" reste "demain" même si on est encore
-    // aujourd'hui à moins de 24h de l'événement.
-    const dayDiff = Math.round(
-        (dateOnly(start) - dateOnly(now)) / 86400000
-    );
-
-    if(dayDiff > 1){
-
-        const days =
-            Math.floor(diffMs / 86400000);
-
-        const hours =
-            Math.floor(
-                (diffMs % 86400000) / 3600000
-            );
-
-        return `Dans ${days} jours et ${hours} heures`;
-
-    }
-
-    if(dayDiff === 1){
-
-        return `Demain ${momentOfDay(start.getHours())}`;
-
-    }
-
-    // dayDiff === 0 : plus tard aujourd'hui
-    const hoursLeft =
-        Math.max(
-            1,
-            Math.round(diffMs / 3600000)
-        );
-
-    return `Dans ${hoursLeft} heure${hoursLeft > 1 ? "s" : ""}`;
-
-}
-
-
-// ============================================================
-// GESTION DU LIEU
-// ============================================================
-
-// Supprime le dernier segment d'une adresse si c'est un nom de pays
-// (typiquement ", France" ajouté automatiquement par Google Calendar).
-// Heuristique : on retire la dernière partie après la dernière virgule
-// si elle ne contient pas de chiffre (donc pas un code postal ni un n°).
-function stripCountry(location){
-
-    if(!location) return "";
-
-    const parts =
-        location
-            .split(",")
-            .map(s => s.trim());
-
-    if(parts.length > 1){
-
-        const last =
-            parts[parts.length - 1];
-
-        // Un code postal ou un numéro de rue contient des chiffres → on garde.
-        if(!/\d/.test(last)){
-
-            parts.pop();
-
+    return date.toLocaleDateString(
+        "fr-FR",
+        {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric"
         }
-
-    }
-
-    return parts.join(", ");
-
+    );
 }
 
 
-// Résout le texte à afficher pour le lieu selon le mode :
-// 0 → rien
-// 1 → lieu de l'événement Google Calendar (sans pays)
-// 2 → lieu du JSON campaign
-// 3 → lieu événement, puis JSON si l'événement est vide
-// 4 → lieu JSON, puis événement si le JSON est vide
-function resolveLocation(
-    eventLocation,
-    campaignLieu,
-    mode
-){
+function formatHour(date){
 
-    const ev =
-        stripCountry(
-            eventLocation || ""
-        );
-
-    const js =
-        (campaignLieu || "").trim();
-
-    const modeNum =
-        parseInt(mode, 10);
-
-    switch(modeNum){
-
-        case 0:
-            return "";
-
-        case 1:
-            return ev;
-
-        case 2:
-            return js;
-
-        case 3:
-            return ev || js;
-
-        case 4:
-            return js || ev;
-
-        default:
-            return ev || js;
-
-    }
-
+    return date.toLocaleTimeString(
+        "fr-FR",
+        {
+            hour: "2-digit",
+            minute: "2-digit"
+        }
+    );
 }
 
 
-const STATUS_COLORS = {
+function resolveLocation(eventLocation, campaignLocation, displayMode){
 
-    "annulé": "#c0392b",
-    "annule": "#c0392b",
-    "complet": "#e08e0b",
-    "reporté": "#6c5ce7",
-    "reporte": "#6c5ce7"
+    const eventText = String(eventLocation || "").trim();
+    const campaignText = String(campaignLocation || "").trim();
 
-};
+    if(displayMode === "1"){
+        return campaignText || eventText;
+    }
+
+    if(displayMode === "2"){
+        return eventText || campaignText;
+    }
+
+    if(displayMode === "0"){
+        return "";
+    }
+
+    return campaignText || eventText;
+}
 
 
-// ============================================================
-// QR CODE D'INSCRIPTION
-// ============================================================
+function getFileParam(){
 
-function renderRegistrationQr(campaign){
+    const params = new URLSearchParams(window.location.search);
 
-    const registrationBox =
-        document.getElementById(
-            "registrationBox"
+    return params.get("file");
+}
+
+
+function getEventParam(){
+
+    const params = new URLSearchParams(window.location.search);
+
+    return params.get("event");
+}
+
+
+function getDayParam(){
+
+    const params = new URLSearchParams(window.location.search);
+
+    return params.get("day");
+}
+
+
+async function loadAgenda(){
+
+    const file = getFileParam() || DATA_URL;
+
+    const response = await fetch(file + "?v=" + Date.now());
+
+    if(!response.ok){
+        throw new Error("Impossible de charger " + file);
+    }
+
+    return await response.json();
+}
+
+
+function getEventsFromData(data){
+
+    if(Array.isArray(data)){
+        return data;
+    }
+
+    if(Array.isArray(data.events)){
+        return data.events;
+    }
+
+    return [];
+}
+
+
+function sortEvents(events){
+
+    return [...events].sort(
+        (a,b) => new Date(a.start) - new Date(b.start)
+    );
+}
+
+
+function filterEvents(events){
+
+    const eventId = getEventParam();
+    const day = getDayParam();
+
+    let result = sortEvents(events);
+
+    if(eventId){
+
+        result = result.filter(
+            event => String(event.uid) === String(eventId)
         );
 
-    const registrationQr =
-        document.getElementById(
-            "registrationQr"
-        );
+    }
 
-    const registrationLink =
-        document.getElementById(
-            "registrationLink"
-        );
+    if(day){
 
-    const registrationQrText =
-        document.getElementById(
-            "registrationQrText"
-        );
+        result = result.filter(event => {
+
+            const date = new Date(event.start);
+
+            const localDay =
+                date.getFullYear() + "-" +
+                String(date.getMonth()+1).padStart(2,"0") + "-" +
+                String(date.getDate()).padStart(2,"0");
+
+            return localDay === day;
+        });
+    }
+
+    return result;
+}
 
 
-    // Si le HTML ne contient pas encore les éléments du QR,
-    // on ne bloque surtout pas l'affichage de l'événement.
-    if(
-        !registrationBox ||
-        !registrationQr
-    ){
+function hideOptional(elementId){
 
+    const element = document.getElementById(elementId);
+
+    if(!element){
         return;
-
     }
 
+    element.textContent = "";
 
-    // Nettoyage du QR précédent
+    const line = element.closest(".infoLine");
+
+    if(line){
+        line.classList.add("hidden");
+    }
+}
+
+
+function showOptional(elementId, text){
+
+    const element = document.getElementById(elementId);
+
+    if(!element){
+        return;
+    }
+
+    element.textContent = text || "";
+
+    const line = element.closest(".infoLine");
+
+    if(line){
+        if(text){
+            line.classList.remove("hidden");
+        } else {
+            line.classList.add("hidden");
+        }
+    }
+}
+
+
+// ============================================================
+// QR CODE
+// ============================================================
+
+function renderRegistration(campaign){
+
+    const registrationBox = document.getElementById("registrationBox");
+    const registrationQr = document.getElementById("registrationQr");
+    const registrationLink = document.getElementById("registrationLink");
+    const registrationQrText = document.getElementById("registrationQrText");
+
+    if(!registrationBox || !registrationQr){
+        return;
+    }
+
     registrationQr.innerHTML = "";
 
-
-    const url =
-        campaign &&
-        campaign.lien_inscription
-            ? String(
-                campaign.lien_inscription
-            ).trim()
-            : "";
-
-
-    // --------------------------------------------------------
-    // Aucun lien
-    // --------------------------------------------------------
+    const url = campaign && campaign.lien_inscription
+        ? String(campaign.lien_inscription).trim()
+        : "";
 
     if(!url){
 
-        registrationBox.classList.add(
-            "hidden"
-        );
+        registrationBox.classList.add("hidden");
 
         if(registrationLink){
-
-            registrationLink.removeAttribute(
-                "href"
-            );
-
+            registrationLink.removeAttribute("href");
         }
 
         return;
-
     }
-
-
-    // --------------------------------------------------------
-    // Lien cliquable
-    // --------------------------------------------------------
 
     if(registrationLink){
-
-        registrationLink.href =
-            url;
-
-        registrationLink.target =
-            "_blank";
-
-        registrationLink.rel =
-            "noopener noreferrer";
-
+        registrationLink.href = url;
+        registrationLink.target = "_blank";
+        registrationLink.rel = "noopener noreferrer";
     }
 
-
-    // --------------------------------------------------------
-    // Bibliothèque QRCode
-    // --------------------------------------------------------
-
-    if(
-        typeof QRCode === "undefined"
-    ){
+    if(typeof QRCode === "undefined"){
 
         console.error(
             "QRCode n'est pas chargé. Vérifie que qrcode.min.js est présent avant script.js."
         );
 
-        registrationBox.classList.add(
-            "hidden"
-        );
-
+        registrationBox.classList.add("hidden");
         return;
-
     }
-
-
-    // --------------------------------------------------------
-    // Génération du QR code
-    // --------------------------------------------------------
 
     try{
 
@@ -366,33 +242,19 @@ function renderRegistrationQr(campaign){
             registrationQr,
             {
                 text: url,
-
                 width: 220,
-
                 height: 220,
-
                 colorDark: "#000000",
-
                 colorLight: "#ffffff",
-
-                correctLevel:
-                    QRCode.CorrectLevel.H
+                correctLevel: QRCode.CorrectLevel.H
             }
         );
 
-
         if(registrationQrText){
-
-            registrationQrText.textContent =
-                "Scannez pour vous inscrire";
-
+            registrationQrText.textContent = "Scannez pour vous inscrire";
         }
 
-
-        registrationBox.classList.remove(
-            "hidden"
-        );
-
+        registrationBox.classList.remove("hidden");
 
     } catch(error){
 
@@ -401,14 +263,14 @@ function renderRegistrationQr(campaign){
             error
         );
 
-        registrationBox.classList.add(
-            "hidden"
-        );
-
+        registrationBox.classList.add("hidden");
     }
-
 }
 
+
+// ============================================================
+// AFFICHAGE D'UN ÉVÉNEMENT
+// ============================================================
 
 function renderEvent(event){
 
@@ -418,527 +280,340 @@ function renderEvent(event){
 
     const start = new Date(event.start);
     const end = new Date(event.end);
-
     const campaign = event.campaign || {};
 
+    const campaignTitle = document.getElementById("campaignTitle");
+    const eventTitle = document.getElementById("eventTitle");
 
-    document.getElementById("campaignTitle").textContent =
-        campaign.titre || event.title;
+    if(campaignTitle){
+        campaignTitle.textContent = campaign.titre || event.title;
+    }
 
+    if(eventTitle){
+        eventTitle.textContent = campaign.sous_titre || event.title;
+    }
 
     // Logo association dynamique : L'Établi Ludique ou Le Raffut
-    // Ludique selon le calendrier d'origine de l'événement (champ
-    // icon, déjà utilisé partout ailleurs sur ce dépôt : LEL*/LRL*).
-    // Par défaut (icon absent), on retombe sur L'Établi Ludique.
+    // Ludique selon le calendrier d'origine de l'événement.
     const associationLogo =
         document.getElementById("associationLogo");
 
     if(associationLogo){
 
         if((event.icon || "").startsWith("LRL")){
-
             associationLogo.src = "img/logo-raffut.svg";
             associationLogo.alt = "Le Raffut Ludique";
-
         } else {
-
             associationLogo.src = "img/logo-etabli.svg";
             associationLogo.alt = "L'Établi Ludique";
-
         }
-
     }
 
+    // La date est maintenant affichée dans le bloc des informations.
+    // L'heure reste dans sa propre ligne : plus de redondance.
+    const campaignDate = document.getElementById("campaignDate");
 
-    document.getElementById("campaignDate").textContent =
-        `${formatDate(start)} – ${formatHour(start)} à ${formatHour(end)}`;
-
-
-    document.getElementById("eventTitle").textContent =
-        campaign.sous_titre || event.title;
-
-
-    document.getElementById("eventHours").textContent =
-        `${formatHour(start)} – ${formatHour(end)}`;
-
-
-    const locationEl =
-        document.getElementById("eventLocation");
-
-
-    const locationText =
-        resolveLocation(
-            event.location,
-            campaign.lieu,
-            campaign.affichage_lieu !== undefined
-                ? campaign.affichage_lieu
-                : 3
-        );
-
-
-    if(locationText){
-
-        locationEl.textContent =
-            locationText;
-
-        locationEl
-            .closest(".infoLine")
-            .classList.remove("hidden");
-
-    } else {
-
-        locationEl
-            .closest(".infoLine")
-            .classList.add("hidden");
-
+    if(campaignDate){
+        campaignDate.textContent = formatDate(start);
     }
 
+    const eventHours = document.getElementById("eventHours");
 
-    const photoBox =
-        document.getElementById("photoBox");
+    if(eventHours){
+        eventHours.textContent = `${formatHour(start)} – ${formatHour(end)}`;
+    }
 
-    const campaignImage =
-        document.getElementById("campaignImage");
+    const locationEl = document.getElementById("eventLocation");
 
+    const locationText = resolveLocation(
+        event.location,
+        campaign.lieu,
+        campaign.affichage_lieu !== undefined
+            ? campaign.affichage_lieu
+            : 3
+    );
+
+    if(locationEl){
+
+        locationEl.textContent = locationText;
+
+        const line = locationEl.closest(".infoLine");
+
+        if(line){
+            if(locationText){
+                line.classList.remove("hidden");
+            } else {
+                line.classList.add("hidden");
+            }
+        }
+    }
+
+    const photoBox = document.getElementById("photoBox");
+    const campaignImage = document.getElementById("campaignImage");
 
     if(campaign.image){
 
-        campaignImage.src =
-            campaign.image;
-
-        photoBox.classList.remove(
-            "hidden"
-        );
+        campaignImage.src = campaign.image;
+        photoBox.classList.remove("hidden");
 
     } else {
 
-        photoBox.classList.add(
-            "hidden"
-        );
-
+        photoBox.classList.add("hidden");
     }
 
-
-    const campaignLogoBox =
-        document.getElementById(
-            "campaignLogoBox"
-        );
-
-    const campaignLogo =
-        document.getElementById(
-            "campaignLogo"
-        );
-
+    const campaignLogoBox = document.getElementById("campaignLogoBox");
+    const campaignLogo = document.getElementById("campaignLogo");
 
     if(campaign.logo){
 
-        campaignLogo.src =
-            campaign.logo;
+        campaignLogo.src = campaign.logo;
+        campaignLogoBox.classList.remove("hidden");
 
-        campaignLogoBox.classList.remove(
-            "hidden"
-        );
-
-        // Couleur de fond du logo : celle fournie,
-        // sinon transparent.
         campaignLogoBox.style.background =
-            campaign.logo_fond ||
-            "transparent";
+            campaign.logo_fond || "transparent";
 
     } else {
 
-        campaignLogoBox.classList.add(
-            "hidden"
-        );
-
+        campaignLogoBox.classList.add("hidden");
     }
 
+    const screen = document.getElementById("screen");
 
-    // Photo de fond de l'écran : si fournie, on l'applique avec un voile
-    // sombre pour garder le texte lisible ; sinon on garde le fond uni.
-    const screen =
-        document.getElementById("screen");
+    if(screen){
 
-    const bgOverlay =
-        document.getElementById("bgOverlay");
-
-
-    if(campaign.fond){
-
-        screen.style.backgroundImage =
-            `url("${campaign.fond}")`;
-
-        bgOverlay.style.display =
-            "block";
-
-    } else {
-
-        screen.style.backgroundImage =
-            "";
-
-        bgOverlay.style.display =
-            "none";
-
+        if(campaign.fond){
+            screen.style.backgroundImage =
+                `url("${campaign.fond}")`;
+        } else {
+            screen.style.backgroundImage = "";
+        }
     }
 
+    const tarifEl = document.getElementById("eventTarif");
 
-    const tarifEl =
-        document.getElementById("eventTarif");
+    if(tarifEl){
 
+        const tarif = campaign.tarif || "";
+        tarifEl.textContent = tarif;
 
-    if(campaign.tarif){
+        const line = tarifEl.closest(".infoLine");
 
-        tarifEl.textContent =
-            campaign.tarif;
-
-        tarifEl
-            .closest(".infoLine")
-            .classList.remove("hidden");
-
-    } else {
-
-        tarifEl
-            .closest(".infoLine")
-            .classList.add("hidden");
-
+        if(line){
+            if(tarif){
+                line.classList.remove("hidden");
+            } else {
+                line.classList.add("hidden");
+            }
+        }
     }
 
+    const inscriptionEl = document.getElementById("eventInscription");
 
-    // ========================================================
-    // INSCRIPTION — TEXTE LIBRE
-    // ========================================================
+    if(inscriptionEl){
 
-    const inscriptionEl =
-        document.getElementById(
-            "eventInscription"
-        );
+        const inscription = campaign.inscription || "";
+        inscriptionEl.textContent = inscription;
 
+        const line = inscriptionEl.closest(".infoLine");
 
-    if(campaign.inscription){
-
-        inscriptionEl.textContent =
-            campaign.inscription;
-
-        inscriptionEl
-            .closest(".infoLine")
-            .classList.remove("hidden");
-
-    } else {
-
-        inscriptionEl
-            .closest(".infoLine")
-            .classList.add("hidden");
-
+        if(line){
+            if(inscription){
+                line.classList.remove("hidden");
+            } else {
+                line.classList.add("hidden");
+            }
+        }
     }
 
+    const statusText = document.getElementById("statusText");
+    const statusRibbon = document.getElementById("statusRibbon");
 
-    // ========================================================
-    // QR CODE + LIEN CLIQUABLE
-    // ========================================================
+    if(statusText && statusRibbon){
 
-    renderRegistrationQr(
-        campaign
-    );
+        const statut = campaign.statut || "";
 
+        statusText.textContent = statut;
 
-    const statusRibbon =
-        document.getElementById(
-            "statusRibbon"
-        );
-
-    const statusText =
-        document.getElementById(
-            "statusText"
-        );
-
-
-    if(campaign.statut){
-
-        const key =
-            campaign.statut
-                .trim()
-                .toLowerCase();
-
-        statusText.textContent =
-            campaign.statut;
-
-        statusRibbon.style.background =
-            STATUS_COLORS[key] ||
-            "#c0392b";
-
-        statusRibbon.style.display =
-            "block";
-
-    } else {
-
-        statusRibbon.style.display =
-            "none";
-
+        if(statut){
+            statusRibbon.classList.remove("hidden");
+        } else {
+            statusRibbon.classList.add("hidden");
+        }
     }
 
-
-    updateCountdown();
-
-
-    // Après avoir tout rempli (donc une fois la vraie hauteur du texte
-    // connue, y compris le bandeau de statut qui vient d'apparaître ou
-    // non), on vérifie que ça tient dans l'espace disponible.
-    requestAnimationFrame(
-        fitContent
-    );
-
+    renderRegistration(campaign);
 }
 
 
-// Réduit #content dans son ensemble (titre, compte à rebours, photo,
-// infos...) si son contenu naturel dépasse l'espace disponible au-dessus
-// du bandeau de statut, pour qu'aucun texte ne soit jamais coupé/masqué,
-// quelle que soit la longueur du titre ou des autres champs.
-function fitContent(){
-
-    const content =
-        document.getElementById(
-            "content"
-        );
-
-    const screen =
-        document.getElementById(
-            "screen"
-        );
-
-    const bottomZone =
-        document.getElementById(
-            "bottomZone"
-        );
-
-
-    if(!content || !screen) return;
-
-
-    // On repart d'une échelle neutre avant de mesurer, sinon une réduction
-    // précédente fausserait la mesure du contenu naturel.
-    content.style.transform =
-        "scale(1)";
-
-
-    const bottomZoneHeight =
-        bottomZone
-            ? bottomZone.offsetHeight
-            : 0;
-
-
-    const available =
-        (screen.clientHeight -
-            bottomZoneHeight) *
-        0.97;
-
-
-    const natural =
-        content.scrollHeight;
-
-
-    if(
-        natural > available &&
-        natural > 0
-    ){
-
-        const scale =
-            Math.max(
-                0.5,
-                available / natural
-            );
-
-        content.style.transform =
-            `scale(${scale})`;
-
-    }
-
-}
-
+// ============================================================
+// ÉTAT VIDE
+// ============================================================
 
 function renderEmpty(){
 
-    currentEvent = null;
+    document.body.classList.add("empty");
 
-    document.body.classList.add(
-        "empty"
-    );
+    const noEvent = document.getElementById("noEvent");
 
+    if(noEvent){
+        noEvent.classList.remove("hidden");
+    }
 }
 
 
-function updateCountdown(){
+function hideEmpty(){
 
-    if(!currentEvent){
+    const noEvent = document.getElementById("noEvent");
 
-        return;
-
+    if(noEvent){
+        noEvent.classList.add("hidden");
     }
-
-    // Page "affiche" (sans compte à rebours) : on ne calcule ni
-    // n'affiche rien ici. On garde quand même l'appel actif ailleurs
-    // dans le code pour ne pas casser le rechargement automatique
-    // lorsque l'événement affiché se termine (voir plus bas).
-    if(window.HIDE_COUNTDOWN){
-
-        if(
-            currentEvent.end &&
-            new Date(currentEvent.end).getTime() <= Date.now()
-        ){
-            loadEvents();
-        }
-
-        return;
-
-    }
-
-
-    const text =
-        computeCountdown(
-            currentEvent
-        );
-
-
-    if(text === null){
-
-        // L'événement affiché est maintenant terminé :
-        // on recharge pour passer au suivant.
-        loadEvents();
-
-        return;
-
-    }
-
-
-    document.getElementById(
-        "countdownText"
-    ).textContent =
-        text;
-
 }
 
 
-async function loadEvents(){
+// ============================================================
+// INITIALISATION
+// ============================================================
+
+async function init(){
 
     try{
 
-        const response =
-            await fetch(
-                DATA_URL +
-                "?t=" +
-                Date.now()
-            );
+        const data = await loadAgenda();
+        const events = filterEvents(getEventsFromData(data));
 
-
-        const json =
-            await response.json();
-
-
-        let overrides = {};
-
-
-        try{
-
-            const overridesRes =
-                await fetch(
-                    OVERRIDES_URL +
-                    "?t=" +
-                    Date.now()
-                );
-
-            overrides =
-                await overridesRes.json();
-
-        } catch(err){
-
-            // Pas grave si absent :
-            // on reste sur le statut de events.json.
-
-        }
-
-
-        if(
-            json.events &&
-            json.events.length
-        ){
-
-            const requestedUid =
-                new URLSearchParams(
-                    window.location.search
-                ).get("id");
-
-            let event = null;
-
-            if(requestedUid){
-
-                event =
-                    json.events.find(
-                        e => e.uid === requestedUid
-                    );
-
-            }
-
-            // Pas de paramètre, ou uid introuvable
-            // (événement passé/supprimé entretemps) :
-            // on retombe sur le prochain événement.
-            if(!event){
-
-                event = json.events[0];
-
-            }
-
-
-            const override =
-                overrides[event.uid];
-
-
-            if(
-                override &&
-                override.statut !== undefined
-            ){
-
-                event.campaign =
-                    event.campaign || {};
-
-                event.campaign.statut =
-                    override.statut;
-
-            }
-
-
-            renderEvent(
-                event
-            );
-
-        } else {
-
+        if(!events.length){
             renderEmpty();
-
+            return;
         }
 
+        hideEmpty();
+        renderEvent(events[0]);
 
-    } catch(err){
+    } catch(error){
 
-        console.error(
-            "Erreur de chargement de events.json :",
-            err
-        );
-
+        console.error("Erreur chargement agenda :", error);
+        renderEmpty();
     }
-
 }
 
 
-loadEvents();
+// ============================================================
+// TÉLÉCHARGEMENT D'IMAGE
+// ============================================================
+
+async function loadHtml2Canvas(){
+
+    if(typeof html2canvas !== "undefined"){
+        return html2canvas;
+    }
+
+    await new Promise((resolve,reject) => {
+
+        const script = document.createElement("script");
+
+        script.src =
+            "https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js";
+
+        script.onload = resolve;
+        script.onerror = reject;
+
+        document.head.appendChild(script);
+    });
+
+    return html2canvas;
+}
 
 
-setInterval(
-    loadEvents,
-    REFRESH_DATA_MS
-);
+async function downloadImage(format){
+
+    const canvasLib = await loadHtml2Canvas();
+    const target = document.getElementById("screen");
+
+    if(!target){
+        return;
+    }
+
+    const toolbar = document.querySelector(".downloadToolbar");
+
+    if(toolbar){
+        toolbar.style.visibility = "hidden";
+    }
+
+    try{
+
+        const canvas = await canvasLib(
+            target,
+            {
+                backgroundColor: null,
+                useCORS: true,
+                scale: 2
+            }
+        );
+
+        let mime = "image/png";
+        let quality = undefined;
+        let extension = "png";
+
+        if(format === "jpg"){
+            mime = "image/jpeg";
+            quality = 0.95;
+            extension = "jpg";
+        }
+
+        if(format === "webp"){
+            mime = "image/webp";
+            quality = 0.95;
+            extension = "webp";
+        }
+
+        canvas.toBlob(blob => {
+
+            if(!blob){
+                return;
+            }
+
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+
+            link.href = url;
+            link.download = "affiche-evenement." + extension;
+            link.click();
+
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+
+        }, mime, quality);
+
+    } finally {
+
+        if(toolbar){
+            toolbar.style.visibility = "visible";
+        }
+    }
+}
 
 
-setInterval(
-    updateCountdown,
-    REFRESH_COUNTDOWN_MS
-);
+function bindDownloadButtons(){
+
+    const png = document.getElementById("downloadPngBtn");
+    const jpg = document.getElementById("downloadJpgBtn");
+    const webp = document.getElementById("downloadWebpBtn");
+
+    if(png){
+        png.addEventListener("click", () => downloadImage("png"));
+    }
+
+    if(jpg){
+        jpg.addEventListener("click", () => downloadImage("jpg"));
+    }
+
+    if(webp){
+        webp.addEventListener("click", () => downloadImage("webp"));
+    }
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    bindDownloadButtons();
+    init();
+});
