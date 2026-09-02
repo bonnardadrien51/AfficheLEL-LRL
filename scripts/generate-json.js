@@ -1,4 +1,3 @@
-
 const axios = require("axios");
 const ical = require("node-ical");
 const fs = require("fs");
@@ -67,6 +66,16 @@ const JEUX_IMG_DIR =
 // OUTILS URL
 // ============================================================
 
+function cleanText(value) {
+
+  if (value === undefined || value === null) {
+    return "";
+  }
+
+  return String(value).trim();
+}
+
+
 function normalizeUrl(value) {
 
   if (!value) {
@@ -75,17 +84,18 @@ function normalizeUrl(value) {
 
   let url = String(value).trim();
 
-  // Transforme :
-  // [https://exemple.fr](https://exemple.fr)
-  //
-  // en :
-  // https://exemple.fr
-
   const markdownMatch =
-    url.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    url.match(/^\[.*?\]\((https?:\/\/[^)\s]+)\)$/);
 
   if (markdownMatch) {
-    url = markdownMatch[2].trim();
+    return markdownMatch[1];
+  }
+
+  const urlMatch =
+    url.match(/(https?:\/\/[^\s)\]]+)/);
+
+  if (urlMatch) {
+    return urlMatch[1];
   }
 
   return url;
@@ -102,19 +112,29 @@ function cleanDescription(rawDescription) {
     return "";
   }
 
-  return String(rawDescription)
+  let cleaned = String(rawDescription);
 
-    .replace(
-      /<br\s*\/?>/gi,
-      "\n"
-    )
+  cleaned = cleaned.replace(
+    /<br\s*\/?>/gi,
+    "\n"
+  );
 
-    .replace(
-      /<[^>]+>/g,
-      ""
-    )
+  cleaned = cleaned.replace(
+    /<[^>]+>/g,
+    ""
+  );
 
-    .trim();
+  cleaned = cleaned.replace(
+    /\u00A0/g,
+    " "
+  );
+
+  cleaned = cleaned.replace(
+    /[\u200B-\u200D\uFEFF]/g,
+    ""
+  );
+
+  return cleaned.trim();
 }
 
 
@@ -131,61 +151,127 @@ function parseCampaign(rawDescription) {
     return null;
   }
 
+  let data = null;
+
+  // 1. Cas normal : la description contient uniquement le JSON.
   try {
 
-    const data =
-      JSON.parse(cleaned);
+    data = JSON.parse(cleaned);
 
-    return {
+  } catch (error) {
 
-      titre:
-        data.titre || "",
+    // 2. Secours : Google Calendar peut parfois ajouter du texte
+    // ou une mise en forme autour du JSON.
+    const firstBrace =
+      cleaned.indexOf("{");
 
-      image:
-        normalizeUrl(data.image),
+    const lastBrace =
+      cleaned.lastIndexOf("}");
 
-      logo:
-        normalizeUrl(data.logo),
+    if (
+      firstBrace !== -1 &&
+      lastBrace > firstBrace
+    ) {
 
-      logo_fond:
-        data.logo_fond || "",
+      try {
 
-      fond:
-        normalizeUrl(data.fond),
+        data = JSON.parse(
+          cleaned.slice(
+            firstBrace,
+            lastBrace + 1
+          )
+        );
 
-      tarif:
-        data.tarif || "",
+      } catch (extractError) {
 
-      inscription:
-        data.inscription || "",
+        console.warn(
+          "\n⚠️ JSON campagne invalide"
+        );
 
-      lien_inscription:
-        normalizeUrl(
-          data.lien_inscription
-        ),
+        console.warn(
+          "Description reçue :"
+        );
 
-      statut:
-        data.statut || "",
+        console.warn(
+          cleaned
+        );
 
-      lieu:
-        data.lieu || "",
+        console.warn(
+          "Erreur :",
+          extractError.message
+        );
 
-      affichage_lieu:
-        data.affichage_lieu !== undefined
-          ? String(data.affichage_lieu)
-          : "3"
+        return null;
+      }
 
-    };
+    } else {
 
-  } catch (err) {
+      console.warn(
+        "\n⚠️ Aucun JSON trouvé dans la description"
+      );
 
-    console.warn(
-      "Description JSON ignorée pour un événement :",
-      cleaned.slice(0, 150)
-    );
+      console.warn(
+        cleaned
+      );
 
+      return null;
+    }
+  }
+
+  if (
+    !data ||
+    typeof data !== "object"
+  ) {
     return null;
   }
+
+  return {
+
+    titre:
+      cleanText(data.titre),
+
+    sous_titre:
+      cleanText(
+        data.sous_titre ||
+        data["sous-titre"]
+      ),
+
+    image:
+      normalizeUrl(data.image),
+
+    logo:
+      normalizeUrl(data.logo),
+
+    logo_fond:
+      cleanText(data.logo_fond),
+
+    fond:
+      normalizeUrl(data.fond),
+
+    tarif:
+      cleanText(data.tarif),
+
+    inscription:
+      cleanText(data.inscription),
+
+    lien_inscription:
+      normalizeUrl(
+        data.lien_inscription
+      ),
+
+    statut:
+      cleanText(data.statut),
+
+    lieu:
+      cleanText(data.lieu),
+
+    affichage_lieu:
+      data.affichage_lieu !== undefined &&
+      data.affichage_lieu !== null
+        ? String(data.affichage_lieu)
+        : "3"
+
+  };
 }
 
 
@@ -820,51 +906,39 @@ async function loadCalendar(
 
     events.push({
 
-      // ======================================================
-      // IDENTIFIANT UNIQUE
-      // ======================================================
-
       uid:
-        e.uid || "",
-
-
-      // ======================================================
-      // DONNÉES CALENDRIER
-      // ======================================================
+        e.uid ||
+        `${calendar.label}-${e.start.toISOString()}-${e.summary || ""}`,
 
       title:
         e.summary || "",
 
-      location:
-        e.location || "",
-
       start:
         e.start,
 
-      end:
-        end,
+      end,
 
-      label:
+      location:
+        e.location || "",
+
+      description:
+        e.description || "",
+
+      campaign:
+        parseCampaign(
+          e.description
+        ),
+
+      calendar:
         calendar.label,
 
       icon:
         calendar.icon,
 
       color:
-        calendar.color,
-
-
-      // ======================================================
-      // JSON PERSONNALISÉ
-      // ======================================================
-
-      campaign:
-        parseCampaign(
-          e.description
-        )
+        calendar.color
 
     });
-
   }
 
   return events;
@@ -872,538 +946,160 @@ async function loadCalendar(
 
 
 // ============================================================
-// PROGRAMME PRINCIPAL
+// SUITE DU SCRIPT
 // ============================================================
 
 async function main() {
 
-  console.log(
-    "========================================"
-  );
+  try {
 
-  console.log(
-    "   GÉNÉRATION DES ÉVÉNEMENTS"
-  );
+    console.log(
+      "\n=============================="
+    );
 
-  console.log(
-    "========================================"
-  );
+    console.log(
+      "GÉNÉRATION DE L'AGENDA"
+    );
 
+    console.log(
+      "==============================\n"
+    );
 
-  let allEvents = [];
+    let allEvents = [];
 
+    for (const calendar of calendars) {
 
-  const eventsByLabel = {};
+      try {
 
+        const events =
+          await loadCalendar(
+            calendar
+          );
 
-  // ==========================================================
-  // CHARGEMENT DES CALENDRIERS
-  // ==========================================================
+        allEvents.push(
+          ...events
+        );
 
-  for (
-    const calendar of calendars
-  ) {
+        console.log(
+          `✓ ${calendar.label} : ${events.length} événements`
+        );
+
+      } catch (error) {
+
+        console.error(
+          `✗ ${calendar.label} :`,
+          error.message
+        );
+
+      }
+    }
+
+    allEvents.sort(
+      (a, b) =>
+        a.start - b.start
+    );
+
+    const vacationPeriods =
+      await loadVacationCalendar();
+
+    let allGames = [];
 
     try {
 
-      const list =
-        await loadCalendar(
-          calendar
+      const response =
+        await axios.get(
+          JEUX_URL,
+          {
+            headers: {
+              "User-Agent":
+                "Mozilla/5.0"
+            }
+          }
         );
 
-      allEvents.push(
-        ...list
-      );
+      allGames =
+        Array.isArray(response.data)
+          ? response.data
+          : [];
 
-      eventsByLabel[
-        calendar.label
-      ] =
-        list;
-
-    } catch (err) {
+    } catch (error) {
 
       console.error(
-        "Erreur lors de la lecture du calendrier " +
-        calendar.label +
-        " :",
-        err.message
+        "Impossible de charger les jeux :",
+        error.message
       );
 
     }
 
-  }
-
-
-  // ==========================================================
-  // TRI
-  // ==========================================================
-
-  allEvents.sort(
-    (a, b) =>
-      a.start - b.start
-  );
-
-
-  // ==========================================================
-  // FENÊTRE DE 6 MOIS
-  // ==========================================================
-
-  const now =
-    new Date();
-
-  const sixMonthsFromNow =
-    new Date(now);
-
-  sixMonthsFromNow.setMonth(
-    sixMonthsFromNow.getMonth() + 6
-  );
-
-
-  const generalEvents =
-    allEvents.filter(
-      event =>
-        event.start <=
-        sixMonthsFromNow
-    );
-
-
-  // ==========================================================
-  // CHARGEMENT DES STATUS OVERRIDES
-  // ==========================================================
-
-  let overrides = {};
-
-  try {
-
-    if (
-      fs.existsSync(
-        "status-overrides.json"
-      )
-    ) {
-
-      overrides =
-        JSON.parse(
-          fs.readFileSync(
-            "status-overrides.json",
-            "utf8"
-          )
-        );
-
-    }
-
-  } catch (err) {
-
-    console.warn(
-      "Impossible de lire status-overrides.json :",
-      err.message
-    );
-
-    overrides = {};
-
-  }
-
-
-  // ==========================================================
-  // APPLICATION DES STATUS
-  // ==========================================================
-
-  for (
-    const event of generalEvents
-  ) {
-
-    const override =
-      overrides[
-        event.uid
-      ];
-
-    if (
-      override &&
-      override.statut !== undefined
-    ) {
-
-      event.campaign =
-        event.campaign || {
-
-          titre: "",
-          image: "",
-          logo: "",
-          logo_fond: "",
-          fond: "",
-          tarif: "",
-          inscription: "",
-          lien_inscription: "",
-          statut: "",
-          lieu: "",
-          affichage_lieu: "3"
-
-        };
-
-
-      event.campaign.statut =
-        override.statut;
-
-    }
-
-  }
-
-
-  // ==========================================================
-  // AGENDA.JSON
-  // ==========================================================
-
-  const generalJson = {
-
-    updated:
-      new Date().toLocaleString(
-        "fr-FR",
-        {
-          timeZone:
-            "Europe/Paris"
-        }
-      ),
-
-    events:
-      generalEvents
-
-  };
-
-
-  fs.writeFileSync(
-
-    "agenda.json",
-
-    JSON.stringify(
-      generalJson,
-      null,
-      2
-    ),
-
-    "utf8"
-
-  );
-
-
-  console.log(
-    generalEvents.length +
-    " événement(s) enregistré(s) dans agenda.json."
-  );
-
-
-  // ==========================================================
-  // AGENDA ADHÉRENTS
-  // ==========================================================
-
-  const adherentEvents =
-    (
-      eventsByLabel[
-        "Soirée adhérents"
-      ] || []
-    )
-      .sort(
-        (a, b) =>
-          a.start - b.start
-      )
-      .slice(
-        0,
-        15
-      );
-
-
-  const adherentJson = {
-
-    updated:
-      new Date().toLocaleString(
-        "fr-FR",
-        {
-          timeZone:
-            "Europe/Paris"
-        }
-      ),
-
-    events:
-      adherentEvents
-
-  };
-
-
-  fs.writeFileSync(
-
-    "agenda-adherents.json",
-
-    JSON.stringify(
-      adherentJson,
-      null,
-      2
-    ),
-
-    "utf8"
-
-  );
-
-
-  console.log(
-    adherentEvents.length +
-    " événement(s) enregistré(s) dans agenda-adherents.json."
-  );
-
-
-  // ==========================================================
-  // VACANCES
-  // ==========================================================
-
-  try {
-
-    const periods =
-      await loadVacationCalendar();
-
-
-    const vacancesJson = {
-
-      updated:
-        new Date().toLocaleString(
-          "fr-FR",
-          {
-            timeZone:
-              "Europe/Paris"
-          }
-        ),
-
-      periods
-
-    };
-
-
-    fs.writeFileSync(
-
-      "vacances.json",
-
-      JSON.stringify(
-        vacancesJson,
-        null,
-        2
-      ),
-
-      "utf8"
-
-    );
-
-
-    console.log(
-      periods.length +
-      " période(s) enregistrée(s) dans vacances.json."
-    );
-
-
-  } catch (err) {
-
-    console.error(
-      "Erreur lors de la lecture du calendrier vacances :",
-      err.message
-    );
-
-  }
-
-
-  // ==========================================================
-  // LUDOTHÈQUE
-  // ==========================================================
-
-  try {
-
-    console.log(
-      "Lecture :",
-      JEUX_URL
-    );
-
-
-    const jeuxResponse =
-      await axios.get(
-        JEUX_URL,
-        {
-          headers: {
-            "User-Agent":
-              "Mozilla/5.0"
-          }
-        }
-      );
-
-
-    const allGames =
-      jeuxResponse.data || [];
-
-
-    const updatedNow =
-      new Date().toLocaleString(
-        "fr-FR",
-        {
-          timeZone:
-            "Europe/Paris"
-        }
-      );
-
-
-    // --------------------------------------------------------
-    // DERNIERS JEUX
-    // --------------------------------------------------------
-
-    const jeux =
+    const newestGames =
       await loadNewestGames(
         allGames
       );
 
-
-    fs.writeFileSync(
-
-      "jeux.json",
-
-      JSON.stringify(
-        {
-          updated:
-            updatedNow,
-
-          jeux
-        },
-        null,
-        2
-      ),
-
-      "utf8"
-
-    );
-
-
-    console.log(
-      jeux.length +
-      " jeu(x) enregistré(s) dans jeux.json."
-    );
-
-
-    // --------------------------------------------------------
-    // SUIVI COMPLET
-    // --------------------------------------------------------
-
-    const statusList =
+    const imageReport =
       await checkAllGames(
         allGames
       );
 
-
-    const visuelsManquants =
-      statusList.filter(
-        j =>
-          j.visuelManquant
-      );
-
-
-    const pngRestants =
-      statusList.filter(
-        j =>
-          j.isPng &&
-          !j.visuelManquant
-      );
-
-
-    const sansEmplacement =
+    const emplacementReport =
       buildEmplacementReport(
         allGames
       );
 
-
-    const infosManquantes =
+    const missingInfoReport =
       buildMissingInfoReport(
         allGames
       );
 
+    const agenda = {
+
+      generated_at:
+        new Date().toISOString(),
+
+      events:
+        allEvents,
+
+      vacances:
+        vacationPeriods,
+
+      jeux:
+        newestGames,
+
+      jeux_images:
+        imageReport,
+
+      jeux_non_ranges:
+        emplacementReport,
+
+      jeux_infos_manquantes:
+        missingInfoReport
+
+    };
 
     fs.writeFileSync(
-
-      "jeux-suivi.json",
-
+      "agenda.json",
       JSON.stringify(
-        {
-
-          updated:
-            updatedNow,
-
-          total:
-            allGames.length,
-
-          visuelsManquants,
-
-          pngRestants,
-
-          sansEmplacement,
-
-          infosManquantes
-
-        },
+        agenda,
         null,
         2
       ),
-
       "utf8"
-
     );
-
-
-    const totalSansEmplacement =
-      sansEmplacement.reduce(
-        (
-          sum,
-          groupe
-        ) =>
-          sum +
-          groupe.jeux.length,
-        0
-      );
-
 
     console.log(
-
-      visuelsManquants.length +
-      " visuel(s) manquant(s), " +
-
-      pngRestants.length +
-      " jeu(x) encore en .png, " +
-
-      totalSansEmplacement +
-      " jeu(x) sans emplacement, " +
-
-      infosManquantes.length +
-      " jeu(x) avec des infos manquantes enregistrés dans jeux-suivi.json."
-
+      `\n✓ agenda.json généré : ${allEvents.length} événements`
     );
 
-
-  } catch (err) {
-
-    console.error(
-      "Erreur lors de la lecture de la ludothèque :",
-      err.message
-    );
-
-  }
-
-}
-
-
-// ============================================================
-// LANCEMENT
-// ============================================================
-
-main().catch(
-  err => {
+  } catch (error) {
 
     console.error(
-      "❌ ERREUR lors de la génération :"
-    );
-
-    console.error(
-      err.message
+      "Erreur générale :",
+      error
     );
 
     process.exit(1);
-
   }
-);
+}
 
+
+main();
