@@ -1,5 +1,5 @@
 {
-  "updated": "01/09/2026 11:42:49",
+  "updated": "02/09/2026 11:15:23",
   "events": [
     {
       "uid": "5e850973-863e-4a7e-aeb9-7e82fdb7fc49",
@@ -15,12 +15,23 @@
     {
       "uid": "fa8ad8f0-0d5e-4a61-a326-6a87c96bc8a3",
       "title": "Les soirées d'Avanne - Portes ouvertes",
-      "location": "3 Bis rue de l'eglise 25720 Avanne",
+      "location": "3 Bis rue de l'eglise - Maison Saint-Vincent - Proche studio photo d'Avanne.",
       "start": "2026-09-09T15:30:00.000Z",
       "end": "2026-09-09T19:00:00.000Z",
       "label": "Soirée adhérents",
       "icon": "LRLadherent.svg",
       "color": "#F6D67A",
+      "campaign": null
+    },
+    {
+      "uid": "5ncgoskm27s2etvforn0aqfjvl@google.com",
+      "title": "Fabrique ton boomerang ",
+      "location": "Parc urbain de Planoise, 8 Rue Albrecht Durer, Besançon",
+      "start": "2026-09-12T12:00:00.000Z",
+      "end": "2026-09-12T16:30:00.000Z",
+      "label": "Partenaire",
+      "icon": "LELpartenaire.svg",
+      "color": "#9EB6F1",
       "campaign": null
     },
     {
