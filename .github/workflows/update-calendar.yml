@@ -1,6 +1,10 @@
 name: Update agenda et ludothèque
 
 on:
+  push:
+    branches:
+      - main
+
   workflow_dispatch:
 
   schedule:
@@ -51,14 +55,8 @@ jobs:
   let data = null;
 
   try {
-
-    // Cas normal : toute la description est un JSON valide.
     data = JSON.parse(cleaned);
-
   } catch (err) {
-
-    // Google Calendar peut conserver du texte autour du JSON.
-    // On tente donc d'extraire le premier objet JSON complet.
     const firstBrace = cleaned.indexOf("{");
     const lastBrace = cleaned.lastIndexOf("}");
 
@@ -66,7 +64,6 @@ jobs:
       firstBrace !== -1 &&
       lastBrace > firstBrace
     ) {
-
       try {
         data = JSON.parse(
           cleaned.slice(firstBrace, lastBrace + 1)
@@ -78,17 +75,14 @@ jobs:
   }
 
   if (!data || typeof data !== "object") {
-
     console.warn(
       "Description JSON ignorée pour un événement :",
       cleaned.slice(0, 150)
     );
-
     return null;
   }
 
   return {
-
     titre:
       data.titre || "",
 
@@ -116,9 +110,7 @@ jobs:
       data.inscription || "",
 
     lien_inscription:
-      normalizeUrl(
-        data.lien_inscription
-      ),
+      normalizeUrl(data.lien_inscription),
 
     statut:
       data.statut || "",
@@ -130,7 +122,6 @@ jobs:
       data.affichage_lieu !== undefined
         ? String(data.affichage_lieu)
         : "3"
-
   };
 }'''
 
