@@ -28,6 +28,131 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Corriger le parser des campagnes
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path("scripts/generate-json.js")
+          text = path.read_text(encoding="utf-8")
+
+          start = text.index("function parseCampaign(rawDescription) {")
+          end = text.index("\n\n\n// ============================================================\n// URL DES FICHES JEUX", start)
+
+          new_function = '''function parseCampaign(rawDescription) {
+
+  const cleaned =
+    cleanDescription(rawDescription);
+
+  if (!cleaned) {
+    return null;
+  }
+
+  let data = null;
+
+  try {
+
+    // Cas normal : toute la description est un JSON valide.
+    data = JSON.parse(cleaned);
+
+  } catch (err) {
+
+    // Google Calendar peut conserver du texte autour du JSON.
+    // On tente donc d'extraire le premier objet JSON complet.
+    const firstBrace = cleaned.indexOf("{");
+    const lastBrace = cleaned.lastIndexOf("}");
+
+    if (
+      firstBrace !== -1 &&
+      lastBrace > firstBrace
+    ) {
+
+      try {
+        data = JSON.parse(
+          cleaned.slice(firstBrace, lastBrace + 1)
+        );
+      } catch (extractErr) {
+        data = null;
+      }
+    }
+  }
+
+  if (!data || typeof data !== "object") {
+
+    console.warn(
+      "Description JSON ignorée pour un événement :",
+      cleaned.slice(0, 150)
+    );
+
+    return null;
+  }
+
+  return {
+
+    titre:
+      data.titre || "",
+
+    sous_titre:
+      data.sous_titre ||
+      data["sous-titre"] ||
+      "",
+
+    image:
+      normalizeUrl(data.image),
+
+    logo:
+      normalizeUrl(data.logo),
+
+    logo_fond:
+      data.logo_fond || "",
+
+    fond:
+      normalizeUrl(data.fond),
+
+    tarif:
+      data.tarif || "",
+
+    inscription:
+      data.inscription || "",
+
+    lien_inscription:
+      normalizeUrl(
+        data.lien_inscription
+      ),
+
+    statut:
+      data.statut || "",
+
+    lieu:
+      data.lieu || "",
+
+    affichage_lieu:
+      data.affichage_lieu !== undefined
+        ? String(data.affichage_lieu)
+        : "3"
+
+  };
+}'''
+
+          text = text[:start] + new_function + text[end:]
+
+          fallback_old = '''          titre: "",
+          image: "",
+          logo: "",
+          logo_fond: "",'''
+          fallback_new = '''          titre: "",
+          sous_titre: "",
+          image: "",
+          logo: "",
+          logo_fond: "",'''
+
+          if fallback_old not in text:
+              raise SystemExit("Fallback campaign introuvable")
+
+          text = text.replace(fallback_old, fallback_new, 1)
+          path.write_text(text, encoding="utf-8")
+          PY
+
       - name: Generate agenda.json, vacances.json et jeux.json
         run: npm run build
 
