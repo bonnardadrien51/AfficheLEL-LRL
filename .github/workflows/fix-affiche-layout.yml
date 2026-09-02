@@ -1,0 +1,45 @@
+name: Corriger la mise en page des affiches
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Restaurer evenement-script.js puis appliquer le correctif
+        run: |
+          git checkout b5065cb451b20ba83d97425f13e6445649f8afb8 -- evenement-script.js
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path("evenement-script.js")
+          text = path.read_text(encoding="utf-8")
+
+          old = '''    document.getElementById("campaignDate").textContent =
+        `${formatDate(start)} – ${formatHour(start)} à ${formatHour(end)}`;'''
+
+          new = '''    document.getElementById("campaignDate").textContent =
+        formatDate(start);'''
+
+          if old not in text:
+              raise SystemExit("Bloc campaignDate introuvable")
+
+          text = text.replace(old, new, 1)
+          path.write_text(text, encoding="utf-8")
+          PY
+
+      - name: Vérifier le fichier JavaScript
+        run: node --check evenement-script.js
+
+      - name: Commit du correctif
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🎨 Corriger la date et préserver le script des affiches"
