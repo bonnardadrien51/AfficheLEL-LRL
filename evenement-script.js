@@ -422,6 +422,8 @@ function renderEvent(event){
     const campaign = event.campaign || {};
 
 
+    document.getElementById("campaignTitle").textContent =
+        campaign.titre || event.title;
 
 
     // Logo association dynamique : L'Établi Ludique ou Le Raffut
@@ -451,61 +453,9 @@ function renderEvent(event){
     document.getElementById("campaignDate").textContent =
         `${formatDate(start)} – ${formatHour(start)} à ${formatHour(end)}`;
 
-// ---------------------------------------------------------
-// TITRE / SOUS-TITRE
-// ---------------------------------------------------------
 
-const campaignTitle =
-    document.getElementById("campaignTitle");
-
-const eventTitle =
-    document.getElementById("eventTitle");
-
-const titre =
-    (campaign.titre || "").trim();
-
-const sousTitre =
-    (
-        campaign.sous_titre ??
-        campaign["sous-titre"] ??
-        ""
-    ).trim();
-
-
-    // ---------------------------------------------------------
-    // TITRE GENERAL
-    // ---------------------------------------------------------
-
-    if (titre) {
-
-        campaignTitle.textContent = titre;
-
-        campaignTitle.classList.remove("hidden");
-
-    } else {
-
-        campaignTitle.textContent = "";
-
-        campaignTitle.classList.add("hidden");
-    }
-
-
-    // ---------------------------------------------------------
-    // SOUS-TITRE / TITRE GOOGLE CALENDAR
-    // ---------------------------------------------------------
-
-    if (sousTitre) {
-
-        // Le sous-titre devient le nom précis
-        eventTitle.textContent = sousTitre;
-
-    } else {
-
-        // Aucun sous-titre :
-        // on utilise directement le titre Google Calendar
-        eventTitle.textContent =
-            event.title || "";
-    }
+    document.getElementById("eventTitle").textContent =
+        campaign.sous_titre || event.title;
 
 
     document.getElementById("eventHours").textContent =
@@ -992,3 +942,84 @@ setInterval(
     updateCountdown,
     REFRESH_COUNTDOWN_MS
 );
+
+
+/**************************************************
+    TÉLÉCHARGEMENT DE L'AFFICHE (PNG / JPG / WebP)
+**************************************************/
+
+async function downloadAsFormat(format){
+
+    const screen = document.getElementById("screen");
+    const toolbar = document.querySelector(".downloadToolbar");
+
+    if(!screen) return;
+
+    const buttons = toolbar
+        ? toolbar.querySelectorAll("button")
+        : [];
+
+    buttons.forEach(btn => btn.disabled = true);
+
+    // On masque la barre le temps de la capture pour qu'elle
+    // n'apparaisse jamais sur l'image exportée.
+    if(toolbar) toolbar.style.display = "none";
+
+    try {
+
+        // S'assure que toutes les images (logos, photo de campagne...)
+        // sont bien chargées avant la capture, sinon certaines peuvent
+        // manquer sur l'export.
+        const images = Array.from(screen.querySelectorAll("img"));
+
+        await Promise.all(images.map(img =>
+            img.complete && img.naturalWidth !== 0
+                ? Promise.resolve()
+                : new Promise(resolve => {
+                    img.addEventListener("load", resolve, {once:true});
+                    img.addEventListener("error", resolve, {once:true});
+                })
+        ));
+
+        const canvas = await html2canvas(screen, {
+            scale:2,
+            backgroundColor: format === "png" ? null : "#0a1330",
+            useCORS:true,
+            allowTaint:true,
+            imageTimeout:0
+        });
+
+        const mime =
+            format === "jpg" ? "image/jpeg" :
+            format === "webp" ? "image/webp" :
+            "image/png";
+
+        const extension = format === "jpg" ? "jpg" : format;
+
+        const dataUrl = canvas.toDataURL(mime, 0.92);
+
+        const link = document.createElement("a");
+        link.download = "affiche-evenement." + extension;
+        link.href = dataUrl;
+        link.click();
+
+    } catch(err){
+
+        console.error("Erreur lors de l'export " + format + " :", err);
+
+    } finally {
+
+        if(toolbar) toolbar.style.display = "flex";
+        buttons.forEach(btn => btn.disabled = false);
+
+    }
+
+}
+
+const pngBtn = document.getElementById("downloadPngBtn");
+const jpgBtn = document.getElementById("downloadJpgBtn");
+const webpBtn = document.getElementById("downloadWebpBtn");
+
+if(pngBtn) pngBtn.addEventListener("click", () => downloadAsFormat("png"));
+if(jpgBtn) jpgBtn.addEventListener("click", () => downloadAsFormat("jpg"));
+if(webpBtn) webpBtn.addEventListener("click", () => downloadAsFormat("webp"));
