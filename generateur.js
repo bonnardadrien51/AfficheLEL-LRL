@@ -1,493 +1,1681 @@
-const fields = [
-    {
-        id: "titre",
-        label: "Titre général",
-        type: "text",
-        placeholder: "Ex : Livres dans la boucle"
-    },
-    {
-        id: "sous_titre",
-        label: "Sous-titre",
-        type: "text",
-        placeholder: "Ex : Escape Game : Madame Chouette"
-    },
-    {
-        id: "image",
-        label: "Image",
-        type: "text",
-        placeholder: "URL ou chemin de l'image"
-    },
-    {
-        id: "logo",
-        label: "Logo",
-        type: "text",
-        placeholder: "URL ou chemin du logo"
-    },
-    {
-        id: "logo_fond",
-        label: "Fond du logo",
-        type: "text",
-        placeholder: "#ffffff"
-    },
-    {
-        id: "fond",
-        label: "Fond",
-        type: "text",
-        placeholder: "URL ou chemin du fond"
-    },
-    {
-        id: "tarif",
-        label: "Tarif",
-        type: "text",
-        placeholder: "Ex : Gratuit"
-    },
-    {
-        id: "inscription",
-        label: "Inscription",
-        type: "text",
-        placeholder: "Ex : Réservation conseillée"
-    },
-    {
-        id: "lien_inscription",
-        label: "Lien d'inscription",
-        type: "url",
-        placeholder: "https://..."
-    },
-    {
-        id: "statut",
-        label: "Statut",
-        type: "text",
-        placeholder: "Ex : COMPLET"
-    },
-    {
-        id: "lieu",
-        label: "Lieu",
-        type: "text",
-        placeholder: "Ex : Maison Saint-Vincent"
-    },
-    {
-        id: "affichage_lieu",
-        label: "Affichage du lieu",
-        type: "text",
-        placeholder: "1, 2, 3..."
-    }
+/* ============================================================
+   GÉNÉRATEUR D'ÉVÉNEMENTS
+   AfficheLEL-LRL
+
+   Gestion des templates via GitHub API
+   Même token que admin.js : localStorage / gh_token
+============================================================ */
+
+
+const GITHUB_OWNER =
+    "bonnardadrien51";
+
+const GITHUB_REPO =
+    "AfficheLEL-LRL";
+
+const TEMPLATES_PATH =
+    "templates/templates.json";
+
+
+/* ============================================================
+   CHAMPS DU FORMULAIRE
+============================================================ */
+
+const FIELDS = [
+
+    "titre",
+    "sous_titre",
+    "image",
+    "logo",
+    "logo_fond",
+    "fond",
+    "tarif",
+    "inscription",
+    "lien_inscription",
+    "statut",
+    "lieu",
+    "affichage_lieu"
+
 ];
 
-const form = document.getElementById("generatorForm");
-const output = document.getElementById("output");
-const preview = document.getElementById("preview");
 
-const logoPicker = document.getElementById("logoPicker");
-const logoColor = document.getElementById("logoColor");
+/* ============================================================
+   VARIABLES
+============================================================ */
+
+let templatesData = {
+    templates: []
+};
+
+let templatesSha = null;
+
+let currentTemplateId = "";
 
 
-// ---------------------------------------------------------
-// Création automatique des champs
-// ---------------------------------------------------------
+/* ============================================================
+   TOKEN
+============================================================ */
 
-function createFields() {
+function getToken() {
 
-    if (!form) return;
+    return (
+        localStorage.getItem(
+            "gh_token"
+        ) || ""
+    );
 
-    form.innerHTML = "";
-
-    fields.forEach(field => {
-
-        const wrapper = document.createElement("div");
-        wrapper.className = "field";
-
-        const label = document.createElement("label");
-        label.htmlFor = `f_${field.id}`;
-        label.textContent = field.label;
-
-        const input = document.createElement("input");
-
-        input.id = `f_${field.id}`;
-        input.name = field.id;
-        input.type = field.type || "text";
-        input.placeholder = field.placeholder || "";
-
-        wrapper.appendChild(label);
-        wrapper.appendChild(input);
-
-        form.appendChild(wrapper);
-    });
-
-    addInscriptionPresets();
 }
 
 
-// ---------------------------------------------------------
-// Boutons inscription
-// ---------------------------------------------------------
+function setToken(token) {
 
-function addInscriptionPresets() {
+    if (token) {
 
-    const inscriptionInput = document.getElementById("f_inscription");
+        localStorage.setItem(
+            "gh_token",
+            token
+        );
 
-    if (!inscriptionInput) return;
+    } else {
 
-    const container = document.createElement("div");
-    container.className = "inscription-presets";
+        localStorage.removeItem(
+            "gh_token"
+        );
 
-    const title = document.createElement("div");
-    title.textContent = "Raccourcis inscription";
-    title.className = "preset-title";
-
-    container.appendChild(title);
-
-    const presets = [
-        "Réservation conseillée",
-        "Réservation obligatoire",
-        "Réservation sur place et en ligne",
-        ""
-    ];
-
-    presets.forEach(value => {
-
-        const button = document.createElement("button");
-
-        button.type = "button";
-
-        button.textContent =
-            value === ""
-                ? "Effacer"
-                : value;
-
-        button.dataset.inscription = value;
-
-        button.addEventListener("click", () => {
-
-            inscriptionInput.value = value;
-
-            generate();
-
-        });
-
-        container.appendChild(button);
-    });
-
-    inscriptionInput.parentElement.appendChild(container);
-}
-
-
-// ---------------------------------------------------------
-// Récupération des données
-// ---------------------------------------------------------
-
-function getData() {
-
-    const data = {};
-
-    fields.forEach(field => {
-
-        const input = document.getElementById(`f_${field.id}`);
-
-        if (!input) return;
-
-        data[field.id] = input.value.trim();
-    });
-
-    return data;
-}
-
-
-// ---------------------------------------------------------
-// Génération JSON
-// ---------------------------------------------------------
-
-function generate() {
-
-    const data = getData();
-
-    output.value = JSON.stringify(data, null, 2);
-
-    updatePreview(data);
-
-    updateQRCode(data.lien_inscription);
-}
-
-
-// ---------------------------------------------------------
-// Prévisualisation
-// ---------------------------------------------------------
-
-function updatePreview(data) {
-
-    if (!preview) return;
-
-    preview.innerHTML = "";
-
-    const title = document.createElement("h2");
-
-    title.textContent =
-        data.titre ||
-        data.sous_titre ||
-        "Aperçu";
-
-    preview.appendChild(title);
-
-    if (data.titre && data.sous_titre) {
-
-        const subtitle = document.createElement("h3");
-
-        subtitle.textContent = data.sous_titre;
-
-        preview.appendChild(subtitle);
     }
 
-    if (data.image) {
+    refreshTokenStatus();
 
-        const img = document.createElement("img");
+}
 
-        img.src = data.image;
 
-        img.alt = "";
+/* ============================================================
+   AFFICHAGE TOKEN
+============================================================ */
 
-        img.onerror = () => {
-            img.style.display = "none";
+function refreshTokenStatus() {
+
+    const status =
+        document.getElementById(
+            "tokenStatus"
+        );
+
+    if (!status) {
+        return;
+    }
+
+    status.textContent =
+        getToken()
+            ? "Token enregistré ✓"
+            : "Aucun token enregistré";
+
+}
+
+
+/* ============================================================
+   BASE64 UTF-8
+============================================================ */
+
+function utf8ToBase64(str) {
+
+    return btoa(
+        unescape(
+            encodeURIComponent(
+                str
+            )
+        )
+    );
+
+}
+
+
+function base64ToUtf8(str) {
+
+    return decodeURIComponent(
+        escape(
+            atob(
+                str.replace(
+                    /\n/g,
+                    ""
+                )
+            )
+        )
+    );
+
+}
+
+
+/* ============================================================
+   HEADERS GITHUB
+============================================================ */
+
+function githubHeaders() {
+
+    const headers = {
+
+        "Accept":
+            "application/vnd.github+json",
+
+        "X-GitHub-Api-Version":
+            "2022-11-28"
+
+    };
+
+
+    const token =
+        getToken();
+
+
+    if (token) {
+
+        headers[
+            "Authorization"
+        ] =
+            "Bearer " + token;
+
+    }
+
+
+    return headers;
+
+}
+
+
+/* ============================================================
+   URL FICHIER GITHUB
+============================================================ */
+
+function githubFileUrl(path) {
+
+    return (
+        "https://api.github.com/repos/" +
+        GITHUB_OWNER +
+        "/" +
+        GITHUB_REPO +
+        "/contents/" +
+        path
+    );
+
+}
+
+
+/* ============================================================
+   LIRE LE FICHIER TEMPLATES
+============================================================ */
+
+async function githubGetTemplates() {
+
+
+    const response =
+        await fetch(
+            githubFileUrl(
+                TEMPLATES_PATH
+            ) +
+            "?t=" +
+            Date.now(),
+            {
+                method: "GET",
+                headers:
+                    githubHeaders()
+            }
+        );
+
+
+    if (response.status === 404) {
+
+        return {
+
+            content: {
+                templates: []
+            },
+
+            sha: null
+
         };
 
-        preview.appendChild(img);
     }
 
-    if (data.tarif) {
 
-        const tarif = document.createElement("p");
+    if (!response.ok) {
 
-        tarif.textContent = `Tarif : ${data.tarif}`;
+        const text =
+            await response.text();
 
-        preview.appendChild(tarif);
+        throw new Error(
+            "Impossible de lire templates.json (" +
+            response.status +
+            ") " +
+            text
+        );
+
     }
 
-    if (data.inscription) {
 
-        const inscription = document.createElement("p");
-
-        inscription.textContent = data.inscription;
-
-        preview.appendChild(inscription);
-    }
-
-    if (data.lieu) {
-
-        const lieu = document.createElement("p");
-
-        lieu.textContent = `📍 ${data.lieu}`;
-
-        preview.appendChild(lieu);
-    }
-}
+    const data =
+        await response.json();
 
 
-// ---------------------------------------------------------
-// QR CODE
-// ---------------------------------------------------------
+    let content;
 
-function updateQRCode(url) {
-
-    const qrContainer = document.getElementById("qrcode");
-
-    const qrText = document.getElementById("qrCodeText");
-
-    if (!qrContainer) return;
-
-    qrContainer.innerHTML = "";
-
-    if (qrText) {
-        qrText.textContent = "";
-    }
-
-    if (!url) return;
 
     try {
 
-        new QRCode(qrContainer, {
-            text: url,
-            width: 180,
-            height: 180
-        });
-
-        if (qrText) {
-
-            const link = document.createElement("a");
-
-            link.href = url;
-            link.target = "_blank";
-            link.rel = "noopener noreferrer";
-
-            link.textContent = url;
-
-            qrText.appendChild(link);
-        }
+        content =
+            JSON.parse(
+                base64ToUtf8(
+                    data.content
+                )
+            );
 
     } catch (error) {
 
-        console.error("Erreur QR code :", error);
+        throw new Error(
+            "templates.json contient un JSON invalide."
+        );
 
     }
-}
 
-
-// ---------------------------------------------------------
-// Logo
-// ---------------------------------------------------------
-
-if (logoPicker) {
-
-    logoPicker.addEventListener("change", () => {
-
-        const file = logoPicker.files[0];
-
-        if (!file) return;
-
-        const reader = new FileReader();
-
-        reader.onload = () => {
-
-            const logoInput =
-                document.getElementById("f_logo");
-
-            if (logoInput) {
-
-                logoInput.value = reader.result;
-
-                generate();
-            }
-        };
-
-        reader.readAsDataURL(file);
-    });
-}
-
-
-if (logoColor) {
-
-    logoColor.addEventListener("input", () => {
-
-        const input =
-            document.getElementById("f_logo_fond");
-
-        if (input) {
-
-            input.value = logoColor.value;
-
-            generate();
-        }
-    });
-}
-
-
-// ---------------------------------------------------------
-// Écoute des champs
-// ---------------------------------------------------------
-
-document.addEventListener("input", event => {
 
     if (
-        event.target.matches(
-            "#generatorForm input"
+        !content ||
+        !Array.isArray(
+            content.templates
         )
     ) {
 
-        generate();
+        content = {
+            templates: []
+        };
+
     }
-});
 
 
-// ---------------------------------------------------------
-// Copier JSON
-// ---------------------------------------------------------
+    return {
 
-const copyButton =
-    document.getElementById("copyButton");
+        content,
+        sha:
+            data.sha
 
-if (copyButton) {
+    };
 
-    copyButton.addEventListener("click", async () => {
-
-        try {
-
-            await navigator.clipboard.writeText(
-                output.value
-            );
-
-            const oldText =
-                copyButton.textContent;
-
-            copyButton.textContent =
-                "Copié !";
-
-            setTimeout(() => {
-
-                copyButton.textContent =
-                    oldText;
-
-            }, 1500);
-
-        } catch (error) {
-
-            console.error(error);
-
-            alert(
-                "Impossible de copier automatiquement."
-            );
-        }
-    });
 }
 
 
-// ---------------------------------------------------------
-// Réinitialisation
-// ---------------------------------------------------------
+/* ============================================================
+   SAUVEGARDER TEMPLATES SUR GITHUB
+============================================================ */
 
-const resetButton =
-    document.getElementById("resetButton");
+async function githubSaveTemplates(
+    content,
+    sha
+) {
 
-if (resetButton) {
 
-    resetButton.addEventListener("click", () => {
+    const token =
+        getToken();
 
-        fields.forEach(field => {
+
+    if (!token) {
+
+        throw new Error(
+            "Aucun token GitHub. Enregistre ton token avant de sauvegarder."
+        );
+
+    }
+
+
+    const body = {
+
+        message:
+            "🎨 Mise à jour des templates du générateur",
+
+        content:
+            utf8ToBase64(
+                JSON.stringify(
+                    content,
+                    null,
+                    2
+                )
+            )
+
+    };
+
+
+    /*
+       Si le fichier existe,
+       GitHub exige son SHA.
+    */
+
+    if (sha) {
+
+        body.sha =
+            sha;
+
+    }
+
+
+    const response =
+        await fetch(
+            githubFileUrl(
+                TEMPLATES_PATH
+            ),
+            {
+
+                method:
+                    "PUT",
+
+                headers: {
+
+                    ...githubHeaders(),
+
+                    "Content-Type":
+                        "application/json"
+
+                },
+
+                body:
+                    JSON.stringify(
+                        body
+                    )
+
+            }
+        );
+
+
+    if (!response.ok) {
+
+        const text =
+            await response.text();
+
+        throw new Error(
+            "Erreur GitHub lors de la sauvegarde (" +
+            response.status +
+            ") : " +
+            text
+        );
+
+    }
+
+
+    const result =
+        await response.json();
+
+
+    templatesSha =
+        result.content
+            ? result.content.sha
+            : sha;
+
+
+    return result;
+
+}
+
+
+/* ============================================================
+   CHARGER LES TEMPLATES
+============================================================ */
+
+async function loadTemplates() {
+
+
+    const status =
+        document.getElementById(
+            "templateStatus"
+        );
+
+
+    status.textContent =
+        "Chargement des templates…";
+
+
+    try {
+
+
+        const result =
+            await githubGetTemplates();
+
+
+        templatesData =
+            result.content;
+
+        templatesSha =
+            result.sha;
+
+
+        populateTemplateSelect();
+
+
+        status.textContent =
+
+            templatesData.templates.length
+
+                ? templatesData.templates.length +
+                  " template(s) disponible(s)."
+
+                : "Aucun template enregistré.";
+
+
+    } catch (error) {
+
+
+        console.error(
+            error
+        );
+
+
+        status.textContent =
+            "Impossible de charger les templates : " +
+            error.message;
+
+
+    }
+
+}
+
+
+/* ============================================================
+   LISTE DES TEMPLATES
+============================================================ */
+
+function populateTemplateSelect() {
+
+
+    const select =
+        document.getElementById(
+            "templateSelect"
+        );
+
+
+    select.innerHTML = "";
+
+
+    const emptyOption =
+        document.createElement(
+            "option"
+        );
+
+
+    emptyOption.value =
+        "";
+
+    emptyOption.textContent =
+        "— Aucun template —";
+
+
+    select.appendChild(
+        emptyOption
+    );
+
+
+    templatesData.templates
+        .forEach(
+            template => {
+
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+
+                option.value =
+                    template.id;
+
+
+                option.textContent =
+                    template.nom ||
+                    template.id;
+
+
+                select.appendChild(
+                    option
+                );
+
+
+            }
+        );
+
+
+}
+
+
+/* ============================================================
+   RÉCUPÉRER LES VALEURS DU FORMULAIRE
+============================================================ */
+
+function getFormData() {
+
+
+    const data = {};
+
+
+    FIELDS.forEach(
+        field => {
+
+
+            const element =
+                document.getElementById(
+                    "f_" + field
+                );
+
+
+            if (!element) {
+                return;
+            }
+
+
+            data[field] =
+                element.value.trim();
+
+
+        }
+    );
+
+
+    return data;
+
+}
+
+
+/* ============================================================
+   REMPLIR LE FORMULAIRE
+============================================================ */
+
+function setFormData(
+    data
+) {
+
+
+    FIELDS.forEach(
+        field => {
+
+
+            const element =
+                document.getElementById(
+                    "f_" + field
+                );
+
+
+            if (!element) {
+                return;
+            }
+
+
+            element.value =
+                data &&
+                data[field] !== undefined
+                    ? data[field]
+                    : "";
+
+
+        }
+    );
+
+
+    generateJSON();
+
+}
+
+
+/* ============================================================
+   GÉNÉRATION DU JSON
+============================================================ */
+
+function generateJSON() {
+
+
+    const data =
+        getFormData();
+
+
+    document.getElementById(
+        "jsonOutput"
+    ).textContent =
+
+        JSON.stringify(
+            data,
+            null,
+            2
+        );
+
+
+    updateQRCode(
+        data.lien_inscription
+    );
+
+}
+
+
+/* ============================================================
+   QR CODE
+============================================================ */
+
+function updateQRCode(
+    url
+) {
+
+
+    const panel =
+        document.getElementById(
+            "qrPanel"
+        );
+
+    const container =
+        document.getElementById(
+            "qrcode"
+        );
+
+    const link =
+        document.getElementById(
+            "qrLink"
+        );
+
+
+    container.innerHTML =
+        "";
+
+    link.textContent =
+        "";
+
+    link.removeAttribute(
+        "href"
+    );
+
+
+    if (!url) {
+
+        panel.classList.add(
+            "hidden"
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        new URL(
+            url
+        );
+
+    } catch (error) {
+
+        panel.classList.add(
+            "hidden"
+        );
+
+        return;
+
+    }
+
+
+    panel.classList.remove(
+        "hidden"
+    );
+
+
+    link.href =
+        url;
+
+    link.textContent =
+        url;
+
+
+    if (
+        typeof QRCode ===
+        "undefined"
+    ) {
+
+        container.textContent =
+            "QRCode.js n'est pas disponible.";
+
+        return;
+
+    }
+
+
+    new QRCode(
+        container,
+        {
+
+            text:
+                url,
+
+            width:
+                200,
+
+            height:
+                200,
+
+            correctLevel:
+                QRCode.CorrectLevel.H
+
+        }
+    );
+
+
+}
+
+
+/* ============================================================
+   CHARGER UN TEMPLATE DANS LE FORMULAIRE
+============================================================ */
+
+function loadSelectedTemplate() {
+
+
+    const id =
+        document.getElementById(
+            "templateSelect"
+        ).value;
+
+
+    if (!id) {
+
+        currentTemplateId =
+            "";
+
+        return;
+
+    }
+
+
+    const template =
+        templatesData.templates
+            .find(
+                item =>
+                    item.id ===
+                    id
+            );
+
+
+    if (!template) {
+
+        showMessage(
+            "Template introuvable.",
+            true
+        );
+
+        return;
+
+    }
+
+
+    currentTemplateId =
+        template.id;
+
+
+    setFormData(
+        template.valeurs || {}
+    );
+
+
+    showMessage(
+        "Template « " +
+        (
+            template.nom ||
+            template.id
+        ) +
+        " » chargé."
+    );
+
+}
+
+
+/* ============================================================
+   NOM DE TEMPLATE
+============================================================ */
+
+function askTemplateName(
+    defaultName = ""
+) {
+
+
+    const name =
+        prompt(
+            "Nom du template :",
+            defaultName
+        );
+
+
+    if (
+        name === null
+    ) {
+
+        return null;
+
+    }
+
+
+    const clean =
+        name.trim();
+
+
+    if (!clean) {
+
+        alert(
+            "Le nom du template ne peut pas être vide."
+        );
+
+        return null;
+
+    }
+
+
+    return clean;
+
+}
+
+
+/* ============================================================
+   ID À PARTIR DU NOM
+============================================================ */
+
+function slugify(
+    text
+) {
+
+
+    return text
+
+        .normalize(
+            "NFD"
+        )
+
+        .replace(
+            /[\u0300-\u036f]/g,
+            ""
+        )
+
+        .toLowerCase()
+
+        .replace(
+            /[^a-z0-9]+/g,
+            "-"
+        )
+
+        .replace(
+            /^-+|-+$/g,
+            ""
+        );
+
+}
+
+
+/* ============================================================
+   ENREGISTRER COMME NOUVEAU TEMPLATE
+============================================================ */
+
+async function saveAsTemplate() {
+
+
+    const name =
+        askTemplateName();
+
+
+    if (!name) {
+        return;
+    }
+
+
+    let id =
+        slugify(
+            name
+        );
+
+
+    if (!id) {
+
+        alert(
+            "Impossible de créer un identifiant."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Évite les doublons.
+    */
+
+    const existing =
+        templatesData.templates
+            .find(
+                template =>
+                    template.id ===
+                    id
+            );
+
+
+    if (existing) {
+
+        if (
+            !confirm(
+                "Un template portant ce nom existe déjà. Le remplacer ?"
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        templatesData.templates =
+            templatesData.templates
+                .filter(
+                    template =>
+                        template.id !==
+                        id
+                );
+
+    }
+
+
+    const template = {
+
+        id,
+
+        nom:
+            name,
+
+        valeurs:
+            getFormData()
+
+    };
+
+
+    templatesData.templates.push(
+        template
+    );
+
+
+    await saveTemplatesToGitHub();
+
+
+    currentTemplateId =
+        id;
+
+
+    populateTemplateSelect();
+
+
+    document.getElementById(
+        "templateSelect"
+    ).value =
+        id;
+
+
+    showMessage(
+        "Template « " +
+        name +
+        " » enregistré sur GitHub."
+    );
+
+}
+
+
+/* ============================================================
+   MODIFIER LE TEMPLATE ACTUEL
+============================================================ */
+
+async function saveCurrentTemplate() {
+
+
+    if (!currentTemplateId) {
+
+        /*
+           Si aucun template n'est sélectionné,
+           on propose directement un nouveau.
+        */
+
+        await saveAsTemplate();
+
+        return;
+
+    }
+
+
+    const template =
+        templatesData.templates
+            .find(
+                item =>
+                    item.id ===
+                    currentTemplateId
+            );
+
+
+    if (!template) {
+
+        await saveAsTemplate();
+
+        return;
+
+    }
+
+
+    template.valeurs =
+        getFormData();
+
+
+    await saveTemplatesToGitHub();
+
+
+    showMessage(
+        "Template « " +
+        (
+            template.nom ||
+            template.id
+        ) +
+        " » mis à jour."
+    );
+
+}
+
+
+/* ============================================================
+   SUPPRIMER TEMPLATE
+============================================================ */
+
+async function deleteCurrentTemplate() {
+
+
+    const id =
+        document.getElementById(
+            "templateSelect"
+        ).value;
+
+
+    if (!id) {
+
+        alert(
+            "Sélectionne d'abord un template."
+        );
+
+        return;
+
+    }
+
+
+    const template =
+        templatesData.templates
+            .find(
+                item =>
+                    item.id ===
+                    id
+            );
+
+
+    if (!template) {
+        return;
+    }
+
+
+    if (
+        !confirm(
+            "Supprimer le template « " +
+            (
+                template.nom ||
+                id
+            ) +
+            " » ?"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    templatesData.templates =
+        templatesData.templates
+            .filter(
+                item =>
+                    item.id !==
+                    id
+            );
+
+
+    await saveTemplatesToGitHub();
+
+
+    currentTemplateId =
+        "";
+
+
+    populateTemplateSelect();
+
+
+    showMessage(
+        "Template supprimé."
+    );
+
+}
+
+
+/* ============================================================
+   SAUVEGARDE GITHUB
+============================================================ */
+
+async function saveTemplatesToGitHub() {
+
+
+    const status =
+        document.getElementById(
+            "templateStatus"
+        );
+
+
+    status.textContent =
+        "Sauvegarde sur GitHub…";
+
+
+    try {
+
+
+        const result =
+            await githubSaveTemplates(
+                templatesData,
+                templatesSha
+            );
+
+
+        /*
+           Après le commit on recharge le SHA.
+        */
+
+        templatesSha =
+            result.content
+                ? result.content.sha
+                : templatesSha;
+
+
+        status.textContent =
+            "Templates sauvegardés sur GitHub ✓";
+
+
+    } catch (error) {
+
+
+        console.error(
+            error
+        );
+
+
+        status.textContent =
+            "Erreur de sauvegarde : " +
+            error.message;
+
+
+        throw error;
+
+    }
+
+}
+
+
+/* ============================================================
+   TOKEN SAVE
+============================================================ */
+
+document
+    .getElementById(
+        "tokenSave"
+    )
+    .addEventListener(
+        "click",
+        async () => {
+
 
             const input =
                 document.getElementById(
-                    `f_${field.id}`
+                    "tokenInput"
                 );
 
-            if (input) {
-                input.value = "";
+
+            const token =
+                input.value.trim();
+
+
+            if (!token) {
+
+                alert(
+                    "Entre ton token GitHub."
+                );
+
+                return;
+
             }
-        });
 
-        if (output) {
-            output.value = "";
+
+            setToken(
+                token
+            );
+
+
+            input.value =
+                "";
+
+
+            await loadTemplates();
+
+        }
+    );
+
+
+/* ============================================================
+   TOKEN CLEAR
+============================================================ */
+
+document
+    .getElementById(
+        "tokenClear"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+
+            if (
+                confirm(
+                    "Supprimer le token enregistré sur cet appareil ?"
+                )
+            ) {
+
+                setToken("");
+
+                document.getElementById(
+                    "templateStatus"
+                ).textContent =
+                    "Token supprimé. Les templates restent consultables.";
+
+            }
+
+        }
+    );
+
+
+/* ============================================================
+   TEMPLATE LOAD
+============================================================ */
+
+document
+    .getElementById(
+        "loadTemplateBtn"
+    )
+    .addEventListener(
+        "click",
+        loadSelectedTemplate
+    );
+
+
+/* ============================================================
+   TEMPLATE SAVE
+============================================================ */
+
+document
+    .getElementById(
+        "saveTemplateBtn"
+    )
+    .addEventListener(
+        "click",
+        async () => {
+
+            try {
+
+                await saveCurrentTemplate();
+
+            } catch (error) {
+
+                alert(
+                    error.message
+                );
+
+            }
+
+        }
+    );
+
+
+/* ============================================================
+   TEMPLATE SAVE AS
+============================================================ */
+
+document
+    .getElementById(
+        "saveAsTemplateBtn"
+    )
+    .addEventListener(
+        "click",
+        async () => {
+
+            try {
+
+                await saveAsTemplate();
+
+            } catch (error) {
+
+                alert(
+                    error.message
+                );
+
+            }
+
+        }
+    );
+
+
+/* ============================================================
+   TEMPLATE DELETE
+============================================================ */
+
+document
+    .getElementById(
+        "deleteTemplateBtn"
+    )
+    .addEventListener(
+        "click",
+        async () => {
+
+            try {
+
+                await deleteCurrentTemplate();
+
+            } catch (error) {
+
+                alert(
+                    error.message
+                );
+
+            }
+
+        }
+    );
+
+
+/* ============================================================
+   SÉLECTION TEMPLATE
+============================================================ */
+
+document
+    .getElementById(
+        "templateSelect"
+    )
+    .addEventListener(
+        "change",
+        () => {
+
+            currentTemplateId =
+                document.getElementById(
+                    "templateSelect"
+                ).value;
+
+        }
+    );
+
+
+/* ============================================================
+   PRESETS INSCRIPTION
+============================================================ */
+
+document
+    .querySelectorAll(
+        ".preset"
+    )
+    .forEach(
+        button => {
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+
+                    document.getElementById(
+                        "f_inscription"
+                    ).value =
+                        button.dataset.value;
+
+
+                    generateJSON();
+
+                }
+            );
+
+
+        }
+    );
+
+
+/* ============================================================
+   ÉCOUTE DES CHAMPS
+============================================================ */
+
+FIELDS.forEach(
+    field => {
+
+
+        const element =
+            document.getElementById(
+                "f_" + field
+            );
+
+
+        if (!element) {
+            return;
         }
 
-        if (preview) {
-            preview.innerHTML = "";
+
+        element.addEventListener(
+            "input",
+            generateJSON
+        );
+
+
+        element.addEventListener(
+            "change",
+            generateJSON
+        );
+
+
+    }
+);
+
+
+/* ============================================================
+   COPIER JSON
+============================================================ */
+
+document
+    .getElementById(
+        "copyBtn"
+    )
+    .addEventListener(
+        "click",
+        async () => {
+
+
+            const text =
+                document.getElementById(
+                    "jsonOutput"
+                ).textContent;
+
+
+            try {
+
+
+                await navigator
+                    .clipboard
+                    .writeText(
+                        text
+                    );
+
+
+                showMessage(
+                    "JSON copié dans le presse-papiers."
+                );
+
+
+            } catch (error) {
+
+
+                const textarea =
+                    document.createElement(
+                        "textarea"
+                    );
+
+
+                textarea.value =
+                    text;
+
+
+                document.body.appendChild(
+                    textarea
+                );
+
+
+                textarea.select();
+
+
+                document.execCommand(
+                    "copy"
+                );
+
+
+                textarea.remove();
+
+
+                showMessage(
+                    "JSON copié."
+                );
+
+            }
+
         }
+    );
 
-        const qr =
-            document.getElementById("qrcode");
 
-        if (qr) {
-            qr.innerHTML = "";
+/* ============================================================
+   RESET
+============================================================ */
+
+document
+    .getElementById(
+        "resetBtn"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+
+            if (
+                !confirm(
+                    "Réinitialiser tous les champs ?"
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            FIELDS.forEach(
+                field => {
+
+
+                    const element =
+                        document.getElementById(
+                            "f_" + field
+                        );
+
+
+                    if (element) {
+
+                        element.value =
+                            "";
+
+                    }
+
+
+                }
+            );
+
+
+            document.getElementById(
+                "f_affichage_lieu"
+            ).value =
+                "3";
+
+
+            currentTemplateId =
+                "";
+
+
+            document.getElementById(
+                "templateSelect"
+            ).value =
+                "";
+
+
+            generateJSON();
+
         }
+    );
 
-        const qrText =
-            document.getElementById("qrCodeText");
 
-        if (qrText) {
-            qrText.textContent = "";
-        }
-    });
+/* ============================================================
+   MESSAGE
+============================================================ */
+
+function showMessage(
+    text,
+    error = false
+) {
+
+
+    const element =
+        document.getElementById(
+            "message"
+        );
+
+
+    element.textContent =
+        text;
+
+
+    element.classList.remove(
+        "hidden"
+    );
+
+
+    element.style.background =
+        error
+            ? "rgba(232,93,117,.25)"
+            : "rgba(114,213,114,.20)";
+
+
+    setTimeout(
+        () => {
+
+            element.classList.add(
+                "hidden"
+            );
+
+        },
+        4000
+    );
+
 }
 
 
-// ---------------------------------------------------------
-// Initialisation
-// ---------------------------------------------------------
+/* ============================================================
+   INITIALISATION
+============================================================ */
 
-createFields();
-generate();
+refreshTokenStatus();
+
+generateJSON();
+
+loadTemplates();

@@ -24,118 +24,382 @@
     >
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap"
         rel="stylesheet"
     >
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+    ></script>
 
     <style>
 
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: "Comic Neue", sans-serif;
+
             margin: 0;
-            padding: 20px;
+            padding: 25px;
+
+            font-family:
+                "Baloo 2",
+                Arial,
+                sans-serif;
+
+            background: #0d4c72;
+            color: white;
+
         }
 
-        .generator-container {
-            max-width: 1200px;
+        h1 {
+
+            text-align: center;
+            margin: 0 0 5px;
+            font-size: 34px;
+
+        }
+
+        .subtitle {
+
+            text-align: center;
+            opacity: .75;
+            margin-bottom: 25px;
+
+        }
+
+        .container {
+
+            max-width: 1250px;
             margin: auto;
-        }
 
-        .generator-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
+
+            grid-template-columns:
+                minmax(0, 1fr)
+                minmax(0, 1fr);
+
+            gap: 20px;
+
         }
 
         .panel {
-            padding: 20px;
-            border-radius: 15px;
-            background: #f5f5f5;
+
+            background:
+                rgba(255,255,255,.10);
+
+            border:
+                1px solid
+                rgba(255,255,255,.15);
+
+            border-radius: 16px;
+
+            padding: 22px;
+
         }
 
-        .field {
-            margin-bottom: 15px;
+        h2 {
+
+            margin-top: 0;
+            font-size: 22px;
+
         }
 
-        .field label {
+        h3 {
+
+            font-size: 17px;
+            margin-top: 25px;
+
+        }
+
+        label {
+
             display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
+
+            font-weight: 700;
+
+            margin-bottom: 14px;
+
         }
 
-        .field input {
+        input,
+        textarea,
+        select {
+
             width: 100%;
-            box-sizing: border-box;
-            padding: 10px;
+
+            margin-top: 6px;
+
+            padding: 10px 12px;
+
+            border: none;
+
             border-radius: 8px;
-            border: 1px solid #ccc;
+
+            font-family: inherit;
+
+            font-size: 15px;
+
+            background: white;
+
+            color: #222;
+
         }
 
         textarea {
-            width: 100%;
-            min-height: 300px;
-            box-sizing: border-box;
-            font-family: monospace;
+
+            min-height: 80px;
+            resize: vertical;
+
+        }
+
+        .row {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 10px;
+
         }
 
         button {
-            padding: 10px 15px;
+
             border: none;
+
             border-radius: 8px;
+
+            padding: 9px 13px;
+
+            font-family: inherit;
+
+            font-weight: 700;
+
             cursor: pointer;
-            margin: 4px;
-        }
 
-        .inscription-presets {
-            margin-top: 8px;
-        }
-
-        .preset-title {
-            font-size: 0.9em;
-            margin-bottom: 5px;
-        }
-
-        #preview {
-            min-height: 300px;
-            padding: 20px;
-            border-radius: 15px;
             background: white;
+
+            color: #0d4c72;
+
         }
 
-        #preview img {
-            max-width: 100%;
-            max-height: 250px;
-            display: block;
-            margin: 15px auto;
+        button:hover {
+
+            opacity: .85;
+
+        }
+
+        button.danger {
+
+            background: #e85d75;
+            color: white;
+
+        }
+
+        button.success {
+
+            background: #72d572;
+            color: #173517;
+
+        }
+
+        button.warning {
+
+            background: #facb55;
+            color: #222;
+
+        }
+
+        button.secondary {
+
+            background:
+                rgba(255,255,255,.18);
+
+            color: white;
+
+            border:
+                1px solid
+                rgba(255,255,255,.2);
+
+        }
+
+        .buttonRow {
+
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+
+        }
+
+        .templateBox {
+
+            background:
+                rgba(0,0,0,.15);
+
+            border-radius: 10px;
+
+            padding: 15px;
+
+            margin-bottom: 20px;
+
+        }
+
+        .templateActions {
+
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+
+        }
+
+        #templateStatus {
+
+            font-size: 13px;
+            opacity: .75;
+            margin-top: 8px;
+
+        }
+
+        .tokenBox {
+
+            margin-top: 20px;
+
+            padding: 14px;
+
+            border-radius: 10px;
+
+            background:
+                rgba(0,0,0,.15);
+
+        }
+
+        #tokenStatus {
+
+            font-size: 13px;
+            margin-top: 8px;
+            opacity: .75;
+
+        }
+
+        #jsonOutput {
+
+            width: 100%;
+
+            min-height: 500px;
+
+            background:
+                #071f30;
+
+            color: white;
+
+            border-radius: 10px;
+
+            padding: 15px;
+
+            font-family:
+                Consolas,
+                monospace;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+
+            white-space: pre;
+
+            overflow: auto;
+
+        }
+
+        .registration {
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            background:
+                rgba(255,255,255,.06);
+
+            margin-top: 10px;
+
+        }
+
+        .qrBox {
+
+            margin-top: 20px;
+
+            background: white;
+
+            color: #222;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            text-align: center;
+
         }
 
         #qrcode {
-            margin-top: 20px;
+
+            display: flex;
+            justify-content: center;
+
+            margin: 15px 0;
+
         }
 
-        #qrCodeText {
+        .hidden {
+
+            display: none !important;
+
+        }
+
+        .message {
+
             margin-top: 10px;
-            word-break: break-all;
+
+            padding: 10px;
+
+            border-radius: 8px;
+
+            background:
+                rgba(255,255,255,.12);
+
+            font-size: 14px;
+
         }
 
-        #qrCodeText a {
-            color: inherit;
-        }
+        @media(max-width: 850px) {
 
-        .actions {
-            margin-top: 20px;
-        }
+            body {
+                padding: 12px;
+            }
 
-        @media (max-width: 800px) {
-
-            .generator-grid {
+            .container {
                 grid-template-columns: 1fr;
             }
+
+            .row {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        .fieldHint {
+
+            display: block;
+
+            font-size: 12px;
+
+            font-weight: 400;
+
+            color: rgba(255, 255, 255, .6);
+
+            margin-top: 4px;
 
         }
 
@@ -146,103 +410,482 @@
 
 <body>
 
-<div class="generator-container">
 
-    <h1>Générateur d'événement</h1>
+<h1>
+    Générateur d'événement
+</h1>
 
-    <div class="generator-grid">
+<div class="subtitle">
+    Génération du JSON + gestion des templates
+</div>
 
-        <section class="panel">
 
-            <h2>Informations</h2>
+<div class="container">
 
-            <form id="generatorForm"></form>
 
-            <div class="field">
+    <!-- =====================================================
+         COLONNE GAUCHE
+    ====================================================== -->
 
-                <label for="logoPicker">
-                    Importer un logo
-                </label>
+    <div class="panel">
 
-                <input
-                    type="file"
-                    id="logoPicker"
-                    accept="image/*"
+
+        <h2>
+            Template
+        </h2>
+
+
+        <div class="templateBox">
+
+
+            <label>
+
+                Template enregistré
+
+                <select id="templateSelect">
+
+                    <option value="">
+                        — Aucun template —
+                    </option>
+
+                </select>
+
+            </label>
+
+
+            <div class="templateActions">
+
+                <button
+                    id="loadTemplateBtn"
+                    type="button"
                 >
+                    Charger
+                </button>
+
+                <button
+                    id="saveTemplateBtn"
+                    type="button"
+                    class="success"
+                >
+                    Enregistrer
+                </button>
+
+                <button
+                    id="saveAsTemplateBtn"
+                    type="button"
+                    class="warning"
+                >
+                    Enregistrer sous...
+                </button>
+
+                <button
+                    id="deleteTemplateBtn"
+                    type="button"
+                    class="danger"
+                >
+                    Supprimer
+                </button>
 
             </div>
 
-            <div class="field">
 
-                <label for="logoColor">
-                    Couleur du fond du logo
-                </label>
-
-                <input
-                    type="color"
-                    id="logoColor"
-                    value="#ffffff"
-                >
-
+            <div id="templateStatus">
+                Chargement des templates...
             </div>
 
-            <div class="actions">
+
+        </div>
+
+
+        <h2>
+            Informations
+        </h2>
+
+
+        <label>
+
+            Titre
+
+            <input
+                id="f_titre"
+                type="text"
+                placeholder="Tout Besançon Vole"
+            >
+
+        </label>
+
+
+        <label>
+
+            Sous-titre
+
+            <input
+                id="f_sous_titre"
+                type="text"
+                placeholder="Escape Game : Madame Chouette"
+            >
+
+            <span class="fieldHint">
+                Affiché au-dessus de l'horaire. Si vide, le titre de
+                l'événement (Google Calendar) est utilisé à la place.
+            </span>
+
+        </label>
+
+
+        <label>
+
+            Image
+
+            <input
+                id="f_image"
+                type="url"
+                placeholder="https://..."
+            >
+
+        </label>
+
+
+        <label>
+
+            Logo
+
+            <input
+                id="f_logo"
+                type="url"
+                placeholder="https://..."
+            >
+
+        </label>
+
+
+        <div class="row">
+
+            <label>
+
+                Fond du logo
+
+                <input
+                    id="f_logo_fond"
+                    type="text"
+                    placeholder="#ffffff"
+                >
+
+            </label>
+
+
+            <label>
+
+                Fond
+
+                <input
+                    id="f_fond"
+                    type="text"
+                    placeholder="URL ou couleur"
+                >
+
+            </label>
+
+        </div>
+
+
+        <label>
+
+            Tarif
+
+            <input
+                id="f_tarif"
+                type="text"
+                placeholder="Gratuit"
+            >
+
+        </label>
+
+
+        <h3>
+            Inscription
+        </h3>
+
+
+        <div class="registration">
+
+
+            <label>
+
+                Texte libre
+
+                <input
+                    id="f_inscription"
+                    type="text"
+                    placeholder="Réservation conseillée"
+                >
+
+            </label>
+
+
+            <div class="buttonRow">
 
                 <button
                     type="button"
-                    id="copyButton"
+                    class="secondary preset"
+                    data-value="Réservation conseillée"
                 >
-                    Copier le JSON
+                    Réservation conseillée
                 </button>
 
                 <button
                     type="button"
-                    id="resetButton"
+                    class="secondary preset"
+                    data-value="Réservation obligatoire"
                 >
-                    Réinitialiser
+                    Réservation obligatoire
+                </button>
+
+                <button
+                    type="button"
+                    class="secondary preset"
+                    data-value="Réservation sur place et en ligne"
+                >
+                    Sur place et en ligne
+                </button>
+
+                <button
+                    type="button"
+                    class="secondary preset"
+                    data-value=""
+                >
+                    Effacer
                 </button>
 
             </div>
 
-        </section>
+
+            <label style="margin-top:15px">
+
+                Lien d'inscription
+
+                <input
+                    id="f_lien_inscription"
+                    type="url"
+                    placeholder="https://..."
+                >
+
+            </label>
 
 
-        <section class="panel">
+        </div>
 
-            <h2>Aperçu</h2>
 
-            <div id="preview"></div>
+        <h3>
+            Lieu
+        </h3>
 
-            <h2>QR Code inscription</h2>
 
-            <div id="qrcode"></div>
+        <label>
 
-            <div id="qrCodeText"></div>
+            Lieu personnalisé
 
-        </section>
+            <input
+                id="f_lieu"
+                type="text"
+                placeholder="Port Douvot, Besançon"
+            >
+
+        </label>
+
+
+        <label>
+
+            Affichage du lieu
+
+            <select id="f_affichage_lieu">
+
+                <option value="0">
+                    0 — Ne pas afficher
+                </option>
+
+                <option value="1">
+                    1 — Lieu Google Calendar
+                </option>
+
+                <option value="2">
+                    2 — Lieu JSON
+                </option>
+
+                <option value="3" selected>
+                    3 — JSON puis Google Calendar
+                </option>
+
+                <option value="4">
+                    4 — Google Calendar puis JSON
+                </option>
+
+            </select>
+
+        </label>
+
+
+        <h3>
+            Statut
+        </h3>
+
+
+        <select id="f_statut">
+
+            <option value="">
+                Aucun
+            </option>
+
+            <option value="Annulé">
+                Annulé
+            </option>
+
+            <option value="Complet">
+                Complet
+            </option>
+
+            <option value="Reporté">
+                Reporté
+            </option>
+
+        </select>
+
+
+        <!-- =================================================
+             TOKEN
+        ================================================== -->
+
+        <div class="tokenBox">
+
+
+            <strong>
+                🔐 Token GitHub
+            </strong>
+
+
+            <p style="font-size:13px;opacity:.7">
+
+                Le générateur utilise le même token que
+                l'administration des événements.
+
+            </p>
+
+
+            <input
+                id="tokenInput"
+                type="password"
+                placeholder="ghp_... ou github_pat_..."
+            >
+
+
+            <div class="buttonRow" style="margin-top:8px">
+
+                <button
+                    id="tokenSave"
+                    type="button"
+                    class="success"
+                >
+                    Enregistrer le token
+                </button>
+
+                <button
+                    id="tokenClear"
+                    type="button"
+                    class="danger"
+                >
+                    Effacer
+                </button>
+
+            </div>
+
+
+            <div id="tokenStatus">
+                Aucun token enregistré
+            </div>
+
+
+        </div>
+
+
+        <div class="buttonRow" style="margin-top:20px">
+
+            <button
+                id="resetBtn"
+                type="button"
+                class="danger"
+            >
+                Réinitialiser les champs
+            </button>
+
+        </div>
+
 
     </div>
 
 
-    <section class="panel" style="margin-top:30px">
+    <!-- =====================================================
+         COLONNE DROITE
+    ====================================================== -->
 
-        <h2>JSON généré</h2>
+    <div class="panel">
 
-        <textarea
-            id="output"
-            readonly
-        ></textarea>
 
-    </section>
+        <h2>
+            JSON
+        </h2>
+
+
+        <div class="buttonRow" style="margin-bottom:10px">
+
+            <button
+                id="copyBtn"
+                type="button"
+                class="warning"
+            >
+                Copier le JSON
+            </button>
+
+        </div>
+
+
+        <pre id="jsonOutput"></pre>
+
+
+        <div
+            id="qrPanel"
+            class="qrBox hidden"
+        >
+
+            <strong>
+                QR Code d'inscription
+            </strong>
+
+            <div id="qrcode"></div>
+
+            <a
+                id="qrLink"
+                href="#"
+                target="_blank"
+                rel="noopener"
+            ></a>
+
+        </div>
+
+
+        <div
+            id="message"
+            class="message hidden"
+        ></div>
+
+
+    </div>
+
 
 </div>
 
 
-<script
-    src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
-></script>
-
 <script src="generateur.js"></script>
+
 
 </body>
 
