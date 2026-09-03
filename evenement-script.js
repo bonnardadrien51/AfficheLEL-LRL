@@ -1,619 +1,288 @@
+// Script principal des affiches événement
+
 const DATA_URL = "agenda.json";
+const OVERRIDES_URL = "status-overrides.json";
+const REFRESH_DATA_MS = 60 * 1000;
+const REFRESH_COUNTDOWN_MS = 30 * 1000;
 
 let currentEvent = null;
 
-
-// ============================================================
-// OUTILS
-// ============================================================
-
-function formatDate(date){
-
-    return date.toLocaleDateString(
-        "fr-FR",
-        {
-            weekday: "long",
-            day: "numeric",
-            month: "long",
-            year: "numeric"
-        }
-    );
+function applyScale(){
+    const screen = document.getElementById("screen");
+    if(!screen) return;
+    const refWidth = screen.offsetWidth;
+    const refHeight = screen.offsetHeight;
+    if(!refWidth || !refHeight) return;
+    const scale = Math.min(window.innerWidth / refWidth, window.innerHeight / refHeight);
+    screen.style.transform = `scale(${scale})`;
 }
-
+window.addEventListener("resize", applyScale);
+applyScale();
 
 function formatHour(date){
-
-    return date.toLocaleTimeString(
-        "fr-FR",
-        {
-            hour: "2-digit",
-            minute: "2-digit"
-        }
-    );
+    const h = date.getHours();
+    const m = date.getMinutes();
+    return m === 0 ? `${h}h` : `${h}h${String(m).padStart(2,"0")}`;
 }
 
-
-function resolveLocation(eventLocation, campaignLocation, displayMode){
-
-    const eventText = String(eventLocation || "").trim();
-    const campaignText = String(campaignLocation || "").trim();
-
-    if(displayMode === "1"){
-        return campaignText || eventText;
-    }
-
-    if(displayMode === "2"){
-        return eventText || campaignText;
-    }
-
-    if(displayMode === "0"){
-        return "";
-    }
-
-    return campaignText || eventText;
+function formatDate(date){
+    return date.toLocaleDateString("fr-FR", {
+        day:"2-digit", month:"2-digit", year:"numeric", timeZone:"Europe/Paris"
+    });
 }
 
-
-function getFileParam(){
-
-    const params = new URLSearchParams(window.location.search);
-
-    return params.get("file");
+function stripCountry(location){
+    if(!location) return "";
+    const parts = location.split(",").map(s => s.trim());
+    if(parts.length > 1 && !/\d/.test(parts[parts.length - 1])) parts.pop();
+    return parts.join(", ");
 }
 
-
-function getEventParam(){
-
-    const params = new URLSearchParams(window.location.search);
-
-    return params.get("event");
-}
-
-
-function getDayParam(){
-
-    const params = new URLSearchParams(window.location.search);
-
-    return params.get("day");
-}
-
-
-async function loadAgenda(){
-
-    const file = getFileParam() || DATA_URL;
-
-    const response = await fetch(file + "?v=" + Date.now());
-
-    if(!response.ok){
-        throw new Error("Impossible de charger " + file);
-    }
-
-    return await response.json();
-}
-
-
-function getEventsFromData(data){
-
-    if(Array.isArray(data)){
-        return data;
-    }
-
-    if(Array.isArray(data.events)){
-        return data.events;
-    }
-
-    return [];
-}
-
-
-function sortEvents(events){
-
-    return [...events].sort(
-        (a,b) => new Date(a.start) - new Date(b.start)
-    );
-}
-
-
-function filterEvents(events){
-
-    const eventId = getEventParam();
-    const day = getDayParam();
-
-    let result = sortEvents(events);
-
-    if(eventId){
-
-        result = result.filter(
-            event => String(event.uid) === String(eventId)
-        );
-
-    }
-
-    if(day){
-
-        result = result.filter(event => {
-
-            const date = new Date(event.start);
-
-            const localDay =
-                date.getFullYear() + "-" +
-                String(date.getMonth()+1).padStart(2,"0") + "-" +
-                String(date.getDate()).padStart(2,"0");
-
-            return localDay === day;
-        });
-    }
-
-    return result;
-}
-
-
-function hideOptional(elementId){
-
-    const element = document.getElementById(elementId);
-
-    if(!element){
-        return;
-    }
-
-    element.textContent = "";
-
-    const line = element.closest(".infoLine");
-
-    if(line){
-        line.classList.add("hidden");
+function resolveLocation(eventLocation, campaignLieu, mode){
+    const ev = stripCountry(eventLocation || "");
+    const js = String(campaignLieu || "").trim();
+    const modeNum = parseInt(mode, 10);
+    switch(modeNum){
+        case 0: return "";
+        case 1: return ev;
+        case 2: return js;
+        case 3: return ev || js;
+        case 4: return js || ev;
+        default: return ev || js;
     }
 }
 
+const STATUS_COLORS = {
+    "annulé":"#c0392b", "annule":"#c0392b",
+    "complet":"#e08e0b",
+    "reporté":"#6c5ce7", "reporte":"#6c5ce7"
+};
 
-function showOptional(elementId, text){
-
-    const element = document.getElementById(elementId);
-
-    if(!element){
-        return;
-    }
-
-    element.textContent = text || "";
-
-    const line = element.closest(".infoLine");
-
-    if(line){
-        if(text){
-            line.classList.remove("hidden");
-        } else {
-            line.classList.add("hidden");
-        }
-    }
-}
-
-
-// ============================================================
-// QR CODE
-// ============================================================
-
-function renderRegistration(campaign){
-
-    const registrationBox = document.getElementById("registrationBox");
-    const registrationQr = document.getElementById("registrationQr");
-    const registrationLink = document.getElementById("registrationLink");
-    const registrationQrText = document.getElementById("registrationQrText");
-
-    if(!registrationBox || !registrationQr){
-        return;
-    }
-
-    registrationQr.innerHTML = "";
-
-    const url = campaign && campaign.lien_inscription
-        ? String(campaign.lien_inscription).trim()
-        : "";
-
+function renderRegistrationQr(campaign){
+    const box = document.getElementById("registrationBox");
+    const qr = document.getElementById("registrationQr");
+    const text = document.getElementById("registrationQrText");
+    if(!box || !qr) return;
+    qr.innerHTML = "";
+    const url = campaign && campaign.lien_inscription ? String(campaign.lien_inscription).trim() : "";
     if(!url){
-
-        registrationBox.classList.add("hidden");
-
-        if(registrationLink){
-            registrationLink.removeAttribute("href");
-        }
-
+        box.classList.add("hidden");
         return;
     }
-
-    if(registrationLink){
-        registrationLink.href = url;
-        registrationLink.target = "_blank";
-        registrationLink.rel = "noopener noreferrer";
-    }
-
     if(typeof QRCode === "undefined"){
-
-        console.error(
-            "QRCode n'est pas chargé. Vérifie que qrcode.min.js est présent avant script.js."
-        );
-
-        registrationBox.classList.add("hidden");
+        box.classList.add("hidden");
         return;
     }
-
     try{
-
-        new QRCode(
-            registrationQr,
-            {
-                text: url,
-                width: 220,
-                height: 220,
-                colorDark: "#000000",
-                colorLight: "#ffffff",
-                correctLevel: QRCode.CorrectLevel.H
-            }
-        );
-
-        if(registrationQrText){
-            registrationQrText.textContent = "Scannez pour vous inscrire";
-        }
-
-        registrationBox.classList.remove("hidden");
-
-    } catch(error){
-
-        console.error(
-            "Erreur lors de la génération du QR code :",
-            error
-        );
-
-        registrationBox.classList.add("hidden");
+        new QRCode(qr, {
+            text:url, width:220, height:220,
+            colorDark:"#000000", colorLight:"#ffffff",
+            correctLevel:QRCode.CorrectLevel.H
+        });
+        if(text) text.textContent = "Scannez pour vous inscrire";
+        box.classList.remove("hidden");
+    }catch(error){
+        console.error("Erreur QR code :", error);
+        box.classList.add("hidden");
     }
 }
 
-
-// ============================================================
-// AFFICHAGE D'UN ÉVÉNEMENT
-// ============================================================
+function setOptionalLine(elementId, value){
+    const el = document.getElementById(elementId);
+    if(!el) return;
+    const line = el.closest(".infoLine");
+    const valueText = String(value || "").trim();
+    el.textContent = valueText;
+    if(line) line.classList.toggle("hidden", !valueText);
+}
 
 function renderEvent(event){
-
     currentEvent = event;
-
     document.body.classList.remove("empty");
 
     const start = new Date(event.start);
     const end = new Date(event.end);
     const campaign = event.campaign || {};
 
+    // TITRE : JSON si présent, sinon titre Google Calendar.
     const campaignTitle = document.getElementById("campaignTitle");
-    const eventTitle = document.getElementById("eventTitle");
-
     if(campaignTitle){
-        campaignTitle.textContent = campaign.titre || event.title;
+        campaignTitle.textContent = String(campaign.titre || event.title || "Événement").trim();
     }
 
+    // SOUS-TITRE : uniquement si présent dans le JSON.
+    // On ne répète surtout pas le titre de l'événement lorsqu'il n'y a pas de sous-titre.
+    const eventTitle = document.getElementById("eventTitle");
+    const subtitle = String(campaign.sous_titre || "").trim();
     if(eventTitle){
-        eventTitle.textContent = campaign.sous_titre || event.title;
+        eventTitle.textContent = subtitle;
+        eventTitle.classList.toggle("hidden", !subtitle);
     }
 
-    // Logo association dynamique : L'Établi Ludique ou Le Raffut
-    // Ludique selon le calendrier d'origine de l'événement.
-    const associationLogo =
-        document.getElementById("associationLogo");
-
+    const associationLogo = document.getElementById("associationLogo");
     if(associationLogo){
-
         if((event.icon || "").startsWith("LRL")){
             associationLogo.src = "img/logo-raffut.svg";
             associationLogo.alt = "Le Raffut Ludique";
-        } else {
+        }else{
             associationLogo.src = "img/logo-etabli.svg";
             associationLogo.alt = "L'Établi Ludique";
         }
     }
 
-    // La date est maintenant affichée dans le bloc des informations.
-    // L'heure reste dans sa propre ligne : plus de redondance.
-    const campaignDate = document.getElementById("campaignDate");
-
-    if(campaignDate){
-        campaignDate.textContent = formatDate(start);
-    }
-
-    const eventHours = document.getElementById("eventHours");
-
-    if(eventHours){
-        eventHours.textContent = `${formatHour(start)} – ${formatHour(end)}`;
-    }
-
-    const locationEl = document.getElementById("eventLocation");
+    setOptionalLine("campaignDate", formatDate(start));
+    setOptionalLine("eventHours", `${formatHour(start)} – ${formatHour(end)}`);
 
     const locationText = resolveLocation(
         event.location,
         campaign.lieu,
-        campaign.affichage_lieu !== undefined
-            ? campaign.affichage_lieu
-            : 3
+        campaign.affichage_lieu !== undefined ? campaign.affichage_lieu : 3
     );
+    setOptionalLine("eventLocation", locationText);
 
-    if(locationEl){
-
-        locationEl.textContent = locationText;
-
-        const line = locationEl.closest(".infoLine");
-
-        if(line){
-            if(locationText){
-                line.classList.remove("hidden");
-            } else {
-                line.classList.add("hidden");
-            }
-        }
-    }
+    setOptionalLine("eventTarif", campaign.tarif);
+    setOptionalLine("eventInscription", campaign.inscription);
 
     const photoBox = document.getElementById("photoBox");
     const campaignImage = document.getElementById("campaignImage");
-
-    if(campaign.image){
-
-        campaignImage.src = campaign.image;
-        photoBox.classList.remove("hidden");
-
-    } else {
-
-        photoBox.classList.add("hidden");
+    if(photoBox && campaignImage){
+        if(campaign.image){
+            campaignImage.src = campaign.image;
+            photoBox.classList.remove("hidden");
+        }else{
+            campaignImage.removeAttribute("src");
+            photoBox.classList.add("hidden");
+        }
     }
 
     const campaignLogoBox = document.getElementById("campaignLogoBox");
     const campaignLogo = document.getElementById("campaignLogo");
-
-    if(campaign.logo){
-
-        campaignLogo.src = campaign.logo;
-        campaignLogoBox.classList.remove("hidden");
-
-        campaignLogoBox.style.background =
-            campaign.logo_fond || "transparent";
-
-    } else {
-
-        campaignLogoBox.classList.add("hidden");
+    if(campaignLogoBox && campaignLogo){
+        if(campaign.logo){
+            campaignLogo.src = campaign.logo;
+            campaignLogoBox.style.background = campaign.logo_fond || "transparent";
+            campaignLogoBox.classList.remove("hidden");
+        }else{
+            campaignLogo.removeAttribute("src");
+            campaignLogoBox.classList.add("hidden");
+        }
     }
 
     const screen = document.getElementById("screen");
-
+    const bgOverlay = document.getElementById("bgOverlay");
     if(screen){
-
-        if(campaign.fond){
-            screen.style.backgroundImage =
-                `url("${campaign.fond}")`;
-        } else {
-            screen.style.backgroundImage = "";
-        }
+        screen.style.backgroundImage = campaign.fond ? `url("${campaign.fond}")` : "";
     }
+    if(bgOverlay) bgOverlay.style.display = campaign.fond ? "block" : "none";
 
-    const tarifEl = document.getElementById("eventTarif");
-
-    if(tarifEl){
-
-        const tarif = campaign.tarif || "";
-        tarifEl.textContent = tarif;
-
-        const line = tarifEl.closest(".infoLine");
-
-        if(line){
-            if(tarif){
-                line.classList.remove("hidden");
-            } else {
-                line.classList.add("hidden");
-            }
-        }
-    }
-
-    const inscriptionEl = document.getElementById("eventInscription");
-
-    if(inscriptionEl){
-
-        const inscription = campaign.inscription || "";
-        inscriptionEl.textContent = inscription;
-
-        const line = inscriptionEl.closest(".infoLine");
-
-        if(line){
-            if(inscription){
-                line.classList.remove("hidden");
-            } else {
-                line.classList.add("hidden");
-            }
-        }
-    }
-
-    const statusText = document.getElementById("statusText");
     const statusRibbon = document.getElementById("statusRibbon");
-
-    if(statusText && statusRibbon){
-
-        const statut = campaign.statut || "";
-
+    const statusText = document.getElementById("statusText");
+    if(statusRibbon && statusText){
+        const statut = String(campaign.statut || "").trim();
         statusText.textContent = statut;
-
-        if(statut){
-            statusRibbon.classList.remove("hidden");
-        } else {
-            statusRibbon.classList.add("hidden");
-        }
+        statusRibbon.style.background = STATUS_COLORS[statut.toLowerCase()] || "#c0392b";
+        statusRibbon.style.display = statut ? "block" : "none";
     }
 
-    renderRegistration(campaign);
+    renderRegistrationQr(campaign);
+    requestAnimationFrame(fitContent);
 }
 
-
-// ============================================================
-// ÉTAT VIDE
-// ============================================================
+function fitContent(){
+    const content = document.getElementById("content");
+    const screen = document.getElementById("screen");
+    const bottomZone = document.getElementById("bottomZone");
+    if(!content || !screen) return;
+    content.style.transform = "scale(1)";
+    const available = (screen.clientHeight - (bottomZone ? bottomZone.offsetHeight : 0)) * 0.97;
+    const natural = content.scrollHeight;
+    if(natural > available && natural > 0){
+        content.style.transform = `scale(${Math.max(0.5, available / natural)})`;
+    }
+}
 
 function renderEmpty(){
-
+    currentEvent = null;
     document.body.classList.add("empty");
-
-    const noEvent = document.getElementById("noEvent");
-
-    if(noEvent){
-        noEvent.classList.remove("hidden");
-    }
 }
 
-
-function hideEmpty(){
-
-    const noEvent = document.getElementById("noEvent");
-
-    if(noEvent){
-        noEvent.classList.add("hidden");
-    }
-}
-
-
-// ============================================================
-// INITIALISATION
-// ============================================================
-
-async function init(){
-
+async function loadEvents(){
     try{
+        const response = await fetch(DATA_URL + "?t=" + Date.now());
+        if(!response.ok) throw new Error("Impossible de charger agenda.json");
+        const json = await response.json();
 
-        const data = await loadAgenda();
-        const events = filterEvents(getEventsFromData(data));
+        let overrides = {};
+        try{
+            const r = await fetch(OVERRIDES_URL + "?t=" + Date.now());
+            if(r.ok) overrides = await r.json();
+        }catch(e){}
 
-        if(!events.length){
-            renderEmpty();
-            return;
+        const events = Array.isArray(json.events) ? json.events : [];
+        if(!events.length){ renderEmpty(); return; }
+
+        const requestedUid = new URLSearchParams(window.location.search).get("id");
+        let event = requestedUid ? events.find(e => String(e.uid) === String(requestedUid)) : null;
+        if(!event) event = events[0];
+
+        const override = overrides[event.uid];
+        if(override && override.statut !== undefined){
+            event.campaign = event.campaign || {};
+            event.campaign.statut = override.statut;
         }
-
-        hideEmpty();
-        renderEvent(events[0]);
-
-    } catch(error){
-
-        console.error("Erreur chargement agenda :", error);
+        renderEvent(event);
+    }catch(error){
+        console.error("Erreur de chargement :", error);
         renderEmpty();
     }
 }
 
-
-// ============================================================
-// TÉLÉCHARGEMENT D'IMAGE
-// ============================================================
+loadEvents();
+setInterval(loadEvents, REFRESH_DATA_MS);
+setInterval(() => {
+    if(currentEvent && window.HIDE_COUNTDOWN && currentEvent.end && new Date(currentEvent.end).getTime() <= Date.now()) loadEvents();
+}, REFRESH_COUNTDOWN_MS);
 
 async function loadHtml2Canvas(){
-
-    if(typeof html2canvas !== "undefined"){
-        return html2canvas;
-    }
-
-    await new Promise((resolve,reject) => {
-
-        const script = document.createElement("script");
-
-        script.src =
-            "https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js";
-
-        script.onload = resolve;
-        script.onerror = reject;
-
-        document.head.appendChild(script);
+    if(typeof html2canvas !== "undefined") return html2canvas;
+    await new Promise((resolve,reject)=>{
+        const script=document.createElement("script");
+        script.src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js";
+        script.onload=resolve; script.onerror=reject; document.head.appendChild(script);
     });
-
     return html2canvas;
 }
 
-
 async function downloadImage(format){
-
-    const canvasLib = await loadHtml2Canvas();
-    const target = document.getElementById("screen");
-
-    if(!target){
-        return;
-    }
-
-    const toolbar = document.querySelector(".downloadToolbar");
-
-    if(toolbar){
-        toolbar.style.visibility = "hidden";
-    }
-
+    const canvasLib=await loadHtml2Canvas();
+    const target=document.getElementById("screen");
+    if(!target) return;
+    const toolbar=document.querySelector(".downloadToolbar");
+    if(toolbar) toolbar.style.visibility="hidden";
     try{
-
-        const canvas = await canvasLib(
-            target,
-            {
-                backgroundColor: null,
-                useCORS: true,
-                scale: 2
-            }
-        );
-
-        let mime = "image/png";
-        let quality = undefined;
-        let extension = "png";
-
-        if(format === "jpg"){
-            mime = "image/jpeg";
-            quality = 0.95;
-            extension = "jpg";
-        }
-
-        if(format === "webp"){
-            mime = "image/webp";
-            quality = 0.95;
-            extension = "webp";
-        }
-
-        canvas.toBlob(blob => {
-
-            if(!blob){
-                return;
-            }
-
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement("a");
-
-            link.href = url;
-            link.download = "affiche-evenement." + extension;
-            link.click();
-
-            setTimeout(() => URL.revokeObjectURL(url), 1000);
-
-        }, mime, quality);
-
-    } finally {
-
-        if(toolbar){
-            toolbar.style.visibility = "visible";
-        }
+        const canvas=await canvasLib(target,{backgroundColor:null,useCORS:true,scale:2});
+        let mime="image/png", quality=undefined, extension="png";
+        if(format==="jpg"){mime="image/jpeg";quality=.95;extension="jpg";}
+        if(format==="webp"){mime="image/webp";quality=.95;extension="webp";}
+        canvas.toBlob(blob=>{
+            if(!blob) return;
+            const url=URL.createObjectURL(blob);
+            const link=document.createElement("a");
+            link.href=url; link.download="affiche-evenement."+extension; link.click();
+            setTimeout(()=>URL.revokeObjectURL(url),1000);
+        },mime,quality);
+    }finally{
+        if(toolbar) toolbar.style.visibility="visible";
     }
 }
-
 
 function bindDownloadButtons(){
-
-    const png = document.getElementById("downloadPngBtn");
-    const jpg = document.getElementById("downloadJpgBtn");
-    const webp = document.getElementById("downloadWebpBtn");
-
-    if(png){
-        png.addEventListener("click", () => downloadImage("png"));
-    }
-
-    if(jpg){
-        jpg.addEventListener("click", () => downloadImage("jpg"));
-    }
-
-    if(webp){
-        webp.addEventListener("click", () => downloadImage("webp"));
-    }
+    const png=document.getElementById("downloadPngBtn");
+    const jpg=document.getElementById("downloadJpgBtn");
+    const webp=document.getElementById("downloadWebpBtn");
+    if(png) png.addEventListener("click",()=>downloadImage("png"));
+    if(jpg) jpg.addEventListener("click",()=>downloadImage("jpg"));
+    if(webp) webp.addEventListener("click",()=>downloadImage("webp"));
 }
 
-
-document.addEventListener("DOMContentLoaded", () => {
-    bindDownloadButtons();
-    init();
-});
+document.addEventListener("DOMContentLoaded", bindDownloadButtons);
