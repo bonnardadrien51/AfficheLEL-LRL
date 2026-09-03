@@ -1,89 +1,90 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap"
-        rel="stylesheet"
-    >
-
-    <title>
-        Événements
-    </title>
-
-    <link
-        rel="stylesheet"
-        href="jour.css"
-    >
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+<title>Événements</title>
+<link rel="stylesheet" href="jour.css">
+<style>
+.campaignPreview{margin-top:.5vh;font-size:.9vw;line-height:1.25;color:#68718a;display:flex;flex-direction:column;gap:.15vh;}
+.campaignPreview .campaignSubtitle{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.campaignPreview .campaignDetails{font-weight:600;}
+.campaignPreview .campaignRegistration{font-weight:700;}
+</style>
 </head>
-
-
 <body>
-
 <div id="screen">
-
-
-    <div id="header">
-
-        <img
-            id="associationLogo"
-            src="img/logo-etabli.svg"
-            alt="L'Établi Ludique"
-        >
-
-
-        <div id="headerText">
-
-            <div id="pageTitle">
-                Événements
-            </div>
-
-            <div id="pageDate"></div>
-
-        </div>
-
-    </div>
-
-
-    <div id="eventGrid"></div>
-
-
-    <div id="noEvent">
-        Aucun événement pour cette journée.
-    </div>
-
-
-    <div id="pageIndicator"></div>
-
-
+<div id="header">
+<img id="associationLogo" src="img/logo-etabli.svg" alt="L'Établi Ludique">
+<div id="headerText"><div id="pageTitle">Événements</div><div id="pageDate"></div></div>
 </div>
-
-
+<div id="eventGrid"></div>
+<div id="noEvent">Aucun événement pour cette journée.</div>
+<div id="pageIndicator"></div>
+</div>
 <script src="jour.js"></script>
+<script>
+(async function(){
+    try{
+        const response = await fetch("agenda.json?t=" + Date.now());
+        if(!response.ok) return;
+        const data = await response.json();
+        const events = Array.isArray(data.events) ? data.events : [];
+        const params = new URLSearchParams(window.location.search);
+        const wanted = params.get("date") || new Date().toISOString().slice(0,10);
+        const dayEvents = events.filter(e => {
+            if(!e.start) return false;
+            const d = new Date(e.start);
+            const local = d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+            return local === wanted;
+        }).sort((a,b)=>new Date(a.start)-new Date(b.start));
 
+        function addPreview(){
+            const cards = Array.from(document.querySelectorAll("#eventGrid .eventCard"));
+            cards.forEach((card,index)=>{
+                if(card.querySelector(".campaignPreview")) return;
+                const event = dayEvents[index];
+                if(!event) return;
+                const campaign = event.campaign || {};
+                const subtitle = String(campaign.sous_titre || "").trim();
+                const tarif = String(campaign.tarif || "").trim();
+                const inscription = String(campaign.inscription || "").trim();
+                const link = String(campaign.lien_inscription || "").trim();
+                if(!subtitle && !tarif && !inscription && !link) return;
+                const block=document.createElement("div");
+                block.className="campaignPreview";
+                if(subtitle){
+                    const el=document.createElement("div");
+                    el.className="campaignSubtitle";
+                    el.textContent=subtitle;
+                    block.appendChild(el);
+                }
+                if(tarif || inscription){
+                    const el=document.createElement("div");
+                    el.className="campaignDetails";
+                    el.textContent=[tarif ? "💶 "+tarif : "", inscription ? "💬 "+inscription : ""].filter(Boolean).join(" · ");
+                    block.appendChild(el);
+                }
+                if(link){
+                    const el=document.createElement("div");
+                    el.className="campaignRegistration";
+                    el.textContent="🔗 Réservation en ligne";
+                    block.appendChild(el);
+                }
+                const textCol=card.querySelector(".textCol");
+                if(textCol) textCol.appendChild(block);
+            });
+        }
+        const observer=new MutationObserver(addPreview);
+        observer.observe(document.getElementById("eventGrid"),{childList:true,subtree:true});
+        addPreview();
+        setTimeout(addPreview,250);
+    }catch(error){ console.error("Prévisualisation campagne :",error); }
+})();
+</script>
 <script src="pagination.js"></script>
-
-
 </body>
-
 </html>
