@@ -104,14 +104,11 @@ function renderEvent(event){
     const end = new Date(event.end);
     const campaign = event.campaign || {};
 
-    // TITRE : JSON si présent, sinon titre Google Calendar.
     const campaignTitle = document.getElementById("campaignTitle");
     if(campaignTitle){
         campaignTitle.textContent = String(campaign.titre || event.title || "Événement").trim();
     }
 
-    // SOUS-TITRE : uniquement si présent dans le JSON.
-    // On ne répète surtout pas le titre de l'événement lorsqu'il n'y a pas de sous-titre.
     const eventTitle = document.getElementById("eventTitle");
     const subtitle = String(campaign.sous_titre || "").trim();
     if(eventTitle){
@@ -139,7 +136,6 @@ function renderEvent(event){
         campaign.affichage_lieu !== undefined ? campaign.affichage_lieu : 3
     );
     setOptionalLine("eventLocation", locationText);
-
     setOptionalLine("eventTarif", campaign.tarif);
     setOptionalLine("eventInscription", campaign.inscription);
 
@@ -253,26 +249,99 @@ async function loadHtml2Canvas(){
     return html2canvas;
 }
 
+/*
+ * Capture propre de l'affiche.
+ * #screen est affiché avec transform:scale(...) pour s'adapter à la fenêtre.
+ * La capture est faite dans les dimensions natives de l'affiche, sans ce scale.
+ */
 async function downloadImage(format){
-    const canvasLib=await loadHtml2Canvas();
-    const target=document.getElementById("screen");
+    const canvasLib = await loadHtml2Canvas();
+    const target = document.getElementById("screen");
     if(!target) return;
-    const toolbar=document.querySelector(".downloadToolbar");
-    if(toolbar) toolbar.style.visibility="hidden";
+
+    const toolbar = document.querySelector(".downloadToolbar");
+    const previousTransform = target.style.transform;
+    const previousOrigin = target.style.transformOrigin;
+    const previousVisibility = toolbar ? toolbar.style.visibility : "";
+
     try{
-        const canvas=await canvasLib(target,{backgroundColor:null,useCORS:true,scale:2});
-        let mime="image/png", quality=undefined, extension="png";
-        if(format==="jpg"){mime="image/jpeg";quality=.95;extension="jpg";}
-        if(format==="webp"){mime="image/webp";quality=.95;extension="webp";}
-        canvas.toBlob(blob=>{
-            if(!blob) return;
-            const url=URL.createObjectURL(blob);
-            const link=document.createElement("a");
-            link.href=url; link.download="affiche-evenement."+extension; link.click();
-            setTimeout(()=>URL.revokeObjectURL(url),1000);
-        },mime,quality);
+        if(toolbar) toolbar.style.visibility = "hidden";
+
+        if(document.fonts && document.fonts.ready){
+            try{ await document.fonts.ready; }catch(e){}
+        }
+
+        const images = Array.from(target.querySelectorAll("img"));
+        await Promise.all(images.map(img => {
+            if(img.complete) return Promise.resolve();
+            return new Promise(resolve => {
+                img.addEventListener("load", resolve, {once:true});
+                img.addEventListener("error", resolve, {once:true});
+            });
+        }));
+
+        target.style.transform = "none";
+        target.style.transformOrigin = "top left";
+
+        await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+
+        const width = target.offsetWidth || 1920;
+        const height = target.offsetHeight || 1080;
+
+        let mime = "image/png";
+        let quality;
+        let extension = "png";
+
+        if(format === "jpg"){
+            mime = "image/jpeg";
+            quality = 0.95;
+            extension = "jpg";
+        }else if(format === "webp"){
+            mime = "image/webp";
+            quality = 0.95;
+            extension = "webp";
+        }
+
+        const canvas = await canvasLib(target, {
+            width,
+            height,
+            windowWidth: width,
+            windowHeight: height,
+            backgroundColor: "#0a1330",
+            useCORS: true,
+            allowTaint: false,
+            scale: 1,
+            logging: false
+        });
+
+        const blob = await new Promise(resolve =>
+            canvas.toBlob(resolve, mime, quality)
+        );
+
+        if(!blob) throw new Error("Impossible de créer l'image.");
+
+        let finalExtension = extension;
+        if(blob.type === "image/png") finalExtension = "png";
+        else if(blob.type === "image/jpeg") finalExtension = "jpg";
+        else if(blob.type === "image/webp") finalExtension = "webp";
+
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `affiche-evenement.${finalExtension}`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }catch(error){
+        console.error("Erreur lors de la capture :", error);
+        alert("Impossible de générer l'image : " + error.message);
     }finally{
-        if(toolbar) toolbar.style.visibility="visible";
+        target.style.transform = previousTransform;
+        target.style.transformOrigin = previousOrigin;
+        if(toolbar) toolbar.style.visibility = previousVisibility;
+        requestAnimationFrame(fitContent);
     }
 }
 
