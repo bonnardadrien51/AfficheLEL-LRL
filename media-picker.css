@@ -4,22 +4,69 @@
     display:flex;
     gap:8px;
     align-items:center;
+    flex-wrap:wrap;
 }
 
-.mediaInputRow input{
-    flex:1;
+.mediaInputRow input:not(.mediaHiddenFileInput){
+    flex:1 1 240px;
     min-width:0;
 }
 
-.mediaChooseBtn{
+.mediaChooseBtn,
+.mediaUploadBtn{
     flex:0 0 auto;
     background:#2e5cf0;
     color:white;
     padding:10px 16px;
 }
 
+.mediaUploadBtn{
+    background:#168a63;
+}
+
 .mediaChooseBtn:hover{
     background:#2448c4;
+}
+
+.mediaUploadBtn:hover{
+    background:#11704f;
+}
+
+.mediaChooseBtn:disabled,
+.mediaUploadBtn:disabled{
+    opacity:.6;
+    cursor:wait;
+}
+
+.mediaHiddenFileInput{
+    display:none !important;
+}
+
+.mediaUploadMessage{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:100000;
+    max-width:min(520px,calc(100vw - 40px));
+    padding:13px 17px;
+    border-radius:10px;
+    background:#168a63;
+    color:white;
+    font-weight:700;
+    box-shadow:0 8px 30px rgba(0,0,0,.35);
+    opacity:0;
+    transform:translateY(10px);
+    pointer-events:none;
+    transition:opacity .2s ease,transform .2s ease;
+}
+
+.mediaUploadMessage.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.mediaUploadMessage.error{
+    background:#c0392b;
 }
 
 .mediaPickerModal{
