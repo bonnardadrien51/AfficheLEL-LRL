@@ -2,12 +2,16 @@ name: Corriger la mise en page des affiches
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 permissions:
   contents: write
 
 jobs:
   fix:
+    if: github.event_name == 'workflow_dispatch' || github.event.head_commit.message == '🔧 Déclencher la restauration du script affiches'
     runs-on: ubuntu-latest
 
     steps:
