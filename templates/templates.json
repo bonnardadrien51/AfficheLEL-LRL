@@ -67,6 +67,24 @@
         "lieu": "",
         "affichage_lieu": "3"
       }
+    },
+    {
+      "id": "livres-dans-la-boucle",
+      "nom": "Livres dans la boucle",
+      "valeurs": {
+        "titre": "",
+        "sous_titre": "",
+        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/EscapeGame.webp",
+        "logo": "",
+        "logo_fond": "",
+        "fond": "",
+        "tarif": "",
+        "inscription": "Réservation sur place et en ligne",
+        "lien_inscription": "",
+        "statut": "",
+        "lieu": "Livres dans la boucle - Parc Chamars - Besançon",
+        "affichage_lieu": "3"
+      }
     }
   ]
 }
