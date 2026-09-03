@@ -57,23 +57,26 @@ function getDisplayLocation(event) {
     const custom = String(campaign.lieu || "").trim();
     const calendar = String(event.location || "").trim();
 
-    if (mode === "0") return "";
-    if (mode === "1") return calendar;
-    if (mode === "2") return custom;
+    // Conserve les mêmes choix que le générateur :
+    // 1 = lieu personnalisé, 2 = lieu Google Calendar, 3 = les deux.
+    if (mode === "1") return custom;
+    if (mode === "2") return calendar;
+    if (mode === "3") {
+        if (!custom) return calendar;
+        if (!calendar) return custom;
 
-    if (!custom) return calendar;
-    if (!calendar) return custom;
+        const a = normalizeLocation(custom);
+        const b = normalizeLocation(calendar);
 
-    const a = normalizeLocation(custom);
-    const b = normalizeLocation(calendar);
+        // Même lieu écrit différemment : on n'affiche qu'une seule fois.
+        if (a === b || a.includes(b) || b.includes(a)) {
+            return custom.length >= calendar.length ? custom : calendar;
+        }
 
-    // Évite les doublons quand Google Calendar et le JSON décrivent
-    // le même lieu avec une ponctuation ou une formulation légèrement différente.
-    if (a === b || a.includes(b) || b.includes(a)) {
-        return custom.length >= calendar.length ? custom : calendar;
+        return `${custom} – ${calendar}`;
     }
 
-    return `${custom} – ${calendar}`;
+    return custom || calendar;
 }
 
 function getStatus(event) {
@@ -155,8 +158,7 @@ function renderCard(event) {
         </div>
     `;
 
-    // Les informations issues du JSON campagne sont affichées dans la carte,
-    // sans modifier le rendu principal de jour.css.
+    // Aperçu des informations du JSON campagne.
     const preview = document.createElement("div");
     preview.className = "campaignPreview";
 
@@ -202,7 +204,7 @@ function renderEvents() {
     const noEvent = document.getElementById("noEvent");
     if (!grid || !noEvent) return;
 
-    let selectedDate = getRequestedDate() || dateOnly(new Date());
+    const selectedDate = getRequestedDate() || dateOnly(new Date());
     const events = getEventsForDate(selectedDate);
 
     const pageDate = document.getElementById("pageDate");
