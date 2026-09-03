@@ -86,6 +86,24 @@
         "lieu": "Livres dans la boucle - Parc Chamars - Besançon",
         "affichage_lieu": "3"
       }
+    },
+    {
+      "id": "soiree-citronnade",
+      "nom": "Soirée Citronnade",
+      "valeurs": {
+        "titre": "Le Raffut Ludique s'invite à la Citronnade",
+        "sous_titre": "pour une soirée découverte de jeux de société",
+        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg",
+        "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/Citro.jpg",
+        "logo_fond": "#ffffff",
+        "fond": "",
+        "tarif": "Au chapeau",
+        "inscription": "Réservation conseillée",
+        "lien_inscription": "https://booking.myrezapp.com/fr/online/booking/minisite/10009/le-raffut-ludique",
+        "statut": "",
+        "lieu": "Maison Saint-Vincent - Proche studio photo d'Avanne",
+        "affichage_lieu": "3"
+      }
     }
   ]
 }
