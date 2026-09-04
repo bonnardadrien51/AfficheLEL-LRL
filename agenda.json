@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T09:17:44.458Z",
+  "generated_at": "2026-09-04T20:15:21.247Z",
   "events": [
     {
       "uid": "5e850973-863e-4a7e-aeb9-7e82fdb7fc49",
@@ -44,8 +44,21 @@
       "start": "2026-09-12T12:00:00.000Z",
       "end": "2026-09-12T16:30:00.000Z",
       "location": "Parc urbain de Planoise, 8 Rue Albrecht Durer, Besançon",
-      "description": "",
-      "campaign": null,
+      "description": "{<br>  \"titre\": \"\",<br>  \"sous_titre\": \"\",<br>  \"image\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/boomerangCarre.jpg\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/boomerangCarre.jpg</a>\",<br>  \"logo\": \"\",<br>  \"logo_fond\": \"#ffffff\",<br>  \"fond\": \"\",<br>  \"tarif\": \"Gratuit\",<br>  \"inscription\": \"\",<br>  \"lien_inscription\": \"\",<br>  \"statut\": \"\",<br>  \"lieu\": \"Parc Urbain - Planoise\",<br>  \"affichage_lieu\": \"3\"<br>}",
+      "campaign": {
+        "titre": "",
+        "sous_titre": "",
+        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/boomerangCarre.jpg",
+        "logo": "",
+        "logo_fond": "#ffffff",
+        "fond": "",
+        "tarif": "Gratuit",
+        "inscription": "",
+        "lien_inscription": "",
+        "statut": "",
+        "lieu": "Parc Urbain - Planoise",
+        "affichage_lieu": "3"
+      },
       "calendar": "Partenaire",
       "icon": "LELpartenaire.svg",
       "color": "#9EB6F1"
@@ -156,8 +169,21 @@
       "start": "2026-09-30T11:30:00.000Z",
       "end": "2026-09-30T16:00:00.000Z",
       "location": "Micronora, Hall B2 Stand Former des talents, Micropolis, Besançon",
-      "description": "",
-      "campaign": null,
+      "description": "{<br>  \"titre\": \"Gagne ton stage de 3ème\",<br>  \"sous_titre\": \"dans l'industrie\",<br>  \"image\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/evenements/image0.png\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/evenements/image0.png</a>\",<br>  \"logo\": \"\",<br>  \"logo_fond\": \"#ffffff\",<br>  \"fond\": \"\",<br>  \"tarif\": \"Gratuit\",<br>  \"inscription\": \"Réservation conseillée\",<br>  \"lien_inscription\": \"<a href=\"https://booking.myrezapp.com/fr/online/booking/step1/22358/103718\">https://booking.myrezapp.com/fr/online/booking/step1/22358/103718</a>\",<br>  \"statut\": \"\",<br>  \"lieu\": \"Micronora, Hall B2 Stand Former des talents, Micropolis, Besançon\",<br>  \"affichage_lieu\": \"3\"<br>}",
+      "campaign": {
+        "titre": "Gagne ton stage de 3ème",
+        "sous_titre": "dans l'industrie",
+        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/evenements/image0.png",
+        "logo": "",
+        "logo_fond": "#ffffff",
+        "fond": "",
+        "tarif": "Gratuit",
+        "inscription": "Réservation conseillée",
+        "lien_inscription": "https://booking.myrezapp.com/fr/online/booking/step1/22358/103718",
+        "statut": "",
+        "lieu": "Micronora, Hall B2 Stand Former des talents, Micropolis, Besançon",
+        "affichage_lieu": "3"
+      },
       "calendar": "Partenaire",
       "icon": "LELpartenaire.svg",
       "color": "#9EB6F1"
