@@ -1,773 +1,101 @@
 /* ==================================================
-   VARIABLES
+   VARIABLES / BASE
 ================================================== */
-
-:root {
-    --association-accent: #7e9eea;
-    --background: #0a1330;
-    --card-background: #ffffff;
-    --text: #111827;
-    --muted: #5b6472;
-}
-
+:root { --association-accent:#7e9eea; --background:#0a1330; --card-background:#fff; --text:#111827; --muted:#5b6472; }
+* { box-sizing:border-box; }
+html, body { margin:0; padding:0; width:100%; min-height:100%; }
+body { background:var(--background); font-family:Arial,sans-serif; color:var(--text); overflow-x:hidden; }
+#stage { width:100vw; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px; }
+#screen { position:relative; background:var(--background); overflow:hidden; display:flex; flex-direction:column; }
 
 /* ==================================================
-   BASE
+   TOOLBAR / HEADER
 ================================================== */
-
-* {
-    box-sizing: border-box;
-}
-
-
-html,
-body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100%;
-}
-
-
-body {
-    background: var(--background);
-    font-family: "Arial", sans-serif;
-    color: var(--text);
-    overflow-x: hidden;
-}
-
+.toolbar, .downloadToolbar { position:fixed; top:15px; left:15px; z-index:9999; display:flex; gap:8px; }
+.downloadToolbar button, .downloadToolbar a, .toolbar button, .toolbar a { border:none; padding:10px 15px; border-radius:8px; background:#fff; color:#111827; font-weight:bold; cursor:pointer; text-decoration:none; box-shadow:0 3px 10px rgba(0,0,0,.25); }
+.agendaHeader { flex-shrink:0; padding:22px 30px 15px; text-align:center; color:#fff; }
+#associationName { margin:0; font-size:42px; font-weight:900; }
+#eventCount { margin-top:6px; font-size:18px; opacity:.85; }
 
 /* ==================================================
-   ZONE D'AFFICHAGE
+   GRILLE / CARTE
 ================================================== */
-
-#stage {
-    width: 100vw;
-    min-height: 100vh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 20px;
-}
-
-
-#screen {
-    position: relative;
-
-    background: var(--background);
-
-    overflow: hidden;
-
-    display: flex;
-    flex-direction: column;
-
-    box-shadow:
-        0 10px 50px rgba(0, 0, 0, 0.45);
-}
-
-
-/* ==================================================
-   TOOLBAR
-================================================== */
-
-.downloadToolbar {
-    position: fixed;
-
-    top: 15px;
-    left: 15px;
-
-    z-index: 9999;
-
-    display: flex;
-    gap: 8px;
-}
-
-
-.downloadToolbar button,
-.downloadToolbar a {
-    border: none;
-
-    padding: 10px 15px;
-
-    border-radius: 8px;
-
-    background: white;
-
-    color: #111827;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    text-decoration: none;
-
-    box-shadow:
-        0 3px 10px rgba(0, 0, 0, 0.25);
-}
-
-
-.downloadToolbar button:hover,
-.downloadToolbar a:hover {
-    transform: translateY(-1px);
-}
-
-
-/* ==================================================
-   TITRE
-================================================== */
-
-.agendaHeader {
-    flex-shrink: 0;
-
-    padding: 22px 30px 15px;
-
-    text-align: center;
-
-    color: white;
-}
-
-
-#associationName {
-    margin: 0;
-
-    font-size: 42px;
-    font-weight: 900;
-}
-
-
-#eventCount {
-    margin-top: 6px;
-
-    font-size: 18px;
-
-    opacity: 0.85;
-}
-
-
-/* ==================================================
-   GRILLE
-================================================== */
-
-#eventGrid {
-    flex: 1;
-
-    min-width: 0;
-    min-height: 0;
-
-    display: grid;
-
-    gap: 16px;
-
-    padding: 15px 25px 25px;
-}
-
-
-/* ==================================================
-   CARTE EVENEMENT
-================================================== */
-
-.eventCard {
-
-    min-width: 0;
-    min-height: 0;
-
-    overflow: hidden;
-
-    display: grid;
-
-    grid-template-columns:
-        minmax(0, 35%)
-        minmax(0, 65%);
-
-    background: var(--card-background);
-
-    border-radius: 14px;
-
-    box-shadow:
-        0 5px 18px rgba(0, 0, 0, 0.25);
-}
-
-
-/* ==================================================
-   IMAGE
-================================================== */
-
-.eventImage {
-
-    min-width: 0;
-    min-height: 0;
-
-    overflow: hidden;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    background: #eeeeee;
-}
-
-
-.eventImage img {
-
-    display: block;
-
-    width: auto;
-    height: auto;
-
-    max-width: 100%;
-    max-height: 100%;
-
-    object-fit: contain;
-
-    object-position: center;
-}
-
-
-.eventImageEmpty {
-    padding: 25px;
-}
-
-
-.eventImageEmpty img {
-    width: 70%;
-    height: auto;
-}
-
-
-/* ==================================================
-   CONTENU
-================================================== */
-
-.eventContent {
-
-    min-width: 0;
-    min-height: 0;
-
-    overflow: hidden;
-
-    display: flex;
-
-    flex-direction: column;
-
-    padding: 18px 20px;
-}
-
-
-/* ==================================================
-   TITRE EVENEMENT
-================================================== */
-
-.eventTitle {
-
-    min-width: 0;
-
-    font-size: 28px;
-
-    line-height: 1.05;
-
-    font-weight: 900;
-
-    color: var(--association-accent);
-
-    overflow-wrap: anywhere;
-}
-
-
-.eventSubtitle {
-
-    margin-top: 7px;
-
-    font-size: 19px;
-
-    line-height: 1.15;
-
-    font-weight: 700;
-
-    color: #333333;
-
-    overflow-wrap: anywhere;
-}
-
-
-/* ==================================================
-   INFOS
-================================================== */
-
-.eventInfos {
-
-    margin-top: 12px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 5px;
-}
-
-
-.eventInfo {
-
-    display: flex;
-
-    align-items: flex-start;
-
-    gap: 7px;
-
-    min-width: 0;
-
-    font-size: 16px;
-
-    line-height: 1.15;
-}
-
-
-.eventInfoIcon {
-    flex-shrink: 0;
-
-    width: 22px;
-}
-
-
-.eventInfoText {
-
-    min-width: 0;
-
-    overflow-wrap: anywhere;
-}
-
-
-.eventRegistration {
-
-    font-weight: 700;
-
-    color: var(--association-accent);
-}
-
-
-/* ==================================================
-   STATUT
-================================================== */
-
-.eventStatus {
-
-    display: inline-block;
-
-    align-self: flex-start;
-
-    margin-top: 8px;
-
-    padding: 4px 9px;
-
-    border-radius: 6px;
-
-    background: var(--association-accent);
-
-    color: white;
-
-    font-size: 13px;
-
-    font-weight: 800;
-}
-
-
-/* ==================================================
-   LOGO CAMPAGNE
-================================================== */
-
-.campaignLogo {
-
-    margin-top: auto;
-
-    padding-top: 8px;
-
-    display: flex;
-
-    justify-content: flex-end;
-
-    align-items: flex-end;
-
-    min-height: 0;
-}
-
-
-.campaignLogo img {
-
-    display: block;
-
-    width: auto;
-    height: auto;
-
-    max-width: 180px;
-    max-height: 70px;
-
-    object-fit: contain;
-}
-
+#eventGrid { flex:1; min-width:0; min-height:0; display:grid; gap:16px; padding:15px 25px 25px; }
+.eventCard { min-width:0; min-height:0; max-width:100%; overflow:hidden; display:grid; grid-template-columns:minmax(0,35%) minmax(0,65%); background:var(--card-background); border-radius:14px; box-shadow:0 5px 18px rgba(0,0,0,.25); }
+.eventImage { min-width:0; min-height:0; max-width:100%; max-height:100%; overflow:hidden; display:flex; align-items:center; justify-content:center; background:#eee; }
+.eventImage img { display:block; width:auto; height:auto; max-width:100%; max-height:100%; object-fit:contain; object-position:center; }
+.eventImageEmpty { padding:25px; }
+.eventImageEmpty img { width:70%; height:auto; max-width:100%; max-height:100%; }
+.eventContent { min-width:0; min-height:0; max-width:100%; overflow:hidden; display:flex; flex-direction:column; padding:18px 20px; }
+.eventTitle { min-width:0; max-width:100%; font-size:28px; line-height:1.05; font-weight:900; color:var(--association-accent); overflow-wrap:anywhere; word-break:break-word; }
+.eventSubtitle { min-width:0; max-width:100%; margin-top:7px; font-size:19px; line-height:1.15; font-weight:700; color:#333; overflow-wrap:anywhere; word-break:break-word; }
+.eventInfos { min-width:0; margin-top:12px; display:flex; flex-direction:column; gap:5px; }
+.eventInfo { display:flex; align-items:flex-start; gap:7px; min-width:0; max-width:100%; font-size:16px; line-height:1.15; }
+.eventInfoIcon { flex-shrink:0; width:22px; }
+.eventInfoText { min-width:0; max-width:100%; overflow-wrap:anywhere; word-break:break-word; }
+.eventRegistration a { color:inherit; text-decoration:none; }
+.eventRegistration { font-weight:700; color:var(--association-accent); }
+.eventStatus { display:inline-block; align-self:flex-start; flex-shrink:0; max-width:100%; margin-top:8px; padding:4px 9px; border-radius:6px; background:var(--association-accent); color:#fff; font-size:13px; font-weight:800; overflow-wrap:anywhere; }
+.campaignLogo { margin-top:auto; padding-top:8px; display:flex; justify-content:flex-end; align-items:flex-end; min-width:0; min-height:0; max-width:100%; overflow:hidden; }
+.campaignLogo img { display:block; width:auto; height:auto; max-width:180px; max-height:70px; object-fit:contain; }
 
 /* ==================================================
    AUCUN EVENEMENT
 ================================================== */
-
-.emptyAgenda {
-
-    grid-column: 1 / -1;
-
-    align-self: center;
-
-    justify-self: center;
-
-    text-align: center;
-
-    color: white;
-
-    padding: 50px;
-}
-
-
-.emptyAgendaIcon {
-    font-size: 60px;
-}
-
-
-.emptyAgendaTitle {
-
-    margin-top: 15px;
-
-    font-size: 32px;
-
-    font-weight: 900;
-}
-
-
-.emptyAgendaText {
-
-    margin-top: 8px;
-
-    font-size: 18px;
-
-    opacity: 0.8;
-}
-
+.emptyAgenda { grid-column:1/-1; align-self:center; justify-self:center; text-align:center; color:#fff; padding:50px; }
+.emptyAgendaIcon { font-size:60px; }
+.emptyAgendaTitle { margin-top:15px; font-size:32px; font-weight:900; }
+.emptyAgendaText { margin-top:8px; font-size:18px; opacity:.8; }
 
 /* ==================================================
-   FORMAT AFFICHE
-   1080 x 1528
-   6 événements
+   FORMAT AFFICHE — IMAGE 27% / CONTENU 73%
 ================================================== */
-
-body[data-format="affiche"] #screen {
-
-    width: 1080px;
-    height: 1528px;
-}
-
-
-body[data-format="affiche"] #eventGrid {
-
-    grid-template-columns:
-        minmax(0, 1fr)
-        minmax(0, 1fr);
-
-    grid-template-rows:
-        repeat(3, minmax(0, 1fr));
-}
-
-
-body[data-format="affiche"] .eventCard {
-
-    grid-template-columns:
-        minmax(0, 27%)
-        minmax(0, 73%);
-}
-
-
-body[data-format="affiche"] .eventImage {
-
-    min-width: 0;
-    min-height: 0;
-
-    padding: 10px;
-}
-
-
-body[data-format="affiche"] .eventImage img {
-
-    width: auto;
-    height: auto;
-
-    max-width: 100%;
-    max-height: 100%;
-
-    object-fit: contain;
-}
-
-
-body[data-format="affiche"] .eventContent {
-
-    padding: 18px 15px;
-}
-
-
-body[data-format="affiche"] .eventTitle {
-
-    font-size: 25px;
-}
-
-
-body[data-format="affiche"] .eventSubtitle {
-
-    font-size: 17px;
-}
-
-
-body[data-format="affiche"] .eventInfo {
-
-    font-size: 14px;
-}
-
+body[data-format="affiche"] #screen { width:1080px; height:1528px; }
+body[data-format="affiche"] #eventGrid { grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-rows:repeat(3,minmax(0,1fr)); }
+body[data-format="affiche"] .eventCard { grid-template-columns:minmax(0,27%) minmax(0,73%); }
+body[data-format="affiche"] .eventImage { padding:10px; }
+body[data-format="affiche"] .eventImage img { width:auto; height:auto; max-width:100%; max-height:100%; object-fit:contain; }
+body[data-format="affiche"] .eventContent { padding:18px 15px; }
+body[data-format="affiche"] .eventTitle { font-size:25px; }
+body[data-format="affiche"] .eventSubtitle { font-size:17px; }
+body[data-format="affiche"] .eventInfo { font-size:14px; }
 
 /* ==================================================
-   FORMAT CARRE
-   1080 x 1080
-   4 événements
+   FORMAT CARRE — IMAGE 42% / CONTENU 58%
 ================================================== */
-
-body[data-format="carre"] #screen {
-
-    width: 1080px;
-    height: 1080px;
-}
-
-
-body[data-format="carre"] #eventGrid {
-
-    grid-template-columns:
-        minmax(0, 1fr)
-        minmax(0, 1fr);
-
-    grid-template-rows:
-        repeat(2, minmax(0, 1fr));
-}
-
-
-body[data-format="carre"] .eventCard {
-
-    grid-template-columns:
-        minmax(0, 42%)
-        minmax(0, 58%);
-}
-
-
-body[data-format="carre"] .eventImage {
-
-    padding: 10px;
-}
-
-
-body[data-format="carre"] .eventImage img {
-
-    width: auto;
-    height: auto;
-
-    max-width: 100%;
-    max-height: 100%;
-
-    object-fit: contain;
-}
-
-
-body[data-format="carre"] .eventTitle {
-
-    font-size: 24px;
-}
-
-
-body[data-format="carre"] .eventSubtitle {
-
-    font-size: 17px;
-}
-
-
-body[data-format="carre"] .eventInfo {
-
-    font-size: 14px;
-}
-
+body[data-format="carre"] #screen { width:1080px; height:1080px; }
+body[data-format="carre"] #eventGrid { grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-rows:repeat(2,minmax(0,1fr)); }
+body[data-format="carre"] .eventCard { grid-template-columns:minmax(0,42%) minmax(0,58%); }
+body[data-format="carre"] .eventImage { padding:10px; }
+body[data-format="carre"] .eventImage img { width:auto; height:auto; max-width:100%; max-height:100%; object-fit:contain; }
+body[data-format="carre"] .eventTitle { font-size:24px; }
+body[data-format="carre"] .eventSubtitle { font-size:17px; }
+body[data-format="carre"] .eventInfo { font-size:14px; }
 
 /* ==================================================
-   FORMAT FACEBOOK
-   1640 x 624
-   6 événements
+   FORMAT FACEBOOK — IMAGE 28% / CONTENU 72%
 ================================================== */
-
-body[data-format="facebook"] #screen {
-
-    width: 1640px;
-    height: 624px;
-}
-
-
-body[data-format="facebook"] #eventGrid {
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    grid-template-rows:
-        repeat(2, minmax(0, 1fr));
-
-    gap: 12px;
-
-    padding: 12px 20px 20px;
-}
-
-
-body[data-format="facebook"] .eventCard {
-
-    display: flex;
-
-    flex-direction: row;
-
-    min-width: 0;
-}
-
-
-body[data-format="facebook"] .eventImage {
-
-    flex: 0 0 28%;
-
-    width: 28%;
-
-    min-width: 0;
-    min-height: 0;
-
-    padding: 6px;
-}
-
-
-body[data-format="facebook"] .eventImage img {
-
-    width: auto;
-    height: auto;
-
-    max-width: 100%;
-    max-height: 100%;
-
-    object-fit: contain;
-}
-
-
-body[data-format="facebook"] .eventContent {
-
-    flex: 1;
-
-    min-width: 0;
-
-    padding: 12px 10px 8px;
-}
-
-
-body[data-format="facebook"] .eventTitle {
-
-    font-size: 19px;
-}
-
-
-body[data-format="facebook"] .eventSubtitle {
-
-    font-size: 14px;
-
-    margin-top: 4px;
-}
-
-
-body[data-format="facebook"] .eventInfos {
-
-    margin-top: 7px;
-
-    gap: 2px;
-}
-
-
-body[data-format="facebook"] .eventInfo {
-
-    font-size: 11px;
-}
-
-
-body[data-format="facebook"] .eventInfoIcon {
-
-    width: 17px;
-}
-
-
-body[data-format="facebook"] .campaignLogo img {
-
-    max-width: 110px;
-    max-height: 40px;
-}
-
+body[data-format="facebook"] #screen { width:1640px; height:624px; }
+body[data-format="facebook"] #eventGrid { grid-template-columns:repeat(3,minmax(0,1fr)); grid-template-rows:repeat(2,minmax(0,1fr)); gap:12px; padding:12px 20px 20px; }
+body[data-format="facebook"] .eventCard { display:flex; flex-direction:row; min-width:0; max-width:100%; }
+body[data-format="facebook"] .eventImage { flex:0 0 28%; width:28%; min-width:0; min-height:0; max-width:28%; padding:6px; }
+body[data-format="facebook"] .eventImage img { width:auto; height:auto; max-width:100%; max-height:100%; object-fit:contain; }
+body[data-format="facebook"] .eventContent { flex:1 1 72%; width:72%; min-width:0; max-width:72%; padding:12px 10px 8px; }
+body[data-format="facebook"] .eventTitle { font-size:19px; }
+body[data-format="facebook"] .eventSubtitle { font-size:14px; margin-top:4px; }
+body[data-format="facebook"] .eventInfos { margin-top:7px; gap:2px; }
+body[data-format="facebook"] .eventInfo { font-size:11px; }
+body[data-format="facebook"] .eventInfoIcon { width:17px; }
+body[data-format="facebook"] .campaignLogo img { max-width:110px; max-height:40px; }
 
 /* ==================================================
-   MODE PAGE=1
-   Un seul événement
+   MODE PAGE
 ================================================== */
-
-body.page-mode #eventGrid {
-
-    grid-template-columns:
-        minmax(0, 1fr);
-}
-
-
-body.page-mode .eventCard {
-
-    grid-column: 1 / -1;
-}
-
+body.page-mode #eventGrid { grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(0,1fr); }
+body.page-mode .eventCard { grid-column:1/-1; }
 
 /* ==================================================
    RESPONSIVE
 ================================================== */
-
-@media (max-width: 1100px) {
-
-    #stage {
-        padding: 10px;
-    }
-
-    #screen {
-        transform-origin: top center;
-    }
-}
-
-
-@media (max-width: 700px) {
-
-    #associationName {
-        font-size: 28px;
-    }
-
-    #eventGrid {
-        grid-template-columns: 1fr !important;
-        grid-template-rows: none !important;
-    }
-
-    .eventCard {
-        min-height: 180px;
-    }
-
-    .eventTitle {
-        font-size: 20px;
-    }
-
-    .eventSubtitle {
-        font-size: 15px;
-    }
-
-    .eventInfo {
-        font-size: 13px;
-    }
-}
+@media (max-width:1100px) { #stage { padding:10px; } #screen { transform-origin:top center; } }
+@media (max-width:700px) { #associationName{font-size:28px} #eventGrid{grid-template-columns:1fr!important;grid-template-rows:none!important}.eventCard{min-height:180px}.eventTitle{font-size:20px}.eventSubtitle{font-size:15px}.eventInfo{font-size:13px} }
