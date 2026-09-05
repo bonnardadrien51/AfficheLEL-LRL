@@ -202,6 +202,38 @@ function renderEmpty(){
     document.body.classList.add("empty");
 }
 
+function getUpcomingEvents(events){
+    const now = Date.now();
+    return events
+        .filter(event => {
+            const timestamp = new Date(event.start).getTime();
+            return Number.isFinite(timestamp) && timestamp >= now;
+        })
+        .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime());
+}
+
+function selectEvent(events){
+    const params = new URLSearchParams(window.location.search);
+    const requestedUid = params.get("id");
+
+    // L'ID unique est prioritaire sur le numéro d'ordre.
+    if(requestedUid){
+        const byId = events.find(event => String(event.uid) === String(requestedUid));
+        if(byId) return byId;
+    }
+
+    const upcoming = getUpcomingEvents(events);
+    if(!upcoming.length) return null;
+
+    // event=1 correspond au premier événement à venir, event=2 au deuxième, etc.
+    const requestedNumber = parseInt(params.get("event"), 10);
+    const position = Number.isInteger(requestedNumber) && requestedNumber > 0
+        ? requestedNumber - 1
+        : 0;
+
+    return upcoming[position] || upcoming[0];
+}
+
 async function loadEvents(){
     try{
         const response = await fetch(DATA_URL + "?t=" + Date.now());
@@ -217,9 +249,8 @@ async function loadEvents(){
         const events = Array.isArray(json.events) ? json.events : [];
         if(!events.length){ renderEmpty(); return; }
 
-        const requestedUid = new URLSearchParams(window.location.search).get("id");
-        let event = requestedUid ? events.find(e => String(e.uid) === String(requestedUid)) : null;
-        if(!event) event = events[0];
+        const event = selectEvent(events);
+        if(!event){ renderEmpty(); return; }
 
         const override = overrides[event.uid];
         if(override && override.statut !== undefined){
@@ -249,11 +280,6 @@ async function loadHtml2Canvas(){
     return html2canvas;
 }
 
-/*
- * Capture propre de l'affiche.
- * #screen est affiché avec transform:scale(...) pour s'adapter à la fenêtre.
- * La capture est faite dans les dimensions natives de l'affiche, sans ce scale.
- */
 async function downloadImage(format){
     const canvasLib = await loadHtml2Canvas();
     const target = document.getElementById("screen");
@@ -266,11 +292,9 @@ async function downloadImage(format){
 
     try{
         if(toolbar) toolbar.style.visibility = "hidden";
-
         if(document.fonts && document.fonts.ready){
             try{ await document.fonts.ready; }catch(e){}
         }
-
         const images = Array.from(target.querySelectorAll("img"));
         await Promise.all(images.map(img => {
             if(img.complete) return Promise.resolve();
@@ -279,45 +303,27 @@ async function downloadImage(format){
                 img.addEventListener("error", resolve, {once:true});
             });
         }));
-
         target.style.transform = "none";
         target.style.transformOrigin = "top left";
-
         await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
 
         const width = target.offsetWidth || 1920;
         const height = target.offsetHeight || 1080;
-
         let mime = "image/png";
         let quality;
         let extension = "png";
-
         if(format === "jpg"){
-            mime = "image/jpeg";
-            quality = 0.95;
-            extension = "jpg";
+            mime = "image/jpeg"; quality = 0.95; extension = "jpg";
         }else if(format === "webp"){
-            mime = "image/webp";
-            quality = 0.95;
-            extension = "webp";
+            mime = "image/webp"; quality = 0.95; extension = "webp";
         }
 
         const canvas = await canvasLib(target, {
-            width,
-            height,
-            windowWidth: width,
-            windowHeight: height,
-            backgroundColor: "#0a1330",
-            useCORS: true,
-            allowTaint: false,
-            scale: 1,
-            logging: false
+            width, height, windowWidth: width, windowHeight: height,
+            backgroundColor: "#0a1330", useCORS: true, allowTaint: false,
+            scale: 1, logging: false
         });
-
-        const blob = await new Promise(resolve =>
-            canvas.toBlob(resolve, mime, quality)
-        );
-
+        const blob = await new Promise(resolve => canvas.toBlob(resolve, mime, quality));
         if(!blob) throw new Error("Impossible de créer l'image.");
 
         let finalExtension = extension;
@@ -332,7 +338,6 @@ async function downloadImage(format){
         document.body.appendChild(link);
         link.click();
         link.remove();
-
         setTimeout(() => URL.revokeObjectURL(url), 1000);
     }catch(error){
         console.error("Erreur lors de la capture :", error);
