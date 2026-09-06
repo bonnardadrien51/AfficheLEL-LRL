@@ -1,18 +1,6 @@
 {
-  "generated_at": "2026-09-05T08:41:48.774Z",
+  "generated_at": "2026-09-06T09:01:16.595Z",
   "events": [
-    {
-      "uid": "5e850973-863e-4a7e-aeb9-7e82fdb7fc49",
-      "title": "Forum des associations à Aveney",
-      "start": "2026-09-05T07:30:00.000Z",
-      "end": "2026-09-05T10:00:00.000Z",
-      "location": "3 Rue de l'École, Aveney",
-      "description": "",
-      "campaign": null,
-      "calendar": "Soirée au chapeau",
-      "icon": "LRLsoiree.svg",
-      "color": "#F062B0"
-    },
     {
       "uid": "fa8ad8f0-0d5e-4a61-a326-6a87c96bc8a3",
       "title": "Les soirées d'Avanne - Portes ouvertes",
