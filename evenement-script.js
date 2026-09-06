@@ -62,9 +62,20 @@ function renderRegistrationQr(campaign){
     const box = document.getElementById("registrationBox");
     const qr = document.getElementById("registrationQr");
     const text = document.getElementById("registrationQrText");
+    const button = document.getElementById("registrationButton");
     if(!box || !qr) return;
     qr.innerHTML = "";
     const url = campaign && campaign.lien_inscription ? String(campaign.lien_inscription).trim() : "";
+
+    if(button){
+        button.classList.add("hidden");
+        button.onclick = null;
+        if(/^https?:\/\//i.test(url)){
+            button.classList.remove("hidden");
+            button.onclick = () => window.open(url, "_blank", "noopener");
+        }
+    }
+
     if(!url){
         box.classList.add("hidden");
         return;
@@ -200,6 +211,11 @@ function fitContent(){
 function renderEmpty(){
     currentEvent = null;
     document.body.classList.add("empty");
+    const button = document.getElementById("registrationButton");
+    if(button){
+        button.classList.add("hidden");
+        button.onclick = null;
+    }
 }
 
 function getUpcomingEvents(events){
