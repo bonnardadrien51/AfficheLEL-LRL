@@ -1,31 +1,6 @@
 {
-  "generated_at": "2026-09-09T09:17:20.619Z",
+  "generated_at": "2026-09-10T09:15:43.099Z",
   "events": [
-    {
-      "uid": "fa8ad8f0-0d5e-4a61-a326-6a87c96bc8a3",
-      "title": "Les soirées d'Avanne - Portes ouvertes",
-      "start": "2026-09-09T15:30:00.000Z",
-      "end": "2026-09-09T19:00:00.000Z",
-      "location": "3 Bis rue de l'eglise - Proche studio photo d'Avanne.",
-      "description": "{<br>  \"titre\": \"Soirée jeux à Avanne - Portes ouvertes\",<br>  \"sous_titre\": \"\",<br>  \"image\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg</a>\",<br>  \"logo\": \"<a href=\"https://static.wixstatic.com/media/2dd0a2_ec64a8347d1c42248671cb41bc7c072d~mv2.png\">https://static.wixstatic.com/media/2dd0a2_ec64a8347d1c42248671cb41bc7c072d~mv2.png</a>\",<br>  \"logo_fond\": \"#ffffff\",<br>  \"fond\": \"\",<br>  \"tarif\": \"Gratuit - Portes ouvertes\",<br>  \"inscription\": \"Réservation conseillée\",<br>  \"lien_inscription\": \"<a href=\"https://booking.myrezapp.com/fr/online/booking/minisite/10009/le-raffut-ludique\">https://booking.myrezapp.com/fr/online/booking/minisite/10009/le-raffut-ludique</a>\",<br>  \"statut\": \"\",<br>  \"lieu\": \"Maison Saint-Vincent - Proche studio photo d'Avanne\",<br>  \"affichage_lieu\": \"3\"<br>}",
-      "campaign": {
-        "titre": "Soirée jeux à Avanne - Portes ouvertes",
-        "sous_titre": "",
-        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg",
-        "logo": "https://static.wixstatic.com/media/2dd0a2_ec64a8347d1c42248671cb41bc7c072d~mv2.png",
-        "logo_fond": "#ffffff",
-        "fond": "",
-        "tarif": "Gratuit - Portes ouvertes",
-        "inscription": "Réservation conseillée",
-        "lien_inscription": "https://booking.myrezapp.com/fr/online/booking/minisite/10009/le-raffut-ludique",
-        "statut": "",
-        "lieu": "Maison Saint-Vincent - Proche studio photo d'Avanne",
-        "affichage_lieu": "3"
-      },
-      "calendar": "Soirée adhérents",
-      "icon": "LRLadherent.svg",
-      "color": "#F6D67A"
-    },
     {
       "uid": "5ncgoskm27s2etvforn0aqfjvl@google.com",
       "title": "Fabrique ton boomerang ",
