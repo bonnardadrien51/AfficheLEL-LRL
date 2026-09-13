@@ -1,31 +1,6 @@
 {
-  "generated_at": "2026-09-12T08:55:28.484Z",
+  "generated_at": "2026-09-13T09:50:19.360Z",
   "events": [
-    {
-      "uid": "5ncgoskm27s2etvforn0aqfjvl@google.com",
-      "title": "Fabrique ton boomerang ",
-      "start": "2026-09-12T12:00:00.000Z",
-      "end": "2026-09-12T16:30:00.000Z",
-      "location": "Parc urbain de Planoise, 8 Rue Albrecht Durer, Besançon",
-      "description": "{<br>  \"titre\": \"\",<br>  \"sous_titre\": \"\",<br>  \"image\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/boomerangCarre.jpg\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/boomerangCarre.jpg</a>\",<br>  \"logo\": \"\",<br>  \"logo_fond\": \"#ffffff\",<br>  \"fond\": \"\",<br>  \"tarif\": \"Gratuit\",<br>  \"inscription\": \"\",<br>  \"lien_inscription\": \"\",<br>  \"statut\": \"\",<br>  \"lieu\": \"Parc Urbain - Planoise\",<br>  \"affichage_lieu\": \"3\"<br>}",
-      "campaign": {
-        "titre": "",
-        "sous_titre": "",
-        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/boomerangCarre.jpg",
-        "logo": "",
-        "logo_fond": "#ffffff",
-        "fond": "",
-        "tarif": "Gratuit",
-        "inscription": "",
-        "lien_inscription": "",
-        "statut": "",
-        "lieu": "Parc Urbain - Planoise",
-        "affichage_lieu": "3"
-      },
-      "calendar": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
-    },
     {
       "uid": "68f6e2a7-0432-43f4-82fa-2fd3acaf416d",
       "title": "Soirée découverte jeux de société à La Citronnade",
