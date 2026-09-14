@@ -103,8 +103,6 @@ function buildEvents(events) {
             displaySubtitle = campaignSubtitle;
         }
 
-        // agenda.json utilise "calendar" pour l'intitulé de catégorie.
-        // "label" reste prioritaire s'il existe.
         const badge = event.label || event.calendar || "";
         const color = event.color || "#0d4c72";
         const location = event.location || "";
@@ -146,9 +144,57 @@ function escapeHtml(value) {
 
 function escapeAttribute(value) { return escapeHtml(value); }
 
-function exportPNG() {
+function rasterizeCategoryIconsForExport(cover) {
+    const replacements = [];
+
+    cover.querySelectorAll(".categoryIcon").forEach(img => {
+        if (!img.complete || !img.naturalWidth || !img.naturalHeight) return;
+
+        const rect = img.getBoundingClientRect();
+        const left = img.closest(".left");
+        if (!left) return;
+
+        const leftStyle = getComputedStyle(left);
+        const availableWidth = Math.max(1, left.clientWidth - parseFloat(leftStyle.paddingLeft) - parseFloat(leftStyle.paddingRight));
+        const availableHeight = Math.max(1, left.clientHeight - parseFloat(leftStyle.paddingTop) - parseFloat(leftStyle.paddingBottom));
+        const ratio = img.naturalWidth / img.naturalHeight;
+
+        // On calcule une taille qui respecte TOUJOURS le ratio natif du logo.
+        // html2canvas peut sinon étirer certains SVG/PNG contenus dans un flex.
+        let width = Math.min(availableWidth, availableHeight * ratio);
+        let height = width / ratio;
+
+        // Si l'image était déjà plus petite que l'espace disponible, on la conserve.
+        if (rect.width < width && rect.height < height) {
+            width = rect.width;
+            height = width / ratio;
+        }
+
+        const canvas = document.createElement("canvas");
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        canvas.style.display = "block";
+        canvas.style.width = `${Math.max(1, width)}px`;
+        canvas.style.height = `${Math.max(1, height)}px`;
+        canvas.style.flexShrink = "0";
+
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return;
+        ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
+
+        img.replaceWith(canvas);
+        replacements.push({ canvas, img });
+    });
+
+    return () => {
+        replacements.forEach(({ canvas, img }) => canvas.replaceWith(img));
+    };
+}
+
+async function exportPNG() {
     const toolbar = document.querySelector(".toolbar");
     if (toolbar) toolbar.style.display = "none";
+
     const cover = document.getElementById("cover");
     if (!cover) {
         if (toolbar) toolbar.style.display = "flex";
@@ -164,17 +210,29 @@ function exportPNG() {
         });
     });
 
-    Promise.all(whenReady)
-        .then(() => html2canvas(cover, { scale: 2, backgroundColor: null, useCORS: true, allowTaint: true, imageTimeout: 0 }))
-        .then(canvas => {
-            if (toolbar) toolbar.style.display = "flex";
+    try {
+        await Promise.all(whenReady);
+        const restoreIcons = rasterizeCategoryIconsForExport(cover);
+
+        try {
+            const canvas = await html2canvas(cover, {
+                scale: 2,
+                backgroundColor: null,
+                useCORS: true,
+                allowTaint: true,
+                imageTimeout: 0
+            });
+
             const link = document.createElement("a");
             link.download = CONFIG.downloadName;
             link.href = canvas.toDataURL("image/png");
             link.click();
-        })
-        .catch(error => {
-            console.error("Erreur export PNG :", error);
-            if (toolbar) toolbar.style.display = "flex";
-        });
+        } finally {
+            restoreIcons();
+        }
+    } catch (error) {
+        console.error("Erreur export PNG :", error);
+    } finally {
+        if (toolbar) toolbar.style.display = "flex";
+    }
 }
