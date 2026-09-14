@@ -91,17 +91,17 @@
       "id": "soiree-citronnade",
       "nom": "Soirée Citronnade",
       "valeurs": {
-        "titre": "Le Raffut Ludique s'invite à la Citronnade",
+        "titre": "Le Raffut Ludique s'invite à la MJC de Palente",
         "sous_titre": "pour une soirée découverte de jeux de société",
         "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg",
-        "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/Citro.jpg",
+        "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/MjcPalente.jpg",
         "logo_fond": "#ffffff",
         "fond": "",
         "tarif": "Au chapeau",
-        "inscription": "Réservation conseillée",
-        "lien_inscription": "https://booking.myrezapp.com/fr/online/booking/minisite/10009/le-raffut-ludique",
+        "inscription": "",
+        "lien_inscription": "",
         "statut": "",
-        "lieu": "Rue Ronchaux, Besançon",
+        "lieu": "MJC Palente - Café des tilleuls - Besançon",
         "affichage_lieu": "3"
       }
     },
