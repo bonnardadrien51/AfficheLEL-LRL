@@ -122,6 +122,24 @@
         "lieu": "Rue Ronchaux, Besançon",
         "affichage_lieu": "3"
       }
+    },
+    {
+      "id": "escape-game-papyrus-et-la-potion-des-pluies-oubliees",
+      "nom": "Escape game - Papyrus et la potion des pluies oubliées",
+      "valeurs": {
+        "titre": "Escape game - Papyrus et la potion des pluies oubliées",
+        "sous_titre": "",
+        "image": "",
+        "logo": "",
+        "logo_fond": "#ffffff",
+        "fond": "",
+        "tarif": "",
+        "inscription": "",
+        "lien_inscription": "",
+        "statut": "",
+        "lieu": "",
+        "affichage_lieu": "3"
+      }
     }
   ]
 }
