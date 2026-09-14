@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14T10:11:18.845Z",
+  "generated_at": "2026-09-14T21:17:53.372Z",
   "events": [
     {
       "uid": "68f6e2a7-0432-43f4-82fa-2fd3acaf416d",
@@ -32,10 +32,10 @@
       "start": "2026-09-19T08:00:00.000Z",
       "end": "2026-09-19T17:00:00.000Z",
       "location": "Livres dans la Boucle, Parc Chamars, Besançon",
-      "description": "{<br>  \"titre\": \"\",<br>  \"sous_titre\": \"\",<br>  \"image\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/EscapeGame.webp\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/EscapeGame.webp</a>\",<br>  \"logo\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/livres-dans-la-boucle.jpg\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/livres-dans-la-boucle.jpg</a>\",<br>  \"logo_fond\": \"\",<br>  \"fond\": \"\",<br>  \"tarif\": \"\",<br>  \"inscription\": \"Réservation sur place et en ligne\",<br>  \"lien_inscription\": \"\",<br>  \"statut\": \"\",<br>  \"lieu\": \"Livres dans la boucle - Parc Chamars - Besançon\",<br>  \"affichage_lieu\": \"3\"<br>}",
+      "description": "{<br>  \"titre\": \"Livres dans la Boucle\",<br>  \"sous_titre\": \"Escape Game : La mission de madame chouette\",<br>  \"image\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/EscapeGame.webp\" target=\"_blank\"><u><u>https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/EscapeGame.webp</u></u></a>\",<br>  \"logo\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/livres-dans-la-boucle.jpg\" target=\"_blank\"><u><u>https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/livres-dans-la-boucle.jpg</u></u></a>\",<br>  \"logo_fond\": \"\",<br>  \"fond\": \"\",<br>  \"tarif\": \"\",<br>  \"inscription\": \"Réservation sur place et en ligne\",<br>  \"lien_inscription\": \"\",<br>  \"statut\": \"\",<br>  \"lieu\": \"Livres dans la boucle - Parc Chamars - Besançon\",<br>  \"affichage_lieu\": \"3\"<br>}",
       "campaign": {
-        "titre": "",
-        "sous_titre": "",
+        "titre": "Livres dans la Boucle",
+        "sous_titre": "Escape Game : La mission de madame chouette",
         "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/EscapeGame.webp",
         "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/livres-dans-la-boucle.jpg",
         "logo_fond": "",
@@ -100,18 +100,6 @@
       "calendar": "Soirée adhérents",
       "icon": "LRLadherent.svg",
       "color": "#F6D67A"
-    },
-    {
-      "uid": "20v9omjjhg0u0kmun40tlql2qo@google.com",
-      "title": "Escape game MJC - 13h30 - 14h Thème cinema (entre 160 et 200€) 8 personnes",
-      "start": "2026-09-29T13:00:00.000Z",
-      "end": "2026-09-29T15:00:00.000Z",
-      "location": "",
-      "description": "utilisation du couloir + 2 salles cote a cote",
-      "campaign": null,
-      "calendar": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
     },
     {
       "uid": "0p84hssferbb2oejojh85k0jb7@google.com",
