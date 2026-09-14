@@ -140,6 +140,24 @@
         "lieu": "",
         "affichage_lieu": "3"
       }
+    },
+    {
+      "id": "soiree-mjc",
+      "nom": "Soirée MJC",
+      "valeurs": {
+        "titre": "Le Raffut Ludique s'invite à la MJC de Palente",
+        "sous_titre": "pour une soirée découverte de jeux de société",
+        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg",
+        "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/MjcPalente.jpg",
+        "logo_fond": "#ffffff",
+        "fond": "",
+        "tarif": "Au chapeau",
+        "inscription": "",
+        "lien_inscription": "",
+        "statut": "",
+        "lieu": "MJC Palente - Café des tilleuls - Besançon",
+        "affichage_lieu": "3"
+      }
     }
   ]
 }
