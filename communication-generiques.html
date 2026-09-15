@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Communications génériques — L'Établi Ludique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a1330;color:#fff;font-family:"Baloo 2","Segoe UI",Arial,sans-serif;padding:24px}
+#page{max-width:1100px;margin:auto}
+header{display:flex;align-items:center;gap:20px;margin-bottom:28px;flex-wrap:wrap}
+header img{height:70px;width:auto}
+h1{font-size:30px}header p{color:#a9b0cc;margin-top:2px}
+.toolbar{background:#141c40;border-radius:14px;padding:14px;display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.toolbar input,.toolbar select{padding:10px 13px;border:0;border-radius:8px;font:inherit;min-width:220px}
+.toolbar input{flex:1}
+.card{background:#141c40;border-radius:16px;padding:20px;margin-bottom:16px}
+.cardHead{display:flex;justify-content:space-between;gap:15px;align-items:flex-start;margin-bottom:14px}
+.category{display:inline-block;background:#e8bed4;color:#25142d;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:800;margin-bottom:6px}
+h2{font-size:22px}
+.status{font-size:12px;color:#a9b0cc;white-space:nowrap}
+textarea{width:100%;min-height:220px;resize:vertical;border:0;border-radius:10px;padding:14px;font:16px/1.45 Arial,sans-serif;color:#111;background:#fff;margin-bottom:10px}
+.hashtags{min-height:70px}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+button{border:0;border-radius:9px;padding:10px 16px;font:700 15px "Baloo 2",sans-serif;cursor:pointer;background:#2e5cf0;color:#fff}
+button.secondary{background:#3a4066}
+button.success{background:#298f5b}
+button:disabled{opacity:.5;cursor:wait}
+.message{margin-top:9px;font-size:13px;color:#a9b0cc}.message.error{color:#ff8080}
+.published{outline:2px solid #298f5b}
+.published .status{color:#6ee7a5}
+.empty{background:#141c40;padding:25px;border-radius:14px;color:#a9b0cc}
+@media(max-width:650px){body{padding:12px}header{align-items:flex-start}header img{height:55px}h1{font-size:25px}.cardHead{flex-direction:column}.status{white-space:normal}}
+</style>
+</head>
+<body>
+<div id="page">
+<header>
+<img src="img/logo-etabli.svg" alt="L'Établi Ludique">
+<div><h1>📣 Communications génériques</h1><p>Textes prêts à publier sur Facebook et Instagram pour mettre en avant les activités de L'Établi Ludique.</p></div>
+</header>
+<div class="toolbar">
+<input id="search" type="search" placeholder="Rechercher une activité…">
+<select id="category"><option value="">Toutes les catégories</option></select>
+</div>
+<div id="list">Chargement…</div>
+</div>
+<script>
+const PATH="communication-generiques.json";
+const OWNER="bonnardadrien51";
+const REPO="AfficheLEL-LRL";
+let posts=[];
+let fileSha="";
+
+function token(){return localStorage.getItem("gh_token")||""}
+function b64utf8(s){return btoa(unescape(encodeURIComponent(s)))}
+function fromB64(s){return decodeURIComponent(escape(atob(s)))}
+async function load(){
+ const r=await fetch(PATH+"?t="+Date.now());
+ if(!r.ok)throw new Error("Impossible de charger "+PATH);
+ const data=await r.json();posts=data.posts||[];
+ try{const r2=await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${PATH}`);if(r2.ok){const d=await r2.json();fileSha=d.sha}}catch(e){}
+ fillCategories();render();
+}
+function fillCategories(){const s=document.getElementById("category");[...new Set(posts.map(p=>p.categorie).filter(Boolean))].sort().forEach(c=>{const o=document.createElement("option");o.value=c;o.textContent=c;s.appendChild(o)})}
+function filtered(){const q=document.getElementById("search").value.toLowerCase().trim(),c=document.getElementById("category").value;return posts.filter(p=>(!q||[p.titre,p.categorie,p.post,p.hashtags].join(" ").toLowerCase().includes(q))&&(!c||p.categorie===c))}
+function render(){const list=document.getElementById("list");list.innerHTML="";const items=filtered();if(!items.length){list.innerHTML='<div class="empty">Aucune publication trouvée.</div>';return}items.forEach(p=>{const card=document.createElement("section");card.className="card"+(p.publie?" published":"");card.dataset.id=p.id;card.innerHTML=`<div class="cardHead"><div><span class="category">${esc(p.categorie||"L'Établi Ludique")}</span><h2>${esc(p.titre)}</h2></div><div class="status">${p.publie?"✓ Publié":"À publier"}</div></div><textarea class="postText">${esc(p.post||"")}</textarea><textarea class="hashtags" placeholder="#hashtags">${esc(p.hashtags||"")}</textarea><div class="actions"><button class="copy">📋 Copier le post</button><button class="save">💾 Enregistrer</button><button class="toggle secondary">${p.publie?"↩ Marquer non publié":"✓ Marquer publié"}</button></div><div class="message"></div>`;list.appendChild(card);});bind()}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;")}
+function bind(){document.querySelectorAll(".card").forEach(card=>{const p=posts.find(x=>x.id===card.dataset.id);card.querySelector(".copy").onclick=async()=>{const text=card.querySelector(".postText").value.trim()+"\n\n"+card.querySelector(".hashtags").value.trim();try{await navigator.clipboard.writeText(text);msg(card,"✓ Texte copié dans le presse-papiers")}catch(e){msg(card,"Copie impossible : sélectionnez le texte manuellement",true)}};card.querySelector(".save").onclick=()=>save(card,p);card.querySelector(".toggle").onclick=()=>{p.publie=!p.publie;render();saveSilent()}})}
+function msg(card,text,error=false){const m=card.querySelector(".message");m.textContent=text;m.className="message"+(error?" error":"")}
+async function save(card,p){p.post=card.querySelector(".postText").value;p.hashtags=card.querySelector(".hashtags").value;p.publie=card.classList.contains("published")||p.publie;await saveData(card)}
+async function saveSilent(){try{await saveData(null)}catch(e){console.error(e)}}
+async function saveData(card){const t=token();if(!t){if(card)msg(card,"Ajoutez votre token GitHub dans Administration > Token GitHub.",true);return}if(!fileSha){const r=await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${PATH}`,{headers:{Authorization:"Bearer "+t,Accept:"application/vnd.github+json"}});if(!r.ok)throw new Error("Lecture GitHub impossible");fileSha=(await r.json()).sha}const body={message:"📣 Mise à jour communications génériques",content:b64utf8(JSON.stringify({generated_at:new Date().toISOString().slice(0,10),posts},null,2)),sha:fileSha};const r=await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${PATH}`,{method:"PUT",headers:{Authorization:"Bearer "+t,Accept:"application/vnd.github+json","Content-Type":"application/json"},body:JSON.stringify(body)});if(!r.ok)throw new Error("Échec de la sauvegarde GitHub");const d=await r.json();fileSha=d.content.sha;if(card){msg(card,"✓ Enregistré dans GitHub");render()}}
+document.getElementById("search").oninput=render;document.getElementById("category").onchange=render;load().catch(e=>document.getElementById("list").innerHTML='<div class="empty">'+esc(e.message)+'</div>');
+</script>
+</body>
+</html>
