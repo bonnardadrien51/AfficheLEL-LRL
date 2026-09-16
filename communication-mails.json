@@ -51,6 +51,18 @@
       "historique": [],
       "champ1": "Bol bol bol",
       "champ2": ""
+    },
+    {
+      "id": "mail-1789567906029",
+      "categorie": "Animations escapes games",
+      "titre": "Animation escape game médiathèque",
+      "objet": "",
+      "corps": "",
+      "champ1": "",
+      "champ2": "",
+      "frequence_mois": 6,
+      "derniere_utilisation": null,
+      "historique": []
     }
   ]
 }
