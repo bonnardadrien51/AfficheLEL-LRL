@@ -158,6 +158,24 @@
         "lieu": "MJC Palente - Café des tilleuls - Besançon",
         "affichage_lieu": "3"
       }
+    },
+    {
+      "id": "escape-game-papyrus-et-la-potion-des-pluies-oubliees-studio-chouette",
+      "nom": "Escape game - Papyrus et la potion des pluies oubliées - Studio chouette",
+      "valeurs": {
+        "titre": "Escape game - Papyrus et la potion des pluies oubliées",
+        "sous_titre": "",
+        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/evenements/20260522_155611.jpg",
+        "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/studiochouette.png",
+        "logo_fond": "#ffffff",
+        "fond": "",
+        "tarif": "20€ / pers",
+        "inscription": "Réservation obligatoire auprès de Studio chouette : 03 70 50 01 05",
+        "lien_inscription": "https://www.studio-chouette.fr/",
+        "statut": "",
+        "lieu": "",
+        "affichage_lieu": "3"
+      }
     }
   ]
 }
