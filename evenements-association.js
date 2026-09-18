@@ -112,13 +112,13 @@ function renderEvent(event, association) {
             ${campaign.tarif ? `<div class="eventInfo">💶 ${escapeHtml(campaign.tarif)}</div>` : ""}
             ${campaign.inscription ? `<div class="eventInfo">💬 ${escapeHtml(campaign.inscription)}</div>` : ""}
             ${status ? `<div class="eventStatus">${escapeHtml(status)}</div>` : ""}
-            ${campaignLogo ? `<div class="eventSideLogo"><img src="${escapeHtml(campaignLogo)}" alt=""></div>` : ""}
             ${showButtons ? `<div class="posterButtons">
                 <a class="posterBtn primary" href="${posterUrl("affiche.html", event.uid)}" target="_blank" rel="noopener">🖥️ Affiche</a>
                 <a class="posterBtn" href="${posterUrl("affiche-carre-evenement.html", event.uid)}" target="_blank" rel="noopener">⬜ Carré Facebook</a>
                 <a class="posterBtn" href="${posterUrl("affiche-facebook-evenement.html", event.uid)}" target="_blank" rel="noopener">📘 Facebook</a>
             </div>` : ""}
         </div>
+        ${campaignLogo ? `<div class="eventSideLogo"><img src="${escapeHtml(campaignLogo)}" alt=""></div>` : ""}
     `;
 
     return card;
