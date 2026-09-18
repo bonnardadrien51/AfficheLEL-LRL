@@ -1,6 +1,12 @@
 const DATA_URL = "agenda.json";
 
 const CONFIG = {
+    all: {
+        name: "L'Établi Ludique + Le Raffut Ludique",
+        logo: "",
+        calendars: ["Partenaire", "Animation", "Marché / Expo", "Soirée au chapeau", "Soirée adhérents"],
+        accent: "#7e9eea"
+    },
     lel: {
         name: "L'Établi Ludique",
         logo: "img/logo-etabli.svg",
@@ -15,7 +21,7 @@ const CONFIG = {
     }
 };
 
-const LIMITS = { affiche: 6, carre: 4, facebook: 6 };
+const LIMITS = { affiche: 6, carre: 4, facebook: 6, paysage4: 4, paysage6: 6 };
 
 function clean(value) {
     return String(value ?? "").trim();
@@ -199,6 +205,9 @@ async function loadEvents() {
     if (titleElement) titleElement.textContent = config.name;
     if (logoElement) logoElement.src = config.logo;
     document.documentElement.style.setProperty("--association-accent", config.accent);
+    if (association === "all") {
+        document.documentElement.style.setProperty("--association-accent", "#7e9eea");
+    }
 
     try {
         const response = await fetch(`${DATA_URL}?t=${Date.now()}`, { cache: "no-store" });
