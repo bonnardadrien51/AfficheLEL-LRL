@@ -1,5 +1,5 @@
 const DATA_URL="agenda.json",OVERRIDES_URL="status-overrides.json";
-const PAGE_SIZE=6, AUTO_PAGE_MS=10000;
+const PAGE_SIZE=4, AUTO_PAGE_MS=10000;
 let allEvents=[],overrides={},currentPage=0,totalPages=1,autoTimer=null;
 function dateOnly(d){return new Date(d.getFullYear(),d.getMonth(),d.getDate())}
 function esc(v){return String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
