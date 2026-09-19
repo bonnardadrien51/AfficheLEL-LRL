@@ -1,31 +1,6 @@
 {
-  "generated_at": "2026-09-18T09:16:48.232Z",
+  "generated_at": "2026-09-19T09:03:05.806Z",
   "events": [
-    {
-      "uid": "68f6e2a7-0432-43f4-82fa-2fd3acaf416d",
-      "title": "Soirée découverte jeux de société à La Citronnade",
-      "start": "2026-09-18T17:30:00.000Z",
-      "end": "2026-09-18T20:30:00.000Z",
-      "location": "La Citronnade, Rue Ronchaux, Besancon",
-      "description": "{<br>  \"titre\": \"Le Raffut Ludique s'invite à la Citronnade\",<br>  \"sous_titre\": \"pour une soirée découverte de jeux de société\",<br>  \"image\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg</a>\",<br>  \"logo\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/Citro.jpg\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/Citro.jpg</a>\",<br>  \"logo_fond\": \"#ffffff\",<br>  \"fond\": \"\",<br>  \"tarif\": \"Au chapeau\",<br>  \"inscription\": \"Réservation conseillée\",<br>  \"lien_inscription\": \"<a href=\"https://booking.myrezapp.com/fr/online/booking/minisite/10009/le-raffut-ludique\">https://booking.myrezapp.com/fr/online/booking/minisite/10009/le-raffut-ludique</a>\",<br>  \"statut\": \"\",<br>  \"lieu\": \"Rue Ronchaux, Besançon\",<br>  \"affichage_lieu\": \"3\"<br>}",
-      "campaign": {
-        "titre": "Le Raffut Ludique s'invite à la Citronnade",
-        "sous_titre": "pour une soirée découverte de jeux de société",
-        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg",
-        "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/Citro.jpg",
-        "logo_fond": "#ffffff",
-        "fond": "",
-        "tarif": "Au chapeau",
-        "inscription": "Réservation conseillée",
-        "lien_inscription": "https://booking.myrezapp.com/fr/online/booking/minisite/10009/le-raffut-ludique",
-        "statut": "",
-        "lieu": "Rue Ronchaux, Besançon",
-        "affichage_lieu": "3"
-      },
-      "calendar": "Soirée au chapeau",
-      "icon": "LRLsoiree.svg",
-      "color": "#F062B0"
-    },
     {
       "uid": "5igm19tmn12ic4l4fasr33qg1t@google.com",
       "title": "Escape Game : La mission de madame chouette",
