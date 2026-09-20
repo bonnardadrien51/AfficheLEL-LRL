@@ -1,31 +1,6 @@
 {
-  "generated_at": "2026-09-19T09:03:05.806Z",
+  "generated_at": "2026-09-20T09:30:37.526Z",
   "events": [
-    {
-      "uid": "5igm19tmn12ic4l4fasr33qg1t@google.com",
-      "title": "Escape Game : La mission de madame chouette",
-      "start": "2026-09-19T08:00:00.000Z",
-      "end": "2026-09-19T17:00:00.000Z",
-      "location": "Livres dans la Boucle, Parc Chamars, Besançon",
-      "description": "{<br>  \"titre\": \"Livres dans la Boucle\",<br>  \"sous_titre\": \"Escape Game : La mission de madame chouette\",<br>  \"image\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/EscapeGame.webp\" target=\"_blank\"><u><u>https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/EscapeGame.webp</u></u></a>\",<br>  \"logo\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/livres-dans-la-boucle.jpg\" target=\"_blank\"><u><u>https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/livres-dans-la-boucle.jpg</u></u></a>\",<br>  \"logo_fond\": \"\",<br>  \"fond\": \"\",<br>  \"tarif\": \"\",<br>  \"inscription\": \"Réservation sur place et en ligne\",<br>  \"lien_inscription\": \"\",<br>  \"statut\": \"\",<br>  \"lieu\": \"Livres dans la boucle - Parc Chamars - Besançon\",<br>  \"affichage_lieu\": \"3\"<br>}",
-      "campaign": {
-        "titre": "Livres dans la Boucle",
-        "sous_titre": "Escape Game : La mission de madame chouette",
-        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/EscapeGame.webp",
-        "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/livres-dans-la-boucle.jpg",
-        "logo_fond": "",
-        "fond": "",
-        "tarif": "",
-        "inscription": "Réservation sur place et en ligne",
-        "lien_inscription": "",
-        "statut": "",
-        "lieu": "Livres dans la boucle - Parc Chamars - Besançon",
-        "affichage_lieu": "3"
-      },
-      "calendar": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
-    },
     {
       "uid": "13ivhtuglmbajrv12puq65u6ld@google.com",
       "title": "Escape Game : La mission de madame chouette",
