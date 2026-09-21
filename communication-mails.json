@@ -61,8 +61,15 @@
       "champ1": "",
       "champ2": "",
       "frequence_mois": 6,
-      "derniere_utilisation": null,
-      "historique": []
+      "derniere_utilisation": "2026-09-21",
+      "historique": [
+        {
+          "date": "2026-09-21",
+          "contact": "bibliothèque marnay (vu sur LDLB)",
+          "email": "bibliomarnay70@gmail.com",
+          "note": "contact sur Ludinam 2026 et LDLB 2026"
+        }
+      ]
     },
     {
       "id": "mail-1789741382042",
