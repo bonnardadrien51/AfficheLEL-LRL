@@ -129,8 +129,15 @@
       "champ1": "",
       "champ2": "",
       "frequence_mois": 6,
-      "derniere_utilisation": null,
-      "historique": []
+      "derniere_utilisation": "2026-09-21",
+      "historique": [
+        {
+          "date": "2026-09-21",
+          "contact": "Fromagerie biologique de Chapelle-des-Bois",
+          "email": "",
+          "note": ""
+        }
+      ]
     }
   ]
 }
