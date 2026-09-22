@@ -216,18 +216,23 @@ function getDisplayLocation(event) {
         mode === "3"
     ) {
 
-        if (
-            customLocation &&
-            calendarLocation &&
-            customLocation !== calendarLocation
-        ) {
-
-            return (
-                customLocation +
-                " – " +
-                calendarLocation
-            );
-
+        if (customLocation && calendarLocation) {
+            const normalize = value => String(value)
+                .normalize("NFD")
+                .replace(/[\\u0300-\\u036f]/g, "")
+                .toLowerCase()
+                .replace(/[–—-]/g, " ")
+                .replace(/[^a-z0-9]+/g, " ")
+                .replace(/\\s+/g, " ")
+                .trim();
+            const a = normalize(customLocation);
+            const b = normalize(calendarLocation);
+            if (a === b || a.includes(b) || b.includes(a)) {
+                return customLocation.length >= calendarLocation.length
+                    ? customLocation
+                    : calendarLocation;
+            }
+            return customLocation + " – " + calendarLocation;
         }
 
 

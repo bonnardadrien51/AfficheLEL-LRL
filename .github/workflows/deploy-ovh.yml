@@ -1,40 +1,24 @@
-name: Update agenda et ludothèque
+name: Déployer l'agenda sur OVH
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - "public/**"
+      - ".github/workflows/deploy-ovh.yml"
   workflow_dispatch:
 
-  schedule:
-    - cron: "0 5 * * *"
-
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-
-  build:
-
+  deploy-agenda:
     runs-on: ubuntu-latest
 
     steps:
-
-      - name: Checkout repository
+      - name: Récupérer le dépôt
         uses: actions/checkout@v4
-
-      - name: Install Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Generate agenda.json, vacances.json et jeux.json
-        run: npm run build
-
-      - name: Commit fichiers générés
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "🤖 Mise à jour automatique de agenda.json / vacances.json / jeux.json"
 
       - name: Déployer /public vers /agenda sur OVH
         if: ${{ secrets.OVH_FTP_SERVER != '' && secrets.OVH_FTP_USERNAME != '' && secrets.OVH_FTP_PASSWORD != '' }}

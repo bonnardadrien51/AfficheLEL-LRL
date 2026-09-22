@@ -1076,13 +1076,18 @@ async function main() {
 
     };
 
+    // Le dépôt conserve aussi la version racine pour les outils historiques.
     fs.writeFileSync(
       "agenda.json",
-      JSON.stringify(
-        agenda,
-        null,
-        2
-      ),
+      JSON.stringify(agenda, null, 2),
+      "utf8"
+    );
+
+    // La version publique destinée à /agenda sur le site L'établi ludique.
+    fs.mkdirSync("public", { recursive: true });
+    fs.writeFileSync(
+      "public/agenda.json",
+      JSON.stringify(agenda, null, 2),
       "utf8"
     );
 
