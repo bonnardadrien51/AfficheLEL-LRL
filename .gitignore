@@ -1,0 +1,11 @@
+# Dépendances npm
+node_modules/
+
+# Fichiers système / éditeur
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Fichiers locaux et secrets
+.env
+*.local
