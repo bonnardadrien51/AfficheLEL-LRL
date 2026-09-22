@@ -21,6 +21,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Déployer /public vers /agenda sur OVH
+        if: ${{ secrets.OVH_FTP_SERVER != '' && secrets.OVH_FTP_USERNAME != '' && secrets.OVH_FTP_PASSWORD != '' }}
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ${{ secrets.OVH_FTP_SERVER }}
