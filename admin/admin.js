@@ -1,8 +1,9 @@
 const GITHUB_OWNER = "bonnardadrien51";
 const GITHUB_REPO = "AfficheLEL-LRL";
 const OVERRIDES_PATH = "status-overrides.json";
-const COMMUNICATION_PATH = "communication.json";
+const COMMUNICATION_PATH = "communication/communication.json";
 const AGENDA_PATH = "agenda.json";
+const AGENDA_LOCAL_PATH = "../agenda.json";
 
 function getToken(){ return localStorage.getItem("gh_token") || ""; }
 
@@ -268,7 +269,7 @@ function createEventCard(event, overrides){
     if(event.icon){
         const icon = document.createElement("img");
         icon.className = "eventIcon";
-        icon.src = "img/categories/" + event.icon;
+        icon.src = "../img/categories/" + event.icon;
         icon.alt = "";
         header.appendChild(icon);
     }
@@ -341,7 +342,7 @@ async function loadEvents(){
     list.textContent = "Chargement des événements…";
 
     try{
-        const response = await fetch(AGENDA_PATH + "?t=" + Date.now());
+        const response = await fetch(AGENDA_LOCAL_PATH + "?t=" + Date.now());
         if(!response.ok) throw new Error("Erreur HTTP " + response.status);
         const json = await response.json();
         allEvents = json.events || [];
