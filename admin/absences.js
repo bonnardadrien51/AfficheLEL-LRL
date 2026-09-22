@@ -1,4 +1,4 @@
-const DATA_URL = "vacances.json";
+const DATA_URL = "../outils/vacances.json";
 const REFRESH_MS = 30 * 60 * 1000;
 const MAX_ABSENCES = 3;
 
