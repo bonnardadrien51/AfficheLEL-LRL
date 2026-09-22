@@ -35,3 +35,15 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "🤖 Mise à jour automatique de agenda.json / vacances.json / jeux.json"
+
+      - name: Déployer /public vers /agenda sur OVH
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.OVH_FTP_SERVER }}
+          username: ${{ secrets.OVH_FTP_USERNAME }}
+          password: ${{ secrets.OVH_FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
+          local-dir: ./public/
+          server-dir: /agenda/
+          log-level: standard
