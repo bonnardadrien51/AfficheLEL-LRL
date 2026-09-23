@@ -33,7 +33,7 @@ jobs:
           protocol: ftp
           port: 21
           local-dir: ./public/
-          server-dir: /agenda/
+          server-dir: /www/agenda/
           log-level: standard
 
   deploy-admin:
@@ -57,7 +57,7 @@ jobs:
           protocol: ftp
           port: 21
           local-dir: ./admin-site/
-          server-dir: /agenda-admin/
+          server-dir: /www/agenda-admin/
           log-level: standard
           exclude: |
             **/auth/users.json
