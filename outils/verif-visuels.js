@@ -1,4 +1,4 @@
-const DATA_URL = "../jeux-suivi.json";
+const DATA_URL = "jeux-suivi.json";
 
 function renderTable(container, list){
 
