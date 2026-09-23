@@ -50,5 +50,5 @@ jobs:
           protocol: ftp
           port: 21
           local-dir: ./public/
-          server-dir: /agenda/
+          server-dir: /www/agenda/
           log-level: standard
