@@ -1,4 +1,4 @@
-name: Déployer l'agenda sur OVH
+name: Déployer agenda et administration sur OVH
 
 on:
   push:
@@ -15,7 +15,6 @@ permissions:
 jobs:
   deploy-agenda:
     runs-on: ubuntu-latest
-
     steps:
       - name: Récupérer le dépôt
         uses: actions/checkout@v4
@@ -33,18 +32,15 @@ jobs:
           server-dir: /agenda/
           log-level: standard
 
-  # L'administration reste en déploiement manuel tant que la protection par mot de passe OVH n'est pas configurée.
-
-jobs:
   deploy-admin:
     if: ${{ github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
     steps:
       - name: Récupérer le dépôt
         uses: actions/checkout@v4
+
       - name: Déployer /admin-site vers /agenda-admin sur OVH
+        if: ${{ secrets.OVH_FTP_SERVER != '' && secrets.OVH_FTP_USERNAME != '' && secrets.OVH_FTP_PASSWORD != '' }}
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ${{ secrets.OVH_FTP_SERVER }}
