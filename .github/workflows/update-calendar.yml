@@ -37,12 +37,16 @@ jobs:
           commit_message: "🤖 Mise à jour automatique de agenda.json / vacances.json / jeux.json"
 
       - name: Déployer /public vers /agenda sur OVH
-        if: ${{ secrets.OVH_FTP_SERVER != '' && secrets.OVH_FTP_USERNAME != '' && secrets.OVH_FTP_PASSWORD != '' }}
+        if: ${{ env.OVH_FTP_SERVER != '' && env.OVH_FTP_USERNAME != '' && env.OVH_FTP_PASSWORD != '' }}
+        env:
+          OVH_FTP_SERVER: ${{ secrets.OVH_FTP_SERVER }}
+          OVH_FTP_USERNAME: ${{ secrets.OVH_FTP_USERNAME }}
+          OVH_FTP_PASSWORD: ${{ secrets.OVH_FTP_PASSWORD }}
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
-          server: ${{ secrets.OVH_FTP_SERVER }}
-          username: ${{ secrets.OVH_FTP_USERNAME }}
-          password: ${{ secrets.OVH_FTP_PASSWORD }}
+          server: ${{ env.OVH_FTP_SERVER }}
+          username: ${{ env.OVH_FTP_USERNAME }}
+          password: ${{ env.OVH_FTP_PASSWORD }}
           protocol: ftp
           port: 21
           local-dir: ./public/
