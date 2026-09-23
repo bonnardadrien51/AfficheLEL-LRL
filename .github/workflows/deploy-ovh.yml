@@ -32,3 +32,26 @@ jobs:
           local-dir: ./public/
           server-dir: /agenda/
           log-level: standard
+
+  # L'administration reste en déploiement manuel tant que la protection par mot de passe OVH n'est pas configurée.
+
+jobs:
+  deploy-admin:
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+      - name: Déployer /admin-site vers /agenda-admin sur OVH
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.OVH_FTP_SERVER }}
+          username: ${{ secrets.OVH_FTP_USERNAME }}
+          password: ${{ secrets.OVH_FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
+          local-dir: ./admin-site/
+          server-dir: /agenda-admin/
+          log-level: standard
