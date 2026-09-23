@@ -51,3 +51,5 @@ jobs:
           local-dir: ./admin-site/
           server-dir: /agenda-admin/
           log-level: standard
+          exclude: |
+            **/auth/users.json
