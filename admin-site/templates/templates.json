@@ -1,0 +1,181 @@
+{
+  "templates": [
+    {
+      "id": "soiree-adherents",
+      "nom": "Soirée adhérents",
+      "valeurs": {
+        "titre": "Soirée jeux à Avanne - Portes ouvertes",
+        "sous_titre": "",
+        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg",
+        "logo": "https://static.wixstatic.com/media/2dd0a2_ec64a8347d1c42248671cb41bc7c072d~mv2.png",
+        "logo_fond": "#ffffff",
+        "fond": "",
+        "tarif": "Gratuit - Portes ouvertes",
+        "inscription": "Réservation conseillée",
+        "lien_inscription": "https://booking.myrezapp.com/fr/online/booking/minisite/10009/le-raffut-ludique",
+        "statut": "",
+        "lieu": "Maison Saint-Vincent - Proche studio photo d'Avanne",
+        "affichage_lieu": "3"
+      }
+    },
+    {
+      "id": "animation",
+      "nom": "Animation L'Établi Ludique",
+      "valeurs": {
+        "titre": "",
+        "image": "",
+        "logo": "",
+        "logo_fond": "#ffffff",
+        "fond": "",
+        "tarif": "",
+        "inscription": "",
+        "lien_inscription": "",
+        "statut": "",
+        "lieu": "",
+        "affichage_lieu": "3"
+      }
+    },
+    {
+      "id": "marche-expo",
+      "nom": "Marché / Expo",
+      "valeurs": {
+        "titre": "",
+        "image": "",
+        "logo": "",
+        "logo_fond": "#ffffff",
+        "fond": "",
+        "tarif": "",
+        "inscription": "",
+        "lien_inscription": "",
+        "statut": "",
+        "lieu": "",
+        "affichage_lieu": "3"
+      }
+    },
+    {
+      "id": "festival",
+      "nom": "Festival",
+      "valeurs": {
+        "titre": "",
+        "image": "",
+        "logo": "",
+        "logo_fond": "#ffffff",
+        "fond": "",
+        "tarif": "",
+        "inscription": "",
+        "lien_inscription": "",
+        "statut": "",
+        "lieu": "",
+        "affichage_lieu": "3"
+      }
+    },
+    {
+      "id": "livres-dans-la-boucle",
+      "nom": "Livres dans la boucle",
+      "valeurs": {
+        "titre": "",
+        "sous_titre": "",
+        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/EscapeGame.webp",
+        "logo": "",
+        "logo_fond": "",
+        "fond": "",
+        "tarif": "",
+        "inscription": "Réservation sur place et en ligne",
+        "lien_inscription": "",
+        "statut": "",
+        "lieu": "Livres dans la boucle - Parc Chamars - Besançon",
+        "affichage_lieu": "3"
+      }
+    },
+    {
+      "id": "soiree-citronnade",
+      "nom": "Soirée Citronnade",
+      "valeurs": {
+        "titre": "Le Raffut Ludique s'invite à la Citronnade",
+        "sous_titre": "pour une soirée découverte de jeux de société",
+        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg",
+        "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/Citro.jpg",
+        "logo_fond": "#ffffff",
+        "fond": "",
+        "tarif": "Au chapeau",
+        "inscription": "Réservation conseillée",
+        "lien_inscription": "https://booking.myrezapp.com/fr/online/booking/minisite/10009/le-raffut-ludique",
+        "statut": "",
+        "lieu": "Rue Ronchaux, Besançon",
+        "affichage_lieu": "3"
+      }
+    },
+    {
+      "id": "tournoi-citronnade",
+      "nom": "Tournoi citronnade",
+      "valeurs": {
+        "titre": "Le Raffut Ludique s'invite à la Citronnade",
+        "sous_titre": "un tournoi de jeux de société",
+        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg",
+        "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/Citro.jpg",
+        "logo_fond": "#ffffff",
+        "fond": "",
+        "tarif": "Au chapeau",
+        "inscription": "Réservation conseillée",
+        "lien_inscription": "https://booking.myrezapp.com/fr/online/booking/minisite/10009/le-raffut-ludique",
+        "statut": "",
+        "lieu": "Rue Ronchaux, Besançon",
+        "affichage_lieu": "3"
+      }
+    },
+    {
+      "id": "escape-game-papyrus-et-la-potion-des-pluies-oubliees",
+      "nom": "Escape game - Papyrus et la potion des pluies oubliées",
+      "valeurs": {
+        "titre": "Escape game - Papyrus et la potion des pluies oubliées",
+        "sous_titre": "",
+        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/evenements/20260522_155611.jpg",
+        "logo": "",
+        "logo_fond": "#ffffff",
+        "fond": "",
+        "tarif": "",
+        "inscription": "",
+        "lien_inscription": "",
+        "statut": "",
+        "lieu": "",
+        "affichage_lieu": "3"
+      }
+    },
+    {
+      "id": "soiree-mjc",
+      "nom": "Soirée MJC",
+      "valeurs": {
+        "titre": "Le Raffut Ludique s'invite à la MJC de Palente",
+        "sous_titre": "pour une soirée découverte de jeux de société",
+        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg",
+        "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/MjcPalente.jpg",
+        "logo_fond": "#ffffff",
+        "fond": "",
+        "tarif": "Au chapeau",
+        "inscription": "",
+        "lien_inscription": "",
+        "statut": "",
+        "lieu": "MJC Palente - Café des tilleuls - Besançon",
+        "affichage_lieu": "3"
+      }
+    },
+    {
+      "id": "escape-game-papyrus-et-la-potion-des-pluies-oubliees-studio-chouette",
+      "nom": "Escape game - Papyrus et la potion des pluies oubliées - Studio chouette",
+      "valeurs": {
+        "titre": "Escape game - Papyrus et la potion des pluies oubliées",
+        "sous_titre": "",
+        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/evenements/20260522_155611.jpg",
+        "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/studiochouette.png",
+        "logo_fond": "#ffffff",
+        "fond": "",
+        "tarif": "20€ / pers",
+        "inscription": "Réservation obligatoire auprès de Studio chouette : 03 70 50 01 05",
+        "lien_inscription": "https://www.studio-chouette.fr/",
+        "statut": "",
+        "lieu": "",
+        "affichage_lieu": "3"
+      }
+    }
+  ]
+}
