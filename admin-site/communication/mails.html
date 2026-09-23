@@ -9,7 +9,7 @@
 </style>
 </head>
 <body><div id="page">
-<header><img src="../img/logo-etabli.svg" alt="L'Établi Ludique"><div><h1>📧 Gestion des mails</h1><p>Mails prêts à copier dans TextBlaze, avec balises dynamiques, paramètres et historique.</p></div></header>
+<header><img src="../agenda/img/logo-etabli.svg" alt="L'Établi Ludique"><div><h1>📧 Gestion des mails</h1><p>Mails prêts à copier dans TextBlaze, avec balises dynamiques, paramètres et historique.</p></div></header>
 <div class="tabs" id="tabs"></div>
 <div class="toolbar"><input id="search" type="search" placeholder="Rechercher un mail…"><button class="btn" id="add">➕ Ajouter un mail</button></div>
 <section class="agendaBox"><h2>📅 Événements à venir</h2><p class="note">Liste chronologique. Choisis Commune, LEL ou LRL, puis sélectionne les événements à copier.</p><div class="agendaTabs" id="agendaTabs"></div><div class="agendaTools"><button class="btn secondary" id="selectAll">☑️ Tout sélectionner</button><button class="btn secondary" id="deselectAll">☐ Tout désélectionner</button><button class="btn success" id="copySelected">📋 Copier la sélection</button><button class="btn" id="copyAll">📋 Copier tout en brut</button><span class="agendaInfo" id="agendaInfo"></span></div><div class="agendaList" id="agendaList"></div></section>
@@ -17,7 +17,7 @@
 <div id="list">Chargement…</div></div>
 <div class="modalBack" id="modal"><div class="modal"><h2>➕ Ajouter un mail</h2><div class="form"><input id="newTitle" placeholder="Nom du modèle de mail"><select id="newCategory"></select><input id="newSubject" placeholder="Objet du mail"><input id="newChamp1" placeholder="Paramètre 1 — {champ1}"><input id="newChamp2" placeholder="Paramètre 2 — {champ2}"><textarea id="newBody" placeholder="Texte du mail"></textarea><div class="modalActions"><button class="btn secondary" id="cancel">Annuler</button><button class="btn success" id="create">Créer le mail</button></div></div></div></div>
 <script>
-const PATH="mails.json",GITHUB_PATH="communication/mails.json",AGENDA_PATH="agenda.json",AGENDA_LOCAL_PATH="../agenda.json",OWNER="bonnardadrien51",REPO="AfficheLEL-LRL";
+const PATH="mails.json",GITHUB_PATH="communication/mails.json",AGENDA_PATH="../agenda/agenda.json",AGENDA_LOCAL_PATH="../../agenda/agenda.json",OWNER="bonnardadrien51",REPO="AfficheLEL-LRL";
 let data={categories:[],mails:[]},agenda=[],fileSha="",activeCategory="",agendaMode="commun",selectedAgenda=new Set();
 const token=()=>localStorage.getItem("gh_token")||"";const esc=s=>String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;");const $=id=>document.getElementById(id);
 async function load(){const r=await fetch(PATH+"?t="+Date.now());if(!r.ok)throw Error("Chargement impossible");data=await r.json();data.categories=data.categories||[];data.mails=(data.mails||[]).map(m=>({...m,historique:Array.isArray(m.historique)?m.historique:[],frequence_mois:Number(m.frequence_mois)||6,champ1:m.champ1||"",champ2:m.champ2||""}));try{const a=await fetch(AGENDA_LOCAL_PATH+"?t="+Date.now());if(a.ok){const j=await a.json();agenda=Array.isArray(j.events)?j.events:[]}}catch(e){}activeCategory=data.categories[0]||"";const g=await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${GITHUB_PATH}`);if(g.ok)fileSha=(await g.json()).sha;renderTabs();fillCategories();initMonths();renderAgenda();render()}
