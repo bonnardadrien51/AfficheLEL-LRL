@@ -6,6 +6,26 @@ on:
       - main
     paths:
       - "public/**"
+      - "evenement.html"
+      - "evenement-style.css"
+      - "evenement-script.js"
+      - "prochain-jour.html"
+      - "jour.html"
+      - "jour.css"
+      - "prochain-jour.js"
+      - "jour.js"
+      - "pagination.js"
+      - "ce-mois.html"
+      - "prochain-mois.html"
+      - "mois.css"
+      - "mois.js"
+      - "evenements-lel.html"
+      - "evenements-lrl.html"
+      - "evenements-association.js"
+      - "agenda-paysage-4.html"
+      - "agenda-paysage.css"
+      - "agenda-association.js"
+      - "img/**"
       - ".github/workflows/deploy-ovh.yml"
   workflow_dispatch:
 
@@ -23,16 +43,31 @@ jobs:
       - name: Récupérer le dépôt
         uses: actions/checkout@v4
 
-      - name: Déployer /public vers /agenda sur OVH
+      - name: Préparer les fichiers publics
+        shell: bash
+        run: |
+          set -e
+          rm -rf deploy-public
+          mkdir -p deploy-public/img
+          cp public/index.html deploy-public/index.html
+          cp public/agenda.json deploy-public/agenda.json
+          cp evenement.html evenement-style.css evenement-script.js deploy-public/
+          cp prochain-jour.html jour.html jour.css prochain-jour.js jour.js pagination.js deploy-public/
+          cp ce-mois.html prochain-mois.html mois.css mois.js deploy-public/
+          cp evenements-lel.html evenements-lrl.html evenements-association.js deploy-public/
+          cp agenda-paysage-4.html agenda-paysage.css agenda-association.js deploy-public/
+          cp img/logo-etabli.svg img/logo-raffut.svg deploy-public/img/
+
+      - name: Déployer l'agenda public vers /agenda sur OVH
         if: ${{ env.OVH_FTP_SERVER != '' && env.OVH_FTP_USERNAME != '' && env.OVH_FTP_PASSWORD != '' }}
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
-          server: ${{ env.OVH_FTP_SERVER }}
-          username: ${{ env.OVH_FTP_USERNAME }}
-          password: ${{ env.OVH_FTP_PASSWORD }}
+          server: ${{ secrets.OVH_FTP_SERVER }}
+          username: ${{ secrets.OVH_FTP_USERNAME }}
+          password: ${{ secrets.OVH_FTP_PASSWORD }}
           protocol: ftp
           port: 21
-          local-dir: ./public/
+          local-dir: ./deploy-public/
           server-dir: /www/agenda/
           log-level: standard
 
@@ -51,9 +86,9 @@ jobs:
         if: ${{ env.OVH_FTP_SERVER != '' && env.OVH_FTP_USERNAME != '' && env.OVH_FTP_PASSWORD != '' }}
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
-          server: ${{ env.OVH_FTP_SERVER }}
-          username: ${{ env.OVH_FTP_USERNAME }}
-          password: ${{ env.OVH_FTP_PASSWORD }}
+          server: ${{ secrets.OVH_FTP_SERVER }}
+          username: ${{ secrets.OVH_FTP_USERNAME }}
+          password: ${{ secrets.OVH_FTP_PASSWORD }}
           protocol: ftp
           port: 21
           local-dir: ./admin-site/
