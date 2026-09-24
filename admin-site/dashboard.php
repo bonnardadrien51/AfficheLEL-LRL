@@ -45,20 +45,20 @@ h2{font-size:22px;margin:25px 0 12px}
 <h2>Événements</h2>
 <div class="grid">
 <a class="card" href="evenements.php"><div class="icon">📅</div><h3>Gestion des événements</h3><p>Statuts, communications associées et événements à venir.</p></a>
-<a class="card" href="communication/evenements.html"><div class="icon">🗓️</div><h3>Événements à copier</h3><p>Sélectionner et copier les événements pour les communications.</p></a>
+<a class="card" href="communication/evenements.php"><div class="icon">🗓️</div><h3>Événements à copier</h3><p>Sélectionner et copier les événements pour les communications.</p></a>
 </div>
 
 <h2>Communication</h2>
 <div class="grid">
-<a class="card" href="communication/mails.html"><div class="icon">✉️</div><h3>Gestion des mails</h3><p>Modèles de mails, variables et historique d'utilisation.</p></a>
-<a class="card" href="communication/generiques.html"><div class="icon">📣</div><h3>Communications génériques</h3><p>Posts Facebook et Instagram avec suivi des publications.</p></a>
+<a class="card" href="communication/mails.php"><div class="icon">✉️</div><h3>Gestion des mails</h3><p>Modèles de mails, variables et historique d'utilisation.</p></a>
+<a class="card" href="communication/generiques.php"><div class="icon">📣</div><h3>Communications génériques</h3><p>Posts Facebook et Instagram avec suivi des publications.</p></a>
 </div>
 
 <h2>Outils</h2>
 <div class="grid">
-<a class="card" href="generateur.html"><div class="icon">🖼️</div><h3>Générateur</h3><p>Créer les visuels et affiches à partir des données d'événements.</p></a>
-<a class="card" href="verif-visuels.html"><div class="icon">🔎</div><h3>Vérification des visuels</h3><p>Contrôler les visuels et les éléments nécessaires.</p></a>
-<a class="card" href="vacances.html"><div class="icon">🏖️</div><h3>Absences</h3><p>Gestion des périodes d’absence et vacances.</p></a>
+<a class="card" href="generateur.php"><div class="icon">🖼️</div><h3>Générateur</h3><p>Créer les visuels et affiches à partir des données d'événements.</p></a>
+<a class="card" href="verif-visuels.php"><div class="icon">🔎</div><h3>Vérification des visuels</h3><p>Contrôler les visuels et les éléments nécessaires.</p></a>
+<a class="card" href="vacances.php"><div class="icon">🏖️</div><h3>Absences</h3><p>Gestion des périodes d’absence et vacances.</p></a>
 </div>
 
 <div class="note">Cette page devient le point d'entrée de l'administration après la connexion.</div>
