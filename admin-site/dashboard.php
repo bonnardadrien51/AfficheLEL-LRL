@@ -34,7 +34,7 @@ h2{font-size:22px;margin:25px 0 12px}
 <body>
 <div class="page">
 <header>
-<img src="agenda/img/logo-etabli.svg" alt="L'établi ludique">
+<img src="../agenda/img/logo-etabli.svg" alt="L'établi ludique">
 <div>
 <h1>Administration</h1>
 <p>Gestion des événements, communications et outils de L'établi ludique</p>
@@ -58,7 +58,7 @@ h2{font-size:22px;margin:25px 0 12px}
 <div class="grid">
 <a class="card" href="generateur.html"><div class="icon">🖼️</div><h3>Générateur</h3><p>Créer les visuels et affiches à partir des données d'événements.</p></a>
 <a class="card" href="verif-visuels.html"><div class="icon">🔎</div><h3>Vérification des visuels</h3><p>Contrôler les visuels et les éléments nécessaires.</p></a>
-<a class="card" href="absences.js"><div class="icon">🏖️</div><h3>Absences</h3><p>Gestion des périodes d'absence et vacances.</p></a>
+<a class="card" href="vacances.html"><div class="icon">🏖️</div><h3>Absences</h3><p>Gestion des périodes d’absence et vacances.</p></a>
 </div>
 
 <div class="note">Cette page devient le point d'entrée de l'administration après la connexion.</div>
