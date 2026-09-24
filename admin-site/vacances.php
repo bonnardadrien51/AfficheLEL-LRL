@@ -1,0 +1,33 @@
+<?php
+require __DIR__ . '/auth/guard.php';
+?>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&display=swap" rel="stylesheet">
+
+    <title>Bandeau vacances - Le Raffut Ludique</title>
+
+    <link rel="stylesheet" href="vacances.css">
+
+</head>
+
+<body>
+
+<div id="banner">
+
+    <span id="bannerText"></span>
+
+</div>
+
+<script src="vacances.js"></script>
+
+</body>
+
+</html>
