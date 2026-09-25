@@ -98,6 +98,10 @@ function createPickerModal(){
                 <input id="mediaPickerSearch" type="search" placeholder="Rechercher une image...">
                 <span id="mediaPickerCount"></span>
             </div>
+            <div class="mediaPickerSelection">
+                <div class="mediaPickerSelectedPreview"><img id="mediaPickerSelectedImage" src="" alt=""></div>
+                <div class="mediaPickerSelectedInfo"><strong id="mediaPickerSelectedName">Aucune sélection</strong><span id="mediaPickerSelectedPath"></span></div>
+            </div>
             <div id="mediaPickerGrid" class="mediaPickerGrid">
                 <div class="pickerLoading">Chargement…</div>
             </div>
@@ -135,7 +139,13 @@ function renderPickerImages(modal){
     count.textContent = `${images.length} image${images.length > 1 ? "s" : ""}`;
 
     const grid = modal.querySelector("#mediaPickerGrid");
+    const selectedPreview = modal.querySelector("#mediaPickerSelectedImage");
+    const selectedName = modal.querySelector("#mediaPickerSelectedName");
+    const selectedPath = modal.querySelector("#mediaPickerSelectedPath");
     grid.innerHTML = "";
+    selectedPreview.removeAttribute("src");
+    selectedName.textContent = "Aucune sélection";
+    selectedPath.textContent = "";
 
     if(!images.length){
         grid.innerHTML = `<div class="pickerEmpty">Aucune image trouvée.</div>`;
@@ -153,8 +163,24 @@ function renderPickerImages(modal){
             <div class="pickerImageName">${escapeHtml(image.name)}</div>
             <div class="pickerImagePath">${escapeHtml(image.path)}</div>
         `;
+        card.addEventListener("mouseenter", () => {
+            selectedPreview.src = image.url;
+            selectedPreview.alt = image.name;
+            selectedName.textContent = image.name;
+            selectedPath.textContent = image.path;
+        });
+        card.addEventListener("focus", () => {
+            selectedPreview.src = image.url;
+            selectedPreview.alt = image.name;
+            selectedName.textContent = image.name;
+            selectedPath.textContent = image.path;
+        });
         card.addEventListener("click", () => {
             if(typeof modal._onSelect === "function") modal._onSelect(image);
+            selectedPreview.src = image.url;
+            selectedPreview.alt = image.name;
+            selectedName.textContent = image.name;
+            selectedPath.textContent = image.path;
             closeMediaPicker();
         });
         grid.appendChild(card);
@@ -170,6 +196,9 @@ async function openMediaPicker(options = {}){
     modal.querySelector("#mediaPickerTitle").textContent = options.title || "Choisir une image";
     modal.querySelector("#mediaPickerSubtitle").textContent = options.subtitle || "Toutes les images disponibles";
     modal.querySelector("#mediaPickerSearch").value = "";
+    modal.querySelector("#mediaPickerSelectedImage").removeAttribute("src");
+    modal.querySelector("#mediaPickerSelectedName").textContent = "Aucune sélection";
+    modal.querySelector("#mediaPickerSelectedPath").textContent = "";
     modal.querySelector("#mediaPickerGrid").innerHTML = `<div class="pickerLoading">Chargement des images…</div>`;
     modal.classList.add("open");
     modal.setAttribute("aria-hidden","false");
