@@ -338,3 +338,15 @@ body.empty #noEvent{
 .hidden{
     display:none !important;
 }
+
+
+#eventTitle{
+    font-size:72px;
+    font-weight:800;
+    line-height:1.1;
+    margin-top:4px;
+}
+
+#eventTitle.hidden{
+    display:none;
+}
