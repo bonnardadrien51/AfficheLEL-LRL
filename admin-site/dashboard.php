@@ -56,7 +56,7 @@ h2{font-size:22px;margin:30px 0 12px}
 
 <h2>Événements</h2>
 <div class="grid">
-<a class="card" href="admin.html"><div class="icon">📅</div><h3>Gestion des événements</h3><p>Statuts, communications associées et événements à venir.</p></a>
+<a class="card" href="../agenda/" target="_blank" rel="noopener"><div class="icon">🌐</div><h3>Agenda public</h3><p>Ouvrir l’agenda public et vérifier les affichages.</p></a>
 <a class="card" href="communication/evenements.php"><div class="icon">🗓️</div><h3>Événements à copier</h3><p>Sélectionner et copier les événements pour les communications.</p></a>
 </div>
 
