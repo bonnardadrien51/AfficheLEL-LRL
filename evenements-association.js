@@ -97,7 +97,7 @@ function renderEvent(event, association) {
 
     const image = campaign.image
         ? `<img class="eventImage" src="${escapeHtml(campaign.image)}" alt="">`
-        : `<div class="eventImage eventImageEmpty">🎲</div>`;
+        : `<div class="eventImage eventImageEmpty"><img src="${escapeHtml(association.logo)}" alt="${escapeHtml(association.name)}"></div>`;
 
     card.innerHTML = `
         <div class="eventVisual">${image}</div>
