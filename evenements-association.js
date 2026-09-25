@@ -4,7 +4,7 @@ const DATA_URL = "agenda.json";
 
 const ASSOCIATIONS = {
     lel: {
-        name: "L'Établi Ludique",
+        name: "L'établi ludique",
         calendars: ["Partenaire", "Animation", "Marché / Expo"],
         logo: "img/logo-etabli.svg",
         className: "lel"
