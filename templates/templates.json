@@ -176,6 +176,24 @@
         "lieu": "",
         "affichage_lieu": "3"
       }
+    },
+    {
+      "id": "expo-lego",
+      "nom": "Expo lego",
+      "valeurs": {
+        "titre": "Personnalisation sur LEGO",
+        "sous_titre": "via la découpe laser",
+        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/evenements/img_3093-jpeg.jpg",
+        "logo": "",
+        "logo_fond": "",
+        "fond": "",
+        "tarif": "Entrée gratuite",
+        "inscription": "",
+        "lien_inscription": "",
+        "statut": "",
+        "lieu": "",
+        "affichage_lieu": "3"
+      }
     }
   ]
 }
