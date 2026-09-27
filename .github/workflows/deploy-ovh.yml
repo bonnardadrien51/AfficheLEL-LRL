@@ -42,10 +42,10 @@ on:
       - "agenda-lrl-facebook.html"
       - "agenda-lrl-paysage-4.html"
       - "agenda-lrl-paysage-6.html"
-      - "agenda-association.js"
       - "img/**"
       - ".github/workflows/deploy-ovh.yml"
   workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: read
@@ -65,11 +65,9 @@ jobs:
         shell: bash
         run: |
           set -e
-          echo "Préparation des fichiers publics"
           rm -rf deploy-public
-          mkdir -p deploy-public/img
-          cp public/index.html deploy-public/index.html
-          cp public/agenda.json deploy-public/agenda.json
+          mkdir -p deploy-public
+          cp public/index.html public/agenda.json deploy-public/
           cp evenement.html evenement-style.css evenement-script.js deploy-public/
           cp prochain-jour.html jour.html jour.css prochain-jour.js jour.js pagination.js deploy-public/
           cp ce-mois.html prochain-mois.html mois.css mois.js deploy-public/
@@ -78,9 +76,9 @@ jobs:
           cp affiche.html affiche-carre-evenement.html affiche-carre-evenement.css affiche-facebook-evenement.html affiche-facebook-evenement.css deploy-public/
           cp agenda-lel-affiche.html agenda-lel-carre.html agenda-lel-facebook.html agenda-lel-paysage-4.html agenda-lel-paysage-6.html deploy-public/
           cp agenda-lrl-affiche.html agenda-lrl-carre.html agenda-lrl-facebook.html agenda-lrl-paysage-4.html agenda-lrl-paysage-6.html deploy-public/
-          cp img/logo-etabli.svg img/logo-raffut.svg deploy-public/img/
-          echo "Fichiers préparés :"
-          find deploy-public -maxdepth 2 -type f | sort
+          cp -R img deploy-public/
+          echo "Fichiers publics préparés :"
+          find deploy-public -type f | sort
 
       - name: Déployer l'agenda public vers /agenda sur OVH
         if: ${{ env.OVH_FTP_SERVER != '' && env.OVH_FTP_USERNAME != '' && env.OVH_FTP_PASSWORD != '' }}
@@ -105,7 +103,6 @@ jobs:
     steps:
       - name: Récupérer le dépôt
         uses: actions/checkout@v4
-
       - name: Déployer /admin-site vers /agenda-admin sur OVH
         if: ${{ env.OVH_FTP_SERVER != '' && env.OVH_FTP_USERNAME != '' && env.OVH_FTP_PASSWORD != '' }}
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
