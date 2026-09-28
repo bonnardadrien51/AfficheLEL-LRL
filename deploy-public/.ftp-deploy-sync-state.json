@@ -1,0 +1,641 @@
+{
+    "description": "DO NOT DELETE THIS FILE. This file is used to keep track of which files have been synced in the most recent deployment. If you delete this file a resync will need to be done (which can take a while) - read more: https://github.com/SamKirkland/FTP-Deploy-Action",
+    "version": "1.0.0",
+    "generatedTime": 1790595438068,
+    "data": [
+        {
+            "type": "file",
+            "name": "affiche-carre-evenement.css",
+            "size": 99,
+            "hash": "c6642f61697a27295cc7bc4daac8a39fb4f43da5db4c7691d9813ef0c8918233"
+        },
+        {
+            "type": "file",
+            "name": "affiche-carre-evenement.html",
+            "size": 3332,
+            "hash": "5e96c4d80bf0365d427d876f72d1b69ebe8ea38330fc806b227f19d8b3750749"
+        },
+        {
+            "type": "file",
+            "name": "affiche-facebook-evenement.css",
+            "size": 98,
+            "hash": "f133e294222f5739145b787eb4bc02a1222006518a1b0e75ae9f1d04be28f1bc"
+        },
+        {
+            "type": "file",
+            "name": "affiche-facebook-evenement.html",
+            "size": 3346,
+            "hash": "faf8c98caf25d102eaed53c3a804a98279a8c61efabad728494d5cc5d9d0e089"
+        },
+        {
+            "type": "file",
+            "name": "affiche.html",
+            "size": 3782,
+            "hash": "a8ec6e89b1c5c6da35099125d01a148582a1656f95df5472c728d1ffc135d0da"
+        },
+        {
+            "type": "file",
+            "name": "agenda-association.css",
+            "size": 7921,
+            "hash": "266c4dab0ddd8a5fc8db8acc0e7e7f77f37d037b58d17e41c831fef267e933b1"
+        },
+        {
+            "type": "file",
+            "name": "agenda-association.js",
+            "size": 11358,
+            "hash": "701b7515a7b40203c5453f004c6d5415184062ad97ad6be3b3b13400b32527dd"
+        },
+        {
+            "type": "file",
+            "name": "agenda-lel-affiche.html",
+            "size": 769,
+            "hash": "61f135bc6c89681a98e765eb901d2c3f2cdf940179ac68d8fab34a9d1467a520"
+        },
+        {
+            "type": "file",
+            "name": "agenda-lel-carre.html",
+            "size": 756,
+            "hash": "a17467bcb79723bcffc7a36bb037c6cf02d352297754ce30cb2507775e1a4e03"
+        },
+        {
+            "type": "file",
+            "name": "agenda-lel-facebook.html",
+            "size": 761,
+            "hash": "e4599f33a410d310bf2b008ba3e46151278d1fad46acf6fd3527f8efb88e7105"
+        },
+        {
+            "type": "file",
+            "name": "agenda-lel-paysage-4.html",
+            "size": 745,
+            "hash": "cf36626eb2cdadd3c7d858904b6511e865c9b5c1177ba26f444629d28db683f1"
+        },
+        {
+            "type": "file",
+            "name": "agenda-lel-paysage-6.html",
+            "size": 745,
+            "hash": "dac65bca7b1292b10169dcc931cca282e78797b786d2d840a88f550b092d06bb"
+        },
+        {
+            "type": "file",
+            "name": "agenda-lrl-affiche.html",
+            "size": 752,
+            "hash": "55b18e381843e99c5ca64390dd65f5d170e1f102fdf4df8fe2430d556c58c4ba"
+        },
+        {
+            "type": "file",
+            "name": "agenda-lrl-carre.html",
+            "size": 749,
+            "hash": "1fb6ae8767f4b066d509a278c35977eb8a927265dbf2bfbae5c3a59fb4a868b8"
+        },
+        {
+            "type": "file",
+            "name": "agenda-lrl-facebook.html",
+            "size": 761,
+            "hash": "e39a1c270e10320113b62af79c953d6588466cf9e32656386e7cd29a933fbd19"
+        },
+        {
+            "type": "file",
+            "name": "agenda-lrl-paysage-4.html",
+            "size": 745,
+            "hash": "715bb1c14c30f4b948cb6dae0e0e0530f7807c0917e4b246a4cd28e73b67092a"
+        },
+        {
+            "type": "file",
+            "name": "agenda-lrl-paysage-6.html",
+            "size": 745,
+            "hash": "c9b6024084257c24afbd73084e00d5eb9509c23e325a0ed885fca4a995232f1f"
+        },
+        {
+            "type": "file",
+            "name": "agenda-paysage-4.html",
+            "size": 751,
+            "hash": "0b9edb3c3cc117ae912c4ebef65a7fcdbe1ebd6be4199efd0873f6ef97270bb5"
+        },
+        {
+            "type": "file",
+            "name": "agenda-paysage-6.html",
+            "size": 751,
+            "hash": "87fa020f1f3e7cdae6af5dd871191c3aceff218ca121df4f79f9f0bcb2512052"
+        },
+        {
+            "type": "file",
+            "name": "agenda-paysage.css",
+            "size": 3118,
+            "hash": "fbc1ecb9ce525c1f77eaad07d90e8d994778a6cef2efff320cc67ffebfff46da"
+        },
+        {
+            "type": "file",
+            "name": "agenda.json",
+            "size": 192207,
+            "hash": "96a14798c068b85adef52be4827444219bbf39d88cfb59e25a4000bb9bfac64b"
+        },
+        {
+            "type": "file",
+            "name": "ce-mois.html",
+            "size": 1073,
+            "hash": "bfd3080014fa4ac1426b3c41d0799a36768462b96ae95507e277e5a095ae5177"
+        },
+        {
+            "type": "file",
+            "name": "evenement-script.js",
+            "size": 13581,
+            "hash": "b1c0f20564c31a486728a3a3f4d80602522d5d69b16fb324807deee7fd41b50d"
+        },
+        {
+            "type": "file",
+            "name": "evenement-style.css",
+            "size": 5729,
+            "hash": "1baa9c4e040e0d3c09c143cbf8f993aec0acc082a20859f59032814ec0d9a0db"
+        },
+        {
+            "type": "file",
+            "name": "evenement.html",
+            "size": 3813,
+            "hash": "482596dc6ef8a78733a5355f16cde631dcb474792f6fcf4f27bc157c5f96c3d2"
+        },
+        {
+            "type": "file",
+            "name": "evenements-association.js",
+            "size": 6613,
+            "hash": "d4ac110f9aff3a4626aef5adece4af59e09e79a2d00e7c8f063f8d39ab5d6e64"
+        },
+        {
+            "type": "file",
+            "name": "evenements-lel.html",
+            "size": 3456,
+            "hash": "7f1d7e5c64a0ebf09abbd5a5ccdd0da1ca90bce69fd92db10122fe72e7999578"
+        },
+        {
+            "type": "folder",
+            "name": "img"
+        },
+        {
+            "type": "file",
+            "name": "evenements-lrl.html",
+            "size": 3456,
+            "hash": "e2672dbdc4d7686573806d6bee10f14bb8f56af088de38c2e1b36937d0dd163c"
+        },
+        {
+            "type": "file",
+            "name": "index.html",
+            "size": 2648,
+            "hash": "f6aacda338f5d4ccc0a7759647036155061dc953243ee757d44c8734f390795d"
+        },
+        {
+            "type": "file",
+            "name": "jour.css",
+            "size": 3121,
+            "hash": "529c990629f4931bec9196846784b406ce612a961c11fbce39df85e5d5c74d52"
+        },
+        {
+            "type": "file",
+            "name": "jour.html",
+            "size": 4159,
+            "hash": "8c5ca11190d380ada12d99a611eeeec422ffb8b2f3d0b01859c6373c5f0e6ac4"
+        },
+        {
+            "type": "file",
+            "name": "jour.js",
+            "size": 6672,
+            "hash": "ef8bfe93775b0533f10d55c07a004adda49d51d8e0bc42433b675d2a92308c17"
+        },
+        {
+            "type": "file",
+            "name": "mois.css",
+            "size": 3404,
+            "hash": "189f488661d8934915bb87e0c55bef68f121d5822c6330c78ffc5117a0709896"
+        },
+        {
+            "type": "file",
+            "name": "mois.js",
+            "size": 4800,
+            "hash": "6ba401d62d6e389825e4cab1a12c43f88b63a773ee1ba7db171a1d362ff79af2"
+        },
+        {
+            "type": "file",
+            "name": "pagination.js",
+            "size": 10312,
+            "hash": "d52e4094d1252c7405a0ebe0694de3988c66d910a1bde9b6501a8e0a1f1d9bd7"
+        },
+        {
+            "type": "file",
+            "name": "prochain-jour.html",
+            "size": 1250,
+            "hash": "b678c9866bb68aa5c2dfb5a54402d846b18834556b869353aeb8af323d665e15"
+        },
+        {
+            "type": "file",
+            "name": "prochain-jour.js",
+            "size": 14184,
+            "hash": "c7b988cf06b4509124b51ac7f5bcb9d0ed6019c2515d8e4245c001a1c7c70b3d"
+        },
+        {
+            "type": "file",
+            "name": "prochain-mois.html",
+            "size": 1088,
+            "hash": "6fe4149119f69fa3452c77db7261ef840e2a2f8dc95a30ccddce4eac015828f7"
+        },
+        {
+            "type": "file",
+            "name": "img/FondTransparent2.png",
+            "size": 297893,
+            "hash": "17e643b1d904eed4fb5b55fa1ba904508ad5861717fbbde6a3efe04eade26aab"
+        },
+        {
+            "type": "file",
+            "name": "img/FondTransparentCarre.png",
+            "size": 284695,
+            "hash": "9f43b1c8df7e892506c82a67c0418f68befb5351496945eb68f93c29ac9675a1"
+        },
+        {
+            "type": "file",
+            "name": "img/LELmarche.png",
+            "size": 18558,
+            "hash": "c52d11fc0a4f143373894db187997649bd352ab30f9c7734905451c57a179742"
+        },
+        {
+            "type": "file",
+            "name": "img/blanc.png",
+            "size": 15870,
+            "hash": "caa0555b29896a20dcd044423d459ddbeec2579548974ac43dcaad44a61c3b52"
+        },
+        {
+            "type": "file",
+            "name": "img/bleu.png",
+            "size": 49710,
+            "hash": "30f466599b2b0875b302a0706f0a5309de7afe68ad21305bdb57f4070d61b024"
+        },
+        {
+            "type": "file",
+            "name": "img/embleme - bleu.svg",
+            "size": 2593,
+            "hash": "ff352554bf4c55a9ab3288aaf1e725104be1b0899c7910720bbf4426b71ed17d"
+        },
+        {
+            "type": "folder",
+            "name": "img/categories"
+        },
+        {
+            "type": "folder",
+            "name": "img/evenements"
+        },
+        {
+            "type": "folder",
+            "name": "img/imageEvent"
+        },
+        {
+            "type": "folder",
+            "name": "img/jeux"
+        },
+        {
+            "type": "folder",
+            "name": "img/logo"
+        },
+        {
+            "type": "file",
+            "name": "img/logo-etabli.svg",
+            "size": 44205,
+            "hash": "37a52e4d659a3c0a145ff0b057b0ded20ab2d0e7b63d9d0588ac726a7d2474d7"
+        },
+        {
+            "type": "folder",
+            "name": "img/logos"
+        },
+        {
+            "type": "file",
+            "name": "img/logo-raffut.svg",
+            "size": 627633,
+            "hash": "7cf63f473edfb4131ad57fd4e2d2bf6c6d02bc90ca961933e54b1553efc21b7d"
+        },
+        {
+            "type": "file",
+            "name": "img/principal - couleurs.svg",
+            "size": 33806,
+            "hash": "986c57c5f2b6416964253c902ab1f1e635e55ae55f33fdd0b7bf4a503c421ce4"
+        },
+        {
+            "type": "file",
+            "name": "img/test",
+            "size": 3,
+            "hash": "508de6d05fb75d0351e8ce0aa3b4b4e8bb046c99af8b3631f36e7bd3742f3a44"
+        },
+        {
+            "type": "file",
+            "name": "img/categories/LELanimation.svg",
+            "size": 2243,
+            "hash": "01e525d568abc956d36ccdc7ee263e4910385ac2d3dad115ba1d48c335ea0b97"
+        },
+        {
+            "type": "file",
+            "name": "img/categories/LELmarche.svg",
+            "size": 2244,
+            "hash": "e81b99e0509a4061a53473b3451f4a795c59737a0a7e52d24172ff7f0a142af6"
+        },
+        {
+            "type": "file",
+            "name": "img/categories/LRLadherent.svg",
+            "size": 627633,
+            "hash": "7cf63f473edfb4131ad57fd4e2d2bf6c6d02bc90ca961933e54b1553efc21b7d"
+        },
+        {
+            "type": "file",
+            "name": "img/categories/LELpartenaire.svg",
+            "size": 2244,
+            "hash": "fca92fdb90a7bfe1ccbc38134bca1bd31bd1add2d57395cbea3980cd20ae781f"
+        },
+        {
+            "type": "file",
+            "name": "img/evenements/20260522_155611.jpg",
+            "size": 1219180,
+            "hash": "0ff8bf8c72a8591b0931ede47f09e7e292ed5ebdad70c2b9679747972cc1316e"
+        },
+        {
+            "type": "file",
+            "name": "img/categories/LRLsoiree.svg",
+            "size": 627632,
+            "hash": "f6e8cc5cfe176b2618f8bc1d3d0db05309912c40a66577c253cf972c07fb9844"
+        },
+        {
+            "type": "file",
+            "name": "img/evenements/img_3093-jpeg.jpg",
+            "size": 392761,
+            "hash": "bb525eea397d1e74527abca87da56e47433edd93815c2debe9cc9eb2926f21c6"
+        },
+        {
+            "type": "file",
+            "name": "img/evenements/image0.png",
+            "size": 2178064,
+            "hash": "e1cdc4b6a9400bfb75f0870dcd54aa0f42bdb30e26baefc1bffc1cbae56887ff"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/0. Mon atelier gravure.png",
+            "size": 1926034,
+            "hash": "1aec38ce7e6ff6874e5db6f6693e1ceed944379f77e55be180900b12f1ffe233"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/1. Mon atelier gravure.png",
+            "size": 2340134,
+            "hash": "39ea4af2718ddb1da218a8d33732222053649c080cd038acbb2f3e48af8eeeff"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/2. Mon atelier gravure Etape 1 Choix.png",
+            "size": 2316247,
+            "hash": "a8d9de3c06096cf72835a45a6268524020aaf0e9bc4c442da06fc9713f27352f"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/3. Mon atelier gravure Etape 1 Choix.png",
+            "size": 1902331,
+            "hash": "37087b062bdba0fe585bae4c77464ecee894ceb0ce1329af870b6cc5361db02a"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/4. Mon atelier gravure Etape 1 Choix.png",
+            "size": 1996587,
+            "hash": "56369b6ae729727080dda35f436da917d5d8a97e96e0517e99baf8c4938eda39"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/5. Mon atelier gravure Etape 1 Choix.png",
+            "size": 2072240,
+            "hash": "0b6f432786d95b73af3a98992375566a189de29f97abcba868c01e1dfdd7921d"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/EscapeGame.webp",
+            "size": 116618,
+            "hash": "868d6ca1f4212be255af7734805131c5fe0a6ce3880c4fc51043c49461a625c8"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/Fabrique ta boule de Noël facon Scan N' Grave.png",
+            "size": 2199944,
+            "hash": "a3de8afde42801f45a8619a43f3f0e54701cd86023f6b102998c082ca94c3e51"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/Fabrique ta boule de Noël.png",
+            "size": 2328002,
+            "hash": "50b3d9d738605599c5d00e270128cf904d63af27adaae70778ed42d9e636067c"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/LivingForest.jpg",
+            "size": 881449,
+            "hash": "272f83beba92a6cff295e3272235fce6f732fb859574cf9a9b9d67bf582c35cd"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/Micronora.png",
+            "size": 2178064,
+            "hash": "e1cdc4b6a9400bfb75f0870dcd54aa0f42bdb30e26baefc1bffc1cbae56887ff"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/MiddleAge.jpg",
+            "size": 911509,
+            "hash": "72466a3bd093096b5a22c7fa97eb8fb530a02805488d4e96eba2ef36efb71c38"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/Pour info  Fabrique ta carte lumineuse.png",
+            "size": 2060717,
+            "hash": "923dba5e5cf30d27f3684306f0c575ecf2274173113e8b7b97d4f6f2fc072dc9"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/Pour info Fabrique ton module d'escape game UV.png",
+            "size": 2252875,
+            "hash": "d699c5d7dd65c435e45f0a94238ac82473b6dcd8084001ebb9391299f1d4d02a"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/Scan N' Grave ta boite à dents.png",
+            "size": 2204232,
+            "hash": "40abeb92abf6cd6e8c01f8128d021f79bcc09190752c0a1011b2d9018dba4fb5"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/Scan N' Grave ta spatule à raclette.png",
+            "size": 2194446,
+            "hash": "5a77420d1ba2a9c05a9f7d902f3eb9ce06615391b909a34de8bdbdf0668fc011"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/Scan N' Grave ton marque page.png",
+            "size": 2214757,
+            "hash": "ed927efe368a9fb2c40f696ebd9890f5d78b5e4b51cbda12f2020bfab6452743"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/SplendorDuel.jpg",
+            "size": 1000968,
+            "hash": "34dfdbfee7cc4b58a778758df837d7ffbc6c4b0df087d3495cc3e4c5dba8b3c9"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/Symbiose.jpg",
+            "size": 922706,
+            "hash": "756636df0f13bec4d27f62f060df824629e06d1723b7c5d524a834f9e416f99b"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/TowerUp.jpg",
+            "size": 889030,
+            "hash": "361f8b8e98d7e6c3224ad4a6c806bd832d4244353a7c6c7eca7a27aaf9402608"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/boomerangCarre.jpg",
+            "size": 432101,
+            "hash": "7b6f421dc0012b4e6b9504682413affd387a74c0d2ecd823e49f0a78e405ea2a"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/COVER_RESIZE_Twinit-min.png",
+            "size": 516244,
+            "hash": "f1f4e1f6aacf8a88de951a8c9ab960bc80b838c00f7b2494f1e12fe14df1af35"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/COVER_RESIZE_Twinit-min.webp",
+            "size": 432672,
+            "hash": "098612572289d2b96326934547eeade26275ab075b54f4d4cdd1d45bcfa1120b"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_Fluffy_Valley-min.png",
+            "size": 606063,
+            "hash": "0db4ef3cfaa9319f9e6aca60b202ce544df99c9b96955a417bfe65328da9edc2"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_Fluffy_Valley-min.webp",
+            "size": 338304,
+            "hash": "cca243ccfca0ed668a9d36afefcecdd4310ba8a3aa404bead42dbc90440c441f"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_MonPremierUnlock_HistoireDeCanard-min.webp",
+            "size": 307922,
+            "hash": "970c59e4965f8850f511a44189f6ea6a9437343e2e2af9037e24433b6e924d21"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_TowerUp-min.png",
+            "size": 831060,
+            "hash": "c667065247d49dc95b10be209f892c2f236209637a4fc366f933a84d946ad756"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_MonPremierUnlock_HistoireDeCanard-min.png",
+            "size": 506591,
+            "hash": "e0069bdb2cab33ca19ea5fb9234ba08e27162a72f7f2f4bae3f598f39a3e4632"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_TowerUp-min.webp",
+            "size": 324146,
+            "hash": "e8657f52fa620aa3590a4af45fc0c423f5934d237527432671e8b406d6b619c2"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_Trek_Amazonie-min.png",
+            "size": 759112,
+            "hash": "6a01914a3d5acfb42b563e798a97c2408d9044e85812ab00adca528150782f6b"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_Trek_Amazonie-min.webp",
+            "size": 378778,
+            "hash": "98fa087907431ece1504130aad76740cdb2e4e514c592f0f982c13c3447dab09"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_Trek_Himalaya-min.png",
+            "size": 720180,
+            "hash": "211983eec4ec50acab6cff5e8e59c38523f654ef7c3272205ad8abe3ed6784b5"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_Trek_Himalaya-min.webp",
+            "size": 444956,
+            "hash": "d7b109b2e8b3d68f0fc3e8f3e57d29a91f131345c8ac40d1278f514ab0caaa00"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_ile_des_mookies-min.png",
+            "size": 563155,
+            "hash": "b10812ddfc146c905272ddbe04565a9a3375c6adf873dbeea99920eee7c430e7"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_ile_des_mookies-min.webp",
+            "size": 325614,
+            "hash": "d8b441a3096b27d1e16a8a04e4d9906565299947745b8bbc3492859f3a9fd226"
+        },
+        {
+            "type": "file",
+            "name": "img/logo/CFN nancray1.png",
+            "size": 117748,
+            "hash": "4ee846a63b67d2e50c12ff2a4a654e226088e717ba15f49121ae98ae0b182598"
+        },
+        {
+            "type": "file",
+            "name": "img/logo/Citro.jpg",
+            "size": 299921,
+            "hash": "03a5170cb0882990584fb4e7a778cf0b570c75510733cb18ee3119c93a608f7f"
+        },
+        {
+            "type": "file",
+            "name": "img/logo/Mediathèque Grand Dole.png",
+            "size": 8960,
+            "hash": "47fd3547e09f4e97786c0fb64962b5c2cc5b3266b31b76af4ab596e397d7eeb7"
+        },
+        {
+            "type": "file",
+            "name": "img/logo/MjcPalente.jpg",
+            "size": 66750,
+            "hash": "61bcbd3465169620621a7cd315b4ee8ddd3cd2bcae0b541d0238297913fedefb"
+        },
+        {
+            "type": "file",
+            "name": "img/logo/Pirey.svg",
+            "size": 14239,
+            "hash": "61e490438356c16b2a380e4056e451aaca19d59acf9e9e01620fa10c354da907"
+        },
+        {
+            "type": "file",
+            "name": "img/logo/StudioChouette.png",
+            "size": 9325,
+            "hash": "097d7f671ad73a11df1c1f0e881cb1ff12f269a8f93b9f0a51ca61906a6b2fa4"
+        },
+        {
+            "type": "file",
+            "name": "img/logo/images.jpg",
+            "size": 28236,
+            "hash": "6af134b3730109b327255eb386a9be54af83a403393a5b87534a3de9a19abbea"
+        },
+        {
+            "type": "file",
+            "name": "img/logos/images-1.jpg",
+            "size": 8392,
+            "hash": "7721fadc4a5f7b5c84967fcb160185a24847173849745ed39abbcebc1e78fac4"
+        },
+        {
+            "type": "file",
+            "name": "img/logos/livres-dans-la-boucle.jpg",
+            "size": 493440,
+            "hash": "d783dc8d15edd04f6bca57fb2a3693acf055bdde74b2c6aad4e046c49c2421a3"
+        },
+        {
+            "type": "file",
+            "name": "img/logos/studiochouette.png",
+            "size": 9325,
+            "hash": "097d7f671ad73a11df1c1f0e881cb1ff12f269a8f93b9f0a51ca61906a6b2fa4"
+        }
+    ]
+}
