@@ -1,7 +1,7 @@
 {
     "description": "DO NOT DELETE THIS FILE. This file is used to keep track of which files have been synced in the most recent deployment. If you delete this file a resync will need to be done (which can take a while) - read more: https://github.com/SamKirkland/FTP-Deploy-Action",
     "version": "1.0.0",
-    "generatedTime": 1790766230072,
+    "generatedTime": 1790854235357,
     "data": [
         {
             "type": "file",
@@ -126,8 +126,8 @@
         {
             "type": "file",
             "name": "agenda.json",
-            "size": 192207,
-            "hash": "0c8c37256ae9953e4c81a98c5132b9f50b0ce2606e01eb50d92e30205b1df73f"
+            "size": 190440,
+            "hash": "c91cae0ce27fb03472693ae932f36070525787fbd10f79176c72141c1af64660"
         },
         {
             "type": "file",
@@ -143,15 +143,15 @@
         },
         {
             "type": "file",
-            "name": "evenement.html",
-            "size": 3813,
-            "hash": "482596dc6ef8a78733a5355f16cde631dcb474792f6fcf4f27bc157c5f96c3d2"
-        },
-        {
-            "type": "file",
             "name": "evenement-style.css",
             "size": 5729,
             "hash": "1baa9c4e040e0d3c09c143cbf8f993aec0acc082a20859f59032814ec0d9a0db"
+        },
+        {
+            "type": "file",
+            "name": "evenement.html",
+            "size": 3813,
+            "hash": "482596dc6ef8a78733a5355f16cde631dcb474792f6fcf4f27bc157c5f96c3d2"
         },
         {
             "type": "file",
@@ -161,15 +161,15 @@
         },
         {
             "type": "file",
-            "name": "evenements-lel.html",
-            "size": 3456,
-            "hash": "7f1d7e5c64a0ebf09abbd5a5ccdd0da1ca90bce69fd92db10122fe72e7999578"
-        },
-        {
-            "type": "file",
             "name": "evenements-lrl.html",
             "size": 3456,
             "hash": "e2672dbdc4d7686573806d6bee10f14bb8f56af088de38c2e1b36937d0dd163c"
+        },
+        {
+            "type": "file",
+            "name": "evenements-lel.html",
+            "size": 3456,
+            "hash": "7f1d7e5c64a0ebf09abbd5a5ccdd0da1ca90bce69fd92db10122fe72e7999578"
         },
         {
             "type": "folder",
@@ -277,15 +277,15 @@
         },
         {
             "type": "folder",
+            "name": "img/evenements"
+        },
+        {
+            "type": "folder",
             "name": "img/imageEvent"
         },
         {
             "type": "folder",
             "name": "img/jeux"
-        },
-        {
-            "type": "folder",
-            "name": "img/evenements"
         },
         {
             "type": "folder",
@@ -348,6 +348,24 @@
             "name": "img/categories/LRLsoiree.svg",
             "size": 627632,
             "hash": "f6e8cc5cfe176b2618f8bc1d3d0db05309912c40a66577c253cf972c07fb9844"
+        },
+        {
+            "type": "file",
+            "name": "img/evenements/20260522_155611.jpg",
+            "size": 1219180,
+            "hash": "0ff8bf8c72a8591b0931ede47f09e7e292ed5ebdad70c2b9679747972cc1316e"
+        },
+        {
+            "type": "file",
+            "name": "img/evenements/image0.png",
+            "size": 2178064,
+            "hash": "e1cdc4b6a9400bfb75f0870dcd54aa0f42bdb30e26baefc1bffc1cbae56887ff"
+        },
+        {
+            "type": "file",
+            "name": "img/evenements/img_3093-jpeg.jpg",
+            "size": 392761,
+            "hash": "bb525eea397d1e74527abca87da56e47433edd93815c2debe9cc9eb2926f21c6"
         },
         {
             "type": "file",
@@ -447,15 +465,15 @@
         },
         {
             "type": "file",
-            "name": "img/imageEvent/Scan N' Grave ton marque page.png",
-            "size": 2214757,
-            "hash": "ed927efe368a9fb2c40f696ebd9890f5d78b5e4b51cbda12f2020bfab6452743"
-        },
-        {
-            "type": "file",
             "name": "img/imageEvent/SplendorDuel.jpg",
             "size": 1000968,
             "hash": "34dfdbfee7cc4b58a778758df837d7ffbc6c4b0df087d3495cc3e4c5dba8b3c9"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/Scan N' Grave ton marque page.png",
+            "size": 2214757,
+            "hash": "ed927efe368a9fb2c40f696ebd9890f5d78b5e4b51cbda12f2020bfab6452743"
         },
         {
             "type": "file",
@@ -507,15 +525,15 @@
         },
         {
             "type": "file",
-            "name": "img/jeux/CR_MonPremierUnlock_HistoireDeCanard-min.webp",
-            "size": 307922,
-            "hash": "970c59e4965f8850f511a44189f6ea6a9437343e2e2af9037e24433b6e924d21"
-        },
-        {
-            "type": "file",
             "name": "img/jeux/CR_TowerUp-min.png",
             "size": 831060,
             "hash": "c667065247d49dc95b10be209f892c2f236209637a4fc366f933a84d946ad756"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_MonPremierUnlock_HistoireDeCanard-min.webp",
+            "size": 307922,
+            "hash": "970c59e4965f8850f511a44189f6ea6a9437343e2e2af9037e24433b6e924d21"
         },
         {
             "type": "file",
@@ -561,39 +579,21 @@
         },
         {
             "type": "file",
-            "name": "img/evenements/20260522_155611.jpg",
-            "size": 1219180,
-            "hash": "0ff8bf8c72a8591b0931ede47f09e7e292ed5ebdad70c2b9679747972cc1316e"
-        },
-        {
-            "type": "file",
-            "name": "img/evenements/image0.png",
-            "size": 2178064,
-            "hash": "e1cdc4b6a9400bfb75f0870dcd54aa0f42bdb30e26baefc1bffc1cbae56887ff"
-        },
-        {
-            "type": "file",
-            "name": "img/evenements/img_3093-jpeg.jpg",
-            "size": 392761,
-            "hash": "bb525eea397d1e74527abca87da56e47433edd93815c2debe9cc9eb2926f21c6"
-        },
-        {
-            "type": "file",
             "name": "img/logo/CFN nancray1.png",
             "size": 117748,
             "hash": "4ee846a63b67d2e50c12ff2a4a654e226088e717ba15f49121ae98ae0b182598"
         },
         {
             "type": "file",
-            "name": "img/logo/Citro.jpg",
-            "size": 299921,
-            "hash": "03a5170cb0882990584fb4e7a778cf0b570c75510733cb18ee3119c93a608f7f"
-        },
-        {
-            "type": "file",
             "name": "img/logo/Mediathèque Grand Dole.png",
             "size": 8960,
             "hash": "47fd3547e09f4e97786c0fb64962b5c2cc5b3266b31b76af4ab596e397d7eeb7"
+        },
+        {
+            "type": "file",
+            "name": "img/logo/Citro.jpg",
+            "size": 299921,
+            "hash": "03a5170cb0882990584fb4e7a778cf0b570c75510733cb18ee3119c93a608f7f"
         },
         {
             "type": "file",
