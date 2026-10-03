@@ -1,31 +1,6 @@
 {
-  "generated_at": "2026-10-02T11:00:15.186Z",
+  "generated_at": "2026-10-03T10:19:51.034Z",
   "events": [
-    {
-      "uid": "6dh66e336crmab9nchj3eb9kc4o3gbb26gr3ib9l6gqm4ob268r32c9k60@google.com",
-      "title": "Soirée jeux MJC Palente",
-      "start": "2026-10-02T15:00:00.000Z",
-      "end": "2026-10-02T20:00:00.000Z",
-      "location": "MJC Palente",
-      "description": "{<br>  \"titre\": \"Le Raffut Ludique s'invite à la MJC de Palente\",<br>  \"sous_titre\": \"pour une soirée découverte de jeux de société\",<br>  \"image\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg</a>\",<br>  \"logo\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/MjcPalente.jpg\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/MjcPalente.jpg</a>\",<br>  \"logo_fond\": \"#ffffff\",<br>  \"fond\": \"\",<br>  \"tarif\": \"Au chapeau\",<br>  \"inscription\": \"\",<br>  \"lien_inscription\": \"\",<br>  \"statut\": \"\",<br>  \"lieu\": \"MJC Palente - Café des tilleuls - Besançon\",<br>  \"affichage_lieu\": \"3\"<br>}",
-      "campaign": {
-        "titre": "Le Raffut Ludique s'invite à la MJC de Palente",
-        "sous_titre": "pour une soirée découverte de jeux de société",
-        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg",
-        "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/MjcPalente.jpg",
-        "logo_fond": "#ffffff",
-        "fond": "",
-        "tarif": "Au chapeau",
-        "inscription": "",
-        "lien_inscription": "",
-        "statut": "",
-        "lieu": "MJC Palente - Café des tilleuls - Besançon",
-        "affichage_lieu": "3"
-      },
-      "calendar": "Soirée au chapeau",
-      "icon": "LRLsoiree.svg",
-      "color": "#F062B0"
-    },
     {
       "uid": "c6ab3584-5ca2-40bf-968a-4e924bd3b987",
       "title": "Les soirées jeux - Avanne",
@@ -601,6 +576,18 @@
       "calendar": "Marché / Expo",
       "icon": "LELmarche.svg",
       "color": "#D99DC1"
+    },
+    {
+      "uid": "cdhj8or274sjib9k6tgj0b9k6sqjeb9ocgq32b9kc5j32dho64pj0dhi6k@google.com",
+      "title": "Soirée mjc",
+      "start": "2026-12-11T18:30:00.000Z",
+      "end": "2026-12-11T19:30:00.000Z",
+      "location": "",
+      "description": "",
+      "campaign": null,
+      "calendar": "Soirée au chapeau",
+      "icon": "LRLsoiree.svg",
+      "color": "#F062B0"
     }
   ],
   "vacances": [],
