@@ -1,7 +1,7 @@
 {
     "description": "DO NOT DELETE THIS FILE. This file is used to keep track of which files have been synced in the most recent deployment. If you delete this file a resync will need to be done (which can take a while) - read more: https://github.com/SamKirkland/FTP-Deploy-Action",
     "version": "1.0.0",
-    "generatedTime": 1791376012316,
+    "generatedTime": 1791376413948,
     "data": [
         {
             "type": "file",
@@ -53,15 +53,15 @@
         },
         {
             "type": "file",
-            "name": "agenda-lel-facebook.html",
-            "size": 761,
-            "hash": "e4599f33a410d310bf2b008ba3e46151278d1fad46acf6fd3527f8efb88e7105"
-        },
-        {
-            "type": "file",
             "name": "agenda-lel-carre.html",
             "size": 756,
             "hash": "a17467bcb79723bcffc7a36bb037c6cf02d352297754ce30cb2507775e1a4e03"
+        },
+        {
+            "type": "file",
+            "name": "agenda-lel-facebook.html",
+            "size": 761,
+            "hash": "e4599f33a410d310bf2b008ba3e46151278d1fad46acf6fd3527f8efb88e7105"
         },
         {
             "type": "file",
@@ -113,21 +113,21 @@
         },
         {
             "type": "file",
-            "name": "agenda-paysage.css",
-            "size": 3118,
-            "hash": "fbc1ecb9ce525c1f77eaad07d90e8d994778a6cef2efff320cc67ffebfff46da"
-        },
-        {
-            "type": "file",
             "name": "agenda-paysage-6.html",
             "size": 751,
             "hash": "87fa020f1f3e7cdae6af5dd871191c3aceff218ca121df4f79f9f0bcb2512052"
         },
         {
             "type": "file",
+            "name": "agenda-paysage.css",
+            "size": 3118,
+            "hash": "fbc1ecb9ce525c1f77eaad07d90e8d994778a6cef2efff320cc67ffebfff46da"
+        },
+        {
+            "type": "file",
             "name": "agenda.json",
-            "size": 189019,
-            "hash": "27e389061affa65aacf5a62bdd2dcee4bb2a670841343b47caf6b7a9938592aa"
+            "size": 188515,
+            "hash": "438fabcbaff601b3ba461944dadf32579d112cb6f37234d12cbadb5b126b8021"
         },
         {
             "type": "file",
@@ -137,15 +137,15 @@
         },
         {
             "type": "file",
-            "name": "evenement-script.js",
-            "size": 13581,
-            "hash": "b1c0f20564c31a486728a3a3f4d80602522d5d69b16fb324807deee7fd41b50d"
-        },
-        {
-            "type": "file",
             "name": "evenement-style.css",
             "size": 5729,
             "hash": "1baa9c4e040e0d3c09c143cbf8f993aec0acc082a20859f59032814ec0d9a0db"
+        },
+        {
+            "type": "file",
+            "name": "evenement-script.js",
+            "size": 13581,
+            "hash": "b1c0f20564c31a486728a3a3f4d80602522d5d69b16fb324807deee7fd41b50d"
         },
         {
             "type": "file",
@@ -155,15 +155,15 @@
         },
         {
             "type": "file",
-            "name": "evenements-lel.html",
-            "size": 3456,
-            "hash": "7f1d7e5c64a0ebf09abbd5a5ccdd0da1ca90bce69fd92db10122fe72e7999578"
-        },
-        {
-            "type": "file",
             "name": "evenements-association.js",
             "size": 6613,
             "hash": "d4ac110f9aff3a4626aef5adece4af59e09e79a2d00e7c8f063f8d39ab5d6e64"
+        },
+        {
+            "type": "file",
+            "name": "evenements-lel.html",
+            "size": 3456,
+            "hash": "7f1d7e5c64a0ebf09abbd5a5ccdd0da1ca90bce69fd92db10122fe72e7999578"
         },
         {
             "type": "file",
@@ -177,15 +177,15 @@
         },
         {
             "type": "file",
-            "name": "index.html",
-            "size": 2648,
-            "hash": "f6aacda338f5d4ccc0a7759647036155061dc953243ee757d44c8734f390795d"
-        },
-        {
-            "type": "file",
             "name": "jour.css",
             "size": 3121,
             "hash": "529c990629f4931bec9196846784b406ce612a961c11fbce39df85e5d5c74d52"
+        },
+        {
+            "type": "file",
+            "name": "index.html",
+            "size": 2648,
+            "hash": "f6aacda338f5d4ccc0a7759647036155061dc953243ee757d44c8734f390795d"
         },
         {
             "type": "file",
@@ -281,11 +281,11 @@
         },
         {
             "type": "folder",
-            "name": "img/imageEvent"
+            "name": "img/jeux"
         },
         {
             "type": "folder",
-            "name": "img/jeux"
+            "name": "img/imageEvent"
         },
         {
             "type": "folder",
@@ -309,15 +309,15 @@
         },
         {
             "type": "file",
-            "name": "img/principal - couleurs.svg",
-            "size": 33806,
-            "hash": "986c57c5f2b6416964253c902ab1f1e635e55ae55f33fdd0b7bf4a503c421ce4"
-        },
-        {
-            "type": "file",
             "name": "img/test",
             "size": 3,
             "hash": "508de6d05fb75d0351e8ce0aa3b4b4e8bb046c99af8b3631f36e7bd3742f3a44"
+        },
+        {
+            "type": "file",
+            "name": "img/principal - couleurs.svg",
+            "size": 33806,
+            "hash": "986c57c5f2b6416964253c902ab1f1e635e55ae55f33fdd0b7bf4a503c421ce4"
         },
         {
             "type": "file",
@@ -327,15 +327,15 @@
         },
         {
             "type": "file",
-            "name": "img/categories/LELpartenaire.svg",
-            "size": 2244,
-            "hash": "fca92fdb90a7bfe1ccbc38134bca1bd31bd1add2d57395cbea3980cd20ae781f"
-        },
-        {
-            "type": "file",
             "name": "img/categories/LELmarche.svg",
             "size": 2244,
             "hash": "e81b99e0509a4061a53473b3451f4a795c59737a0a7e52d24172ff7f0a142af6"
+        },
+        {
+            "type": "file",
+            "name": "img/categories/LELpartenaire.svg",
+            "size": 2244,
+            "hash": "fca92fdb90a7bfe1ccbc38134bca1bd31bd1add2d57395cbea3980cd20ae781f"
         },
         {
             "type": "file",
@@ -357,15 +357,99 @@
         },
         {
             "type": "file",
+            "name": "img/evenements/image0.png",
+            "size": 2178064,
+            "hash": "e1cdc4b6a9400bfb75f0870dcd54aa0f42bdb30e26baefc1bffc1cbae56887ff"
+        },
+        {
+            "type": "file",
             "name": "img/evenements/img_3093-jpeg.jpg",
             "size": 392761,
             "hash": "bb525eea397d1e74527abca87da56e47433edd93815c2debe9cc9eb2926f21c6"
         },
         {
             "type": "file",
-            "name": "img/evenements/image0.png",
-            "size": 2178064,
-            "hash": "e1cdc4b6a9400bfb75f0870dcd54aa0f42bdb30e26baefc1bffc1cbae56887ff"
+            "name": "img/jeux/COVER_RESIZE_Twinit-min.png",
+            "size": 516244,
+            "hash": "f1f4e1f6aacf8a88de951a8c9ab960bc80b838c00f7b2494f1e12fe14df1af35"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/COVER_RESIZE_Twinit-min.webp",
+            "size": 432672,
+            "hash": "098612572289d2b96326934547eeade26275ab075b54f4d4cdd1d45bcfa1120b"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_Fluffy_Valley-min.png",
+            "size": 606063,
+            "hash": "0db4ef3cfaa9319f9e6aca60b202ce544df99c9b96955a417bfe65328da9edc2"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_Fluffy_Valley-min.webp",
+            "size": 338304,
+            "hash": "cca243ccfca0ed668a9d36afefcecdd4310ba8a3aa404bead42dbc90440c441f"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_MonPremierUnlock_HistoireDeCanard-min.png",
+            "size": 506591,
+            "hash": "e0069bdb2cab33ca19ea5fb9234ba08e27162a72f7f2f4bae3f598f39a3e4632"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_MonPremierUnlock_HistoireDeCanard-min.webp",
+            "size": 307922,
+            "hash": "970c59e4965f8850f511a44189f6ea6a9437343e2e2af9037e24433b6e924d21"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_TowerUp-min.png",
+            "size": 831060,
+            "hash": "c667065247d49dc95b10be209f892c2f236209637a4fc366f933a84d946ad756"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_TowerUp-min.webp",
+            "size": 324146,
+            "hash": "e8657f52fa620aa3590a4af45fc0c423f5934d237527432671e8b406d6b619c2"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_Trek_Amazonie-min.png",
+            "size": 759112,
+            "hash": "6a01914a3d5acfb42b563e798a97c2408d9044e85812ab00adca528150782f6b"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_Trek_Amazonie-min.webp",
+            "size": 378778,
+            "hash": "98fa087907431ece1504130aad76740cdb2e4e514c592f0f982c13c3447dab09"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_Trek_Himalaya-min.png",
+            "size": 720180,
+            "hash": "211983eec4ec50acab6cff5e8e59c38523f654ef7c3272205ad8abe3ed6784b5"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_Trek_Himalaya-min.webp",
+            "size": 444956,
+            "hash": "d7b109b2e8b3d68f0fc3e8f3e57d29a91f131345c8ac40d1278f514ab0caaa00"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_ile_des_mookies-min.png",
+            "size": 563155,
+            "hash": "b10812ddfc146c905272ddbe04565a9a3375c6adf873dbeea99920eee7c430e7"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_ile_des_mookies-min.webp",
+            "size": 325614,
+            "hash": "d8b441a3096b27d1e16a8a04e4d9906565299947745b8bbc3492859f3a9fd226"
         },
         {
             "type": "file",
@@ -534,90 +618,6 @@
             "name": "img/logo/images.jpg",
             "size": 28236,
             "hash": "6af134b3730109b327255eb386a9be54af83a403393a5b87534a3de9a19abbea"
-        },
-        {
-            "type": "file",
-            "name": "img/jeux/COVER_RESIZE_Twinit-min.png",
-            "size": 516244,
-            "hash": "f1f4e1f6aacf8a88de951a8c9ab960bc80b838c00f7b2494f1e12fe14df1af35"
-        },
-        {
-            "type": "file",
-            "name": "img/jeux/COVER_RESIZE_Twinit-min.webp",
-            "size": 432672,
-            "hash": "098612572289d2b96326934547eeade26275ab075b54f4d4cdd1d45bcfa1120b"
-        },
-        {
-            "type": "file",
-            "name": "img/jeux/CR_Fluffy_Valley-min.png",
-            "size": 606063,
-            "hash": "0db4ef3cfaa9319f9e6aca60b202ce544df99c9b96955a417bfe65328da9edc2"
-        },
-        {
-            "type": "file",
-            "name": "img/jeux/CR_MonPremierUnlock_HistoireDeCanard-min.png",
-            "size": 506591,
-            "hash": "e0069bdb2cab33ca19ea5fb9234ba08e27162a72f7f2f4bae3f598f39a3e4632"
-        },
-        {
-            "type": "file",
-            "name": "img/jeux/CR_Fluffy_Valley-min.webp",
-            "size": 338304,
-            "hash": "cca243ccfca0ed668a9d36afefcecdd4310ba8a3aa404bead42dbc90440c441f"
-        },
-        {
-            "type": "file",
-            "name": "img/jeux/CR_MonPremierUnlock_HistoireDeCanard-min.webp",
-            "size": 307922,
-            "hash": "970c59e4965f8850f511a44189f6ea6a9437343e2e2af9037e24433b6e924d21"
-        },
-        {
-            "type": "file",
-            "name": "img/jeux/CR_TowerUp-min.png",
-            "size": 831060,
-            "hash": "c667065247d49dc95b10be209f892c2f236209637a4fc366f933a84d946ad756"
-        },
-        {
-            "type": "file",
-            "name": "img/jeux/CR_TowerUp-min.webp",
-            "size": 324146,
-            "hash": "e8657f52fa620aa3590a4af45fc0c423f5934d237527432671e8b406d6b619c2"
-        },
-        {
-            "type": "file",
-            "name": "img/jeux/CR_Trek_Amazonie-min.webp",
-            "size": 378778,
-            "hash": "98fa087907431ece1504130aad76740cdb2e4e514c592f0f982c13c3447dab09"
-        },
-        {
-            "type": "file",
-            "name": "img/jeux/CR_Trek_Amazonie-min.png",
-            "size": 759112,
-            "hash": "6a01914a3d5acfb42b563e798a97c2408d9044e85812ab00adca528150782f6b"
-        },
-        {
-            "type": "file",
-            "name": "img/jeux/CR_Trek_Himalaya-min.png",
-            "size": 720180,
-            "hash": "211983eec4ec50acab6cff5e8e59c38523f654ef7c3272205ad8abe3ed6784b5"
-        },
-        {
-            "type": "file",
-            "name": "img/jeux/CR_Trek_Himalaya-min.webp",
-            "size": 444956,
-            "hash": "d7b109b2e8b3d68f0fc3e8f3e57d29a91f131345c8ac40d1278f514ab0caaa00"
-        },
-        {
-            "type": "file",
-            "name": "img/jeux/CR_ile_des_mookies-min.png",
-            "size": 563155,
-            "hash": "b10812ddfc146c905272ddbe04565a9a3375c6adf873dbeea99920eee7c430e7"
-        },
-        {
-            "type": "file",
-            "name": "img/jeux/CR_ile_des_mookies-min.webp",
-            "size": 325614,
-            "hash": "d8b441a3096b27d1e16a8a04e4d9906565299947745b8bbc3492859f3a9fd226"
         },
         {
             "type": "file",
