@@ -194,6 +194,24 @@
         "lieu": "",
         "affichage_lieu": "3"
       }
+    },
+    {
+      "id": "atelier-mille-et-une-idees",
+      "nom": "Atelier Mille et une idées",
+      "valeurs": {
+        "titre": "Scan N' Grave",
+        "sous_titre": "ta boite à dents",
+        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Scan%20N'%20Grave%20ta%20boite%20%C3%A0%20dents.png",
+        "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/mile-et-une-idee.jpg",
+        "logo_fond": "",
+        "fond": "",
+        "tarif": "15€ (Entrée gratuite au salon pour un inscription à un l'atelier)",
+        "inscription": "Réservation obligatoire",
+        "lien_inscription": "https://yp.events/c978d435-33d9-469a-87c6-25a11020a909/Mille-et-une-idees-Besancon/ticketing",
+        "statut": "",
+        "lieu": "Micropolis - Halle B1 -  3 Boulevard O 25050 Besançon",
+        "affichage_lieu": "3"
+      }
     }
   ]
 }
