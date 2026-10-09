@@ -41,17 +41,21 @@ if (!$setup && !empty($_SESSION['admin_authenticated'])) { header('Location: das
 <link rel="stylesheet" href="admin.css">
 <style>
 .auth-page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box}
-.auth-card{width:min(430px,100%);padding:32px;border-radius:20px;background:#fff;box-shadow:0 10px 35px rgba(0,0,0,.12)}
-.auth-card h1{margin-top:0}.auth-card label{display:block;margin:18px 0 7px;font-weight:700}
-.auth-card input{width:100%;box-sizing:border-box;padding:12px;border:1px solid #ccc;border-radius:10px;font:inherit}
-.auth-card button{margin-top:24px;width:100%;padding:12px;border:0;border-radius:10px;background:#e8bed4;font:inherit;font-weight:800;cursor:pointer}
-.auth-error{padding:12px;border-radius:10px;background:#ffe5e5;color:#8b0000}.auth-info{color:#555}
+.auth-card{width:min(430px,100%);padding:32px;border-radius:20px;background:#fff;color:#151a2d;box-shadow:0 10px 35px rgba(0,0,0,.12)}
+.auth-card h1{margin-top:0;color:#151a2d}
+.auth-card p{color:#4b5268}
+.auth-card label{display:block;margin:18px 0 7px;font-weight:700;color:#151a2d}
+.auth-card input{display:block;width:100%;box-sizing:border-box;padding:12px;border:1px solid #aeb4c2;border-radius:10px;font:inherit;background:#fff;color:#151a2d;opacity:1}
+.auth-card input::placeholder{color:#70758a;opacity:1}
+.auth-card input:-webkit-autofill{-webkit-text-fill-color:#151a2d;box-shadow:0 0 0 1000px #fff inset}
+.auth-card button{margin-top:24px;width:100%;padding:12px;border:0;border-radius:10px;background:#e8bed4;color:#151a2d;font:inherit;font-weight:800;cursor:pointer}
+.auth-error{padding:12px;border-radius:10px;background:#ffe5e5;color:#8b0000!important}.auth-info{color:#4b5268!important}
 </style></head><body><main class="auth-page"><section class="auth-card">
 <h1><?= $setup ? 'Première connexion' : 'Administration' ?></h1>
 <p class="auth-info"><?= $setup ? 'Crée ton compte administrateur. Cette étape ne sera proposée qu’une seule fois.' : 'Connecte-toi pour accéder à l’administration.' ?></p>
 <?php if (!empty($error)): ?><p class="auth-error"><?= htmlspecialchars($error,ENT_QUOTES,'UTF-8') ?></p><?php endif; ?>
-<form method="post" autocomplete="on">
-<label for="email">Adresse e-mail</label><input id="email" name="email" type="email" required autocomplete="username">
+<form method="post" action="index.php" autocomplete="on">
+<label for="email">Adresse e-mail</label><input id="email" name="email" type="email" required autocomplete="username" autocapitalize="none" spellcheck="false">
 <label for="password">Mot de passe</label><input id="password" name="password" type="password" required autocomplete="<?= $setup ? 'new-password':'current-password' ?>">
 <?php if ($setup): ?><label for="password_confirm">Confirmation du mot de passe</label><input id="password_confirm" name="password_confirm" type="password" required autocomplete="new-password"><?php endif; ?>
 <button type="submit"><?= $setup ? 'Créer le compte administrateur':'Se connecter' ?></button>
