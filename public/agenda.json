@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-08T11:55:11.553Z",
+  "generated_at": "2026-10-09T11:47:02.356Z",
   "events": [
     {
       "uid": "c6ab3584-5ca2-40bf-968a-4e924bd3b987",
@@ -714,6 +714,18 @@
       "color": "#9EB6F1"
     },
     {
+      "uid": "0g45fgndnrggckng716gmj70lf@google.com",
+      "title": "Marathon du jeu ",
+      "start": "2026-11-14T13:00:00.000Z",
+      "end": "2026-11-14T20:00:00.000Z",
+      "location": "Les Auxons, 25870 Les Auxons, France",
+      "description": "",
+      "campaign": null,
+      "calendar": "Partenaire",
+      "icon": "LELpartenaire.svg",
+      "color": "#9EB6F1"
+    },
+    {
       "uid": "f241fbef-c89f-47e6-8488-2670b85b2c2c",
       "title": "Les soirées jeux - Avanne",
       "start": "2026-11-18T16:30:00.000Z",
@@ -781,6 +793,18 @@
       "start": "2026-11-22T09:00:00.000Z",
       "end": "2026-11-22T17:00:00.000Z",
       "location": "",
+      "description": "",
+      "campaign": null,
+      "calendar": "Marché / Expo",
+      "icon": "LELmarche.svg",
+      "color": "#D99DC1"
+    },
+    {
+      "uid": "796c6ollqg27obacumai9p4k9p@google.com",
+      "title": "Marché de Noel ",
+      "start": "2026-12-04T09:00:00.000Z",
+      "end": "2026-12-04T15:00:00.000Z",
+      "location": "Résidence DOMITYS, 23 Rue de Chaillot, Besançon, France",
       "description": "",
       "campaign": null,
       "calendar": "Marché / Expo",
