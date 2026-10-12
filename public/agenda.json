@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-11T11:21:20.525Z",
+  "generated_at": "2026-10-12T12:59:28.537Z",
   "events": [
     {
       "uid": "c6ab3584-5ca2-40bf-968a-4e924bd3b987",
@@ -82,7 +82,7 @@
       "start": "2026-10-22T12:00:00.000Z",
       "end": "2026-10-22T15:00:00.000Z",
       "location": "Bibliothèque Avanne-Aveney",
-      "description": "<pre>{  \"titre\": \"Bibliotime - Après midi Jeux de société\",  \"sous_titre\": \"à la bibliothèque d'Avanne-Aveney\",  \"image\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg\" target=\"_blank\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg</a>\",  \"logo\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/images-1.jpg\" target=\"_blank\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/images-1.jpg</a>\",  \"logo_fond\": \"#ffffff\",  \"fond\": \"\",  \"tarif\": \"Au chapeau\",  \"inscription\": \"Réservation conseillée\",  \"lien_inscription\": \"\",  \"statut\": \"\",  \"lieu\": \"Bibliothèque d'Avanne Aveney\",  \"affichage_lieu\": \"3\"}</pre>",
+      "description": "<pre>{  \"titre\": \"Bibliotime - Après midi Jeux de société\",  \"sous_titre\": \"à la bibliothèque d'Avanne-Aveney\",  \"image\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg\" target=\"_blank\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg</a>\",  \"logo\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/images-1.jpg\" target=\"_blank\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/images-1.jpg</a>\",  \"logo_fond\": \"#ffffff\",  \"fond\": \"\",  \"tarif\": \"\",  \"inscription\": \"Réservation conseillée\",  \"lien_inscription\": \"\",  \"statut\": \"\",  \"lieu\": \"Bibliothèque d'Avanne Aveney\",  \"affichage_lieu\": \"3\"}</pre>",
       "campaign": {
         "titre": "Bibliotime - Après midi Jeux de société",
         "sous_titre": "à la bibliothèque d'Avanne-Aveney",
@@ -90,7 +90,7 @@
         "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/images-1.jpg",
         "logo_fond": "#ffffff",
         "fond": "",
-        "tarif": "Au chapeau",
+        "tarif": "",
         "inscription": "Réservation conseillée",
         "lien_inscription": "",
         "statut": "",
