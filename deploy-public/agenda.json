@@ -1,31 +1,6 @@
 {
-  "generated_at": "2026-10-14T10:02:39.433Z",
+  "generated_at": "2026-10-15T09:45:00.474Z",
   "events": [
-    {
-      "uid": "c6ab3584-5ca2-40bf-968a-4e924bd3b987",
-      "title": "Les soirées jeux - Avanne",
-      "start": "2026-10-14T15:30:00.000Z",
-      "end": "2026-10-14T19:00:00.000Z",
-      "location": "3 Bis rue de l'eglise 25720 Avanne",
-      "description": "{<br>  \"titre\": \"Soirée jeux à Avanne\",<br>  \"sous_titre\": \"\",<br>  \"image\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg\" target=\"_blank\"><u>https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg</u></a>\",<br>  \"logo\": \"<a href=\"https://static.wixstatic.com/media/2dd0a2_ec64a8347d1c42248671cb41bc7c072d~mv2.png\" target=\"_blank\"><u>https://static.wixstatic.com/media/2dd0a2_ec64a8347d1c42248671cb41bc7c072d~mv2.png</u></a>\",<br>  \"logo_fond\": \"#ffffff\",<br>  \"fond\": \"\",<br>  \"tarif\": \"Soirée adhérents (solo 10€/an ; famille 25€/an)\",<br>  \"inscription\": \"Réservation conseillée\",<br>  \"lien_inscription\": \"<a href=\"https://booking.myrezapp.com/fr/online/booking/minisite/10009/le-raffut-ludique\" target=\"_blank\"><u>https://booking.myrezapp.com/fr/online/booking/minisite/10009/le-raffut-ludique</u></a>\",<br>  \"statut\": \"\",<br>  \"lieu\": \"Maison Saint-Vincent - Proche studio photo d'Avanne\",<br>  \"affichage_lieu\": \"3\"<br>}",
-      "campaign": {
-        "titre": "Soirée jeux à Avanne",
-        "sous_titre": "",
-        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg",
-        "logo": "https://static.wixstatic.com/media/2dd0a2_ec64a8347d1c42248671cb41bc7c072d~mv2.png",
-        "logo_fond": "#ffffff",
-        "fond": "",
-        "tarif": "Soirée adhérents (solo 10€/an ; famille 25€/an)",
-        "inscription": "Réservation conseillée",
-        "lien_inscription": "https://booking.myrezapp.com/fr/online/booking/minisite/10009/le-raffut-ludique",
-        "statut": "",
-        "lieu": "Maison Saint-Vincent - Proche studio photo d'Avanne",
-        "affichage_lieu": "3"
-      },
-      "calendar": "Soirée adhérents",
-      "icon": "LRLadherent.svg",
-      "color": "#F6D67A"
-    },
     {
       "uid": "43p4lib3mqi8borlqvv0fnh357@google.com",
       "title": "Expo Briques & LEGO - AIBRE",
