@@ -1,31 +1,6 @@
 {
-  "generated_at": "2026-10-18T09:26:35.432Z",
+  "generated_at": "2026-10-19T10:39:56.125Z",
   "events": [
-    {
-      "uid": "3b9d2sgoosehofsji2480c086g@google.com",
-      "title": "Expo Briques & LEGO - AIBRE",
-      "start": "2026-10-18T08:00:00.000Z",
-      "end": "2026-10-18T16:00:00.000Z",
-      "location": "Chemin du Chevreuil, 25750 AIBRE",
-      "description": "{<br>  \"titre\": \"Personnalisation sur LEGO\",<br>  \"sous_titre\": \"via la découpe laser\",<br>  \"image\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/evenements/img_3093-jpeg.jpg\" target=\"_blank\"><u>https://bonnardadrien51.github.io/AfficheLEL-LRL/img/evenements/img_3093-jpeg.jpg</u></a>\",<br>  \"logo\": \"\",<br>  \"logo_fond\": \"\",<br>  \"fond\": \"\",<br>  \"tarif\": \"Entrée gratuite\",<br>  \"inscription\": \"\",<br>  \"lien_inscription\": \"\",<br>  \"statut\": \"\",<br>  \"lieu\": \"\",<br>  \"affichage_lieu\": \"3\"<br>}",
-      "campaign": {
-        "titre": "Personnalisation sur LEGO",
-        "sous_titre": "via la découpe laser",
-        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/evenements/img_3093-jpeg.jpg",
-        "logo": "",
-        "logo_fond": "",
-        "fond": "",
-        "tarif": "Entrée gratuite",
-        "inscription": "",
-        "lien_inscription": "",
-        "statut": "",
-        "lieu": "",
-        "affichage_lieu": "3"
-      },
-      "calendar": "Marché / Expo",
-      "icon": "LELmarche.svg",
-      "color": "#D99DC1"
-    },
     {
       "uid": "6cts05hqf08uqgvc44j4njcs33@google.com",
       "title": "Après midi jeux de société",
