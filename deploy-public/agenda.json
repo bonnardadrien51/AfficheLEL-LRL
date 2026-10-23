@@ -1,31 +1,6 @@
 {
-  "generated_at": "2026-10-22T10:00:01.924Z",
+  "generated_at": "2026-10-23T09:55:17.469Z",
   "events": [
-    {
-      "uid": "6cts05hqf08uqgvc44j4njcs33@google.com",
-      "title": "Après midi jeux de société",
-      "start": "2026-10-22T12:00:00.000Z",
-      "end": "2026-10-22T15:00:00.000Z",
-      "location": "Bibliothèque Avanne-Aveney",
-      "description": "<pre>{  \"titre\": \"Bibliotime - Après midi Jeux de société\",  \"sous_titre\": \"à la bibliothèque d'Avanne-Aveney\",  \"image\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg\" target=\"_blank\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg</a>\",  \"logo\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/images-1.jpg\" target=\"_blank\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/images-1.jpg</a>\",  \"logo_fond\": \"#ffffff\",  \"fond\": \"\",  \"tarif\": \"\",  \"inscription\": \"Réservation conseillée\",  \"lien_inscription\": \"\",  \"statut\": \"\",  \"lieu\": \"Bibliothèque d'Avanne Aveney\",  \"affichage_lieu\": \"3\"}</pre>",
-      "campaign": {
-        "titre": "Bibliotime - Après midi Jeux de société",
-        "sous_titre": "à la bibliothèque d'Avanne-Aveney",
-        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg",
-        "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/images-1.jpg",
-        "logo_fond": "#ffffff",
-        "fond": "",
-        "tarif": "",
-        "inscription": "Réservation conseillée",
-        "lien_inscription": "",
-        "statut": "",
-        "lieu": "Bibliothèque d'Avanne Aveney",
-        "affichage_lieu": "3"
-      },
-      "calendar": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
-    },
     {
       "uid": "2kk281kd0bddb8nu9h3ul1aq7d@google.com",
       "title": "Escape game - Papyrus et la Potion des Pluies Oubliées - Studio chouette",
