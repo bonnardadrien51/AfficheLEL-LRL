@@ -1,7 +1,7 @@
 {
     "description": "DO NOT DELETE THIS FILE. This file is used to keep track of which files have been synced in the most recent deployment. If you delete this file a resync will need to be done (which can take a while) - read more: https://github.com/SamKirkland/FTP-Deploy-Action",
     "version": "1.0.0",
-    "generatedTime": 1792749317764,
+    "generatedTime": 1792833870752,
     "data": [
         {
             "type": "file",
@@ -125,15 +125,15 @@
         },
         {
             "type": "file",
-            "name": "ce-mois.html",
-            "size": 1426,
-            "hash": "01c0ec1c38d78cd71809d4321e0272906111be4abbb9f2139fca4c276223c331"
+            "name": "agenda.json",
+            "size": 209522,
+            "hash": "b91b0f266f24870efe6ec7f2bc8ed8e0bc222b72135a4243da6a169653e0e550"
         },
         {
             "type": "file",
-            "name": "agenda.json",
-            "size": 213532,
-            "hash": "cf8231c8df2332064622703e2fdbce8b68f4b97f50272fc8bee3442dfead2aaa"
+            "name": "ce-mois.html",
+            "size": 1426,
+            "hash": "01c0ec1c38d78cd71809d4321e0272906111be4abbb9f2139fca4c276223c331"
         },
         {
             "type": "file",
@@ -266,14 +266,14 @@
             "hash": "30f466599b2b0875b302a0706f0a5309de7afe68ad21305bdb57f4070d61b024"
         },
         {
+            "type": "folder",
+            "name": "img/categories"
+        },
+        {
             "type": "file",
             "name": "img/embleme - bleu.svg",
             "size": 2593,
             "hash": "ff352554bf4c55a9ab3288aaf1e725104be1b0899c7910720bbf4426b71ed17d"
-        },
-        {
-            "type": "folder",
-            "name": "img/categories"
         },
         {
             "type": "folder",
@@ -285,11 +285,11 @@
         },
         {
             "type": "folder",
-            "name": "img/jeux"
+            "name": "img/logo"
         },
         {
             "type": "folder",
-            "name": "img/logo"
+            "name": "img/jeux"
         },
         {
             "type": "file",
@@ -489,15 +489,57 @@
         },
         {
             "type": "file",
+            "name": "img/imageEvent/TowerUp.jpg",
+            "size": 889030,
+            "hash": "361f8b8e98d7e6c3224ad4a6c806bd832d4244353a7c6c7eca7a27aaf9402608"
+        },
+        {
+            "type": "file",
             "name": "img/imageEvent/boomerangCarre.jpg",
             "size": 432101,
             "hash": "7b6f421dc0012b4e6b9504682413affd387a74c0d2ecd823e49f0a78e405ea2a"
         },
         {
             "type": "file",
-            "name": "img/imageEvent/TowerUp.jpg",
-            "size": 889030,
-            "hash": "361f8b8e98d7e6c3224ad4a6c806bd832d4244353a7c6c7eca7a27aaf9402608"
+            "name": "img/logo/CFN nancray1.png",
+            "size": 117748,
+            "hash": "4ee846a63b67d2e50c12ff2a4a654e226088e717ba15f49121ae98ae0b182598"
+        },
+        {
+            "type": "file",
+            "name": "img/logo/Citro.jpg",
+            "size": 299921,
+            "hash": "03a5170cb0882990584fb4e7a778cf0b570c75510733cb18ee3119c93a608f7f"
+        },
+        {
+            "type": "file",
+            "name": "img/logo/Mediathèque Grand Dole.png",
+            "size": 8960,
+            "hash": "47fd3547e09f4e97786c0fb64962b5c2cc5b3266b31b76af4ab596e397d7eeb7"
+        },
+        {
+            "type": "file",
+            "name": "img/logo/MjcPalente.jpg",
+            "size": 66750,
+            "hash": "61bcbd3465169620621a7cd315b4ee8ddd3cd2bcae0b541d0238297913fedefb"
+        },
+        {
+            "type": "file",
+            "name": "img/logo/Pirey.svg",
+            "size": 14239,
+            "hash": "61e490438356c16b2a380e4056e451aaca19d59acf9e9e01620fa10c354da907"
+        },
+        {
+            "type": "file",
+            "name": "img/logo/StudioChouette.png",
+            "size": 9325,
+            "hash": "097d7f671ad73a11df1c1f0e881cb1ff12f269a8f93b9f0a51ca61906a6b2fa4"
+        },
+        {
+            "type": "file",
+            "name": "img/logo/images.jpg",
+            "size": 28236,
+            "hash": "6af134b3730109b327255eb386a9be54af83a403393a5b87534a3de9a19abbea"
         },
         {
             "type": "file",
@@ -549,15 +591,15 @@
         },
         {
             "type": "file",
-            "name": "img/jeux/CR_Trek_Amazonie-min.webp",
-            "size": 378778,
-            "hash": "98fa087907431ece1504130aad76740cdb2e4e514c592f0f982c13c3447dab09"
-        },
-        {
-            "type": "file",
             "name": "img/jeux/CR_Trek_Amazonie-min.png",
             "size": 759112,
             "hash": "6a01914a3d5acfb42b563e798a97c2408d9044e85812ab00adca528150782f6b"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_Trek_Amazonie-min.webp",
+            "size": 378778,
+            "hash": "98fa087907431ece1504130aad76740cdb2e4e514c592f0f982c13c3447dab09"
         },
         {
             "type": "file",
@@ -585,45 +627,9 @@
         },
         {
             "type": "file",
-            "name": "img/logo/CFN nancray1.png",
-            "size": 117748,
-            "hash": "4ee846a63b67d2e50c12ff2a4a654e226088e717ba15f49121ae98ae0b182598"
-        },
-        {
-            "type": "file",
-            "name": "img/logo/Citro.jpg",
-            "size": 299921,
-            "hash": "03a5170cb0882990584fb4e7a778cf0b570c75510733cb18ee3119c93a608f7f"
-        },
-        {
-            "type": "file",
-            "name": "img/logo/Mediathèque Grand Dole.png",
-            "size": 8960,
-            "hash": "47fd3547e09f4e97786c0fb64962b5c2cc5b3266b31b76af4ab596e397d7eeb7"
-        },
-        {
-            "type": "file",
-            "name": "img/logo/MjcPalente.jpg",
-            "size": 66750,
-            "hash": "61bcbd3465169620621a7cd315b4ee8ddd3cd2bcae0b541d0238297913fedefb"
-        },
-        {
-            "type": "file",
-            "name": "img/logo/Pirey.svg",
-            "size": 14239,
-            "hash": "61e490438356c16b2a380e4056e451aaca19d59acf9e9e01620fa10c354da907"
-        },
-        {
-            "type": "file",
-            "name": "img/logo/StudioChouette.png",
-            "size": 9325,
-            "hash": "097d7f671ad73a11df1c1f0e881cb1ff12f269a8f93b9f0a51ca61906a6b2fa4"
-        },
-        {
-            "type": "file",
-            "name": "img/logo/images.jpg",
-            "size": 28236,
-            "hash": "6af134b3730109b327255eb386a9be54af83a403393a5b87534a3de9a19abbea"
+            "name": "img/logos/mile-et-une-idee.jpg",
+            "size": 32655,
+            "hash": "75e6a8ba1bea7b68a0f389f8751f0fe03973e6e3da98879ea87a320045265b45"
         },
         {
             "type": "file",
@@ -636,12 +642,6 @@
             "name": "img/logos/livres-dans-la-boucle.jpg",
             "size": 493440,
             "hash": "d783dc8d15edd04f6bca57fb2a3693acf055bdde74b2c6aad4e046c49c2421a3"
-        },
-        {
-            "type": "file",
-            "name": "img/logos/mile-et-une-idee.jpg",
-            "size": 32655,
-            "hash": "75e6a8ba1bea7b68a0f389f8751f0fe03973e6e3da98879ea87a320045265b45"
         },
         {
             "type": "file",

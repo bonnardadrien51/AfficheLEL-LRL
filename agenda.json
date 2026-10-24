@@ -1,56 +1,6 @@
 {
-  "generated_at": "2026-10-23T09:55:17.469Z",
+  "generated_at": "2026-10-24T09:24:30.486Z",
   "events": [
-    {
-      "uid": "2kk281kd0bddb8nu9h3ul1aq7d@google.com",
-      "title": "Escape game - Papyrus et la Potion des Pluies Oubliées - Studio chouette",
-      "start": "2026-10-23T08:00:00.000Z",
-      "end": "2026-10-23T16:00:00.000Z",
-      "location": "Studio Chouette, 4 Rue du Clos Saint-Amour, 25000 Besançon, France",
-      "description": "{<br>  \"titre\": \"Escape game - Papyrus et la potion des pluies oubliées\",<br>  \"sous_titre\": \"\",<br>  \"image\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/evenements/20260522_155611.jpg\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/evenements/20260522_155611.jpg</a>\",<br>  \"logo\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/studiochouette.png\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/studiochouette.png</a>\",<br>  \"logo_fond\": \"#ffffff\",<br>  \"fond\": \"\",<br>  \"tarif\": \"20€ / pers\",<br>  \"inscription\": \"Réservation obligatoire auprès de Studio chouette : 03 70 50 01 05\",<br>  \"lien_inscription\": \"<a href=\"https://www.studio-chouette.fr/\">https://www.studio-chouette.fr/</a>\",<br>  \"statut\": \"\",<br>  \"lieu\": \"\",<br>  \"affichage_lieu\": \"3\"<br>}",
-      "campaign": {
-        "titre": "Escape game - Papyrus et la potion des pluies oubliées",
-        "sous_titre": "",
-        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/evenements/20260522_155611.jpg",
-        "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/studiochouette.png",
-        "logo_fond": "#ffffff",
-        "fond": "",
-        "tarif": "20€ / pers",
-        "inscription": "Réservation obligatoire auprès de Studio chouette : 03 70 50 01 05",
-        "lien_inscription": "https://www.studio-chouette.fr/",
-        "statut": "",
-        "lieu": "",
-        "affichage_lieu": "3"
-      },
-      "calendar": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
-    },
-    {
-      "uid": "6178df1b-6927-4a29-b636-799b4a3be043",
-      "title": "Soirée tournoi de jeux de société à La Citronnade",
-      "start": "2026-10-23T18:00:00.000Z",
-      "end": "2026-10-23T21:00:00.000Z",
-      "location": "La Citronnade, Rue Ronchaux, Besancon",
-      "description": "{<br>  \"titre\": \"Le Raffut Ludique s'invite à la Citronnade\",<br>  \"sous_titre\": \"un tournoi de jeux de société\",<br>  \"image\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg</a>\",<br>  \"logo\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/Citro.jpg\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/Citro.jpg</a>\",<br>  \"logo_fond\": \"#ffffff\",<br>  \"fond\": \"\",<br>  \"tarif\": \"Au chapeau\",<br>  \"inscription\": \"Réservation conseillée\",<br>  \"lien_inscription\": \"<a href=\"https://booking.myrezapp.com/fr/online/booking/minisite/10009/le-raffut-ludique\">https://booking.myrezapp.com/fr/online/booking/minisite/10009/le-raffut-ludique</a>\",<br>  \"statut\": \"\",<br>  \"lieu\": \"Rue Ronchaux, Besançon\",<br>  \"affichage_lieu\": \"3\"<br>}",
-      "campaign": {
-        "titre": "Le Raffut Ludique s'invite à la Citronnade",
-        "sous_titre": "un tournoi de jeux de société",
-        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg",
-        "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/Citro.jpg",
-        "logo_fond": "#ffffff",
-        "fond": "",
-        "tarif": "Au chapeau",
-        "inscription": "Réservation conseillée",
-        "lien_inscription": "https://booking.myrezapp.com/fr/online/booking/minisite/10009/le-raffut-ludique",
-        "statut": "",
-        "lieu": "Rue Ronchaux, Besançon",
-        "affichage_lieu": "3"
-      },
-      "calendar": "Soirée au chapeau",
-      "icon": "LRLsoiree.svg",
-      "color": "#F062B0"
-    },
     {
       "uid": "1cimnqdn52da7nprfsc2ml637v@google.com",
       "title": "Escape game - Papyrus et la Potion des Pluies Oubliées - Tavaux",
