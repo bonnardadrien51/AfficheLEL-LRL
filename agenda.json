@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-25T09:43:13.730Z",
+  "generated_at": "2026-10-25T13:03:03.934Z",
   "events": [
     {
       "uid": "10tus5kqrdlgm6j2bq341tqlm8@google.com",
@@ -57,7 +57,7 @@
       "start": "2026-10-31T19:00:00.000Z",
       "end": "2026-10-31T23:00:00.000Z",
       "location": "",
-      "description": "{\n  \"titre\": \"Escape game - Papyrus et la potion\",\n  \"sous_titre\": \"\",\n  \"image\": \"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/evenements/20260522_155611.jpg\",\n  \"logo\": \"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/CFN%20nancray1.png\",\n  \"logo_fond\": \"#ffffff\",\n  \"fond\": \"\",\n  \"tarif\": \"10€ / personne (un gaufre sucre offerte)\",\n  \"inscription\": \"Réservation obligatoire\",\n  \"lien_inscription\": \"https://booking.myrezapp.com/fr/online/booking/step1/19095/86913\",\n  \"statut\": \"\",\n  \"lieu\": \"Salle des fêtes  ,7 Rue de Vaire, 25360 Nancray\",\n  \"affichage_lieu\": \"3\"\n}",
+      "description": "{\n  \"titre\": \"Escape game - Papyrus et la potion\",\n  \"sous_titre\": \"\",\n  \"image\": \"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/evenements/20260522_155611.jpg\",\n  \"logo\": \"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/CFN%20nancray1.png\",\n  \"logo_fond\": \"#ffffff\",\n  \"fond\": \"\",\n  \"tarif\": \"10€ / personne (une gaufre sucré offerte)\",\n  \"inscription\": \"Réservation obligatoire\",\n  \"lien_inscription\": \"https://booking.myrezapp.com/fr/online/booking/step1/19095/86913\",\n  \"statut\": \"\",\n  \"lieu\": \"Salle des fêtes  ,7 Rue de Vaire, 25360 Nancray\",\n  \"affichage_lieu\": \"3\"\n}",
       "campaign": {
         "titre": "Escape game - Papyrus et la potion",
         "sous_titre": "",
@@ -65,7 +65,7 @@
         "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/CFN%20nancray1.png",
         "logo_fond": "#ffffff",
         "fond": "",
-        "tarif": "10€ / personne (un gaufre sucre offerte)",
+        "tarif": "10€ / personne (une gaufre sucré offerte)",
         "inscription": "Réservation obligatoire",
         "lien_inscription": "https://booking.myrezapp.com/fr/online/booking/step1/19095/86913",
         "statut": "",
