@@ -91,6 +91,8 @@ function renderEvent(event, association) {
     const status = getStatus(event);
     const showButtons = new URLSearchParams(window.location.search).get("bouton") === "1";
     const campaignLogo = String(campaign.logo || "").trim();
+    const registrationUrl = String(campaign.lien_inscription || "").trim();
+    const hasRegistration = /^https?:\/\//i.test(registrationUrl);
 
     const card = document.createElement("article");
     card.className = "eventItem";
@@ -112,6 +114,7 @@ function renderEvent(event, association) {
             ${campaign.tarif ? `<div class="eventInfo">💶 ${escapeHtml(campaign.tarif)}</div>` : ""}
             ${campaign.inscription ? `<div class="eventInfo">💬 ${escapeHtml(campaign.inscription)}</div>` : ""}
             ${status ? `<div class="eventStatus">${escapeHtml(status)}</div>` : ""}
+            ${hasRegistration ? `<div class="posterButtons"><a class="posterBtn primary" href="${escapeHtml(registrationUrl)}" target="_blank" rel="noopener noreferrer">Réserver</a></div>` : ""}
             ${showButtons ? `<div class="posterButtons">
                 <a class="posterBtn primary" href="${posterUrl("affiche.html", event.uid)}" target="_blank" rel="noopener">🖥️ Affiche</a>
                 <a class="posterBtn" href="${posterUrl("affiche-carre-evenement.html", event.uid)}" target="_blank" rel="noopener">⬜ Carré Facebook</a>
