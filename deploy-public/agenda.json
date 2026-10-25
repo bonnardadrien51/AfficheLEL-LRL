@@ -1,31 +1,6 @@
 {
-  "generated_at": "2026-10-24T09:24:30.486Z",
+  "generated_at": "2026-10-25T09:43:13.730Z",
   "events": [
-    {
-      "uid": "1cimnqdn52da7nprfsc2ml637v@google.com",
-      "title": "Escape game - Papyrus et la Potion des Pluies Oubliées - Tavaux",
-      "start": "2026-10-24T11:00:00.000Z",
-      "end": "2026-10-24T15:30:00.000Z",
-      "location": "",
-      "description": "{<br>  \"titre\": \"Escape game - Papyrus et la potion des pluies oubliées\",<br>  \"sous_titre\": \"\",<br>  \"image\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/evenements/20260522_155611.jpg\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/evenements/20260522_155611.jpg</a>\",<br>  \"logo\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/Mediath%C3%A8que%20Grand%20Dole.png\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/Mediath%C3%A8que%20Grand%20Dole.png</a>\",<br>  \"logo_fond\": \"#ffffff\",<br>  \"fond\": \"\",<br>  \"tarif\": \"\",<br>  \"inscription\": \"Réservation obligatoire\",<br>  \"lien_inscription\": \"<a href=\"https://mediatheques.grand-dole.fr/cms/articleview/id/4019\">https://mediatheques.grand-dole.fr/cms/articleview/id/4019</a>\",<br>  \"statut\": \"\",<br>  \"lieu\": \"Médiathèque de Tavaux ,43 Av. Victor Hugo, 39500 Tavaux\",<br>  \"affichage_lieu\": \"3\"<br>}",
-      "campaign": {
-        "titre": "Escape game - Papyrus et la potion des pluies oubliées",
-        "sous_titre": "",
-        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/evenements/20260522_155611.jpg",
-        "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/Mediath%C3%A8que%20Grand%20Dole.png",
-        "logo_fond": "#ffffff",
-        "fond": "",
-        "tarif": "",
-        "inscription": "Réservation obligatoire",
-        "lien_inscription": "https://mediatheques.grand-dole.fr/cms/articleview/id/4019",
-        "statut": "",
-        "lieu": "Médiathèque de Tavaux ,43 Av. Victor Hugo, 39500 Tavaux",
-        "affichage_lieu": "3"
-      },
-      "calendar": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
-    },
     {
       "uid": "10tus5kqrdlgm6j2bq341tqlm8@google.com",
       "title": "Mon atelier gravure - Studio chouette",
