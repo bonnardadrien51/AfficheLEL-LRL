@@ -1,31 +1,6 @@
 {
-  "generated_at": "2026-10-28T11:12:42.205Z",
+  "generated_at": "2026-10-29T11:25:30.960Z",
   "events": [
-    {
-      "uid": "10tus5kqrdlgm6j2bq341tqlm8@google.com",
-      "title": "Mon atelier gravure - Studio chouette",
-      "start": "2026-10-28T13:00:00.000Z",
-      "end": "2026-10-28T17:00:00.000Z",
-      "location": "",
-      "description": "{<br>  \"titre\": \"Mon atelier gravure\",<br>  \"sous_titre\": \"\",<br>  \"image\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/0.%20Mon%20atelier%20gravure.png\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/0.%20Mon%20atelier%20gravure.png</a>\",<br>  \"logo\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/StudioChouette.png\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/StudioChouette.png</a>\",<br>  \"logo_fond\": \"\",<br>  \"fond\": \"\",<br>  \"tarif\": \"20€\",<br>  \"inscription\": \"Réservation obligatoire à Studio Chouette\",<br>  \"lien_inscription\": \"\",<br>  \"statut\": \"\",<br>  \"lieu\": \"4 Rue du Clos Saint-Amour, 25000 Besançon\",<br>  \"affichage_lieu\": \"3\"<br>}",
-      "campaign": {
-        "titre": "Mon atelier gravure",
-        "sous_titre": "",
-        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/0.%20Mon%20atelier%20gravure.png",
-        "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/StudioChouette.png",
-        "logo_fond": "",
-        "fond": "",
-        "tarif": "20€",
-        "inscription": "Réservation obligatoire à Studio Chouette",
-        "lien_inscription": "",
-        "statut": "",
-        "lieu": "4 Rue du Clos Saint-Amour, 25000 Besançon",
-        "affichage_lieu": "3"
-      },
-      "calendar": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
-    },
     {
       "uid": "0dqg79ovskabtludrfsgh3ddlv@google.com",
       "title": " Escape game - Papyrus et la potion des pluies oubliées - Médiathèque Pirey",
