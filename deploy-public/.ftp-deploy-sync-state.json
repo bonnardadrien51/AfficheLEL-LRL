@@ -1,7 +1,7 @@
 {
     "description": "DO NOT DELETE THIS FILE. This file is used to keep track of which files have been synced in the most recent deployment. If you delete this file a resync will need to be done (which can take a while) - read more: https://github.com/SamKirkland/FTP-Deploy-Action",
     "version": "1.0.0",
-    "generatedTime": 1793273131238,
+    "generatedTime": 1793359041024,
     "data": [
         {
             "type": "file",
@@ -127,7 +127,7 @@
             "type": "file",
             "name": "agenda.json",
             "size": 205742,
-            "hash": "211fb66d24777f97d5a880c8072a1820f0278659e02f69db710ddc4269c97b1a"
+            "hash": "23eeb840308e6ec8416e912dd23a3b404ec1f64f5f06a2fb42f88093ec97d6be"
         },
         {
             "type": "file",
@@ -172,14 +172,14 @@
             "hash": "e2672dbdc4d7686573806d6bee10f14bb8f56af088de38c2e1b36937d0dd163c"
         },
         {
-            "type": "folder",
-            "name": "img"
-        },
-        {
             "type": "file",
             "name": "index.html",
             "size": 2648,
             "hash": "f6aacda338f5d4ccc0a7759647036155061dc953243ee757d44c8734f390795d"
+        },
+        {
+            "type": "folder",
+            "name": "img"
         },
         {
             "type": "file",
@@ -207,15 +207,15 @@
         },
         {
             "type": "file",
-            "name": "mois.js",
-            "size": 6231,
-            "hash": "841a5b0deadb475acb1d32ba7223df0350085dc1cd58cfcf7f94ad528ae03401"
-        },
-        {
-            "type": "file",
             "name": "pagination.js",
             "size": 10312,
             "hash": "d52e4094d1252c7405a0ebe0694de3988c66d910a1bde9b6501a8e0a1f1d9bd7"
+        },
+        {
+            "type": "file",
+            "name": "mois.js",
+            "size": 6231,
+            "hash": "841a5b0deadb475acb1d32ba7223df0350085dc1cd58cfcf7f94ad528ae03401"
         },
         {
             "type": "file",
@@ -225,15 +225,15 @@
         },
         {
             "type": "file",
-            "name": "prochain-jour.js",
-            "size": 14184,
-            "hash": "c7b988cf06b4509124b51ac7f5bcb9d0ed6019c2515d8e4245c001a1c7c70b3d"
-        },
-        {
-            "type": "file",
             "name": "prochain-mois.html",
             "size": 1088,
             "hash": "6fe4149119f69fa3452c77db7261ef840e2a2f8dc95a30ccddce4eac015828f7"
+        },
+        {
+            "type": "file",
+            "name": "prochain-jour.js",
+            "size": 14184,
+            "hash": "c7b988cf06b4509124b51ac7f5bcb9d0ed6019c2515d8e4245c001a1c7c70b3d"
         },
         {
             "type": "file",
@@ -255,12 +255,6 @@
         },
         {
             "type": "file",
-            "name": "img/blanc.png",
-            "size": 15870,
-            "hash": "caa0555b29896a20dcd044423d459ddbeec2579548974ac43dcaad44a61c3b52"
-        },
-        {
-            "type": "file",
             "name": "img/bleu.png",
             "size": 49710,
             "hash": "30f466599b2b0875b302a0706f0a5309de7afe68ad21305bdb57f4070d61b024"
@@ -268,6 +262,12 @@
         {
             "type": "folder",
             "name": "img/categories"
+        },
+        {
+            "type": "file",
+            "name": "img/blanc.png",
+            "size": 15870,
+            "hash": "caa0555b29896a20dcd044423d459ddbeec2579548974ac43dcaad44a61c3b52"
         },
         {
             "type": "file",
@@ -293,12 +293,6 @@
         },
         {
             "type": "file",
-            "name": "img/logo-etabli.svg",
-            "size": 44205,
-            "hash": "37a52e4d659a3c0a145ff0b057b0ded20ab2d0e7b63d9d0588ac726a7d2474d7"
-        },
-        {
-            "type": "file",
             "name": "img/logo-raffut.svg",
             "size": 627633,
             "hash": "7cf63f473edfb4131ad57fd4e2d2bf6c6d02bc90ca961933e54b1553efc21b7d"
@@ -306,6 +300,12 @@
         {
             "type": "folder",
             "name": "img/logos"
+        },
+        {
+            "type": "file",
+            "name": "img/logo-etabli.svg",
+            "size": 44205,
+            "hash": "37a52e4d659a3c0a145ff0b057b0ded20ab2d0e7b63d9d0588ac726a7d2474d7"
         },
         {
             "type": "file",
@@ -327,15 +327,15 @@
         },
         {
             "type": "file",
-            "name": "img/categories/LELpartenaire.svg",
-            "size": 2244,
-            "hash": "fca92fdb90a7bfe1ccbc38134bca1bd31bd1add2d57395cbea3980cd20ae781f"
-        },
-        {
-            "type": "file",
             "name": "img/categories/LELmarche.svg",
             "size": 2244,
             "hash": "e81b99e0509a4061a53473b3451f4a795c59737a0a7e52d24172ff7f0a142af6"
+        },
+        {
+            "type": "file",
+            "name": "img/categories/LELpartenaire.svg",
+            "size": 2244,
+            "hash": "fca92fdb90a7bfe1ccbc38134bca1bd31bd1add2d57395cbea3980cd20ae781f"
         },
         {
             "type": "file",
@@ -345,27 +345,27 @@
         },
         {
             "type": "file",
-            "name": "img/categories/LRLsoiree.svg",
-            "size": 627632,
-            "hash": "f6e8cc5cfe176b2618f8bc1d3d0db05309912c40a66577c253cf972c07fb9844"
-        },
-        {
-            "type": "file",
             "name": "img/evenements/20260522_155611.jpg",
             "size": 1219180,
             "hash": "0ff8bf8c72a8591b0931ede47f09e7e292ed5ebdad70c2b9679747972cc1316e"
         },
         {
             "type": "file",
-            "name": "img/evenements/image0.png",
-            "size": 2178064,
-            "hash": "e1cdc4b6a9400bfb75f0870dcd54aa0f42bdb30e26baefc1bffc1cbae56887ff"
+            "name": "img/categories/LRLsoiree.svg",
+            "size": 627632,
+            "hash": "f6e8cc5cfe176b2618f8bc1d3d0db05309912c40a66577c253cf972c07fb9844"
         },
         {
             "type": "file",
             "name": "img/evenements/img_3093-jpeg.jpg",
             "size": 392761,
             "hash": "bb525eea397d1e74527abca87da56e47433edd93815c2debe9cc9eb2926f21c6"
+        },
+        {
+            "type": "file",
+            "name": "img/evenements/image0.png",
+            "size": 2178064,
+            "hash": "e1cdc4b6a9400bfb75f0870dcd54aa0f42bdb30e26baefc1bffc1cbae56887ff"
         },
         {
             "type": "file",
@@ -411,15 +411,15 @@
         },
         {
             "type": "file",
-            "name": "img/imageEvent/Fabrique ta boule de Noël facon Scan N' Grave.png",
-            "size": 2199944,
-            "hash": "a3de8afde42801f45a8619a43f3f0e54701cd86023f6b102998c082ca94c3e51"
-        },
-        {
-            "type": "file",
             "name": "img/imageEvent/EscapeGame.webp",
             "size": 116618,
             "hash": "868d6ca1f4212be255af7734805131c5fe0a6ce3880c4fc51043c49461a625c8"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/Fabrique ta boule de Noël facon Scan N' Grave.png",
+            "size": 2199944,
+            "hash": "a3de8afde42801f45a8619a43f3f0e54701cd86023f6b102998c082ca94c3e51"
         },
         {
             "type": "file",
@@ -489,15 +489,15 @@
         },
         {
             "type": "file",
-            "name": "img/imageEvent/TowerUp.jpg",
-            "size": 889030,
-            "hash": "361f8b8e98d7e6c3224ad4a6c806bd832d4244353a7c6c7eca7a27aaf9402608"
-        },
-        {
-            "type": "file",
             "name": "img/imageEvent/boomerangCarre.jpg",
             "size": 432101,
             "hash": "7b6f421dc0012b4e6b9504682413affd387a74c0d2ecd823e49f0a78e405ea2a"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/TowerUp.jpg",
+            "size": 889030,
+            "hash": "361f8b8e98d7e6c3224ad4a6c806bd832d4244353a7c6c7eca7a27aaf9402608"
         },
         {
             "type": "file",
@@ -603,15 +603,15 @@
         },
         {
             "type": "file",
-            "name": "img/logo/Pirey.svg",
-            "size": 14239,
-            "hash": "61e490438356c16b2a380e4056e451aaca19d59acf9e9e01620fa10c354da907"
-        },
-        {
-            "type": "file",
             "name": "img/logo/MjcPalente.jpg",
             "size": 66750,
             "hash": "61bcbd3465169620621a7cd315b4ee8ddd3cd2bcae0b541d0238297913fedefb"
+        },
+        {
+            "type": "file",
+            "name": "img/logo/Pirey.svg",
+            "size": 14239,
+            "hash": "61e490438356c16b2a380e4056e451aaca19d59acf9e9e01620fa10c354da907"
         },
         {
             "type": "file",
