@@ -1,56 +1,6 @@
 {
-  "generated_at": "2026-10-31T10:49:56.232Z",
+  "generated_at": "2026-11-01T11:47:03.592Z",
   "events": [
-    {
-      "uid": "0dqg79ovskabtludrfsgh3ddlv@google.com",
-      "title": " Escape game - Papyrus et la potion des pluies oubliées - Médiathèque Pirey",
-      "start": "2026-10-31T13:00:00.000Z",
-      "end": "2026-10-31T18:00:00.000Z",
-      "location": "MEDIATHEQUE de Pirey, 10 A Rte Saint-Martin, 25480 Pirey, France",
-      "description": "{\n  \"titre\": \"Escape game - Papyrus et la potion\",\n  \"sous_titre\": \"\",\n  \"image\": \"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/evenements/20260522_155611.jpg\",\n  \"logo\": \"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/Pirey.svg\",\n  \"logo_fond\": \"#ffffff\",\n  \"fond\": \"\",\n  \"tarif\": \"\",\n  \"inscription\": \"Réservation obligatoire par mail : mediatheque@pirey.fr\",\n  \"lien_inscription\": \"https://www.mediatheque-pirey.fr/\",\n  \"statut\": \"\",\n  \"lieu\": \"\",\n  \"affichage_lieu\": \"3\"\n}",
-      "campaign": {
-        "titre": "Escape game - Papyrus et la potion",
-        "sous_titre": "",
-        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/evenements/20260522_155611.jpg",
-        "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/Pirey.svg",
-        "logo_fond": "#ffffff",
-        "fond": "",
-        "tarif": "",
-        "inscription": "Réservation obligatoire par mail : mediatheque@pirey.fr",
-        "lien_inscription": "https://www.mediatheque-pirey.fr/",
-        "statut": "",
-        "lieu": "",
-        "affichage_lieu": "3"
-      },
-      "calendar": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
-    },
-    {
-      "uid": "0hvlgois0qunkbfkqbaanpk8po@google.com",
-      "title": "Escape game - Papyrus et la potion des pluies oubliées - Nancray ",
-      "start": "2026-10-31T19:00:00.000Z",
-      "end": "2026-10-31T23:00:00.000Z",
-      "location": "",
-      "description": "{\n  \"titre\": \"Escape game - Papyrus et la potion\",\n  \"sous_titre\": \"\",\n  \"image\": \"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/evenements/20260522_155611.jpg\",\n  \"logo\": \"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/CFN%20nancray1.png\",\n  \"logo_fond\": \"#ffffff\",\n  \"fond\": \"\",\n  \"tarif\": \"10€ / personne (une gaufre sucré offerte)\",\n  \"inscription\": \"Réservation obligatoire\",\n  \"lien_inscription\": \"https://booking.myrezapp.com/fr/online/booking/step1/19095/86913\",\n  \"statut\": \"\",\n  \"lieu\": \"Salle des fêtes  ,7 Rue de Vaire, 25360 Nancray\",\n  \"affichage_lieu\": \"3\"\n}",
-      "campaign": {
-        "titre": "Escape game - Papyrus et la potion",
-        "sous_titre": "",
-        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/evenements/20260522_155611.jpg",
-        "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/CFN%20nancray1.png",
-        "logo_fond": "#ffffff",
-        "fond": "",
-        "tarif": "10€ / personne (une gaufre sucré offerte)",
-        "inscription": "Réservation obligatoire",
-        "lien_inscription": "https://booking.myrezapp.com/fr/online/booking/step1/19095/86913",
-        "statut": "",
-        "lieu": "Salle des fêtes  ,7 Rue de Vaire, 25360 Nancray",
-        "affichage_lieu": "3"
-      },
-      "calendar": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
-    },
     {
       "uid": "4921d3ea-5f00-4673-b9b0-f552edbe3742",
       "title": "Les soirées jeux - Avanne",
