@@ -1,31 +1,6 @@
 {
-  "generated_at": "2026-11-04T12:53:29.558Z",
+  "generated_at": "2026-11-05T13:01:48.895Z",
   "events": [
-    {
-      "uid": "4921d3ea-5f00-4673-b9b0-f552edbe3742",
-      "title": "Les soirées jeux - Avanne",
-      "start": "2026-11-04T16:30:00.000Z",
-      "end": "2026-11-04T20:00:00.000Z",
-      "location": "3 Bis rue de l'eglise 25720 Avanne",
-      "description": "{<br>  \"titre\": \"Soirée jeux à Avanne\",<br>  \"sous_titre\": \"\",<br>  \"image\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg\" target=\"_blank\"><u><u>https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg</u></u></a>\",<br>  \"logo\": \"<a href=\"https://static.wixstatic.com/media/2dd0a2_ec64a8347d1c42248671cb41bc7c072d~mv2.png\" target=\"_blank\"><u><u>https://static.wixstatic.com/media/2dd0a2_ec64a8347d1c42248671cb41bc7c072d~mv2.png</u></u></a>\",<br>  \"logo_fond\": \"#ffffff\",<br>  \"fond\": \"\",<br>  \"tarif\": \"Soirée adhérents (solo 10€/an ; famille 25€/an)\",<br>  \"inscription\": \"Réservation conseillée\",<br>  \"lien_inscription\": \"<a href=\"https://booking.myrezapp.com/fr/online/booking/minisite/10009/le-raffut-ludique\" target=\"_blank\"><u><u>https://booking.myrezapp.com/fr/online/booking/minisite/10009/le-raffut-ludique</u></u></a>\",<br>  \"statut\": \"\",<br>  \"lieu\": \"Maison Saint-Vincent - Proche studio photo d'Avanne\",<br>  \"affichage_lieu\": \"3\"<br>}",
-      "campaign": {
-        "titre": "Soirée jeux à Avanne",
-        "sous_titre": "",
-        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg",
-        "logo": "https://static.wixstatic.com/media/2dd0a2_ec64a8347d1c42248671cb41bc7c072d~mv2.png",
-        "logo_fond": "#ffffff",
-        "fond": "",
-        "tarif": "Soirée adhérents (solo 10€/an ; famille 25€/an)",
-        "inscription": "Réservation conseillée",
-        "lien_inscription": "https://booking.myrezapp.com/fr/online/booking/minisite/10009/le-raffut-ludique",
-        "statut": "",
-        "lieu": "Maison Saint-Vincent - Proche studio photo d'Avanne",
-        "affichage_lieu": "3"
-      },
-      "calendar": "Soirée adhérents",
-      "icon": "LRLadherent.svg",
-      "color": "#F6D67A"
-    },
     {
       "uid": "1p0q4jf86i8q3nvlnjj31goot6@google.com",
       "title": "Scan N' Grave ton marque page",

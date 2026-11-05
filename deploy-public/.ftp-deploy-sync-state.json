@@ -1,7 +1,7 @@
 {
     "description": "DO NOT DELETE THIS FILE. This file is used to keep track of which files have been synced in the most recent deployment. If you delete this file a resync will need to be done (which can take a while) - read more: https://github.com/SamKirkland/FTP-Deploy-Action",
     "version": "1.0.0",
-    "generatedTime": 1793796809835,
+    "generatedTime": 1793883709185,
     "data": [
         {
             "type": "file",
@@ -126,8 +126,8 @@
         {
             "type": "file",
             "name": "agenda.json",
-            "size": 202389,
-            "hash": "f0f248894ffb0459b8822f1e0f78db904e85a3cce352350b8e94531071893263"
+            "size": 200214,
+            "hash": "ebb7117713d7bcf2b3227d1d11f51941a8b1408f71d33d7bec66551d365c5031"
         },
         {
             "type": "file",
@@ -243,15 +243,15 @@
         },
         {
             "type": "file",
-            "name": "img/LELmarche.png",
-            "size": 18558,
-            "hash": "c52d11fc0a4f143373894db187997649bd352ab30f9c7734905451c57a179742"
-        },
-        {
-            "type": "file",
             "name": "img/FondTransparentCarre.png",
             "size": 284695,
             "hash": "9f43b1c8df7e892506c82a67c0418f68befb5351496945eb68f93c29ac9675a1"
+        },
+        {
+            "type": "file",
+            "name": "img/LELmarche.png",
+            "size": 18558,
+            "hash": "c52d11fc0a4f143373894db187997649bd352ab30f9c7734905451c57a179742"
         },
         {
             "type": "file",
@@ -266,14 +266,14 @@
             "hash": "30f466599b2b0875b302a0706f0a5309de7afe68ad21305bdb57f4070d61b024"
         },
         {
-            "type": "folder",
-            "name": "img/categories"
-        },
-        {
             "type": "file",
             "name": "img/embleme - bleu.svg",
             "size": 2593,
             "hash": "ff352554bf4c55a9ab3288aaf1e725104be1b0899c7910720bbf4426b71ed17d"
+        },
+        {
+            "type": "folder",
+            "name": "img/categories"
         },
         {
             "type": "folder",
@@ -288,14 +288,14 @@
             "name": "img/jeux"
         },
         {
+            "type": "folder",
+            "name": "img/logo"
+        },
+        {
             "type": "file",
             "name": "img/logo-etabli.svg",
             "size": 44205,
             "hash": "37a52e4d659a3c0a145ff0b057b0ded20ab2d0e7b63d9d0588ac726a7d2474d7"
-        },
-        {
-            "type": "folder",
-            "name": "img/logo"
         },
         {
             "type": "file",
