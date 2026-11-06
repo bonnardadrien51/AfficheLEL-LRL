@@ -1,81 +1,6 @@
 {
-  "generated_at": "2026-11-05T13:01:48.895Z",
+  "generated_at": "2026-11-06T12:50:27.375Z",
   "events": [
-    {
-      "uid": "1p0q4jf86i8q3nvlnjj31goot6@google.com",
-      "title": "Scan N' Grave ton marque page",
-      "start": "2026-11-06T09:15:00.000Z",
-      "end": "2026-11-06T10:00:00.000Z",
-      "location": "Salon Mille et une idees - Micropolis - Besançon",
-      "description": "{<br>  \"titre\": \"Scan N' Grave\",<br>  \"sous_titre\": \"ton marque page\",<br>  \"image\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Scan%20N'%20Grave%20ton%20marque%20page.png\"><u>https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Scan%20N'%20Grave%20ton%20marque%20page.png</u></a>\",<br>  \"logo\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/mile-et-une-idee.jpg\"><u>https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/mile-et-une-idee.jpg</u></a>\",<br>  \"logo_fond\": \"\",<br>  \"fond\": \"\",<br>  \"tarif\": \"12€ (Entrée gratuite au salon pour une inscription à un atelier)\",<br>  \"inscription\": \"Réservation obligatoire\",<br>  \"lien_inscription\": \"<a href=\"https://yp.events/c978d435-33d9-469a-87c6-25a11020a909/Mille-et-une-idees-Besancon/ticketing\"><u>https://yp.events/c978d435-33d9-469a-87c6-25a11020a909/Mille-et-une-idees-Besancon/ticketing</u></a>\",<br>  \"statut\": \"\",<br>  \"lieu\": \"Micropolis - Halle B1 -  3 Boulevard O 25050 Besançon\",<br>  \"affichage_lieu\": \"3\"<br>}",
-      "campaign": {
-        "titre": "Scan N' Grave",
-        "sous_titre": "ton marque page",
-        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Scan%20N'%20Grave%20ton%20marque%20page.png",
-        "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/mile-et-une-idee.jpg",
-        "logo_fond": "",
-        "fond": "",
-        "tarif": "12€ (Entrée gratuite au salon pour une inscription à un atelier)",
-        "inscription": "Réservation obligatoire",
-        "lien_inscription": "https://yp.events/c978d435-33d9-469a-87c6-25a11020a909/Mille-et-une-idees-Besancon/ticketing",
-        "statut": "",
-        "lieu": "Micropolis - Halle B1 -  3 Boulevard O 25050 Besançon",
-        "affichage_lieu": "3"
-      },
-      "calendar": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
-    },
-    {
-      "uid": "6bqp7aa8trpnrqu0r24ke3ljf8@google.com",
-      "title": "Scan N' Grave ton bouchon de vin",
-      "start": "2026-11-06T10:00:00.000Z",
-      "end": "2026-11-06T10:30:00.000Z",
-      "location": "Salon Mille et une idees - Micropolis - Besançon",
-      "description": "{\n  \"titre\": \"Scan N' Grave\",\n  \"sous_titre\": \"ton bouchon de vin\",\n  \"image\": \"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/evenements/scan-n-grave-ton-bouchon-de-vin.png\",\n  \"logo\": \"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/mile-et-une-idee.jpg\",\n  \"logo_fond\": \"\",\n  \"fond\": \"\",\n  \"tarif\": \"10€ (Entrée gratuite au salon pour une inscription à un atelier)\",\n  \"inscription\": \"Réservation obligatoire\",\n  \"lien_inscription\": \"https://yp.events/c978d435-33d9-469a-87c6-25a11020a909/Mille-et-une-idees-Besancon/ticketing\",\n  \"statut\": \"\",\n  \"lieu\": \"Micropolis - Halle B1 -  3 Boulevard O 25050 Besançon\",\n  \"affichage_lieu\": \"3\"\n}",
-      "campaign": {
-        "titre": "Scan N' Grave",
-        "sous_titre": "ton bouchon de vin",
-        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/evenements/scan-n-grave-ton-bouchon-de-vin.png",
-        "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/mile-et-une-idee.jpg",
-        "logo_fond": "",
-        "fond": "",
-        "tarif": "10€ (Entrée gratuite au salon pour une inscription à un atelier)",
-        "inscription": "Réservation obligatoire",
-        "lien_inscription": "https://yp.events/c978d435-33d9-469a-87c6-25a11020a909/Mille-et-une-idees-Besancon/ticketing",
-        "statut": "",
-        "lieu": "Micropolis - Halle B1 -  3 Boulevard O 25050 Besançon",
-        "affichage_lieu": "3"
-      },
-      "calendar": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
-    },
-    {
-      "uid": "3u9t7fdgvlbve3mko7qkfo9u9j@google.com",
-      "title": "Scan N' Grave ton marque page",
-      "start": "2026-11-06T10:45:00.000Z",
-      "end": "2026-11-06T11:30:00.000Z",
-      "location": "Salon Mille et une idees - Micropolis - Besançon",
-      "description": "{<br>  \"titre\": \"Scan N' Grave\",<br>  \"sous_titre\": \"ton marque page\",<br>  \"image\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Scan%20N'%20Grave%20ton%20marque%20page.png\" target=\"_blank\"><u>https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Scan%20N'%20Grave%20ton%20marque%20page.png</u></a>\",<br>  \"logo\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/mile-et-une-idee.jpg\" target=\"_blank\"><u>https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/mile-et-une-idee.jpg</u></a>\",<br>  \"logo_fond\": \"\",<br>  \"fond\": \"\",<br>  \"tarif\": \"12€ (Entrée gratuite au salon pour une inscription à un atelier)\",<br>  \"inscription\": \"Réservation obligatoire\",<br>  \"lien_inscription\": \"<a href=\"https://yp.events/c978d435-33d9-469a-87c6-25a11020a909/Mille-et-une-idees-Besancon/ticketing\" target=\"_blank\"><u>https://yp.events/c978d435-33d9-469a-87c6-25a11020a909/Mille-et-une-idees-Besancon/ticketing</u></a>\",<br>  \"statut\": \"\",<br>  \"lieu\": \"Micropolis - Halle B1 -  3 Boulevard O 25050 Besançon\",<br>  \"affichage_lieu\": \"3\"<br>}",
-      "campaign": {
-        "titre": "Scan N' Grave",
-        "sous_titre": "ton marque page",
-        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Scan%20N'%20Grave%20ton%20marque%20page.png",
-        "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logos/mile-et-une-idee.jpg",
-        "logo_fond": "",
-        "fond": "",
-        "tarif": "12€ (Entrée gratuite au salon pour une inscription à un atelier)",
-        "inscription": "Réservation obligatoire",
-        "lien_inscription": "https://yp.events/c978d435-33d9-469a-87c6-25a11020a909/Mille-et-une-idees-Besancon/ticketing",
-        "statut": "",
-        "lieu": "Micropolis - Halle B1 -  3 Boulevard O 25050 Besançon",
-        "affichage_lieu": "3"
-      },
-      "calendar": "Partenaire",
-      "icon": "LELpartenaire.svg",
-      "color": "#9EB6F1"
-    },
     {
       "uid": "3tj44vdr4kgv7fv6ivjh3n2adp@google.com",
       "title": "Fabrique ta boule de Noël",
@@ -474,6 +399,30 @@
       "calendar": "Soirée adhérents",
       "icon": "LRLadherent.svg",
       "color": "#F6D67A"
+    },
+    {
+      "uid": "5mhpp05civm9lg4rct4ljvbmhi@google.com",
+      "title": "Reunion Trail des castors ",
+      "start": "2026-11-19T18:00:00.000Z",
+      "end": "2026-11-19T19:00:00.000Z",
+      "location": "",
+      "description": "",
+      "campaign": null,
+      "calendar": "Soirée au chapeau",
+      "icon": "LRLsoiree.svg",
+      "color": "#F062B0"
+    },
+    {
+      "uid": "1t569rlge8fv9esfsiu4fn3ceu@google.com",
+      "title": "Reunion club ",
+      "start": "2026-11-19T19:00:00.000Z",
+      "end": "2026-11-19T20:00:00.000Z",
+      "location": "",
+      "description": "",
+      "campaign": null,
+      "calendar": "Soirée au chapeau",
+      "icon": "LRLsoiree.svg",
+      "color": "#F062B0"
     },
     {
       "uid": "11bd122a-2aa1-4739-aa8e-822af269b3ad",
