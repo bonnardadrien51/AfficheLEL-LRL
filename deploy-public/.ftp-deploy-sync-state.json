@@ -1,7 +1,7 @@
 {
     "description": "DO NOT DELETE THIS FILE. This file is used to keep track of which files have been synced in the most recent deployment. If you delete this file a resync will need to be done (which can take a while) - read more: https://github.com/SamKirkland/FTP-Deploy-Action",
     "version": "1.0.0",
-    "generatedTime": 1794231925783,
+    "generatedTime": 1794317035137,
     "data": [
         {
             "type": "file",
@@ -41,15 +41,15 @@
         },
         {
             "type": "file",
-            "name": "agenda-association.js",
-            "size": 11358,
-            "hash": "701b7515a7b40203c5453f004c6d5415184062ad97ad6be3b3b13400b32527dd"
-        },
-        {
-            "type": "file",
             "name": "agenda-lel-affiche.html",
             "size": 769,
             "hash": "61f135bc6c89681a98e765eb901d2c3f2cdf940179ac68d8fab34a9d1467a520"
+        },
+        {
+            "type": "file",
+            "name": "agenda-association.js",
+            "size": 11358,
+            "hash": "701b7515a7b40203c5453f004c6d5415184062ad97ad6be3b3b13400b32527dd"
         },
         {
             "type": "file",
@@ -119,15 +119,15 @@
         },
         {
             "type": "file",
-            "name": "agenda.json",
-            "size": 165796,
-            "hash": "d33105b83b7d0a400a01bfd9e25201dd612eb2f296d8b6a743b6b729ba494a5f"
-        },
-        {
-            "type": "file",
             "name": "agenda-paysage.css",
             "size": 3118,
             "hash": "fbc1ecb9ce525c1f77eaad07d90e8d994778a6cef2efff320cc67ffebfff46da"
+        },
+        {
+            "type": "file",
+            "name": "agenda.json",
+            "size": 165796,
+            "hash": "98ee3048caa15687e46cb6c4de0adbe81ba2f4e952dc79684a75d45033c576ff"
         },
         {
             "type": "file",
@@ -243,15 +243,15 @@
         },
         {
             "type": "file",
-            "name": "img/FondTransparentCarre.png",
-            "size": 284695,
-            "hash": "9f43b1c8df7e892506c82a67c0418f68befb5351496945eb68f93c29ac9675a1"
-        },
-        {
-            "type": "file",
             "name": "img/LELmarche.png",
             "size": 18558,
             "hash": "c52d11fc0a4f143373894db187997649bd352ab30f9c7734905451c57a179742"
+        },
+        {
+            "type": "file",
+            "name": "img/FondTransparentCarre.png",
+            "size": 284695,
+            "hash": "9f43b1c8df7e892506c82a67c0418f68befb5351496945eb68f93c29ac9675a1"
         },
         {
             "type": "file",
@@ -288,6 +288,10 @@
             "name": "img/jeux"
         },
         {
+            "type": "folder",
+            "name": "img/logo"
+        },
+        {
             "type": "file",
             "name": "img/logo-etabli.svg",
             "size": 44205,
@@ -298,10 +302,6 @@
             "name": "img/logo-raffut.svg",
             "size": 627633,
             "hash": "7cf63f473edfb4131ad57fd4e2d2bf6c6d02bc90ca961933e54b1553efc21b7d"
-        },
-        {
-            "type": "folder",
-            "name": "img/logo"
         },
         {
             "type": "folder",
@@ -327,15 +327,15 @@
         },
         {
             "type": "file",
-            "name": "img/categories/LELmarche.svg",
-            "size": 2244,
-            "hash": "e81b99e0509a4061a53473b3451f4a795c59737a0a7e52d24172ff7f0a142af6"
-        },
-        {
-            "type": "file",
             "name": "img/categories/LELpartenaire.svg",
             "size": 2244,
             "hash": "fca92fdb90a7bfe1ccbc38134bca1bd31bd1add2d57395cbea3980cd20ae781f"
+        },
+        {
+            "type": "file",
+            "name": "img/categories/LELmarche.svg",
+            "size": 2244,
+            "hash": "e81b99e0509a4061a53473b3451f4a795c59737a0a7e52d24172ff7f0a142af6"
         },
         {
             "type": "file",
@@ -357,15 +357,15 @@
         },
         {
             "type": "file",
-            "name": "img/evenements/img_3093-jpeg.jpg",
-            "size": 392761,
-            "hash": "bb525eea397d1e74527abca87da56e47433edd93815c2debe9cc9eb2926f21c6"
-        },
-        {
-            "type": "file",
             "name": "img/evenements/image0.png",
             "size": 2178064,
             "hash": "e1cdc4b6a9400bfb75f0870dcd54aa0f42bdb30e26baefc1bffc1cbae56887ff"
+        },
+        {
+            "type": "file",
+            "name": "img/evenements/img_3093-jpeg.jpg",
+            "size": 392761,
+            "hash": "bb525eea397d1e74527abca87da56e47433edd93815c2debe9cc9eb2926f21c6"
         },
         {
             "type": "file",
@@ -483,15 +483,15 @@
         },
         {
             "type": "file",
-            "name": "img/imageEvent/TowerUp.jpg",
-            "size": 889030,
-            "hash": "361f8b8e98d7e6c3224ad4a6c806bd832d4244353a7c6c7eca7a27aaf9402608"
-        },
-        {
-            "type": "file",
             "name": "img/imageEvent/Symbiose.jpg",
             "size": 922706,
             "hash": "756636df0f13bec4d27f62f060df824629e06d1723b7c5d524a834f9e416f99b"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/TowerUp.jpg",
+            "size": 889030,
+            "hash": "361f8b8e98d7e6c3224ad4a6c806bd832d4244353a7c6c7eca7a27aaf9402608"
         },
         {
             "type": "file",
@@ -549,15 +549,15 @@
         },
         {
             "type": "file",
-            "name": "img/jeux/CR_Trek_Amazonie-min.webp",
-            "size": 378778,
-            "hash": "98fa087907431ece1504130aad76740cdb2e4e514c592f0f982c13c3447dab09"
-        },
-        {
-            "type": "file",
             "name": "img/jeux/CR_Trek_Amazonie-min.png",
             "size": 759112,
             "hash": "6a01914a3d5acfb42b563e798a97c2408d9044e85812ab00adca528150782f6b"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_Trek_Amazonie-min.webp",
+            "size": 378778,
+            "hash": "98fa087907431ece1504130aad76740cdb2e4e514c592f0f982c13c3447dab09"
         },
         {
             "type": "file",
@@ -591,15 +591,15 @@
         },
         {
             "type": "file",
-            "name": "img/logo/Mediathèque Grand Dole.png",
-            "size": 8960,
-            "hash": "47fd3547e09f4e97786c0fb64962b5c2cc5b3266b31b76af4ab596e397d7eeb7"
-        },
-        {
-            "type": "file",
             "name": "img/logo/Citro.jpg",
             "size": 299921,
             "hash": "03a5170cb0882990584fb4e7a778cf0b570c75510733cb18ee3119c93a608f7f"
+        },
+        {
+            "type": "file",
+            "name": "img/logo/Mediathèque Grand Dole.png",
+            "size": 8960,
+            "hash": "47fd3547e09f4e97786c0fb64962b5c2cc5b3266b31b76af4ab596e397d7eeb7"
         },
         {
             "type": "file",
