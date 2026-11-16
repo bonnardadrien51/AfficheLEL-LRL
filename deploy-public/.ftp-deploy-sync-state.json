@@ -1,7 +1,7 @@
 {
     "description": "DO NOT DELETE THIS FILE. This file is used to keep track of which files have been synced in the most recent deployment. If you delete this file a resync will need to be done (which can take a while) - read more: https://github.com/SamKirkland/FTP-Deploy-Action",
     "version": "1.0.0",
-    "generatedTime": 1794746274058,
+    "generatedTime": 1794835794970,
     "data": [
         {
             "type": "file",
@@ -126,8 +126,8 @@
         {
             "type": "file",
             "name": "agenda.json",
-            "size": 164244,
-            "hash": "92337e3b32d50aa5cc8b428cd2d9841a9a046aa0f2fb332a52b9e9f25eef5efe"
+            "size": 163217,
+            "hash": "f001117376180e131f9379eeb715ff77c7551ccb34b997bc58342d48523b7462"
         },
         {
             "type": "file",
@@ -213,15 +213,15 @@
         },
         {
             "type": "file",
-            "name": "prochain-jour.html",
-            "size": 1250,
-            "hash": "b678c9866bb68aa5c2dfb5a54402d846b18834556b869353aeb8af323d665e15"
-        },
-        {
-            "type": "file",
             "name": "pagination.js",
             "size": 10312,
             "hash": "d52e4094d1252c7405a0ebe0694de3988c66d910a1bde9b6501a8e0a1f1d9bd7"
+        },
+        {
+            "type": "file",
+            "name": "prochain-jour.html",
+            "size": 1250,
+            "hash": "b678c9866bb68aa5c2dfb5a54402d846b18834556b869353aeb8af323d665e15"
         },
         {
             "type": "file",
@@ -249,6 +249,12 @@
         },
         {
             "type": "file",
+            "name": "img/LELmarche.png",
+            "size": 18558,
+            "hash": "c52d11fc0a4f143373894db187997649bd352ab30f9c7734905451c57a179742"
+        },
+        {
+            "type": "file",
             "name": "img/blanc.png",
             "size": 15870,
             "hash": "caa0555b29896a20dcd044423d459ddbeec2579548974ac43dcaad44a61c3b52"
@@ -262,12 +268,6 @@
         {
             "type": "folder",
             "name": "img/categories"
-        },
-        {
-            "type": "file",
-            "name": "img/LELmarche.png",
-            "size": 18558,
-            "hash": "c52d11fc0a4f143373894db187997649bd352ab30f9c7734905451c57a179742"
         },
         {
             "type": "file",
@@ -298,14 +298,14 @@
             "hash": "37a52e4d659a3c0a145ff0b057b0ded20ab2d0e7b63d9d0588ac726a7d2474d7"
         },
         {
-            "type": "folder",
-            "name": "img/logos"
-        },
-        {
             "type": "file",
             "name": "img/logo-raffut.svg",
             "size": 627633,
             "hash": "7cf63f473edfb4131ad57fd4e2d2bf6c6d02bc90ca961933e54b1553efc21b7d"
+        },
+        {
+            "type": "folder",
+            "name": "img/logos"
         },
         {
             "type": "file",
@@ -333,6 +333,12 @@
         },
         {
             "type": "file",
+            "name": "img/categories/LELpartenaire.svg",
+            "size": 2244,
+            "hash": "fca92fdb90a7bfe1ccbc38134bca1bd31bd1add2d57395cbea3980cd20ae781f"
+        },
+        {
+            "type": "file",
             "name": "img/categories/LRLadherent.svg",
             "size": 627633,
             "hash": "7cf63f473edfb4131ad57fd4e2d2bf6c6d02bc90ca961933e54b1553efc21b7d"
@@ -345,21 +351,15 @@
         },
         {
             "type": "file",
-            "name": "img/categories/LELpartenaire.svg",
-            "size": 2244,
-            "hash": "fca92fdb90a7bfe1ccbc38134bca1bd31bd1add2d57395cbea3980cd20ae781f"
+            "name": "img/evenements/image0.png",
+            "size": 2178064,
+            "hash": "e1cdc4b6a9400bfb75f0870dcd54aa0f42bdb30e26baefc1bffc1cbae56887ff"
         },
         {
             "type": "file",
             "name": "img/evenements/20260522_155611.jpg",
             "size": 1219180,
             "hash": "0ff8bf8c72a8591b0931ede47f09e7e292ed5ebdad70c2b9679747972cc1316e"
-        },
-        {
-            "type": "file",
-            "name": "img/evenements/image0.png",
-            "size": 2178064,
-            "hash": "e1cdc4b6a9400bfb75f0870dcd54aa0f42bdb30e26baefc1bffc1cbae56887ff"
         },
         {
             "type": "file",
@@ -393,15 +393,15 @@
         },
         {
             "type": "file",
-            "name": "img/imageEvent/4. Mon atelier gravure Etape 1 Choix.png",
-            "size": 1996587,
-            "hash": "56369b6ae729727080dda35f436da917d5d8a97e96e0517e99baf8c4938eda39"
-        },
-        {
-            "type": "file",
             "name": "img/imageEvent/3. Mon atelier gravure Etape 1 Choix.png",
             "size": 1902331,
             "hash": "37087b062bdba0fe585bae4c77464ecee894ceb0ce1329af870b6cc5361db02a"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/4. Mon atelier gravure Etape 1 Choix.png",
+            "size": 1996587,
+            "hash": "56369b6ae729727080dda35f436da917d5d8a97e96e0517e99baf8c4938eda39"
         },
         {
             "type": "file",
