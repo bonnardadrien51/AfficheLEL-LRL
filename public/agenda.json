@@ -1,31 +1,6 @@
 {
-  "generated_at": "2026-11-20T13:56:08.271Z",
+  "generated_at": "2026-11-21T13:20:44.202Z",
   "events": [
-    {
-      "uid": "11bd122a-2aa1-4739-aa8e-822af269b3ad",
-      "title": "Soirée découverte jeux de société à La Citronnade",
-      "start": "2026-11-20T18:30:00.000Z",
-      "end": "2026-11-20T21:30:00.000Z",
-      "location": "La Citronnade, Rue Ronchaux, Besancon",
-      "description": "{<br>  \"titre\": \"Le Raffut Ludique s'invite à la Citronnade\",<br>  \"sous_titre\": \"pour une soirée découverte de jeux de société\",<br>  \"image\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg</a>\",<br>  \"logo\": \"<a href=\"https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/Citro.jpg\">https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/Citro.jpg</a>\",<br>  \"logo_fond\": \"#ffffff\",<br>  \"fond\": \"\",<br>  \"tarif\": \"Au chapeau\",<br>  \"inscription\": \"Réservation conseillée\",<br>  \"lien_inscription\": \"<a href=\"https://booking.myrezapp.com/fr/online/booking/minisite/10009/le-raffut-ludique\">https://booking.myrezapp.com/fr/online/booking/minisite/10009/le-raffut-ludique</a>\",<br>  \"statut\": \"\",<br>  \"lieu\": \"Rue Ronchaux, Besançon\",<br>  \"affichage_lieu\": \"3\"<br>}",
-      "campaign": {
-        "titre": "Le Raffut Ludique s'invite à la Citronnade",
-        "sous_titre": "pour une soirée découverte de jeux de société",
-        "image": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/imageEvent/Symbiose.jpg",
-        "logo": "https://bonnardadrien51.github.io/AfficheLEL-LRL/img/logo/Citro.jpg",
-        "logo_fond": "#ffffff",
-        "fond": "",
-        "tarif": "Au chapeau",
-        "inscription": "Réservation conseillée",
-        "lien_inscription": "https://booking.myrezapp.com/fr/online/booking/minisite/10009/le-raffut-ludique",
-        "statut": "",
-        "lieu": "Rue Ronchaux, Besançon",
-        "affichage_lieu": "3"
-      },
-      "calendar": "Soirée au chapeau",
-      "icon": "LRLsoiree.svg",
-      "color": "#F062B0"
-    },
     {
       "uid": "1fl5rb1jl77sg0kvuouvqr3jt8@google.com",
       "title": "Marché Noel Auxons",
