@@ -1,18 +1,6 @@
 {
-  "generated_at": "2026-11-22T13:13:00.536Z",
+  "generated_at": "2026-11-23T15:50:20.388Z",
   "events": [
-    {
-      "uid": "0g3u8eoe5p38b4uoq452pij2d8@google.com",
-      "title": "Marché Noël Auxons",
-      "start": "2026-11-22T09:00:00.000Z",
-      "end": "2026-11-22T17:00:00.000Z",
-      "location": "",
-      "description": "",
-      "campaign": null,
-      "calendar": "Marché / Expo",
-      "icon": "LELmarche.svg",
-      "color": "#D99DC1"
-    },
     {
       "uid": "796c6ollqg27obacumai9p4k9p@google.com",
       "title": "Marché de Noel ",
