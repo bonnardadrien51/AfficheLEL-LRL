@@ -1,7 +1,7 @@
 {
     "description": "DO NOT DELETE THIS FILE. This file is used to keep track of which files have been synced in the most recent deployment. If you delete this file a resync will need to be done (which can take a while) - read more: https://github.com/SamKirkland/FTP-Deploy-Action",
     "version": "1.0.0",
-    "generatedTime": 1795534869740,
+    "generatedTime": 1795620347075,
     "data": [
         {
             "type": "file",
@@ -17,15 +17,15 @@
         },
         {
             "type": "file",
-            "name": "affiche-facebook-evenement.css",
-            "size": 98,
-            "hash": "f133e294222f5739145b787eb4bc02a1222006518a1b0e75ae9f1d04be28f1bc"
-        },
-        {
-            "type": "file",
             "name": "affiche-facebook-evenement.html",
             "size": 3346,
             "hash": "faf8c98caf25d102eaed53c3a804a98279a8c61efabad728494d5cc5d9d0e089"
+        },
+        {
+            "type": "file",
+            "name": "affiche-facebook-evenement.css",
+            "size": 98,
+            "hash": "f133e294222f5739145b787eb4bc02a1222006518a1b0e75ae9f1d04be28f1bc"
         },
         {
             "type": "file",
@@ -89,15 +89,15 @@
         },
         {
             "type": "file",
-            "name": "agenda-lrl-facebook.html",
-            "size": 761,
-            "hash": "e39a1c270e10320113b62af79c953d6588466cf9e32656386e7cd29a933fbd19"
-        },
-        {
-            "type": "file",
             "name": "agenda-lrl-paysage-4.html",
             "size": 745,
             "hash": "715bb1c14c30f4b948cb6dae0e0e0530f7807c0917e4b246a4cd28e73b67092a"
+        },
+        {
+            "type": "file",
+            "name": "agenda-lrl-facebook.html",
+            "size": 761,
+            "hash": "e39a1c270e10320113b62af79c953d6588466cf9e32656386e7cd29a933fbd19"
         },
         {
             "type": "file",
@@ -127,7 +127,7 @@
             "type": "file",
             "name": "agenda.json",
             "size": 158276,
-            "hash": "2879d904d626ff939a0fdacf3e110df7e17ec5ca381955a98bbddaed26a09c5b"
+            "hash": "f0537e3843bdc0376101032491d22cdbce5e0d753ff29317c58530db82a783ab"
         },
         {
             "type": "file",
@@ -155,25 +155,25 @@
         },
         {
             "type": "file",
-            "name": "evenements-association.js",
-            "size": 6952,
-            "hash": "376bc7e5d894696fe77eb27eb08358e0a42a284398d9b331bd50724f62b4cc04"
-        },
-        {
-            "type": "file",
             "name": "evenements-lel.html",
             "size": 3456,
             "hash": "7f1d7e5c64a0ebf09abbd5a5ccdd0da1ca90bce69fd92db10122fe72e7999578"
         },
         {
             "type": "file",
-            "name": "evenements-lrl.html",
-            "size": 3456,
-            "hash": "e2672dbdc4d7686573806d6bee10f14bb8f56af088de38c2e1b36937d0dd163c"
+            "name": "evenements-association.js",
+            "size": 6952,
+            "hash": "376bc7e5d894696fe77eb27eb08358e0a42a284398d9b331bd50724f62b4cc04"
         },
         {
             "type": "folder",
             "name": "img"
+        },
+        {
+            "type": "file",
+            "name": "evenements-lrl.html",
+            "size": 3456,
+            "hash": "e2672dbdc4d7686573806d6bee10f14bb8f56af088de38c2e1b36937d0dd163c"
         },
         {
             "type": "file",
@@ -207,12 +207,6 @@
         },
         {
             "type": "file",
-            "name": "mois.js",
-            "size": 6231,
-            "hash": "841a5b0deadb475acb1d32ba7223df0350085dc1cd58cfcf7f94ad528ae03401"
-        },
-        {
-            "type": "file",
             "name": "pagination.js",
             "size": 10312,
             "hash": "d52e4094d1252c7405a0ebe0694de3988c66d910a1bde9b6501a8e0a1f1d9bd7"
@@ -228,6 +222,12 @@
             "name": "prochain-jour.js",
             "size": 14184,
             "hash": "c7b988cf06b4509124b51ac7f5bcb9d0ed6019c2515d8e4245c001a1c7c70b3d"
+        },
+        {
+            "type": "file",
+            "name": "mois.js",
+            "size": 6231,
+            "hash": "841a5b0deadb475acb1d32ba7223df0350085dc1cd58cfcf7f94ad528ae03401"
         },
         {
             "type": "file",
@@ -255,15 +255,15 @@
         },
         {
             "type": "file",
-            "name": "img/blanc.png",
-            "size": 15870,
-            "hash": "caa0555b29896a20dcd044423d459ddbeec2579548974ac43dcaad44a61c3b52"
-        },
-        {
-            "type": "file",
             "name": "img/bleu.png",
             "size": 49710,
             "hash": "30f466599b2b0875b302a0706f0a5309de7afe68ad21305bdb57f4070d61b024"
+        },
+        {
+            "type": "file",
+            "name": "img/blanc.png",
+            "size": 15870,
+            "hash": "caa0555b29896a20dcd044423d459ddbeec2579548974ac43dcaad44a61c3b52"
         },
         {
             "type": "folder",
@@ -303,6 +303,12 @@
         },
         {
             "type": "file",
+            "name": "img/logo-raffut.svg",
+            "size": 627633,
+            "hash": "7cf63f473edfb4131ad57fd4e2d2bf6c6d02bc90ca961933e54b1553efc21b7d"
+        },
+        {
+            "type": "file",
             "name": "img/principal - couleurs.svg",
             "size": 33806,
             "hash": "986c57c5f2b6416964253c902ab1f1e635e55ae55f33fdd0b7bf4a503c421ce4"
@@ -312,12 +318,6 @@
             "name": "img/test",
             "size": 3,
             "hash": "508de6d05fb75d0351e8ce0aa3b4b4e8bb046c99af8b3631f36e7bd3742f3a44"
-        },
-        {
-            "type": "file",
-            "name": "img/logo-raffut.svg",
-            "size": 627633,
-            "hash": "7cf63f473edfb4131ad57fd4e2d2bf6c6d02bc90ca961933e54b1553efc21b7d"
         },
         {
             "type": "file",
@@ -333,15 +333,15 @@
         },
         {
             "type": "file",
-            "name": "img/categories/LELpartenaire.svg",
-            "size": 2244,
-            "hash": "fca92fdb90a7bfe1ccbc38134bca1bd31bd1add2d57395cbea3980cd20ae781f"
-        },
-        {
-            "type": "file",
             "name": "img/categories/LRLadherent.svg",
             "size": 627633,
             "hash": "7cf63f473edfb4131ad57fd4e2d2bf6c6d02bc90ca961933e54b1553efc21b7d"
+        },
+        {
+            "type": "file",
+            "name": "img/categories/LELpartenaire.svg",
+            "size": 2244,
+            "hash": "fca92fdb90a7bfe1ccbc38134bca1bd31bd1add2d57395cbea3980cd20ae781f"
         },
         {
             "type": "file",
@@ -435,12 +435,6 @@
         },
         {
             "type": "file",
-            "name": "img/imageEvent/Micronora.png",
-            "size": 2178064,
-            "hash": "e1cdc4b6a9400bfb75f0870dcd54aa0f42bdb30e26baefc1bffc1cbae56887ff"
-        },
-        {
-            "type": "file",
             "name": "img/imageEvent/MiddleAge.jpg",
             "size": 911509,
             "hash": "72466a3bd093096b5a22c7fa97eb8fb530a02805488d4e96eba2ef36efb71c38"
@@ -450,6 +444,12 @@
             "name": "img/imageEvent/Pour info  Fabrique ta carte lumineuse.png",
             "size": 2060717,
             "hash": "923dba5e5cf30d27f3684306f0c575ecf2274173113e8b7b97d4f6f2fc072dc9"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/Micronora.png",
+            "size": 2178064,
+            "hash": "e1cdc4b6a9400bfb75f0870dcd54aa0f42bdb30e26baefc1bffc1cbae56887ff"
         },
         {
             "type": "file",
@@ -489,15 +489,15 @@
         },
         {
             "type": "file",
-            "name": "img/imageEvent/TowerUp.jpg",
-            "size": 889030,
-            "hash": "361f8b8e98d7e6c3224ad4a6c806bd832d4244353a7c6c7eca7a27aaf9402608"
-        },
-        {
-            "type": "file",
             "name": "img/imageEvent/boomerangCarre.jpg",
             "size": 432101,
             "hash": "7b6f421dc0012b4e6b9504682413affd387a74c0d2ecd823e49f0a78e405ea2a"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/TowerUp.jpg",
+            "size": 889030,
+            "hash": "361f8b8e98d7e6c3224ad4a6c806bd832d4244353a7c6c7eca7a27aaf9402608"
         },
         {
             "type": "file",
@@ -531,15 +531,15 @@
         },
         {
             "type": "file",
-            "name": "img/logo/StudioChouette.png",
-            "size": 9325,
-            "hash": "097d7f671ad73a11df1c1f0e881cb1ff12f269a8f93b9f0a51ca61906a6b2fa4"
-        },
-        {
-            "type": "file",
             "name": "img/logo/images.jpg",
             "size": 28236,
             "hash": "6af134b3730109b327255eb386a9be54af83a403393a5b87534a3de9a19abbea"
+        },
+        {
+            "type": "file",
+            "name": "img/logo/StudioChouette.png",
+            "size": 9325,
+            "hash": "097d7f671ad73a11df1c1f0e881cb1ff12f269a8f93b9f0a51ca61906a6b2fa4"
         },
         {
             "type": "file",
@@ -555,15 +555,15 @@
         },
         {
             "type": "file",
-            "name": "img/jeux/CR_Fluffy_Valley-min.png",
-            "size": 606063,
-            "hash": "0db4ef3cfaa9319f9e6aca60b202ce544df99c9b96955a417bfe65328da9edc2"
-        },
-        {
-            "type": "file",
             "name": "img/jeux/CR_Fluffy_Valley-min.webp",
             "size": 338304,
             "hash": "cca243ccfca0ed668a9d36afefcecdd4310ba8a3aa404bead42dbc90440c441f"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_Fluffy_Valley-min.png",
+            "size": 606063,
+            "hash": "0db4ef3cfaa9319f9e6aca60b202ce544df99c9b96955a417bfe65328da9edc2"
         },
         {
             "type": "file",
@@ -585,15 +585,15 @@
         },
         {
             "type": "file",
-            "name": "img/jeux/CR_Trek_Amazonie-min.png",
-            "size": 759112,
-            "hash": "6a01914a3d5acfb42b563e798a97c2408d9044e85812ab00adca528150782f6b"
-        },
-        {
-            "type": "file",
             "name": "img/jeux/CR_TowerUp-min.webp",
             "size": 324146,
             "hash": "e8657f52fa620aa3590a4af45fc0c423f5934d237527432671e8b406d6b619c2"
+        },
+        {
+            "type": "file",
+            "name": "img/jeux/CR_Trek_Amazonie-min.png",
+            "size": 759112,
+            "hash": "6a01914a3d5acfb42b563e798a97c2408d9044e85812ab00adca528150782f6b"
         },
         {
             "type": "file",
