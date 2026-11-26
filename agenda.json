@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-25T15:25:46.889Z",
+  "generated_at": "2026-11-26T14:56:55.760Z",
   "events": [
     {
       "uid": "796c6ollqg27obacumai9p4k9p@google.com",
@@ -83,6 +83,42 @@
         "lieu": "4 Rue du Clos Saint-Amour, 25000 Besançon",
         "affichage_lieu": "3"
       },
+      "calendar": "Partenaire",
+      "icon": "LELpartenaire.svg",
+      "color": "#9EB6F1"
+    },
+    {
+      "uid": "2l6f9khrvqc51p1navqo70clcq@google.com",
+      "title": "Escape game Madame chouette - Chaussin",
+      "start": "2027-02-17T13:00:00.000Z",
+      "end": "2027-02-17T16:00:00.000Z",
+      "location": "Médiatèque André Besson, 3 Rue du Collège, 39120 Chaussin, France",
+      "description": "",
+      "campaign": null,
+      "calendar": "Partenaire",
+      "icon": "LELpartenaire.svg",
+      "color": "#9EB6F1"
+    },
+    {
+      "uid": "04fovpset7qsn22egl9euhsr3n@google.com",
+      "title": "Escape Game : Sur les traces de Victor Hugo",
+      "start": "2027-02-26T12:00:00.000Z",
+      "end": "2027-02-26T18:00:00.000Z",
+      "location": "",
+      "description": "",
+      "campaign": null,
+      "calendar": "Partenaire",
+      "icon": "LELpartenaire.svg",
+      "color": "#9EB6F1"
+    },
+    {
+      "uid": "0u6ds870uhlgdk9u6cq9bkqmn7@google.com",
+      "title": "Escape Game : Sur les traces de Victor Hugo",
+      "start": "2027-02-27T09:00:00.000Z",
+      "end": "2027-02-27T18:00:00.000Z",
+      "location": "",
+      "description": "",
+      "campaign": null,
       "calendar": "Partenaire",
       "icon": "LELpartenaire.svg",
       "color": "#9EB6F1"
