@@ -1,7 +1,7 @@
 {
     "description": "DO NOT DELETE THIS FILE. This file is used to keep track of which files have been synced in the most recent deployment. If you delete this file a resync will need to be done (which can take a while) - read more: https://github.com/SamKirkland/FTP-Deploy-Action",
     "version": "1.0.0",
-    "generatedTime": 1795705015968,
+    "generatedTime": 1795791166945,
     "data": [
         {
             "type": "file",
@@ -127,7 +127,7 @@
             "type": "file",
             "name": "agenda.json",
             "size": 159468,
-            "hash": "bff2aa956feccfdc6de21b6dbb1bbe7cb8e19ca83417f3aad6812ddf8a45ac02"
+            "hash": "6023e6ce62f25fe0870a72eb0bce903f2c914eca3ecdb4f3d411abb08de8be88"
         },
         {
             "type": "file",
@@ -237,15 +237,15 @@
         },
         {
             "type": "file",
-            "name": "img/FondTransparentCarre.png",
-            "size": 284695,
-            "hash": "9f43b1c8df7e892506c82a67c0418f68befb5351496945eb68f93c29ac9675a1"
-        },
-        {
-            "type": "file",
             "name": "img/FondTransparent2.png",
             "size": 297893,
             "hash": "17e643b1d904eed4fb5b55fa1ba904508ad5861717fbbde6a3efe04eade26aab"
+        },
+        {
+            "type": "file",
+            "name": "img/FondTransparentCarre.png",
+            "size": 284695,
+            "hash": "9f43b1c8df7e892506c82a67c0418f68befb5351496945eb68f93c29ac9675a1"
         },
         {
             "type": "file",
@@ -266,14 +266,14 @@
             "hash": "30f466599b2b0875b302a0706f0a5309de7afe68ad21305bdb57f4070d61b024"
         },
         {
+            "type": "folder",
+            "name": "img/categories"
+        },
+        {
             "type": "file",
             "name": "img/embleme - bleu.svg",
             "size": 2593,
             "hash": "ff352554bf4c55a9ab3288aaf1e725104be1b0899c7910720bbf4426b71ed17d"
-        },
-        {
-            "type": "folder",
-            "name": "img/categories"
         },
         {
             "type": "folder",
@@ -288,14 +288,14 @@
             "name": "img/jeux"
         },
         {
+            "type": "folder",
+            "name": "img/logo"
+        },
+        {
             "type": "file",
             "name": "img/logo-etabli.svg",
             "size": 44205,
             "hash": "37a52e4d659a3c0a145ff0b057b0ded20ab2d0e7b63d9d0588ac726a7d2474d7"
-        },
-        {
-            "type": "folder",
-            "name": "img/logo"
         },
         {
             "type": "file",
@@ -309,15 +309,15 @@
         },
         {
             "type": "file",
-            "name": "img/principal - couleurs.svg",
-            "size": 33806,
-            "hash": "986c57c5f2b6416964253c902ab1f1e635e55ae55f33fdd0b7bf4a503c421ce4"
-        },
-        {
-            "type": "file",
             "name": "img/test",
             "size": 3,
             "hash": "508de6d05fb75d0351e8ce0aa3b4b4e8bb046c99af8b3631f36e7bd3742f3a44"
+        },
+        {
+            "type": "file",
+            "name": "img/principal - couleurs.svg",
+            "size": 33806,
+            "hash": "986c57c5f2b6416964253c902ab1f1e635e55ae55f33fdd0b7bf4a503c421ce4"
         },
         {
             "type": "file",
@@ -351,15 +351,15 @@
         },
         {
             "type": "file",
-            "name": "img/evenements/20260522_155611.jpg",
-            "size": 1219180,
-            "hash": "0ff8bf8c72a8591b0931ede47f09e7e292ed5ebdad70c2b9679747972cc1316e"
-        },
-        {
-            "type": "file",
             "name": "img/evenements/image0.png",
             "size": 2178064,
             "hash": "e1cdc4b6a9400bfb75f0870dcd54aa0f42bdb30e26baefc1bffc1cbae56887ff"
+        },
+        {
+            "type": "file",
+            "name": "img/evenements/20260522_155611.jpg",
+            "size": 1219180,
+            "hash": "0ff8bf8c72a8591b0931ede47f09e7e292ed5ebdad70c2b9679747972cc1316e"
         },
         {
             "type": "file",
@@ -387,15 +387,15 @@
         },
         {
             "type": "file",
-            "name": "img/imageEvent/2. Mon atelier gravure Etape 1 Choix.png",
-            "size": 2316247,
-            "hash": "a8d9de3c06096cf72835a45a6268524020aaf0e9bc4c442da06fc9713f27352f"
-        },
-        {
-            "type": "file",
             "name": "img/imageEvent/3. Mon atelier gravure Etape 1 Choix.png",
             "size": 1902331,
             "hash": "37087b062bdba0fe585bae4c77464ecee894ceb0ce1329af870b6cc5361db02a"
+        },
+        {
+            "type": "file",
+            "name": "img/imageEvent/2. Mon atelier gravure Etape 1 Choix.png",
+            "size": 2316247,
+            "hash": "a8d9de3c06096cf72835a45a6268524020aaf0e9bc4c442da06fc9713f27352f"
         },
         {
             "type": "file",
